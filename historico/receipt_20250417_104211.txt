@@ -1,7 +1,0 @@
-COMPROVANTE DE ENVIO DE RELATÓRIO
-Data: Thu Apr 17 10:42:11 -03 2025
-Arquivo: feedback_report.md
-Templates incluídos:        0
-Hash do relatório: 
-Status: Enviado com sucesso
-ID do pacote: 

@@ -1,7 +1,0 @@
-Recibo de Envio de Relatório
-Data: 2025-04-17 10:42:50
-Arquivo de Relatório: report.md
-Templates Incluídos:        2
-Hash do Relatório: 25cd53458ae47eebec482721f4c06d2d
-Status: Enviado
-ID do Pacote: 1744897372

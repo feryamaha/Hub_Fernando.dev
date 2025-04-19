@@ -35,9 +35,10 @@ module.exports = {
             expand: true
         }),
         new webpack.DefinePlugin({
-            'process.env': {
-                REACT_APP_YOUTUBE_API_KEY: JSON.stringify(process.env.REACT_APP_YOUTUBE_API_KEY)
-            }
+            'process.env.REACT_APP_GOOGLE_API_KEY': JSON.stringify(process.env.REACT_APP_GOOGLE_API_KEY),
+            'process.env.REACT_APP_GOOGLE_SEARCH_ENGINE_ID': JSON.stringify(process.env.REACT_APP_GOOGLE_SEARCH_ENGINE_ID),
+            'process.env.REACT_APP_YOUTUBE_API_KEY': JSON.stringify(process.env.REACT_APP_YOUTUBE_API_KEY),
+            'process.env.REACT_APP_API_URL': JSON.stringify(process.env.REACT_APP_API_URL)
         }),
         new CopyWebpackPlugin({
             patterns: [

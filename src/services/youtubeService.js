@@ -1,6 +1,5 @@
-// Configuração da API do YouTube
-const API_KEY = process.env.REACT_APP_YOUTUBE_API_KEY;
-const API_BASE_URL = 'https://www.googleapis.com/youtube/v3';
+// Configuração da API
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:3001';
 
 // Funções de formatação
 const formatViews = (count) => {
@@ -39,19 +38,6 @@ const formatDuration = (duration) => {
   return result;
 };
 
-// Função de validação da API key
-const validateApiKey = () => {
-  if (!API_KEY) {
-    throw new Error('A chave da API do YouTube não está configurada. Por favor, verifique suas configurações.');
-  }
-  
-  // Verifica se a chave tem o formato correto (39 caracteres, alfanuméricos e traços)
-  const keyFormat = /^[A-Za-z0-9_-]{39}$/;
-  if (!keyFormat.test(API_KEY)) {
-    throw new Error('O formato da chave da API do YouTube é inválido. Por favor, verifique se a chave está correta.');
-  }
-};
-
 // Função para tratar erros da API
 const handleApiError = (error) => {
   console.error('Erro na API do YouTube:', error);
@@ -84,74 +70,21 @@ const handleApiError = (error) => {
 // Função principal de busca
 export const searchVideos = async (searchTerm) => {
   try {
-    // Valida a API key antes de fazer a requisição
-    validateApiKey();
-    
-    console.log('Verificando configuração da API...');
-    console.log('API_KEY:', API_KEY);
-    
     if (!searchTerm.trim()) {
       return [];
     }
 
-    // Parâmetros da busca
-    const searchParams = new URLSearchParams({
-      part: 'snippet',
-      maxResults: 10,
-      type: 'video',
-      key: API_KEY,
-      q: searchTerm.trim(),
-    });
+    const response = await fetch(`${API_BASE_URL}/api/search?${new URLSearchParams({
+      query: searchTerm.trim(),
+      type: 'youtube'
+    })}`);
 
-    const searchUrl = `${API_BASE_URL}/search?${searchParams}`;
-    console.log('URL da busca:', searchUrl);
-
-    // Busca os vídeos
-    const searchResponse = await fetch(searchUrl);
-    
-    if (!searchResponse.ok) {
-      const errorData = await searchResponse.json();
-      handleApiError({ response: { status: searchResponse.status, data: errorData } });
+    if (!response.ok) {
+      const error = await response.json();
+      throw new Error(error.error || 'Erro ao realizar a busca');
     }
 
-    const searchData = await searchResponse.json();
-    
-    if (!searchData.items || searchData.items.length === 0) {
-      return [];
-    }
-
-    // Busca detalhes dos vídeos
-    const videoIds = searchData.items.map(item => item.id.videoId).join(',');
-    const detailsParams = new URLSearchParams({
-      part: 'snippet,contentDetails,statistics',
-      id: videoIds,
-      key: API_KEY,
-    });
-
-    const detailsUrl = `${API_BASE_URL}/videos?${detailsParams}`;
-    const detailsResponse = await fetch(detailsUrl);
-    
-    if (!detailsResponse.ok) {
-      const errorData = await detailsResponse.json();
-      handleApiError({ response: { status: detailsResponse.status, data: errorData } });
-    }
-
-    const detailsData = await detailsResponse.json();
-    
-    // Mapeia os resultados
-    return searchData.items.map((item, index) => {
-      const details = detailsData.items[index];
-      return {
-        id: item.id.videoId,
-        title: item.snippet.title,
-        thumbnail: item.snippet.thumbnails.high.url,
-        channel: item.snippet.channelTitle,
-        description: item.snippet.description,
-        views: formatViews(details.statistics.viewCount),
-        timestamp: formatDate(item.snippet.publishedAt),
-        duration: formatDuration(details.contentDetails.duration)
-      };
-    });
+    return await response.json();
   } catch (error) {
     console.error('Erro no serviço do YouTube:', error);
     throw error;

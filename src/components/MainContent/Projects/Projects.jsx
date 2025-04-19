@@ -9,7 +9,7 @@ const projects = [
     id: 1,
     title: "WHFF-enD",
     description: "Um site de portfólio moderno construído com React e Tailwind CSS, apresentando elementos de UI no estilo macOS e animações suaves.",
-    image: "/icons/img_projetc_whffend.webp",
+    image: "icons/img_projetc_whffend.webp",
     technologies: ["React", "Tailwind CSS", "Framer Motion", "Heroicons"],
     demoLink: "https://whff-end.demo",
     githubLink: "https://github.com/username/WHFF-enD"
@@ -18,7 +18,7 @@ const projects = [
     id: 2,
     title: "Alpha - Auclan Design",
     description: "Solução completa para gerenciamento de projetos e equipes com foco em produtividade e colaboração.",
-    image: "/icons/img_project_alpha.webp",
+    image: "icons/img_project_alpha.webp",
     technologies: ["Next.js", "Node.js", "MongoDB", "AWS"],
     demoLink: "https://alpha-project.demo",
     githubLink: "https://github.com/username/alpha-project"
@@ -27,7 +27,7 @@ const projects = [
     id: 3,
     title: "AutoDataF",
     description: "Plataforma de análise e visualização de dados automotivos com relatórios personalizados.",
-    image: "/icons/img_project_autodataf.webp",
+    image: "icons/img_project_autodataf.webp",
     technologies: ["React", "Python", "Pandas", "Chart.js"],
     demoLink: "https://autodataf.demo",
     githubLink: "https://github.com/username/autodataf"
@@ -36,7 +36,7 @@ const projects = [
     id: 4,
     title: "MLX Capital - Auclan Design",
     description: "Sistema de machine learning para análise preditiva e otimização de processos.",
-    image: "/icons/img_project_mlx.webp",
+    image: "icons/img_project_mlx.webp",
     technologies: ["Python", "TensorFlow", "Scikit-learn", "FastAPI"],
     demoLink: "https://mlx-platform.demo",
     githubLink: "https://github.com/username/mlx-platform"
@@ -45,7 +45,7 @@ const projects = [
     id: 5,
     title: "Vega - Auclan Design",
     description: "Plataforma de gestão empresarial integrada com foco em automação e eficiência.",
-    image: "/icons/img_project_vega.webp",
+    image: "icons/img_project_vega.webp",
     technologies: ["Vue.js", "Node.js", "PostgreSQL", "Docker"],
     demoLink: "https://vega-system.demo",
     githubLink: "https://github.com/username/vega-system"

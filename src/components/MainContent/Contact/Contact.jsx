@@ -45,7 +45,6 @@ const Contact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Aqui você pode adicionar a lógica para enviar o formulário
     console.log('Form data:', formData);
   };
 
@@ -142,22 +141,8 @@ const Contact = () => {
               glowColor="rgba(var(--finder-accent-rgb), 0.6)"
               animationDuration={0.3}
               pauseBetweenAnimations={0.5}
+              className="text-xs sm:text-sm"
             />
-          </div>
-        </div>
-
-        <div className="mt-16 text-center">
-          <div className="text-[var(--finder-accent)]/80" data-aos="fade-up" data-aos-delay="300" data-aos-duration="800">
-            <button
-              onClick={handleCopyEmail}
-              className={`flex items-center space-x-3 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100 transition-colors ${copied ? 'text-green-500' : ''}`}
-            >
-              <EnvelopeIcon className="h-5 w-5" />
-              <span>{email}</span>
-              <span className={`text-sm text-green-500 transition-opacity ${copied ? 'opacity-100' : 'opacity-0'}`}>
-                Copied!
-              </span>
-            </button>
           </div>
         </div>
 

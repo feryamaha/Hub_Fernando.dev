@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import useScreenSize from '../../hooks/useScreenSize';
 import { useTheme } from '../../hooks/useTheme';
@@ -12,6 +12,7 @@ import Contact from './Contact/Contact';
 import YaminuelleChat from '../Sidebar/Locations/Yaminuelle/YaminuelleChat';
 import GoogleSearch from '../Sidebar/Locations/Google/GoogleSearch';
 import Youtube from '../Sidebar/Locations/Youtube/Youtube';
+import Search from './Search/Search';
 
 const MainContent = () => {
   const [contentState, setContentState] = useState('normal');
@@ -19,6 +20,14 @@ const MainContent = () => {
   const location = useLocation();
   const [theme] = useTheme();
   const screenSize = useScreenSize();
+  const [searchTerm, setSearchTerm] = useState('');
+
+  // Fecha o menu mobile quando a rota muda
+  useEffect(() => {
+    if (screenSize.isMobile) {
+      setIsSidebarOpen(false);
+    }
+  }, [location.pathname, screenSize.isMobile]);
 
   const getTitle = () => {
     switch(location.pathname) {
@@ -34,6 +43,24 @@ const MainContent = () => {
     }
   };
 
+  // Filter function for skills and projects
+  const filterItems = (items, term) => {
+    if (!term) return items;
+    const lowerTerm = term.toLowerCase();
+    
+    return items.map(category => ({
+      ...category,
+      files: category.files.filter(file => 
+        file.name.toLowerCase().includes(lowerTerm) ||
+        file.description?.toLowerCase().includes(lowerTerm)
+      )
+    })).filter(category => category.files.length > 0);
+  };
+
+  const handleSearch = (term) => {
+    setSearchTerm(term);
+  };
+
   const renderContent = () => {
     if (contentState === 'hidden' || contentState === 'minimized') {
       return null;
@@ -47,8 +74,8 @@ const MainContent = () => {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
-            <Route path="/skills" element={<Skills />} />
-            <Route path="/projects" element={<Projects />} />
+            <Route path="/skills" element={<Skills searchTerm={searchTerm} />} />
+            <Route path="/projects" element={<Projects searchTerm={searchTerm} />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/chat" element={<YaminuelleChat />} />
             <Route path="/google" element={<GoogleSearch />} />
@@ -81,11 +108,7 @@ const MainContent = () => {
           {getTitle()}
         </div>
         <div className="px-2">
-          <input
-            type="text"
-            placeholder="Buscar"
-            className="bg-black text-white rounded-md px-3 py-1 w-48 focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-400 transition-all duration-200"
-          />
+          <Search onSearch={handleSearch} />
         </div>
       </div>
 

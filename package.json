@@ -22,6 +22,8 @@
     "@testing-library/user-event": "^13.5.0",
     "aos": "^2.3.4",
     "axios": "^1.8.4",
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
     "framer-motion": "^10.12.0",
     "gsap": "^3.12.7",
     "lodash": "^4.17.21",

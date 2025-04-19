@@ -10,7 +10,7 @@ const GoogleSearch = () => {
   const [isSearching, setIsSearching] = useState(false);
   const [searchResults, setSearchResults] = useState(null);
   const [selectedResult, setSelectedResult] = useState(null);
-  const [viewportSize, setViewportSize] = useState('default'); // 'default', 'maximized', 'closed'
+  const [viewportSize, setViewportSize] = useState('default');
   const [error, setError] = useState(null);
 
   const debouncedSearch = useCallback(
@@ -84,7 +84,6 @@ const GoogleSearch = () => {
 
   return (
     <div className={`h-full flex flex-col bg-finder-window theme-${theme}`}>
-      {/* Header */}
       <div className="bg-finder-sidebar border-b border-finder-border p-2">
         <div className="flex items-center space-x-3">
           {selectedResult && (
@@ -97,7 +96,7 @@ const GoogleSearch = () => {
           )}
           <div className="w-8 h-8 rounded-full flex items-center justify-center">
             <svg width="24" height="24" viewBox="0 0 24 24">
-              <path d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z" fill="#4285F4"/>
+              <path d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z" fill="#4285F4" />
             </svg>
           </div>
           <div className="flex-1">
@@ -106,8 +105,6 @@ const GoogleSearch = () => {
           </div>
         </div>
       </div>
-
-      {/* Search Area */}
       <div className="flex-1 flex flex-col p-4 overflow-hidden">
         <form onSubmit={handleSearch} className="flex items-center space-x-2 mb-4">
           <input
@@ -124,8 +121,6 @@ const GoogleSearch = () => {
             <MagnifyingGlassIcon className="h-5 w-5" />
           </button>
         </form>
-
-        {/* Results Area */}
         <div className="flex-1 overflow-hidden">
           {isSearching ? (
             <div className="flex items-center justify-center text-finder-text-secondary h-full">
@@ -137,7 +132,6 @@ const GoogleSearch = () => {
             </div>
           ) : selectedResult ? (
             <>
-              {/* Control buttons for maximized view */}
               {viewportSize === 'maximized' && (
                 <div className="fixed top-4 left-4 flex items-center space-x-2 z-50 p-2 rounded-lg bg-black bg-opacity-20">
                   <button onClick={() => handleViewportControl('close')} className={controlButtonsClass} title="Fechar">
@@ -233,4 +227,4 @@ const GoogleSearch = () => {
   );
 };
 
-export default GoogleSearch; 
+export default GoogleSearch;

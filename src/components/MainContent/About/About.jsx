@@ -1,37 +1,9 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { useTheme } from '../../../hooks/useTheme';
 import './About.css';
 
 const About = () => {
   const [theme] = useTheme();
-  const foldersRef = useRef([]);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('animate-flip');
-          }
-        });
-      },
-      {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-      }
-    );
-
-    foldersRef.current.forEach((folder) => {
-      if (folder) observer.observe(folder);
-    });
-
-    return () => {
-      foldersRef.current.forEach((folder) => {
-        if (folder) observer.unobserve(folder);
-      });
-    };
-  }, []);
-
   const folders = [
     {
       title: 'Apresentação',
@@ -73,8 +45,7 @@ const About = () => {
         {folders.map((folder, index) => (
           <div
             key={index}
-            ref={(el) => (foldersRef.current[index] = el)}
-            className="w-[300px] h-[250px] relative opacity-0 transform translate-y-4 transition-all duration-700 ease-out"
+            className="w-[300px] h-[250px] relative"
           >
             <svg
               viewBox="0 0 302 252"
@@ -99,10 +70,7 @@ const About = () => {
         ))}
       </div>
 
-      <div 
-        ref={(el) => (foldersRef.current[folders.length] = el)}
-        className="bg-[var(--finder-window)] rounded-lg p-4 mt-8 max-w-2xl mx-auto opacity-0 transform translate-y-4 transition-all duration-700 ease-out"
-      >
+      <div className="bg-[var(--finder-window)] rounded-lg p-4 mt-8 max-w-2xl mx-auto">
         <p className="text-[var(--finder-text)] italic text-center text-lg">
           "Meu objetivo é criar produtos digitais que encantam pelo visual, pela experiência e pela robustez técnica."
         </p>

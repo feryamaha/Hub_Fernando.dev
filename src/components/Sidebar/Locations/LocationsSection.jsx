@@ -11,11 +11,11 @@ const LocationsSection = () => {
   };
 
   const favorites = [
-    { path: '/', title: 'Home', icon: HomeIcon },
-    { path: '/about', title: 'About', icon: UserIcon },
-    { path: '/skills', title: 'Skills', icon: CodeBracketIcon },
-    { path: '/projects', title: 'Projects', icon: FolderIcon },
-    { path: '/contact', title: 'Contact', icon: EnvelopeIcon }
+    { path: '/', title: 'Home', icon: 'home' },
+    { path: '/about', title: 'About', icon: 'about' },
+    { path: '/skills', title: 'Skills', icon: 'skills' },
+    { path: '/projects', title: 'Projects', icon: 'projects' },
+    { path: '/contact', title: 'Contact', icon: 'contact' }
   ];
 
   const locations = [
@@ -59,31 +59,7 @@ const LocationsSection = () => {
           Favoritos
         </h2>
         <nav className="space-y-px">
-          {favorites.map((item) => {
-            const Icon = item.icon;
-            return (
-              <Link
-                key={item.path}
-                to={item.path}
-                className={`flex items-center gap-2 p-2 rounded-lg transition-colors ${location.pathname === item.path
-                  ? 'bg-finder-accent text-white'
-                  : 'text-finder-text hover:bg-finder-hover'
-                  }`}
-              >
-                <Icon className={`w-4 h-4 mr-2 transition-colors duration-200 ${location.pathname === item.path ? 'text-theme' : ''}`} />
-                <span className="text-sm">{item.title}</span>
-              </Link>
-            );
-          })}
-        </nav>
-      </div>
-
-      <div className="mb-6">
-        <h2 className="text-finder-text-secondary text-[11px] font-medium uppercase px-2 mb-1">
-          Localizações
-        </h2>
-        <nav className="space-y-px">
-          {locations.map((item) => (
+          {favorites.map((item) => (
             <Link
               key={item.path}
               to={item.path}
@@ -92,9 +68,46 @@ const LocationsSection = () => {
                 : 'text-finder-text hover:bg-finder-hover'
                 }`}
             >
-              {item.icon}
-              <span className="text-sm">{item.label}</span>
+              <img
+                src={`/icons/${item.icon}.svg`}
+                alt=""
+                className={`w-4 h-4 mr-2 transition-colors duration-200 ${location.pathname === item.path ? 'text-theme' : ''}`}
+                style={location.pathname === item.path ? { filter: 'var(--finder-accent-filter)' } : {}}
+              />
+              <span className="text-sm">{item.title}</span>
             </Link>
+          ))}
+        </nav>
+      </div>
+
+      <div className="mb-6">
+        <h2 className="text-finder-text-secondary text-[11px] font-medium uppercase px-2 mb-1">
+          Locations
+        </h2>
+        <nav className="space-y-px">
+          {locations.map((item) => (
+            <div key={item.label} className="flex items-center group px-2">
+              <Link
+                to={item.path}
+                className={`flex-1 flex items-center py-1 text-finder-text transition-all duration-200 rounded-lg ${location.pathname === item.path
+                  ? 'border-b-2 border-finder-accent text-theme'
+                  : 'hover:border-b-2 hover:border-finder-accent hover:opacity-50'
+                  }`}>
+                <span className="w-4 h-4 mr-2 transition-colors duration-200">
+                  {item.icon}
+                </span>
+                <span className="transition-opacity duration-200">{item.label}</span>
+              </Link>
+              {item.downloadable && (
+                <button
+                  onClick={() => handleDownload(item.filename)}
+                  className="p-1 rounded-lg hover:border-b-2 hover:border-finder-accent ml-1 opacity-0 group-hover:opacity-100 transition-all duration-200 hover:opacity-50"
+                  title="Download"
+                >
+                  <DownloadIcon className="w-4 h-4 text-finder-text-secondary" />
+                </button>
+              )}
+            </div>
           ))}
         </nav>
       </div>

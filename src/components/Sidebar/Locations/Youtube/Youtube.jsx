@@ -86,7 +86,6 @@ const Youtube = () => {
 
     return (
         <div className={`h-full flex flex-col bg-finder-window theme-${theme}`}>
-            {/* Header */}
             <div className="bg-finder-sidebar border-b border-finder-border p-2">
                 <div className="flex items-center space-x-3">
                     {selectedVideo && (
@@ -108,12 +107,9 @@ const Youtube = () => {
                     </div>
                 </div>
             </div>
-
-            {/* Search Area */}
             <div className="flex-1 flex flex-col p-4 overflow-hidden">
                 {selectedVideo ? (
                     <>
-                        {/* Control buttons for maximized view */}
                         {viewportSize === 'maximized' && (
                             <div className="fixed top-4 left-4 flex items-center space-x-2 z-50 p-2 rounded-lg bg-black bg-opacity-20">
                                 <button onClick={() => handleViewportControl('close')} className={controlButtonsClass} title="Fechar">
@@ -170,9 +166,7 @@ const Youtube = () => {
                                         <div className="flex items-center text-finder-text-secondary text-sm mb-4">
                                             <span>{selectedVideo.channel}</span>
                                             <span className="mx-2">•</span>
-                                            <span>{selectedVideo.views}</span>
-                                            <span className="mx-2">•</span>
-                                            <span>{selectedVideo.timestamp}</span>
+                                            <span>{new Date(selectedVideo.timestamp).toLocaleDateString()}</span>
                                         </div>
                                         <p className="text-finder-text">{selectedVideo.description}</p>
                                     </div>
@@ -197,8 +191,6 @@ const Youtube = () => {
                                 <MagnifyingGlassIcon className="h-5 w-5" />
                             </button>
                         </form>
-
-                        {/* Results Area */}
                         <div className="flex-1 overflow-hidden">
                             {error ? (
                                 <div className="flex items-center justify-center text-red-500 h-full">
@@ -223,22 +215,17 @@ const Youtube = () => {
                                             key={video.id}
                                             onClick={() => handleVideoClick(video)}
                                             className="w-full text-left bg-finder-search rounded-lg hover:bg-finder-hover 
-                               transition-colors border border-transparent hover:border-[#FF0000] overflow-hidden"
+                                 transition-colors border border-transparent hover:border-[#FF0000] overflow-hidden"
                                         >
                                             <div className="flex">
                                                 <div className="relative w-40 h-24 flex-shrink-0">
                                                     <img src={video.thumbnail} alt={video.title} className="w-full h-full object-cover" />
-                                                    <div className="absolute bottom-1 right-1 bg-black bg-opacity-80 text-white text-xs px-1 rounded">
-                                                        {video.duration}
-                                                    </div>
                                                 </div>
                                                 <div className="p-3">
                                                     <h3 className="text-finder-accent font-medium mb-1 line-clamp-2">{video.title}</h3>
                                                     <p className="text-finder-text-secondary text-sm mb-1">{video.channel}</p>
                                                     <div className="flex items-center text-finder-text-secondary text-xs">
-                                                        <span>{video.views}</span>
-                                                        <span className="mx-1">•</span>
-                                                        <span>{video.timestamp}</span>
+                                                        <span>{new Date(video.timestamp).toLocaleDateString()}</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -258,4 +245,4 @@ const Youtube = () => {
     );
 };
 
-export default Youtube; 
+export default Youtube;

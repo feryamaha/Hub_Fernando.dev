@@ -33,7 +33,7 @@ const ShareModal = ({ isOpen, onClose }) => {
             type="text"
             value={currentUrl}
             readOnly
-            className="flex-1 bg-finder-search text-finder-text rounded-lg py-2 px-3 focus:outline-none"
+            className="flex-1 bg-black text-white rounded-lg py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-200"
           />
           <button
             onClick={handleCopy}

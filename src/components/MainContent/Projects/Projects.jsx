@@ -85,7 +85,7 @@ const Projects = () => {
 
   return (
     <div 
-      className={`min-h-screen p-8 theme-${theme}`}
+      className={`min-h-screen theme-${theme}`}
       data-aos="fade-up"
       data-aos-delay="100"
     >
@@ -97,11 +97,11 @@ const Projects = () => {
           {projects.map((project, index) => (
             <div 
               key={project.id} 
-              className="w-full flex-shrink-0"
+              className="w-full flex-shrink-0 px-[1%]"
               data-aos={index === currentIndex ? "fade-left" : ""}
               data-aos-delay={index === currentIndex ? "200" : ""}
             >
-              <div className="relative h-[600px] rounded-[30px] overflow-hidden">
+              <div className="relative h-[400px] md:h-[600px] rounded-[30px] overflow-hidden">
                 <img
                   src={project.image}
                   alt={project.title}
@@ -110,33 +110,33 @@ const Projects = () => {
                   data-aos-delay={index === currentIndex ? "300" : ""}
                 />
                 <div 
-                  className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-[var(--finder-accent)]/10 to-transparent backdrop-blur-sm"
+                  className="absolute bottom-0 left-0 right-0 p-4 md:p-6 bg-gradient-to-t from-[var(--finder-accent)]/10 to-transparent backdrop-blur-sm hidden md:block"
                   data-aos={index === currentIndex ? "fade-up" : ""}
                   data-aos-delay={index === currentIndex ? "400" : ""}
                 >
-                  <div className="space-y-4">
-                    <h3 className="text-2xl font-bold text-[var(--finder-accent)]">
+                  <div className="space-y-2 md:space-y-4">
+                    <h3 className="text-xl md:text-2xl font-bold text-[var(--finder-accent)]">
                       {project.title}
                     </h3>
-                    <p className="text-[var(--finder-accent)]/80">
+                    <p className="text-sm md:text-base text-[var(--finder-accent)]/80">
                       {project.description}
                     </p>
                     <div className="flex flex-wrap gap-2">
                       {project.technologies.map((tech, index) => (
                         <span
                           key={index}
-                          className="px-3 py-1 rounded-full text-sm bg-[var(--finder-accent)] text-white"
+                          className="px-2 md:px-3 py-1 rounded-full text-xs md:text-sm bg-[var(--finder-accent)] text-white"
                         >
                           {tech}
                         </span>
                       ))}
                     </div>
-                    <div className="flex gap-4 mt-6">
+                    <div className="flex gap-2 md:gap-4 mt-4 md:mt-6">
                       <a
                         href={project.demoLink}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="px-4 py-2 rounded-lg bg-[var(--finder-accent)] text-white hover:bg-[var(--finder-accent)]/90 transition-colors"
+                        className="px-3 md:px-4 py-1 md:py-2 rounded-lg bg-[var(--finder-accent)] text-white hover:bg-[var(--finder-accent)]/90 transition-colors text-sm md:text-base"
                       >
                         Live Demo
                       </a>
@@ -144,7 +144,7 @@ const Projects = () => {
                         href={project.githubLink}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="px-4 py-2 rounded-lg bg-[var(--finder-accent)]/10 text-[var(--finder-accent)] hover:bg-[var(--finder-accent)]/20 transition-colors"
+                        className="px-3 md:px-4 py-1 md:py-2 rounded-lg bg-[var(--finder-accent)]/10 text-[var(--finder-accent)] hover:bg-[var(--finder-accent)]/20 transition-colors text-sm md:text-base"
                       >
                         View Code
                       </a>
@@ -155,22 +155,82 @@ const Projects = () => {
             </div>
           ))}
         </div>
-        <button
-          className="absolute left-5 top-1/2 -translate-y-1/2 p-2 rounded-full bg-[var(--finder-accent)] text-white hover:bg-[var(--finder-accent)]/90 transition-colors"
-          onClick={handlePrevSlide}
-          data-aos="fade-right"
-          data-aos-delay="500"
-        >
-          <ChevronLeftIcon className="w-6 h-6" />
-        </button>
-        <button
-          className="absolute right-5 top-1/2 -translate-y-1/2 p-2 rounded-full bg-[var(--finder-accent)] text-white hover:bg-[var(--finder-accent)]/90 transition-colors"
-          onClick={handleNextSlide}
-          data-aos="fade-left"
-          data-aos-delay="500"
-        >
-          <ChevronRightIcon className="w-6 h-6" />
-        </button>
+
+        {/* Botões de navegação e informações do projeto em mobile */}
+        <div className="md:hidden">
+          <div className="flex justify-center gap-4 mt-4">
+            <button
+              className="p-2 rounded-full bg-[var(--finder-accent)] text-white hover:bg-[var(--finder-accent)]/90 transition-colors"
+              onClick={handlePrevSlide}
+            >
+              <ChevronLeftIcon className="w-6 h-6" />
+            </button>
+            <button
+              className="p-2 rounded-full bg-[var(--finder-accent)] text-white hover:bg-[var(--finder-accent)]/90 transition-colors"
+              onClick={handleNextSlide}
+            >
+              <ChevronRightIcon className="w-6 h-6" />
+            </button>
+          </div>
+
+          {/* Informações do projeto em mobile */}
+          <div className="mt-4 p-4">
+            <h3 className="text-xl font-bold text-[var(--finder-accent)]">
+              {projects[currentIndex].title}
+            </h3>
+            <p className="text-sm text-[var(--finder-accent)]/80 mt-2">
+              {projects[currentIndex].description}
+            </p>
+            <div className="flex flex-wrap gap-2 mt-4">
+              {projects[currentIndex].technologies.map((tech, index) => (
+                <span
+                  key={index}
+                  className="px-2 py-1 rounded-full text-xs bg-[var(--finder-accent)] text-white"
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
+            <div className="flex gap-4 mt-4">
+              <a
+                href={projects[currentIndex].demoLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 text-center px-4 py-2 rounded-lg bg-[var(--finder-accent)] text-white hover:bg-[var(--finder-accent)]/90 transition-colors text-sm"
+              >
+                Live Demo
+              </a>
+              <a
+                href={projects[currentIndex].githubLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 text-center px-4 py-2 rounded-lg bg-[var(--finder-accent)]/10 text-[var(--finder-accent)] hover:bg-[var(--finder-accent)]/20 transition-colors text-sm"
+              >
+                View Code
+              </a>
+            </div>
+          </div>
+        </div>
+
+        {/* Botões de navegação em desktop */}
+        <div className="hidden md:block">
+          <button
+            className="absolute left-5 top-1/2 -translate-y-1/2 p-2 rounded-full bg-[var(--finder-accent)] text-white hover:bg-[var(--finder-accent)]/90 transition-colors"
+            onClick={handlePrevSlide}
+            data-aos="fade-right"
+            data-aos-delay="500"
+          >
+            <ChevronLeftIcon className="w-6 h-6" />
+          </button>
+          <button
+            className="absolute right-5 top-1/2 -translate-y-1/2 p-2 rounded-full bg-[var(--finder-accent)] text-white hover:bg-[var(--finder-accent)]/90 transition-colors"
+            onClick={handleNextSlide}
+            data-aos="fade-left"
+            data-aos-delay="500"
+          >
+            <ChevronRightIcon className="w-6 h-6" />
+          </button>
+        </div>
       </div>
     </div>
   );

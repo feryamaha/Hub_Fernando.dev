@@ -96,7 +96,7 @@ const YaminuelleChat = () => {
             value={inputMessage}
             onChange={(e) => setInputMessage(e.target.value)}
             placeholder="Digite sua mensagem..."
-            className="flex-1 bg-finder-search text-finder-text rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-finder-accent"
+            className="flex-1 bg-black text-white rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-400 transition-all duration-200"
           />
           <button
             type="submit"

@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react';
-import { EnvelopeIcon, PhoneIcon, DocumentTextIcon } from '@heroicons/react/24/outline';
+import { EnvelopeIcon, PhoneIcon, DocumentTextIcon, PaperAirplaneIcon } from '@heroicons/react/24/outline';
 import Crosshair from './Crosshair';
 import { useTheme } from '../../../hooks/useTheme';
 import AOS from "aos";
@@ -12,6 +12,11 @@ const Contact = () => {
   const [theme] = useTheme();
   const [copied, setCopied] = useState(false);
   const email = 'fernandomoreira.dev@gmail.com';
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: ''
+  });
 
   useEffect(() => {
     AOS.init({
@@ -28,6 +33,20 @@ const Contact = () => {
     } catch (err) {
       console.error('Failed to copy email:', err);
     }
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Aqui você pode adicionar a lógica para enviar o formulário
+    console.log('Form data:', formData);
   };
 
   const socialLinks = [
@@ -148,6 +167,59 @@ const Contact = () => {
               <PhoneIcon className="h-5 w-5" />
               <span>+55 (11) 97317-1909</span>
             </div>
+          </div>
+        </div>
+
+        <div className="mt-16 text-center">
+          <div className="text-[var(--finder-accent)]/80" data-aos="fade-up" data-aos-delay="300" data-aos-duration="800">
+            <h2 className="text-3xl font-bold mb-8 text-white">Entre em Contato</h2>
+          </div>
+        </div>
+
+        <div className="mt-16 text-center">
+          <div className="text-[var(--finder-accent)]/80" data-aos="fade-up" data-aos-delay="300" data-aos-duration="800">
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div>
+                <input
+                  type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  placeholder="Seu nome"
+                  className="w-full px-4 py-3 bg-black text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-400 transition-all duration-200"
+                />
+              </div>
+              
+              <div>
+                <input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  placeholder="Seu email"
+                  className="w-full px-4 py-3 bg-black text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-400 transition-all duration-200"
+                />
+              </div>
+              
+              <div>
+                <textarea
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  placeholder="Sua mensagem"
+                  rows="4"
+                  className="w-full px-4 py-3 bg-black text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-400 transition-all duration-200"
+                />
+              </div>
+              
+              <button
+                type="submit"
+                className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all duration-200"
+              >
+                <PaperAirplaneIcon className="w-5 h-5" />
+                Enviar Mensagem
+              </button>
+            </form>
           </div>
         </div>
       </div>

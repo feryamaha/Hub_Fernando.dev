@@ -5,6 +5,20 @@
 
 html {
   background-color: var(--finder-background);
+  --finder-window: #ffffff;
+  --finder-sidebar: #f5f5f7;
+  --finder-text: #000000;
+  --finder-text-secondary: #666666;
+  --finder-hover: #e6e6e6;
+  --finder-accent: #0071e3;
+  --finder-border: #d2d2d7;
+  --finder-search: #f5f5f7;
+  --finder-control-close: #ff5f56;
+  --finder-control-minimize: #ffbd2e;
+  --finder-control-maximize: #27c93f;
+  --finder-control-close-hover: #ff5f56;
+  --finder-control-minimize-hover: #ffbd2e;
+  --finder-control-maximize-hover: #27c93f;
 }
 
 body {
@@ -12,11 +26,6 @@ body {
   font-family: 'Modern DOS';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-/* Aplicar tema padrão (azul) */
-html {
-  @apply theme-blue;
 }
 
 code {

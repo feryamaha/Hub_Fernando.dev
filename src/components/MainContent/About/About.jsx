@@ -40,12 +40,12 @@ const About = () => {
   ];
 
   return (
-    <div className={`w-full p-8 theme-${theme}`}>
-      <div className="flex flex-wrap justify-center gap-8">
+    <div className={`w-full p-4 md:p-8 theme-${theme}`}>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-8">
         {folders.map((folder, index) => (
           <div
             key={index}
-            className="w-[300px] h-[250px] relative"
+            className="w-full h-[250px] relative"
             data-aos="fade-up"
             data-aos-delay={index * 100}
           >
@@ -60,11 +60,11 @@ const About = () => {
                 stroke="#000"
               />
             </svg>
-            <h3 className="absolute text-[var(--finder-accent)] font-medium text-lg top-[10px] left-[35px]">
+            <h3 className="absolute text-[var(--finder-accent)] font-medium text-base md:text-lg top-[10px] left-[35px]">
               {folder.title}
             </h3>
-            <div className="absolute inset-0 flex flex-col px-12 pt-24 pb-10">
-              <p className="text-white text-sm leading-relaxed">
+            <div className="absolute inset-0 flex flex-col px-6 md:px-12 pt-20 md:pt-24 pb-6 md:pb-10">
+              <p className="text-white text-sm md:text-base leading-relaxed">
                 {folder.content}
               </p>
             </div>
@@ -73,7 +73,7 @@ const About = () => {
       </div>
 
       <div className="bg-[var(--finder-window)] rounded-lg p-4 mt-8 max-w-2xl mx-auto">
-        <p className="text-[var(--finder-text)] italic text-center text-lg">
+        <p className="text-[var(--finder-text)] italic text-center text-base md:text-lg">
           "Meu objetivo é criar produtos digitais que encantam pelo visual, pela experiência e pela robustez técnica."
         </p>
       </div>

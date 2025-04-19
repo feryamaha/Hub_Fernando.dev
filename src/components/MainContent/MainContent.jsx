@@ -84,7 +84,7 @@ const MainContent = () => {
           <input
             type="text"
             placeholder="Buscar"
-            className="bg-finder-search text-finder-text text-finder rounded-md px-3 py-1 w-48 focus:outline-none focus:ring-1 focus:ring-finder-accent"
+            className="bg-black text-white rounded-md px-3 py-1 w-48 focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-400 transition-all duration-200"
           />
         </div>
       </div>

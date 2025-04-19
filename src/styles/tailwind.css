@@ -1,0 +1,149 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-finder-window text-finder-text antialiased;
+  }
+}
+
+@layer components {
+  .window-control {
+    @apply w-3 h-3 rounded-full cursor-pointer transition-opacity duration-200;
+  }
+
+  .window-control-close {
+    @apply bg-finder-control-close shadow-control hover:opacity-80;
+  }
+
+  .window-control-minimize {
+    @apply bg-finder-control-minimize shadow-control hover:opacity-80;
+  }
+
+  .window-control-maximize {
+    @apply bg-finder-control-maximize shadow-control hover:opacity-80;
+  }
+
+  .sidebar-item {
+    @apply flex items-center px-4 py-2 text-finder-text rounded-none cursor-pointer transition-all duration-200;
+  }
+
+  .sidebar-item:hover {
+    @apply border-b-2 border-finder-accent;
+  }
+
+  .sidebar-icon {
+    @apply w-4 h-4 mr-3 text-finder-text-secondary;
+  }
+
+  .w-sidebar {
+    @apply w-[200px];
+  }
+
+  .scrollbar-finder {
+    scrollbar-width: thin;
+    scrollbar-color: var(--finder-text-secondary) var(--finder-window);
+  }
+  
+  .scrollbar-finder::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .scrollbar-finder::-webkit-scrollbar-track {
+    background: var(--finder-window);
+  }
+  
+  .scrollbar-finder::-webkit-scrollbar-thumb {
+    background-color: var(--finder-text-secondary);
+    border-radius: 4px;
+  }
+
+  /* Estilos para textos e ícones afetados pelo tema */
+  .text-theme {
+    @apply transition-colors duration-200;
+    color: var(--finder-accent);
+  }
+
+  .icon-theme {
+    @apply transition-colors duration-200;
+    color: var(--finder-accent);
+  }
+
+  /* Estilos para títulos de seção */
+  .section-title {
+    @apply text-theme text-xl font-semibold mb-4;
+  }
+
+  /* Estilos para itens selecionados */
+  .selected-item {
+    @apply border-b-2 border-finder-accent;
+  }
+}
+
+/* Temas */
+.theme-red {
+  --finder-accent: #FF5F57;
+  --finder-text: #FFFFFF;
+  --finder-text-secondary: #A0A0A0;
+  --finder-accent-filter: invert(56%) sepia(83%) saturate(5654%) hue-rotate(327deg) brightness(101%) contrast(101%);
+}
+
+.theme-orange {
+  --finder-accent: #FEBC2E;
+  --finder-text: #FFFFFF;
+  --finder-text-secondary: #A0A0A0;
+  --finder-accent-filter: invert(77%) sepia(44%) saturate(766%) hue-rotate(332deg) brightness(101%) contrast(101%);
+}
+
+.theme-yellow {
+  --finder-accent: #FFE08C;
+  --finder-text: #FFFFFF;
+  --finder-text-secondary: #A0A0A0;
+  --finder-accent-filter: invert(89%) sepia(18%) saturate(638%) hue-rotate(325deg) brightness(103%) contrast(101%);
+}
+
+.theme-green {
+  --finder-accent: #28C840;
+  --finder-text: #FFFFFF;
+  --finder-text-secondary: #A0A0A0;
+  --finder-accent-filter: invert(58%) sepia(72%) saturate(385%) hue-rotate(84deg) brightness(96%) contrast(89%);
+}
+
+.theme-blue {
+  --finder-accent: #0A84FF;
+  --finder-text: #FFFFFF;
+  --finder-text-secondary: #A0A0A0;
+  --finder-accent-filter: invert(46%) sepia(98%) saturate(7493%) hue-rotate(203deg) brightness(101%) contrast(102%);
+}
+
+.theme-purple {
+  --finder-accent: #BF5AF2;
+  --finder-text: #FFFFFF;
+  --finder-text-secondary: #A0A0A0;
+  --finder-accent-filter: invert(42%) sepia(99%) saturate(7471%) hue-rotate(267deg) brightness(99%) contrast(98%);
+}
+
+.theme-gray {
+  --finder-accent: #98989D;
+  --finder-text: #FFFFFF;
+  --finder-text-secondary: #A0A0A0;
+  --finder-accent-filter: invert(65%) sepia(13%) saturate(106%) hue-rotate(202deg) brightness(89%) contrast(87%);
+}
+
+/* Estilos específicos do Finder */
+.bg-finder-window {
+  background-color: #1E1E1E;
+}
+
+.bg-finder-sidebar {
+  background-color: #252526;
+}
+
+.bg-finder-hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.bg-finder-search {
+  background-color: rgba(255, 255, 255, 0.1);
+} 

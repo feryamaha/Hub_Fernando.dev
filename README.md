@@ -1,308 +1,174 @@
-# WHFF-enD - Fundamentos do React
+# Portfólio MacOS Style
 
-Deploy: https://feryamaha.github.io/WHFF-enD/
+## 🚀 Visão Geral
+Um portfólio moderno e interativo inspirado na interface do macOS, com animações suaves, temas dinâmicos e integrações com APIs populares.
 
-# Sobre o Projeto
+## 🛠️ Tecnologias Utilizadas
 
-Este projeto é um hub de conhecimento em React, desenvolvido como parte do processo de aprendizado, explorando conceitos fundamentais como:
+### Frontend
+- **React 18** - Biblioteca principal para construção da UI
+- **React Router 6** - Navegação entre páginas
+- **Tailwind CSS 3** - Estilização e design system
+- **Framer Motion** - Animações avançadas
+- **GSAP** - Animações e efeitos visuais
+- **AOS (Animate On Scroll)** - Animações baseadas em scroll
+- **Three.js** - Efeitos 3D e distorções
+- **React Icons & Heroicons** - Biblioteca de ícones
 
-- Context API
-- Hooks
-- Componentização
-- Gerenciamento de Estado
-- Estilização Moderna
+### APIs e Serviços
+- **YouTube Data API v3** - Integração com YouTube
+- **Google Custom Search API** - Busca personalizada
+- **Grok API (xAI)** - Chatbot inteligente
+- **GitHub Pages** - Hospedagem e deploy
 
-A aplicação utiliza ferramentas atuais como Webpack e Babel para garantir robustez e escalabilidade. O conteúdo é atualizado continuamente com novos aprendizados em React e tecnologias front-end relevantes da WHFF.enD.
+### Ferramentas de Desenvolvimento
+- **Webpack** - Bundling e otimização
+- **Babel** - Transpilação de código
+- **ESLint & Prettier** - Linting e formatação
+- **PostCSS** - Processamento CSS
+- **Autoprefixer** - Compatibilidade CSS
+- **dotenv** - Gerenciamento de variáveis de ambiente
 
-> WHFF.enD é um acrônimo para "Web Hub Fernando Front-end", representando um repositório pessoal de estudos e práticas em desenvolvimento web.
+## ✨ Funcionalidades Implementadas
 
-## 📖 Estrutura do Projeto
+### Interface e UX
+- Interface estilo Finder do macOS
+- Sistema de temas dinâmicos
+- Animações suaves e interativas
+- Responsividade em todos os dispositivos
+- Navegação intuitiva
+- Controles de janela (minimizar, maximizar, fechar)
 
-O projeto é dividido em várias partes principais:
+### Integrações
+- **YouTube Search**
+  - Busca de vídeos em tempo real
+  - Visualização de resultados
+  - Player de vídeo integrado
 
-1. **Componentes React**:
+- **Google Search**
+  - Busca personalizada
+  - Resultados em tempo real
+  - Visualização de páginas web
 
-   - `App.js`: Componente principal que gerencia o estado global, tema, linguagem e navegação.
-   - `Header.js`: Cabeçalho com navegação entre stacks e controle de tema/idioma.
-   - `IntroSection.js`: Seção inicial com introdução às stacks disponíveis.
-   - `ContentPosts.js`: Exibe os posts relacionados a uma stack e conteúdo selecionados.
-   - `Post.js` e `PostHeader.js`: Componentes para exibir posts e seus cabeçalhos.
+- **Chatbot Yaminuelle**
+  - Processamento de mensagens
+  - Geração de imagens
+  - Processamento de documentos
+  - Interface estilo macOS
 
-2. **Estilização**:
+### Componentes Especiais
+- **Grid Distortion** - Efeito 3D interativo
+- **True Focus** - Sistema de foco dinâmico
+- **Variable Proximity** - Interações baseadas em proximidade
+- **Crosshair** - Sistema de mira interativo
+- **Rotating Text** - Texto rotativo com animações
+- **Modal System** - Sistema de modais personalizado
 
-   - Utiliza SASS para modularidade e reutilização de estilos.
-   - Arquivos SCSS organizados em `src/styles/` para cada componente.
-   - Responsividade implementada com media queries.
+### Animações e Efeitos
+- Transições suaves entre páginas
+- Efeitos de hover e foco
+- Animações baseadas em scroll
+- Efeitos de distorção 3D
+- Sistema de pastas animado
+- Tooltips informativos
+- Cards interativos
 
-3. **Dados**:
+### Performance e Otimização
+- Lazy loading de componentes
+- Code splitting
+- Otimização de assets
+- Caching e memoização
+- Gerenciamento de estado eficiente
 
-   - Arquivos JSON em `data/` para armazenar informações sobre stacks e conteúdos.
+## 📦 Estrutura do Projeto
 
-4. **Ferramentas de Build**:
-   - Webpack para bundling e configuração de loaders (CSS, SASS, imagens, JSON).
-   - Babel para transpilação de código moderno JavaScript e JSX.
+### Componentes Principais
+- `MainContent/` - Conteúdo principal
+  - `Home/` - Página inicial com efeitos 3D
+  - `About/` - Sobre com cards interativos
+  - `Skills/` - Habilidades em estilo Finder
+  - `Projects/` - Projetos com visualização em pastas
+  - `Contact/` - Contato com efeitos interativos
+  - `Chat/` - Chatbot integrado
 
-## 🚀 Funcionalidades
+- `Sidebar/` - Navegação lateral
+  - `Locations/` - Links de navegação
+  - `Theme/` - Seletor de temas
 
-### 1. **Gerenciamento de Tema**
+- `TopBar/` - Barra superior
+  - `WindowControls/` - Controles da janela
+  - `Search/` - Busca integrada
+  - `Modals/` - Sistema de modais
 
-- O tema pode ser alternado entre "dark" e "light" usando o botão no cabeçalho.
-- Implementado com o `useState` e compartilhado via `ThemeContext`.
+### Serviços e Utilitários
+- `services/` - Integrações com APIs
+  - `youtubeService.js` - YouTube API
+  - `googleService.js` - Google Search API
+  - `grokService.js` - Grok API
 
-### 2. **Suporte a Idiomas**
+- `hooks/` - Hooks personalizados
+  - `useTheme.js` - Gerenciamento de temas
+  - `useScreenSize.js` - Responsividade
+  - `useDownload.js` - Sistema de download
 
-- Suporte a três idiomas: Português, Inglês e Espanhol.
-- O idioma pode ser alterado no cabeçalho, e os textos são atualizados dinamicamente.
+- `context/` - Contextos React
+  - `ThemeContext.jsx` - Contexto de temas
 
-### 3. **Navegação entre Stacks e Conteúdos**
+## 🚀 Como Executar
 
-- As stacks disponíveis são carregadas de `data/stacks.json`.
-- A navegação entre stacks e conteúdos é gerenciada pelo estado global no componente `App`.
+### Pré-requisitos
+- Node.js (versão 14 ou superior)
+- npm ou yarn
+- Git
 
-### 4. **Estilização Avançada**
-
-- Estilos responsivos para diferentes tamanhos de tela.
-- Uso de variáveis SCSS para temas e transições suaves.
-
-### 5. **Deploy Automatizado**
-
-- Configurado para deploy no GitHub Pages com o comando `yarn deploy`.
-
-## 🛠️ Ferramentas e Tecnologias
-
-### **Frontend**
-
-- React 19.1.0
-- React Router DOM 7.5.0
-- PropTypes para validação de props.
-
-### **Estilização**
-
-- SASS para modularidade e reutilização de estilos.
-- CSS Loader e Style Loader configurados no Webpack.
-
-### **Build e Deploy**
-
-- Webpack 5.98.0 para bundling.
-- Babel para transpilação de código moderno.
-- GH Pages para deploy automatizado.
-
-## 📂 Estrutura de Pastas
-
-```
-WHFF-enD/
-├── data/                  # Dados em JSON
-│   ├── stacks.json
-│   └── react-estilizacao.json
-├── dist/                  # Build de produção
-│   ├── assets/
-│   ├── bundle5b7970a428975b852139.js
-│   ├── bundle5b7970a428975b852139.js.LICENSE.txt
-│   └── index.html
-├── public/               # Arquivos públicos
-│   └── index.html
-├── src/                 # Código-fonte do projeto
-│   ├── assets/         # Recursos estáticos
-│   ├── styles/         # Arquivos de estilo
-│   │   ├── App.scss
-│   │   ├── Button.scss
-│   │   ├── Header.scss
-│   │   ├── IntroSection.scss
-│   │   ├── Post.scss
-│   │   └── reset.scss
-│   ├── App.js
-│   ├── Button.js
-│   ├── ContentPosts.js
-│   ├── Header.js
-│   ├── index.js
-│   ├── IntroSection.js
-│   ├── Post.js
-│   └── PostHeader.js
-├── webpack.config.js
-├── package.json
-├── package-lock.json
-└── yarn.lock
-```
-
-## 📦 Scripts Disponíveis
-
+### Instalação
+1. Clone o repositório:
 ```bash
-# Desenvolvimento
-yarn dev    # Inicia o servidor de desenvolvimento
-
-# Build
-yarn build  # Gera os arquivos para produção
-
-# Deploy
-yarn deploy # Deploy no GitHub Pages
+git clone https://github.com/feryamaha/Hub_Fernando.dev.git
+cd Hub_Fernando.dev
 ```
 
-## 🔄 Atualizando o Branch gh-pages
-
-### 1. Voltar para o Branch main
-
+2. Instale as dependências:
 ```bash
-git checkout main
+npm install
+# ou
+yarn install
 ```
 
-### 2. Fazer o Build
-
+3. Configure as variáveis de ambiente:
 ```bash
+cp .env.example .env
+# Edite o arquivo .env com suas chaves de API
+```
+
+### Desenvolvimento
+```bash
+npm start
+# ou
+yarn start
+```
+
+### Build
+```bash
+npm run build
+# ou
 yarn build
 ```
 
-### 3. Instalar gh-pages
-
+### Deploy
 ```bash
-yarn add --dev gh-pages
-```
-
-### 4. Configurar Script de Deploy
-
-No `package.json`:
-
-```json
-"scripts": {
-    "deploy": "gh-pages -d dist"
-}
-```
-
-### 5. Fazer o Deploy
-
-```bash
+npm run deploy
+# ou
 yarn deploy
 ```
 
-### 6. Verificar Branch
+## 📝 Licença
+Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
 
-```bash
-git fetch origin
-git branch -r
-git ls-tree origin/gh-pages
-```
+## 🤝 Contribuições
+Contribuições são bem-vindas! Sinta-se à vontade para abrir issues ou enviar pull requests.
 
-## Requisitos Elementares para Saúde do Projeto
-
-### Dependências Core
-- Node.js >= 18.12.0
-- React >= 19.1.0
-- React DOM >= 19.1.0
-- React Router DOM >= 7.5.0
-- Prop Types >= 15.8.1
-
-### Dependências de Desenvolvimento
-- Webpack >= 5.99.5
-- Webpack CLI >= 6.0.1
-- Webpack Dev Server >= 5.2.1
-- Babel Core >= 7.26.10
-- Babel Preset Env >= 7.26.9
-- Babel Preset React >= 7.26.3
-- Babel Loader >= 10.0.0
-- CSS Loader >= 7.1.2
-- Style Loader >= 4.0.0
-- SASS >= 1.86.3
-- SASS Loader >= 16.0.5
-
-### Ferramentas de Build e Deploy
-- Cross Env >= 7.0.3
-- GH Pages >= 6.3.0
-- Clean Webpack Plugin >= 4.0.0
-- Copy Webpack Plugin >= 13.0.0
-- HTML Webpack Plugin >= 5.6.3
-
-### Ferramentas de Qualidade de Código
-- ESLint
-- Prettier
-- Jest
-- @testing-library/react
-
-### Estrutura de Diretórios
-```
-WHFF-enD-1/
-├── src/              # Código fonte
-├── public/           # Arquivos estáticos
-├── dist/            # Build gerado
-├── scripts/         # Scripts de automação
-└── config/          # Arquivos de configuração
-```
-
-### Arquivos de Configuração Obrigatórios
-- `.babelrc` - Configuração do Babel
-- `.eslintrc` - Configuração do ESLint
-- `.prettierrc` - Configuração do Prettier
-- `webpack.config.js` - Configuração do Webpack
-- `package.json` - Dependências e scripts
-
-## Fluxo de Desenvolvimento e Deploy
-
-```mermaid
-graph TD
-    A[Início] --> B[Executar yarn build]
-    B --> C[Webpack gera bundle em dist/]
-    C --> D[Iniciar servidor de desenvolvimento]
-    D --> E[Contagem regressiva 30s]
-    E --> F{Verificação manual}
-    F -->|Problemas| G[Interromper com Ctrl+C]
-    F -->|Tudo OK| H[Commit das alterações]
-    H --> I[Rebase branch local]
-    I --> J[Push para main]
-    J --> K[Deploy para gh-pages]
-    K --> L[Ambiente de desenvolvimento ativo]
-    L --> M[Manter servidor rodando]
-    M -->|Ctrl+C| N[Fim]
-```
-
-### Descrição do Processo
-
-1. **Build Inicial**
-   - Comando: `yarn build`
-   - Gera bundle otimizado na pasta `dist/`
-   - Configura ambiente para produção
-
-2. **Verificação Manual**
-   - Servidor de desenvolvimento inicia automaticamente
-   - Contagem regressiva de 30 segundos
-   - Verificações necessárias:
-     - Página abriu corretamente
-     - Componentes carregados
-     - Sem erros no console
-   - Opção de interromper com Ctrl+C se houver problemas
-
-3. **Processo Automático**
-   - Se verificação for bem sucedida:
-     - Commit com hash do bundle
-     - Rebase da branch local
-     - Push para branch main
-     - Deploy automático para gh-pages
-
-4. **Estado Final**
-   - Servidor de desenvolvimento permanece ativo
-   - Mensagem de confirmação em azul
-   - Opção de interromper com Ctrl+C quando necessário
-
-## Problemas Conhecidos e Soluções
-
-### 1. Erros de Verificação de Pacotes
-**Problema**: O algoritmo está falhando ao verificar pacotes via `npm audit`
-**Causa**: O comando `npm audit` está retornando JSON inválido
-**Solução**: Implementar verificação alternativa usando `yarn audit` ou verificação direta do registry
-
-### 2. Configurações Faltantes
-**Problema**: Arquivos `.eslintrc` e `.prettierrc` não são criados automaticamente
-**Causa**: Falta de templates padrão para essas configurações
-**Solução**: Adicionar templates padrão e criar os arquivos automaticamente
-
-### 3. Scripts Faltantes
-**Problema**: Scripts de teste e lint não são adicionados automaticamente
-**Causa**: Falta de verificação de scripts no package.json
-**Solução**: Implementar adição automática de scripts padrão
-
-### 4. Verificação de Vulnerabilidades
-**Problema**: Verificação de vulnerabilidades não está funcionando corretamente
-**Causa**: Problemas com o comando `npm audit`
-**Solução**: Implementar verificação usando a API do npm ou yarn
-
-### 5. Compatibilidade de Versões
-**Problema**: Verificação de compatibilidade entre pacotes não é completa
-**Causa**: Falta de análise de dependências cruzadas
-**Solução**: Implementar análise de grafo de dependências
+## 📞 Contato
+- GitHub: [feryamaha](https://github.com/feryamaha)
+- LinkedIn: [Fernando Moreira](https://linkedin.com/in/fernando-moreira)
+- Email: [seu-email@exemplo.com](mailto:seu-email@exemplo.com) 

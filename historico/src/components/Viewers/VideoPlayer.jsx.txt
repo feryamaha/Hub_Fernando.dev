@@ -1,0 +1,26 @@
+import React from 'react';
+import YouTube from 'react-youtube';
+
+const VideoPlayer = ({ videoId }) => {
+  const opts = {
+    height: '390',
+    width: '640',
+    playerVars: {
+      autoplay: 0,
+    },
+  };
+
+  return (
+    <div className="bg-finder-window p-6 rounded-lg">
+      <div className="aspect-w-16 aspect-h-9">
+        <YouTube
+          videoId={videoId}
+          opts={opts}
+          className="w-full h-full rounded-lg"
+        />
+      </div>
+    </div>
+  );
+};
+
+export default VideoPlayer; 

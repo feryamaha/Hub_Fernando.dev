@@ -1,0 +1,72 @@
+import React from 'react';
+
+const Skills = () => {
+  const skills = [
+    {
+      category: 'Frontend',
+      items: [
+        { name: 'React', level: 90 },
+        { name: 'JavaScript', level: 85 },
+        { name: 'HTML/CSS', level: 95 },
+        { name: 'Tailwind CSS', level: 80 },
+      ],
+    },
+    {
+      category: 'Backend',
+      items: [
+        { name: 'Node.js', level: 85 },
+        { name: 'Express', level: 80 },
+        { name: 'Python', level: 75 },
+        { name: 'SQL', level: 80 },
+      ],
+    },
+    {
+      category: 'Ferramentas',
+      items: [
+        { name: 'Git', level: 90 },
+        { name: 'Docker', level: 75 },
+        { name: 'Webpack', level: 80 },
+        { name: 'VS Code', level: 95 },
+      ],
+    },
+  ];
+
+  return (
+    <div className="space-y-8">
+      <section>
+        <h2 className="text-3xl font-bold text-finder-text mb-6">Habilidades</h2>
+        <div className="bg-finder-sidebar rounded-lg p-6 shadow-lg">
+          <p className="text-finder-text-secondary mb-4">
+            Minhas habilidades técnicas abrangem todo o espectro do desenvolvimento web,
+            desde o frontend até o backend, com foco especial em tecnologias modernas
+            e melhores práticas de desenvolvimento.
+          </p>
+        </div>
+      </section>
+
+      {skills.map((skillCategory, index) => (
+        <section key={index}>
+          <h3 className="text-2xl font-bold text-finder-text mb-4">{skillCategory.category}</h3>
+          <div className="space-y-4">
+            {skillCategory.items.map((skill, skillIndex) => (
+              <div key={skillIndex} className="bg-finder-sidebar rounded-lg p-6 shadow-lg">
+                <div className="flex justify-between items-center mb-2">
+                  <span className="text-finder-text">{skill.name}</span>
+                  <span className="text-finder-text-secondary">{skill.level}%</span>
+                </div>
+                <div className="w-full bg-finder-window rounded-full h-2">
+                  <div
+                    className="bg-finder-accent h-2 rounded-full"
+                    style={{ width: `${skill.level}%` }}
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      ))}
+    </div>
+  );
+};
+
+export default Skills; 

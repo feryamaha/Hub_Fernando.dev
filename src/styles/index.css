@@ -1,0 +1,24 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+@import './themes.css';
+
+html {
+  background-color: var(--finder-background);
+}
+
+body {
+  margin: 0;
+  font-family: 'Modern DOS';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Aplicar tema padrão (azul) */
+html {
+  @apply theme-blue;
+}
+
+code {
+  font-family: 'Modern DOS';
+}

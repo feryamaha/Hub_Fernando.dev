@@ -1,64 +1,68 @@
-
-
+const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin'); // Adiciona o plugin
-const path = require('path');
+const Dotenv = require('dotenv-webpack');
+const webpack = require('webpack');
+require('dotenv').config();
 
 module.exports = {
     mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
-    entry: path.resolve(__dirname, 'src', 'index.js'),
+    entry: './src/index.jsx',
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: 'bundle[hash].js',
-        publicPath: process.env.NODE_ENV === 'production' ? '/WHFF-enD/' : '/',
+        filename: 'bundle.js',
+        publicPath: process.env.NODE_ENV === 'production' ? '/Hub_Fernando.dev/' : '/',
     },
     devtool: process.env.NODE_ENV === 'production' ? false : 'source-map',
 
     resolve: {
-        extensions: ['.js', '.jsx', '.scss'],
+        extensions: ['.jsx', '.js'],
     },
 
     plugins: [
         new HtmlWebpackPlugin({
-            template: path.resolve(__dirname, 'public', 'index.html'),
+            template: './public/index.html',
+        }),
+        new Dotenv({
+            path: './.env',
+            safe: false,
+            systemvars: true,
+            silent: false,
+            defaults: false,
+            expand: true
+        }),
+        new webpack.DefinePlugin({
+            'process.env': {
+                REACT_APP_YOUTUBE_API_KEY: JSON.stringify(process.env.REACT_APP_YOUTUBE_API_KEY)
+            }
         }),
         ...(process.env.NODE_ENV === 'production' ? [new CleanWebpackPlugin()] : []),
-        new CopyWebpackPlugin({
-            patterns: [
-                {
-                    from: path.resolve(__dirname, 'public/data'),
-                    to: path.resolve(__dirname, 'dist/data'),
-                },
-            ],
-        }),
     ],
 
     module: {
         rules: [
             {
-                test: /\.js$/,
+                test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
-                use: 'babel-loader',
+                use: {
+                    loader: 'babel-loader',
+                }
             },
             {
-                test: /\.scss$/,
+                test: /\.css$/,
                 use: [
                     'style-loader',
                     'css-loader',
-                    'sass-loader'
+                    'postcss-loader'
                 ],
+            },
+            {
+                test: /\.(png|svg|jpg|jpeg|gif)$/i,
+                type: 'asset/resource',
             },
             {
                 test: /\.json$/,
                 type: 'json',
-            },
-            {
-                test: /\.(png|jpg|jpeg|gif|svg)$/,
-                type: 'asset/resource',
-                generator: {
-                    filename: 'assets/[name][ext]',
-                },
             },
         ]
     },
@@ -68,7 +72,9 @@ module.exports = {
         historyApiFallback: true,
         hot: true,
         open: true,
-        static: path.resolve(__dirname, 'public'),
+        static: {
+            directory: path.join(__dirname, 'public')
+        },
         client: {
             logging: 'info',
             overlay: {

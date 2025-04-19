@@ -1,0 +1,56 @@
+WHFF-enD/
+├── public/
+│   ├── index.html
+│   └── README.md
+├── src/
+│   ├── components/
+│   │   ├── MainContent/
+│   │   │   ├── MainContent.jsx
+│   │   │   ├── Home/
+│   │   │   │   └── Home.jsx
+│   │   │   ├── About/
+│   │   │   │   └── About.jsx
+│   │   │   ├── Skills/
+│   │   │   │   └── Skills.jsx
+│   │   │   ├── Projects/
+│   │   │   │   └── Projects.jsx
+│   │   │   └── Contact/
+│   │   │       └── Contact.jsx
+│   │   ├── Sidebar/
+│   │   │   ├── Theme/
+│   │   │   │   └── ThemeSection.jsx
+│   │   │   ├── Locations/
+│   │   │   │   └── LocationsSection.jsx
+│   │   │   ├── Favorites/
+│   │   │   │   └── FavoritesSection.jsx
+│   │   │   └── shared/
+│   │   │       └── MarkdownViewer/
+│   │   │           └── MarkdownViewer.jsx
+│   │   └── TopBar/
+│   │       └── TopBar.jsx
+│   ├── contexts/
+│   │   └── ThemeContext.jsx
+│   ├── hooks/
+│   │   ├── useScreenSize.js
+│   │   └── useTheme.js
+│   ├── styles/
+│   │   ├── themes.css
+│   │   └── tailwind.css
+│   ├── App.jsx
+│   ├── index.jsx
+│   └── index.css
+├── config/
+│   ├── webpack.config.js
+│   ├── webpack.dev.js
+│   └── webpack.prod.js
+├── .babelrc
+├── .eslintrc
+├── .gitignore
+├── .prettierrc
+├── package.json
+├── package-lock.json
+├── yarn.lock
+├── tailwind.config.js
+├── postcss.config.js
+├── tsconfig.json
+└── README.md 

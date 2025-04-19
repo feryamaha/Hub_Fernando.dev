@@ -1,0 +1,178 @@
+:root {
+  /* Default theme variables */
+  --finder-window: #1E1E1E;
+  --finder-text: #FFFFFF;
+  --finder-text-secondary: #A0A0A0;
+  --finder-hover: rgba(255, 255, 255, 0.1);
+  --finder-sidebar: #252526;
+  --finder-border: #3E3E3E;
+  --finder-accent: #0A84FF;
+  --text: #1C1C1E;
+  --text-secondary: #8E8E93;
+  --background: #F2F2F7;
+  --surface: #FFFFFF;
+  --border: #C6C6C8;
+  --error: #FF3B30;
+  --success: #34C759;
+  --warning: #FF9500;
+  --primary: #0A84FF;
+}
+
+/* Window Controls */
+.window-controls {
+  display: flex;
+  gap: 6px;
+  padding: 4px;
+}
+
+.window-control {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+/* Tema Azul */
+.theme-blue {
+  --primary: #0A84FF;
+  --finder-accent: #0A84FF;
+  --finder-hover: rgba(10, 132, 255, 0.1);
+}
+
+/* Tema Verde */
+.theme-green {
+  --primary: #28C840;
+  --finder-accent: #28C840;
+  --finder-hover: rgba(40, 200, 64, 0.1);
+}
+
+/* Tema Roxo */
+.theme-purple {
+  --primary: #BF5AF2;
+  --finder-accent: #BF5AF2;
+  --finder-hover: rgba(191, 90, 242, 0.1);
+}
+
+/* Tema Laranja */
+.theme-orange {
+  --primary: #FF9500;
+  --finder-accent: #FF9500;
+  --finder-hover: rgba(255, 149, 0, 0.1);
+}
+
+/* Tema Vermelho */
+.theme-red {
+  --primary: #FF5F57;
+  --finder-accent: #FF5F57;
+  --finder-hover: rgba(255, 95, 87, 0.1);
+}
+
+/* Tema Rosa */
+.theme-pink {
+  --primary: #FF2D55;
+  --finder-accent: #FF2D55;
+  --finder-hover: rgba(255, 45, 85, 0.1);
+}
+
+/* Tema Amarelo */
+.theme-yellow {
+  --primary: #FFD60A;
+  --finder-accent: #FFD60A;
+  --finder-hover: rgba(255, 214, 10, 0.1);
+}
+
+/* Estilos específicos do Finder */
+.bg-finder-window {
+  background-color: var(--finder-window) !important;
+}
+
+.text-finder-text {
+  color: var(--finder-text) !important;
+}
+
+.text-finder-text-secondary {
+  color: var(--finder-text-secondary) !important;
+}
+
+.bg-finder-hover:hover {
+  background-color: var(--finder-hover) !important;
+}
+
+.bg-finder-sidebar {
+  background-color: var(--finder-sidebar) !important;
+}
+
+.border-finder {
+  border-color: var(--finder-border) !important;
+}
+
+.ring-finder-accent {
+  --tw-ring-color: var(--finder-accent) !important;
+}
+
+/* Tema Verde */
+.theme-green {
+  --primary: #34C759;
+  --primary-hover: #248A3D;
+  --primary-active: #1D6F31;
+  --primary-light: #E5F7E9;
+  --primary-dark: #134620;
+  --text: #1C1C1E;
+  --text-secondary: #8E8E93;
+  --background: #F2F2F7;
+  --surface: #FFFFFF;
+  --border: #C6C6C8;
+  --error: #FF3B30;
+  --success: #34C759;
+  --warning: #FF9500;
+}
+
+/* Tema Roxo */
+.theme-purple {
+  --primary: #AF52DE;
+  --primary-hover: #8944B2;
+  --primary-active: #6B3589;
+  --primary-light: #F5E9FA;
+  --primary-dark: #45235A;
+  --text: #1C1C1E;
+  --text-secondary: #8E8E93;
+  --background: #F2F2F7;
+  --surface: #FFFFFF;
+  --border: #C6C6C8;
+  --error: #FF3B30;
+  --success: #34C759;
+  --warning: #FF9500;
+}
+
+/* Tema Laranja */
+.theme-orange {
+  --primary: #FF9500;
+  --primary-hover: #CC7600;
+  --primary-active: #995A00;
+  --primary-light: #FFF1E5;
+  --primary-dark: #663C00;
+  --text: #1C1C1E;
+  --text-secondary: #8E8E93;
+  --background: #F2F2F7;
+  --surface: #FFFFFF;
+  --border: #C6C6C8;
+  --error: #FF3B30;
+  --success: #34C759;
+  --warning: #FF9500;
+}
+
+/* Tema Vermelho */
+.theme-red {
+  --primary: #FF3B30;
+  --primary-hover: #CC2F26;
+  --primary-active: #99231D;
+  --primary-light: #FFE5E5;
+  --primary-dark: #661714;
+  --text: #1C1C1E;
+  --text-secondary: #8E8E93;
+  --background: #F2F2F7;
+  --surface: #FFFFFF;
+  --border: #C6C6C8;
+  --error: #FF3B30;
+  --success: #34C759;
+  --warning: #FF9500;
+} 

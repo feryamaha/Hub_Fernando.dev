@@ -1,0 +1,27 @@
+.folder-card {
+  background-image: var(--folder-icon);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+:root {
+  --finder-folder: #2196F3;
+  --finder-folder-top: #42A5F5;
+  --finder-folder-border: #1E88E5;
+  --finder-window: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme='dark'] {
+  --finder-folder: #1976D2;
+  --finder-folder-top: #2196F3;
+  --finder-folder-border: #1565C0;
+  --finder-window: rgba(0, 0, 0, 0.2);
+}
+
+[data-theme='light'] {
+  --finder-folder: #90CAF9;
+  --finder-folder-top: #BBDEFB;
+  --finder-folder-border: #64B5F6;
+  --finder-window: rgba(0, 0, 0, 0.05);
+} 

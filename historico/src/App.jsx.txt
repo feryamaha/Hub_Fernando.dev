@@ -1,0 +1,18 @@
+import React from 'react';
+import { ThemeProvider } from './contexts/ThemeContext';
+import TopBar from './components/TopBar/TopBar';
+import MainContent from './components/MainContent/MainContent';
+import './styles/tailwind.css';
+
+function App() {
+  return (
+    <ThemeProvider>
+      <div className="h-screen flex flex-col bg-finder-window">
+        <TopBar />
+        <MainContent />
+      </div>
+    </ThemeProvider>
+  );
+}
+
+export default App; 

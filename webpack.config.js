@@ -12,7 +12,7 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'bundle.js',
-        publicPath: process.env.NODE_ENV === 'production' ? '/Hub_Fernando.dev/' : '/',
+        publicPath: process.env.NODE_ENV === 'production' ? './Hub_Fernando.dev/' : './',
         assetModuleFilename: 'assets/[hash][ext][query]'
     },
     devtool: process.env.NODE_ENV === 'production' ? false : 'source-map',
@@ -44,21 +44,21 @@ module.exports = {
             patterns: [
                 {
                     from: 'public/icons',
-                    to: 'icons',
+                    to: './icons',
                     globOptions: {
                         ignore: ['**/index.html']
                     }
                 },
                 {
                     from: 'public/data',
-                    to: 'data',
+                    to: './data',
                     globOptions: {
                         ignore: ['**/index.html']
                     }
                 },
                 {
                     from: 'src/assets',
-                    to: 'assets',
+                    to: './assets',
                     globOptions: {
                         ignore: ['**/index.html']
                     }

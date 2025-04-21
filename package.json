@@ -5,7 +5,7 @@
   "description": "Portfolio pessoal",
   "main": "index.js",
   "license": "MIT",
-  "homepage": "https://feryamaha.github.io/Hub_Fernando.dev",
+  "homepage": "./",
   "scripts": {
     "start": "react-scripts start",
     "dev": "webpack serve --mode development --port 3000 --hot --open",

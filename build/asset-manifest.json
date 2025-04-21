@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/Hub_Fernando.dev/static/css/main.ec06a86d.css",
-    "main.js": "/Hub_Fernando.dev/static/js/main.13456a71.js",
+    "main.js": "/Hub_Fernando.dev/static/js/main.f5848cef.js",
     "index.html": "/Hub_Fernando.dev/index.html",
     "main.ec06a86d.css.map": "/Hub_Fernando.dev/static/css/main.ec06a86d.css.map",
-    "main.13456a71.js.map": "/Hub_Fernando.dev/static/js/main.13456a71.js.map"
+    "main.f5848cef.js.map": "/Hub_Fernando.dev/static/js/main.f5848cef.js.map"
   },
   "entrypoints": [
     "static/css/main.ec06a86d.css",
-    "static/js/main.13456a71.js"
+    "static/js/main.f5848cef.js"
   ]
 }

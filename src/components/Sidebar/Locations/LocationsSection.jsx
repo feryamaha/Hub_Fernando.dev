@@ -1,8 +1,11 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { HomeIcon, UserIcon, CodeBracketIcon, FolderIcon, EnvelopeIcon, PlayIcon } from '@heroicons/react/24/outline';
-import { DownloadIcon } from '../../shared/Icons/MacOSIcons';
 
+/**
+ * Componente LocationsSection
+ * Renderiza as seções de favoritos e localizações na barra lateral
+ */
 const LocationsSection = () => {
   const location = useLocation();
 
@@ -10,6 +13,7 @@ const LocationsSection = () => {
     window.open(`/downloads/${filename}`, '_blank');
   };
 
+  // Lista de itens favoritos com seus respectivos ícones
   const favorites = [
     { path: '/', title: 'Home', icon: 'home' },
     { path: '/about', title: 'About', icon: 'about' },
@@ -18,6 +22,7 @@ const LocationsSection = () => {
     { path: '/contact', title: 'Contact', icon: 'contact' }
   ];
 
+  // Lista de localizações com seus respectivos ícones personalizados
   const locations = [
     {
       path: '/chat',
@@ -69,7 +74,7 @@ const LocationsSection = () => {
                 }`}
             >
               <img
-                src={`/icons/${item.icon}.svg`}
+                src={`./icons/${item.icon}.svg`}
                 alt=""
                 className={`w-4 h-4 mr-2 transition-colors duration-200 ${location.pathname === item.path ? 'text-theme' : ''}`}
                 style={location.pathname === item.path ? { filter: 'var(--finder-accent-filter)' } : {}}
@@ -104,7 +109,11 @@ const LocationsSection = () => {
                   className="p-1 rounded-lg hover:border-b-2 hover:border-finder-accent ml-1 opacity-0 group-hover:opacity-100 transition-all duration-200 hover:opacity-50"
                   title="Download"
                 >
-                  <DownloadIcon className="w-4 h-4 text-finder-text-secondary" />
+                  <img 
+                    src="./icons/download.svg" 
+                    alt="Download" 
+                    className="w-4 h-4 text-finder-text-secondary"
+                  />
                 </button>
               )}
             </div>

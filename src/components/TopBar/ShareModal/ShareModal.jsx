@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Modal from '../../shared/Modal/Modal';
-import { 
-  LinkIcon, 
+import {
+  LinkIcon,
   ClipboardDocumentIcon,
   CheckIcon
 } from '@heroicons/react/24/outline';
@@ -24,7 +24,7 @@ const ShareModal = ({ isOpen, onClose }) => {
     <Modal isOpen={isOpen} onClose={onClose} title="Compartilhar">
       <div className="space-y-4">
         <div className="flex items-center space-x-2">
-          <LinkIcon className="w-5 h-5 text-finder-text-secondary" />
+          <LinkIcon className="w-5 h-5 text-finder-text-secondary "/>
           <span className="text-finder-text">URL do Portfolio</span>
         </div>
 

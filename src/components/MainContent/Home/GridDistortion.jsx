@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react';
+/* import { useRef, useEffect } from 'react';
 import * as THREE from 'three';
 
 const vertexShader = `
@@ -187,4 +187,4 @@ const GridDistortion = ({
   return <div ref={containerRef} className={`w-full h-full overflow-hidden ${className}`} />;
 };
 
-export default GridDistortion; 
+export default GridDistortion;  */

@@ -1,9 +1,8 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import useScreenSize from '../../hooks/useScreenSize';
 import { useTheme } from '../../hooks/useTheme';
-import LocationsSection from '../Sidebar/Locations/LocationsSection';
-import ThemeSection from '../Sidebar/Theme/ThemeSection';
+import Sidebar from '../Sidebar/Sidebar'; // Importando o Sidebar
 import Home from './Home/Home';
 import About from './About/About';
 import Skills from './Skills/Skills';
@@ -30,7 +29,7 @@ const MainContent = () => {
   }, [location.pathname, screenSize.isMobile]);
 
   const getTitle = () => {
-    switch(location.pathname) {
+    switch (location.pathname) {
       case '/': return 'Home';
       case '/about': return 'Sobre';
       case '/skills': return 'Habilidades';
@@ -43,20 +42,6 @@ const MainContent = () => {
     }
   };
 
-  // Filter function for skills and projects
-  const filterItems = (items, term) => {
-    if (!term) return items;
-    const lowerTerm = term.toLowerCase();
-    
-    return items.map(category => ({
-      ...category,
-      files: category.files.filter(file => 
-        file.name.toLowerCase().includes(lowerTerm) ||
-        file.description?.toLowerCase().includes(lowerTerm)
-      )
-    })).filter(category => category.files.length > 0);
-  };
-
   const handleSearch = (term) => {
     setSearchTerm(term);
   };
@@ -67,9 +52,8 @@ const MainContent = () => {
     }
 
     return (
-      <div className={`flex-1 bg-finder-window overflow-y-auto scrollbar-finder ${
-        contentState === 'maximized' ? 'fixed inset-0 mt-[38px] ml-[200px] z-50' : ''
-      }`}>
+      <div className={`flex-1 bg-finder-window overflow-y-auto scrollbar-finder ${contentState === 'maximized' ? 'fixed inset-0 mt-[38px] ml-[200px] z-50' : ''
+        }`}>
         <div className="p-6 mx-auto">
           <Routes>
             <Route path="/" element={<Home />} />
@@ -91,15 +75,15 @@ const MainContent = () => {
       {/* Barra de título do Finder */}
       <div className="bg-finder-sidebar border-b border-finder-border h-[38px] flex items-center">
         <div className="flex items-center px-2 space-x-2">
-          <button 
+          <button
             onClick={() => setContentState(prev => prev === 'hidden' ? 'normal' : 'hidden')}
             className="w-3 h-3 rounded-full bg-[#FF5F57] hover:bg-[#FF5F57]/80 transition-colors"
           />
-          <button 
+          <button
             onClick={() => setContentState(prev => prev === 'minimized' ? 'normal' : 'minimized')}
             className="w-3 h-3 rounded-full bg-[#FFBD2E] hover:bg-[#FFBD2E]/80 transition-colors"
           />
-          <button 
+          <button
             onClick={() => setContentState(prev => prev === 'maximized' ? 'normal' : 'maximized')}
             className="w-3 h-3 rounded-full bg-[#28C840] hover:bg-[#28C840]/80 transition-colors"
           />
@@ -115,15 +99,10 @@ const MainContent = () => {
       {/* Container principal */}
       <div className="flex h-[calc(100vh-38px)]">
         {/* Sidebar */}
-        <div className={`${
-          screenSize.isMobile ? 'fixed inset-0 z-40 transform transition-transform duration-300' : 'w-sidebar'
-        } ${
-          screenSize.isMobile && !isSidebarOpen ? '-translate-x-full' : ''
-        } bg-finder-sidebar border-r border-finder-border flex flex-col`}>
-          <div className="flex-1 overflow-y-auto scrollbar-finder p-2">
-            <LocationsSection />
-            <ThemeSection />
-          </div>
+        <div className={`${screenSize.isMobile ? 'fixed inset-0 z-40 transform transition-transform duration-300' : 'w-sidebar'
+          } ${screenSize.isMobile && !isSidebarOpen ? '-translate-x-full' : ''
+          } bg-finder-sidebar border-r border-finder-border flex flex-col`}>
+          <Sidebar /> {/* Renderizando o Sidebar */}
         </div>
 
         {/* Área de conteúdo */}
@@ -155,4 +134,4 @@ const MainContent = () => {
   );
 };
 
-export default MainContent; 
+export default MainContent;

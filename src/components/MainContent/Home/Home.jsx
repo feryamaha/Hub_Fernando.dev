@@ -8,7 +8,7 @@ const Home = () => {
 
   return (
     <div className={`space-y-8 theme-${theme} p-4 md:p-8 w-full max-w-[90%] mx-auto min-h-screen flex flex-col justify-center`}>
-      <section className="text-center w-full" data-aos="fade-down" data-aos-duration="1000">
+      {<section className="text-center w-full" data-aos="fade-down" data-aos-duration="1000">
         <TrueFocus
           sentence="Fernando Moreira"
           borderColor="var(--finder-accent)"
@@ -20,7 +20,7 @@ const Home = () => {
         <p className="text-xl sm:text-2xl md:text-xl text-[var(--finder-text-secondary)]" data-aos="fade-up" data-aos-delay="400">
           Desenvolvedor front-end
         </p>
-      </section>
+      </section>}
 
       <div className="flex items-center justify-center min-h-[40vh] md:min-h-[60vh] w-full" data-aos="zoom-in" data-aos-duration="800">
         <div className="flex flex-col md:flex-row items-center justify-center gap-4 text-3xl sm:text-4xl md:text-[73px] w-full">

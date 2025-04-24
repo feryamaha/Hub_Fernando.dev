@@ -1,9 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useTheme } from '../../../hooks/useTheme';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import './About.css';
 
 const About = () => {
   const [theme] = useTheme();
+
+  // Inicializar AOS
+  useEffect(() => {
+    AOS.init({
+      duration: 800, // Duração da animação (ms)
+      easing: 'ease-out', // Curva de easing para suavidade
+      once: true, // Animação ocorre apenas uma vez
+    });
+  }, []);
+
   const folders = [
     {
       title: 'Apresentação',
@@ -46,6 +58,8 @@ const About = () => {
           <div
             key={index}
             className="w-[300px] h-[250px] relative"
+            data-aos="fade-up"
+            data-aos-delay={index * 100} // Delay progressivo para cada card
           >
             <svg
               viewBox="0 0 302 252"
@@ -70,7 +84,9 @@ const About = () => {
         ))}
       </div>
 
-      <div className="bg-[var(--finder-window)] rounded-lg p-4 mt-8 max-w-2xl mx-auto">
+      <div
+        className="bg-[var(--finder-window)] rounded-lg p-4 mt-8 max-w-2xl mx-auto"
+      >
         <p className="text-[var(--finder-text)] italic text-center text-lg">
           "Meu objetivo é criar produtos digitais que encantam pelo visual, pela experiência e pela robustez técnica."
         </p>

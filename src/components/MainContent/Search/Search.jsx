@@ -36,7 +36,7 @@ const Search = ({ onSearch }) => {
     inputRef.current?.focus();
   };
 
-  return (
+/*   return (
     <div className="relative w-full max-w-md">
       <div
         className={`
@@ -84,7 +84,7 @@ const Search = ({ onSearch }) => {
         Press ⌘F to search
       </div>
     </div>
-  );
+  ); */
 };
 
 export default Search; 

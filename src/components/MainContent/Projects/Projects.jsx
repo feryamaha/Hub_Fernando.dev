@@ -4,52 +4,98 @@ import { useTheme } from '../../../hooks/useTheme';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
+import imgWHFFEnd from '../../../assets/img_projetc_whffend.webp';
+import imgAlpha from '../../../assets/img_project_alpha.webp';
+import imgAutoDataF from '../../../assets/img_project_autodataf.webp';
+import imgMLX from '../../../assets/img_project_mlx.webp';
+import imgVega from '../../../assets/img_project_vega.webp';
+
 const projects = [
+
   {
     id: 1,
-    title: "WHFF-enD",
-    description: "Um site de portfólio moderno construído com React e Tailwind CSS, apresentando elementos de UI no estilo macOS e animações suaves.",
-    image: "icons/img_projetc_whffend.webp",
-    technologies: ["React", "Tailwind CSS", "Framer Motion", "Heroicons"],
-    demoLink: "https://whff-end.demo",
-    githubLink: "https://github.com/username/WHFF-enD"
-  },
-  {
-    id: 2,
-    title: "Alpha - Auclan Design",
-    description: "Solução completa para gerenciamento de projetos e equipes com foco em produtividade e colaboração.",
-    image: "icons/img_project_alpha.webp",
-    technologies: ["Next.js", "Node.js", "MongoDB", "AWS"],
+    title: "ALPHA",
+    description: (
+      <>
+        Frontend desenvolvido na{" "}
+        <a
+          href="https://auclandesign.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-[var(--finder-accent)] underline hover:text-[var(--finder-accent)]/80"
+        >
+          Auclan Design
+        </a>{" "}
+        para o cliente APLHA da Auclan Design.
+      </>
+    ),
+    image: imgAlpha,
+    technologies: ["html", "css", "javascript"],
     demoLink: "https://alpha-project.demo",
     githubLink: "https://github.com/username/alpha-project"
   },
   {
-    id: 3,
-    title: "AutoDataF",
-    description: "Plataforma de análise e visualização de dados automotivos com relatórios personalizados.",
-    image: "icons/img_project_autodataf.webp",
-    technologies: ["React", "Python", "Pandas", "Chart.js"],
-    demoLink: "https://autodataf.demo",
-    githubLink: "https://github.com/username/autodataf"
-  },
-  {
-    id: 4,
-    title: "MLX Capital - Auclan Design",
-    description: "Sistema de machine learning para análise preditiva e otimização de processos.",
-    image: "icons/img_project_mlx.webp",
-    technologies: ["Python", "TensorFlow", "Scikit-learn", "FastAPI"],
+    id: 2,
+    title: "MLX CAPITAL",
+    description: (
+      <>
+        Frontend desenvolvido na{" "}
+        <a
+          href="https://auclandesign.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-[var(--finder-accent)] underline hover:text-[var(--finder-accent)]/80"
+        >
+          Auclan Design
+        </a>{" "}
+        para o cliente MLX CAPITAL da Auclan Design.
+      </>
+    ),
+    image: imgMLX,
+    technologies: ["html", "css", "javascript"],
     demoLink: "https://mlx-platform.demo",
     githubLink: "https://github.com/username/mlx-platform"
   },
   {
-    id: 5,
-    title: "Vega - Auclan Design",
-    description: "Plataforma de gestão empresarial integrada com foco em automação e eficiência.",
-    image: "icons/img_project_vega.webp",
-    technologies: ["Vue.js", "Node.js", "PostgreSQL", "Docker"],
+    id: 3,
+    title: "VEGA",
+    description: (
+      <>
+        Frontend desenvolvido na{" "}
+        <a
+          href="https://auclandesign.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-[var(--finder-accent)] underline hover:text-[var(--finder-accent)]/80"
+        >
+          Auclan Design
+        </a>{" "}
+        para o cliente VEGA da Auclan Design.
+      </>
+    ),
+    image: imgVega,
+    technologies: ["html", "scss", "javascript"],
     demoLink: "https://vega-system.demo",
     githubLink: "https://github.com/username/vega-system"
-  }
+  },
+  {
+    id: 4,
+    title: "AUTODATAF",
+    description: "Autodata.F organiza cursos gratuitos do YouTube para estudo focado de programação..",
+    image: imgAutoDataF,
+    technologies: ["React", "css", "Node.js/Express", "PostgreeSQL"],
+    demoLink: "https://autodataf.demo",
+    githubLink: "https://github.com/username/autodataf"
+  },
+  {
+    id: 5,
+    title: "WHFF-enD",
+    description: "Este projeto é um hub de conhecimento em React, desenvolvido como parte do processo de aprendizado, explorando conceitos fundamentais e utiliza ferramentas atuais como Webpack e Babel para garantir robustez e escalabilidade. O conteúdo é atualizado continuamente com novos aprendizados em React e tecnologias front-end relevantes da WHFF.enD.",
+    image: imgWHFFEnd,
+    technologies: ["react", "scss", "javascript"],
+    demoLink: "https://whff-end.demo",
+    githubLink: "https://github.com/username/WHFF-enD"
+  },
 ];
 
 const Projects = () => {
@@ -84,7 +130,7 @@ const Projects = () => {
   };
 
   return (
-    <div 
+    <div
       className={`min-h-screen theme-${theme}`}
       data-aos="fade-up"
       data-aos-delay="100"
@@ -95,8 +141,8 @@ const Projects = () => {
           style={{ transform: `translateX(-${currentIndex * 100}%)` }}
         >
           {projects.map((project, index) => (
-            <div 
-              key={project.id} 
+            <div
+              key={project.id}
               className="w-full flex-shrink-0 px-[1%]"
               data-aos={index === currentIndex ? "fade-left" : ""}
               data-aos-delay={index === currentIndex ? "200" : ""}
@@ -109,7 +155,7 @@ const Projects = () => {
                   data-aos={index === currentIndex ? "zoom-in" : ""}
                   data-aos-delay={index === currentIndex ? "300" : ""}
                 />
-                <div 
+                <div
                   className="absolute bottom-0 left-0 right-0 p-4 md:p-6 bg-gradient-to-t from-[var(--finder-accent)]/10 to-transparent backdrop-blur-sm hidden md:block"
                   data-aos={index === currentIndex ? "fade-up" : ""}
                   data-aos-delay={index === currentIndex ? "400" : ""}

@@ -15,14 +15,14 @@ const InfoModal = ({ isOpen, onClose }) => {
     {
       icon: CodeBracketIcon,
       title: 'Desenvolvimento',
-      description: 'Portfolio desenvolvido com React, Tailwind CSS e outras tecnologias modernas.'
+      description: 'React, Tailwind CSS, webpack, babel.'
     },
     {
       icon: CommandLineIcon,
       title: 'Funcionalidades',
-      description: 'Interface inspirada no Finder do macOS com navegação intuitiva e busca integrada.'
+      description: 'Navegação intuitiva e busca integrada serviços google, youtube e IA'
     },
-    {
+/*     {
       icon: GlobeAltIcon,
       title: 'Responsividade',
       description: 'Design adaptativo que funciona em diferentes tamanhos de tela.'
@@ -31,7 +31,7 @@ const InfoModal = ({ isOpen, onClose }) => {
       icon: DocumentTextIcon,
       title: 'Documentação',
       description: 'Código bem documentado e organizado seguindo as melhores práticas.'
-    }
+    } */
   ];
 
   return (
@@ -39,8 +39,7 @@ const InfoModal = ({ isOpen, onClose }) => {
       <div className="space-y-6 h-max-content overflow-y-auto">
         <div className="text-finder-text-secondary">
           <p className="mb-4">
-            Este portfolio foi desenvolvido para demonstrar minhas habilidades e projetos.
-            A interface foi inspirada no Finder do macOS, proporcionando uma experiência
+            Este portfolio foi inspirado na interface do Finder do macOS, proporcionando uma experiência
             familiar e intuitiva.
           </p>
         </div>

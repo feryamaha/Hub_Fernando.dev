@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/Hub_Fernando.dev/static/css/main.ec4fbc54.css",
-    "main.js": "/Hub_Fernando.dev/static/js/main.5fc7822a.js",
+    "main.js": "/Hub_Fernando.dev/static/js/main.9e26f648.js",
     "static/media/img_profile.webp": "/Hub_Fernando.dev/static/media/img_profile.bcf394597902404cf45c.webp",
     "static/media/img_project_mlx.webp": "/Hub_Fernando.dev/static/media/img_project_mlx.4a4f1b17f49c122be927.webp",
     "static/media/img_project_vega.webp": "/Hub_Fernando.dev/static/media/img_project_vega.fe02352b4474c5cc7149.webp",
@@ -10,10 +10,10 @@
     "static/media/img_projetc_whffend.webp": "/Hub_Fernando.dev/static/media/img_projetc_whffend.67759e9c18bca3820895.webp",
     "index.html": "/Hub_Fernando.dev/index.html",
     "main.ec4fbc54.css.map": "/Hub_Fernando.dev/static/css/main.ec4fbc54.css.map",
-    "main.5fc7822a.js.map": "/Hub_Fernando.dev/static/js/main.5fc7822a.js.map"
+    "main.9e26f648.js.map": "/Hub_Fernando.dev/static/js/main.9e26f648.js.map"
   },
   "entrypoints": [
     "static/css/main.ec4fbc54.css",
-    "static/js/main.5fc7822a.js"
+    "static/js/main.9e26f648.js"
   ]
 }

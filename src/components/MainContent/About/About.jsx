@@ -79,7 +79,7 @@ const About = () => {
           {/* Container das abas, com largura máxima de 95% e centralizado horizontalmente */}
           <div className="flex flex-col flex-1 max-w-[95%] mx-auto pt-12 overflow-x-auto ">
             {/* Abas de navegação, exibidas em linha com largura ajustada ao conteúdo */}
-            <div className="flex space-x-10 rounded-lg border-gray-600 bg-black p-3">
+            <div className="flex space-x-10 rounded-lg border-gray-600  p-3">
               {folders.map((folder, index) => (
                 <button
                   key={index}

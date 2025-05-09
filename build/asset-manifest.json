@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/Hub_Fernando.dev/static/css/main.ec4fbc54.css",
-    "main.js": "/Hub_Fernando.dev/static/js/main.2150c108.js",
+    "main.css": "/Hub_Fernando.dev/static/css/main.1179ebba.css",
+    "main.js": "/Hub_Fernando.dev/static/js/main.24ed3442.js",
     "static/media/img_profile.webp": "/Hub_Fernando.dev/static/media/img_profile.bcf394597902404cf45c.webp",
     "static/media/img_project_mlx.webp": "/Hub_Fernando.dev/static/media/img_project_mlx.4a4f1b17f49c122be927.webp",
     "static/media/img_project_vega.webp": "/Hub_Fernando.dev/static/media/img_project_vega.fe02352b4474c5cc7149.webp",
@@ -9,11 +9,11 @@
     "static/media/img_project_alpha.webp": "/Hub_Fernando.dev/static/media/img_project_alpha.e121b46bc848c0385469.webp",
     "static/media/img_projetc_whffend.webp": "/Hub_Fernando.dev/static/media/img_projetc_whffend.67759e9c18bca3820895.webp",
     "index.html": "/Hub_Fernando.dev/index.html",
-    "main.ec4fbc54.css.map": "/Hub_Fernando.dev/static/css/main.ec4fbc54.css.map",
-    "main.2150c108.js.map": "/Hub_Fernando.dev/static/js/main.2150c108.js.map"
+    "main.1179ebba.css.map": "/Hub_Fernando.dev/static/css/main.1179ebba.css.map",
+    "main.24ed3442.js.map": "/Hub_Fernando.dev/static/js/main.24ed3442.js.map"
   },
   "entrypoints": [
-    "static/css/main.ec4fbc54.css",
-    "static/js/main.2150c108.js"
+    "static/css/main.1179ebba.css",
+    "static/js/main.24ed3442.js"
   ]
 }

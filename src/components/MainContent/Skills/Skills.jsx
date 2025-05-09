@@ -257,7 +257,7 @@ const Skills = () => {
                     data-aos-delay={categoryIndex * 100}
                     data-aos-duration="600"
                   >
-                    <div className="flex items-center h-[24px] px-3 hover:bg-[var(--finder-hover)]">
+                    <div className="flex items-center h-[24px] px-3 ">
                       <div className="flex-1 flex items-center min-w-0">
                         {/* Ícone de expansão/retração da pasta */}
                         {isExpanded ? (
@@ -322,12 +322,14 @@ const Skills = () => {
                       {/* Tooltip que aparece ao passar o mouse sobre um arquivo */}
                       {activeTooltip === `${category.name}-${file.name}` && (
                         <div
-                          className="fixed top-1/2 transform -translate-y-1/2 translate-x-0 z-50 w-80 p-3 rounded-lg shadow-lg border border-gray-200"
+                          className="fixed top-1/2 transform -translate-y-1/2 translate-x-0 z-9999 w-80 p-3 rounded-lg  border border-gray-200"
                           style={{
                             left: window.innerWidth < 640 ? '8%' : '35%', // Ajusta a posição com base no tamanho da tela
-                            backgroundColor: '#ffffff',
-                            boxShadow: '0 8px 16px -4px rgba(0, 0, 0, 0.1), 0 4px 8px -4px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.1)',
+                            backgroundColor: '#ffffff', // Fundo sólido branco
+                            opacity: 1, // Garante que o card seja completamente opaco
+                            boxShadow: '0 8px 16px -4px rgba(0, 0, 0, 0), 0 4px 8px -4px rgba(0, 0, 0, 0), 0 0 0 1px rgba(0, 0, 0, 0)',
                             marginLeft: '10px',
+                            zIndex: 9999, // Garante que o tooltip fique acima de outros elementos
                           }}
                           data-aos="fade-left"
                           data-aos-duration="300"
@@ -335,7 +337,8 @@ const Skills = () => {
                           <div className="flex items-start gap-3">
                             <DocumentIcon className="w-8 h-8 text-gray-800 flex-shrink-0 mt-0.5" />
                             <div>
-                              <h3 className="text-black font-medium mb-1">
+                              <h3 className="text-black font-medium mb-1"
+                              >
                                 {file.name}.{file.extension}
                               </h3>
                               <p className="text-gray-700 text-sm leading-relaxed">

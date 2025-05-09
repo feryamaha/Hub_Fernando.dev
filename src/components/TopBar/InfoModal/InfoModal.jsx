@@ -20,18 +20,8 @@ const InfoModal = ({ isOpen, onClose }) => {
     {
       icon: CommandLineIcon,
       title: 'Funcionalidades',
-      description: 'Navegação intuitiva e busca integrada serviços google, youtube e IA'
-    },
-/*     {
-      icon: GlobeAltIcon,
-      title: 'Responsividade',
-      description: 'Design adaptativo que funciona em diferentes tamanhos de tela.'
-    },
-    {
-      icon: DocumentTextIcon,
-      title: 'Documentação',
-      description: 'Código bem documentado e organizado seguindo as melhores práticas.'
-    } */
+      description: 'Busca integrada com google, youtube, IA, Jogo e Music Player ainda em fase de desenvolvimento.'
+    }
   ];
 
   return (

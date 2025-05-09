@@ -1,57 +1,79 @@
 import React, { useState, useCallback } from 'react';
 import { MagnifyingGlassIcon, ArrowLeftIcon } from '@heroicons/react/24/outline';
 import { useTheme } from '../../../../hooks/useTheme';
-import { searchGoogle } from '../../../../services/googleService';
+import { searchGoogle } from '../../../../api/api'; // Ajustado para usar searchGoogle
 import debounce from 'lodash/debounce';
 
 const GoogleSearch = () => {
+  // Hook para obter o tema atual (ex.: 'light', 'dark', etc.)
   const [theme] = useTheme();
-  const [searchTerm, setSearchTerm] = useState('');
-  const [isSearching, setIsSearching] = useState(false);
-  const [searchResults, setSearchResults] = useState(null);
-  const [selectedResult, setSelectedResult] = useState(null);
-  const [viewportSize, setViewportSize] = useState('default');
-  const [error, setError] = useState(null);
 
+  // Estados do componente
+  const [searchTerm, setSearchTerm] = useState(''); // Termo de busca digitado pelo usuário
+  const [isSearching, setIsSearching] = useState(false); // Indicador de estado de busca
+  const [searchResults, setSearchResults] = useState(null); // Resultados da pesquisa
+  const [selectedResult, setSelectedResult] = useState(null); // Resultado selecionado para visualização detalhada
+  const [viewportSize, setViewportSize] = useState('default'); // Tamanho da viewport (default, maximized, closed)
+  const [error, setError] = useState(null); // Mensagem de erro, se houver
+
+  // Função de busca com debounce para evitar múltiplas requisições
   const debouncedSearch = useCallback(
     debounce(async (term) => {
-      if (!term.trim()) return;
+      if (!term.trim()) return; // Evita busca com termo vazio
 
-      setIsSearching(true);
-      setError(null);
+      setIsSearching(true); // Inicia o estado de busca
+      setError(null); // Limpa erros anteriores
 
       try {
-        const results = await searchGoogle(term);
-        setSearchResults(results);
+        console.log('Initiating search for term:', term);
+        const results = await searchGoogle(term); // Chama a API do backend via searchGoogle
+        console.log('Search results received:', results);
+        // Mapeia os resultados para a estrutura esperada (ajustado para a resposta do backend)
+        const mappedResults = results.map(item => ({
+          title: item.title,
+          link: item.link,
+          snippet: item.snippet,
+          thumbnail: item.pagemap?.cse_thumbnail?.[0]?.src || '',
+          date: item.pagemap?.metatags?.[0]?.['article:published_time'] || ''
+        }));
+        setSearchResults(mappedResults); // Atualiza os resultados
       } catch (error) {
         console.error('Erro na pesquisa:', error);
-        setError(error.message);
-        setSearchResults([]);
+        setError(error.message); // Define mensagem de erro
+        setSearchResults([]); // Limpa resultados em caso de erro
       } finally {
-        setIsSearching(false);
+        setIsSearching(false); // Finaliza o estado de busca
       }
-    }, 500),
+    }, 500), // Atraso de 500ms para o debounce
     []
   );
 
+  // Manipula o envio do formulário de busca
   const handleSearch = async (e) => {
     e.preventDefault();
     if (searchTerm.trim()) {
-      debouncedSearch(searchTerm);
+      console.log('Form submitted, triggering search for:', searchTerm);
+      debouncedSearch(searchTerm); // Executa a busca com o termo atual
     }
   };
 
+  // Manipula o clique em um resultado para exibir detalhes
   const handleResultClick = (result) => {
+    console.log('Result clicked:', result);
     setSelectedResult(result);
     setViewportSize('default');
   };
 
+  // Volta para a lista de resultados
   const handleBack = () => {
+    console.log('Back button clicked, returning to results');
     setSelectedResult(null);
     setViewportSize('default');
   };
 
+  // Controla o tamanho da viewport (fechar, minimizar, maximizar)
   const handleViewportControl = (action) => {
+    console.log(`Viewport control action: ${action}`);
     switch (action) {
       case 'close':
         setSelectedResult(null);
@@ -68,6 +90,7 @@ const GoogleSearch = () => {
     }
   };
 
+  // Define as classes CSS com base no tamanho da viewport
   const getViewportClass = () => {
     switch (viewportSize) {
       case 'maximized':
@@ -79,11 +102,13 @@ const GoogleSearch = () => {
     }
   };
 
+  // Classes reutilizáveis para os botões de controle
   const controlButtonsClass = "w-3 h-3 rounded-full transition-colors relative group";
   const controlButtonBg = "absolute inset-0 rounded-full bg-black bg-opacity-30 opacity-0 group-hover:opacity-100 transition-opacity";
 
   return (
     <div className={`h-full flex flex-col bg-finder-window theme-${theme}`}>
+      {/* Cabeçalho com ícone do Google e botão de voltar */}
       <div className="bg-finder-sidebar border-b border-finder-border p-2">
         <div className="flex items-center space-x-3">
           {selectedResult && (
@@ -96,7 +121,7 @@ const GoogleSearch = () => {
           )}
           <div className="w-8 h-8 rounded-full flex items-center justify-center">
             <svg width="24" height="24" viewBox="0 0 24 24">
-              <path d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z" fill="#4285F4" />
+              <path d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387 .307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z" fill="#4285F4" />
             </svg>
           </div>
           <div className="flex-1">
@@ -105,7 +130,10 @@ const GoogleSearch = () => {
           </div>
         </div>
       </div>
+
+      {/* Área principal com formulário de busca e resultados */}
       <div className="flex-1 flex flex-col p-4 overflow-hidden">
+        {/* Formulário de busca */}
         <form onSubmit={handleSearch} className="flex items-center space-x-2 mb-4">
           <input
             type="text"
@@ -121,8 +149,11 @@ const GoogleSearch = () => {
             <MagnifyingGlassIcon className="h-5 w-5" />
           </button>
         </form>
-        <div className="flex-1 overflow-hidden">
+
+        {/* Área de resultados */}
+        <div className="flex-1 overflow-y-auto scrollbar-finder">
           {isSearching ? (
+            // Exibe um spinner durante a busca
             <div className="flex items-center justify-center text-finder-text-secondary h-full">
               <svg className="animate-spin h-5 w-5 mr-3" viewBox="0 0 24 24">
                 <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
@@ -131,8 +162,10 @@ const GoogleSearch = () => {
               Pesquisando...
             </div>
           ) : selectedResult ? (
+            // Exibe o resultado selecionado em um iframe
             <>
               {viewportSize === 'maximized' && (
+                // Botões de controle quando maximizado
                 <div className="fixed top-4 left-4 flex items-center space-x-2 z-50 p-2 rounded-lg bg-black bg-opacity-20">
                   <button onClick={() => handleViewportControl('close')} className={controlButtonsClass} title="Fechar">
                     <div className="bg-[#FF5F57] hover:bg-[#FF5F57]/80 w-full h-full rounded-full" />
@@ -155,6 +188,7 @@ const GoogleSearch = () => {
                     <p className="text-finder-text-secondary text-sm truncate">{selectedResult.link}</p>
                   </div>
                   {viewportSize !== 'maximized' && (
+                    // Botões de controle quando não maximizado
                     <div className="flex items-center space-x-2 bg-black bg-opacity-20 p-2 rounded-lg">
                       <button onClick={() => handleViewportControl('close')} className={controlButtonsClass} title="Fechar">
                         <div className="bg-[#FF5F57] hover:bg-[#FF5F57]/80 w-full h-full rounded-full" />
@@ -182,45 +216,52 @@ const GoogleSearch = () => {
               </div>
             </>
           ) : searchResults ? (
-            <div className="space-y-6 max-w-2xl mx-auto">
+            // Exibe os resultados da pesquisa em um grid de cards
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 p-2">
               {error ? (
-                <div className="flex items-center justify-center text-red-500">
+                // Exibe mensagem de erro, se houver
+                <div className="col-span-full flex items-center justify-center text-red-500">
                   <p>{error}</p>
                 </div>
               ) : searchResults.length === 0 ? (
-                <div className="flex items-center justify-center text-finder-text-secondary">
+                // Exibe mensagem se não houver resultados
+                <div className="col-span-full flex items-center justify-center text-finder-text-secondary">
                   <p>Nenhum resultado encontrado</p>
                 </div>
               ) : (
+                // Mapeia os resultados para cards
                 searchResults.map((result, index) => (
                   <button
                     key={index}
                     onClick={() => handleResultClick(result)}
-                    className="w-full text-left p-4 bg-finder-search rounded-lg hover:bg-finder-hover 
-                             transition-colors border border-transparent hover:border-[#4285F4]"
+                    className={`bg-black rounded-lg shadow-md hover:shadow-lg transition-shadow border border-transparent hover:border-${theme}-500 cursor-pointer p-4 flex flex-col h-full`}
                   >
-                    <div className="flex">
-                      {result.thumbnail && (
-                        <div className="relative w-32 h-24 flex-shrink-0 mr-4">
-                          <img src={result.thumbnail} alt={result.title} className="w-full h-full object-cover rounded" />
-                        </div>
-                      )}
-                      <div className="flex-1">
-                        <h3 className="text-[#4285F4] font-medium mb-1 hover:underline">{result.title}</h3>
-                        <p className="text-finder-text-secondary text-sm mb-2 truncate">{result.link}</p>
-                        <p className="text-finder-text line-clamp-2">{result.snippet}</p>
-                        {result.date && (
-                          <p className="text-finder-text-secondary text-sm mt-2">
-                            {new Date(result.date).toLocaleDateString()}
-                          </p>
-                        )}
+                    {/* Thumbnail do resultado, se disponível */}
+                    {result.thumbnail && (
+                      <div className="w-full h-32 mb-3">
+                        <img src={result.thumbnail} alt={result.title} className="w-full h-full object-cover rounded" />
                       </div>
+                    )}
+                    <div className="flex-1">
+                      <h3 className="text-[#4285F4] font-medium mb-1 line-clamp-2 hover:underline">{result.title}</h3>
+                      <p className="text-finder-text-secondary text-xs mb-2 truncate">{result.link}</p>
+                      <p className="text-finder-text text-sm line-clamp-3">{result.snippet}</p>
+                      {result.date && (
+                        <p className="text-finder-text-secondary text-xs mt-2">
+                          {new Date(result.date).toLocaleDateString()}
+                        </p>
+                      )}
                     </div>
                   </button>
                 ))
               )}
             </div>
-          ) : null}
+          ) : (
+            // Mensagem inicial antes de qualquer busca
+            <div className="flex items-center justify-center text-finder-text-secondary h-full">
+              <p>Digite um termo para iniciar a busca</p>
+            </div>
+          )}
         </div>
       </div>
     </div>

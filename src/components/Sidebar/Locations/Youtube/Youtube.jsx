@@ -2,57 +2,74 @@ import React, { useState, useRef, useCallback } from 'react';
 import { FaYoutube } from 'react-icons/fa';
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 import { useTheme } from '../../../../hooks/useTheme';
-import { searchVideos } from '../../../../services/youtubeService';
+import { searchYouTube } from '../../../../api/api';
 import debounce from 'lodash/debounce';
 
-const Youtube = () => {
+const YoutubeSearch = () => {
+    // Hook para obter o tema atual (ex.: 'light', 'dark', etc.)
     const [theme] = useTheme();
-    const [searchTerm, setSearchTerm] = useState('');
-    const [searchResults, setSearchResults] = useState([]);
-    const [isLoading, setIsLoading] = useState(false);
-    const [selectedVideo, setSelectedVideo] = useState(null);
-    const [viewportSize, setViewportSize] = useState('default');
-    const [error, setError] = useState(null);
-    const isSearching = useRef(false);
 
+    // Estados do componente
+    const [searchTerm, setSearchTerm] = useState(''); // Termo de busca digitado pelo usuário
+    const [searchResults, setSearchResults] = useState([]); // Resultados da pesquisa
+    const [isLoading, setIsLoading] = useState(false); // Indicador de estado de busca
+    const [selectedVideo, setSelectedVideo] = useState(null); // Vídeo selecionado para visualização detalhada
+    const [viewportSize, setViewportSize] = useState('default'); // Tamanho da viewport (default, maximized, closed)
+    const [error, setError] = useState(null); // Mensagem de erro, se houver
+    const isSearching = useRef(false); // Ref para evitar múltiplas buscas simultâneas
+
+    // Função de busca com debounce para evitar múltiplas requisições
     const debouncedSearch = useCallback(
         debounce(async (term) => {
-            if (!term.trim() || isSearching.current) return;
+            if (!term.trim() || isSearching.current) return; // Evita busca com termo vazio ou busca simultânea
 
-            isSearching.current = true;
-            setIsLoading(true);
-            setError(null);
+            isSearching.current = true; // Inicia o estado de busca
+            setIsLoading(true); // Ativa o indicador de carregamento
+            setError(null); // Limpa erros anteriores
 
             try {
-                const results = await searchVideos(term);
-                setSearchResults(results);
+                const results = await searchYouTube(term); // Chama a API para buscar vídeos
+                // Mapeia os resultados para a estrutura esperada
+                const mappedResults = results.map(item => ({
+                    id: item.id.videoId,
+                    title: item.snippet.title,
+                    channel: item.snippet.channelTitle,
+                    thumbnail: item.snippet.thumbnails?.medium?.url || '',
+                    timestamp: item.snippet.publishedAt,
+                    description: item.snippet.description
+                }));
+                setSearchResults(mappedResults); // Atualiza os resultados
             } catch (error) {
                 console.error('Erro na pesquisa:', error);
-                setError(error.message);
-                setSearchResults([]);
+                setError(error.message); // Define mensagem de erro
+                setSearchResults([]); // Limpa resultados em caso de erro
             } finally {
-                setIsLoading(false);
-                isSearching.current = false;
+                setIsLoading(false); // Finaliza o estado de carregamento
+                isSearching.current = false; // Permite novas buscas
             }
-        }, 500),
+        }, 500), // Atraso de 500ms para o debounce
         []
     );
 
+    // Manipula o envio do formulário de busca
     const handleSearch = (e) => {
         e.preventDefault();
-        debouncedSearch(searchTerm);
+        debouncedSearch(searchTerm); // Executa a busca com o termo atual
     };
 
+    // Manipula o clique em um vídeo para exibir detalhes
     const handleVideoClick = (video) => {
         setSelectedVideo(video);
         setViewportSize('default');
     };
 
+    // Volta para a lista de resultados
     const handleBack = () => {
         setSelectedVideo(null);
         setViewportSize('default');
     };
 
+    // Controla o tamanho da viewport (fechar, minimizar, maximizar)
     const handleViewportControl = (action) => {
         switch (action) {
             case 'close':
@@ -70,6 +87,7 @@ const Youtube = () => {
         }
     };
 
+    // Define as classes CSS com base no tamanho da viewport
     const getViewportClass = () => {
         switch (viewportSize) {
             case 'maximized':
@@ -81,11 +99,13 @@ const Youtube = () => {
         }
     };
 
+    // Classes reutilizáveis para os botões de controle
     const controlButtonsClass = 'w-3 h-3 rounded-full transition-colors relative group';
     const controlButtonBg = 'absolute inset-0 rounded-full bg-black bg-opacity-30 opacity-0 group-hover:opacity-100 transition-opacity';
 
     return (
         <div className={`h-full flex flex-col bg-finder-window theme-${theme}`}>
+            {/* Cabeçalho com ícone do YouTube e botão de voltar */}
             <div className="bg-finder-sidebar border-b border-finder-border p-2">
                 <div className="flex items-center space-x-3">
                     {selectedVideo && (
@@ -107,10 +127,14 @@ const Youtube = () => {
                     </div>
                 </div>
             </div>
+
+            {/* Área principal com formulário de busca e resultados */}
             <div className="flex-1 flex flex-col p-4 overflow-hidden">
                 {selectedVideo ? (
+                    // Exibe o vídeo selecionado em um iframe
                     <>
                         {viewportSize === 'maximized' && (
+                            // Botões de controle quando maximizado
                             <div className="fixed top-4 left-4 flex items-center space-x-2 z-50 p-2 rounded-lg bg-black bg-opacity-20">
                                 <button onClick={() => handleViewportControl('close')} className={controlButtonsClass} title="Fechar">
                                     <div className="bg-[#FF5F57] hover:bg-[#FF5F57]/80 w-full h-full rounded-full" />
@@ -133,6 +157,7 @@ const Youtube = () => {
                                     <p className="text-finder-text-secondary text-sm truncate">{selectedVideo.channel}</p>
                                 </div>
                                 {viewportSize !== 'maximized' && (
+                                    // Botões de controle quando não maximizado
                                     <div className="flex items-center space-x-2 bg-black bg-opacity-20 p-2 rounded-lg">
                                         <button onClick={() => handleViewportControl('close')} className={controlButtonsClass} title="Fechar">
                                             <div className="bg-[#FF5F57] hover:bg-[#FF5F57]/80 w-full h-full rounded-full" />
@@ -175,7 +200,9 @@ const Youtube = () => {
                         </div>
                     </>
                 ) : (
+                    // Exibe o formulário de busca e os resultados
                     <>
+                        {/* Formulário de busca */}
                         <form onSubmit={handleSearch} className="flex items-center space-x-2 mb-4">
                             <input
                                 type="text"
@@ -191,12 +218,16 @@ const Youtube = () => {
                                 <MagnifyingGlassIcon className="h-5 w-5" />
                             </button>
                         </form>
-                        <div className="flex-1 overflow-hidden">
+
+                        {/* Área de resultados */}
+                        <div className="flex-1 overflow-y-auto scrollbar-finder">
                             {error ? (
+                                // Exibe mensagem de erro, se houver
                                 <div className="flex items-center justify-center text-red-500 h-full">
                                     <p>Erro: {error}</p>
                                 </div>
                             ) : isLoading ? (
+                                // Exibe um spinner durante a busca
                                 <div className="flex items-center justify-center text-finder-text-secondary h-full">
                                     <svg className="animate-spin h-5 w-5 mr-3" viewBox="0 0 24 24">
                                         <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
@@ -209,30 +240,30 @@ const Youtube = () => {
                                     Pesquisando...
                                 </div>
                             ) : searchResults.length > 0 ? (
-                                <div className="space-y-4 max-w-2xl mx-auto">
+                                // Exibe os resultados da pesquisa em um grid de cards
+                                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 p-2">
                                     {searchResults.map((video) => (
                                         <button
                                             key={video.id}
                                             onClick={() => handleVideoClick(video)}
-                                            className="w-full text-left bg-finder-search rounded-lg hover:bg-finder-hover 
-                                 transition-colors border border-transparent hover:border-[#FF0000] overflow-hidden"
+                                            className={`bg-black rounded-lg shadow-md hover:shadow-lg transition-shadow border border-transparent hover:border-${theme}-500 cursor-pointer p-4 flex flex-col h-full`}
                                         >
-                                            <div className="flex">
-                                                <div className="relative w-40 h-24 flex-shrink-0">
-                                                    <img src={video.thumbnail} alt={video.title} className="w-full h-full object-cover" />
-                                                </div>
-                                                <div className="p-3">
-                                                    <h3 className="text-finder-accent font-medium mb-1 line-clamp-2">{video.title}</h3>
-                                                    <p className="text-finder-text-secondary text-sm mb-1">{video.channel}</p>
-                                                    <div className="flex items-center text-finder-text-secondary text-xs">
-                                                        <span>{new Date(video.timestamp).toLocaleDateString()}</span>
-                                                    </div>
+                                            {/* Thumbnail do vídeo */}
+                                            <div className="w-full h-32 mb-3">
+                                                <img src={video.thumbnail} alt={video.title} className="w-full h-full object-cover rounded" />
+                                            </div>
+                                            <div className="flex-1">
+                                                <h3 className="text-finder-accent font-medium mb-1 line-clamp-2">{video.title}</h3>
+                                                <p className="text-finder-text-secondary text-xs mb-2">{video.channel}</p>
+                                                <div className="flex items-center text-finder-text-secondary text-xs">
+                                                    <span>{new Date(video.timestamp).toLocaleDateString()}</span>
                                                 </div>
                                             </div>
                                         </button>
                                     ))}
                                 </div>
                             ) : searchTerm && !isLoading && !isSearching.current ? (
+                                // Exibe mensagem se não houver resultados
                                 <div className="flex items-center justify-center text-finder-text-secondary h-full">
                                     Nenhum resultado encontrado
                                 </div>
@@ -245,4 +276,4 @@ const Youtube = () => {
     );
 };
 
-export default Youtube;
+export default YoutubeSearch;

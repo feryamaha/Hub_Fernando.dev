@@ -7,14 +7,52 @@ const YaminuelleChat = () => {
   const [inputMessage, setInputMessage] = useState('');
   const [theme] = useTheme();
 
-  const handleSendMessage = (e) => {
+  const handleSendMessage = async (e) => {
     e.preventDefault();
     if (inputMessage.trim()) {
-      setMessages([
-        ...messages,
-        { text: inputMessage, sender: 'user', timestamp: new Date() }
-      ]);
+      // Adicionar a mensagem do usuário ao histórico
+      const userMessage = { text: inputMessage, sender: 'user', timestamp: new Date() };
+      setMessages([...messages, userMessage]);
       setInputMessage('');
+
+      // Mockar a resposta do Yaminuelle temporariamente para evitar requisições à Hugging Face API
+      const mockResponse = mockYaminuelleResponse(inputMessage);
+      const yaminuelleMessage = { text: mockResponse, sender: 'yaminuelle', timestamp: new Date() };
+      setMessages(prevMessages => [...prevMessages, yaminuelleMessage]);
+
+      // Código para integração real com o backend (comentar até a Hugging Face API estar disponível)
+      /*
+      try {
+        const response = await fetch('http://localhost:3001/api/yaminuelle', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ message: inputMessage }),
+        });
+        const data = await response.json();
+        if (data.error) {
+          throw new Error(data.error);
+        }
+        const yaminuelleMessage = { text: data.reply, sender: 'yaminuelle', timestamp: new Date() };
+        setMessages(prevMessages => [...prevMessages, yaminuelleMessage]);
+      } catch (error) {
+        console.error('Error sending message to Yaminuelle:', error);
+        const errorMessage = { text: 'Desculpe, ocorreu um erro ao processar sua mensagem.', sender: 'yaminuelle', timestamp: new Date() };
+        setMessages(prevMessages => [...prevMessages, errorMessage]);
+      }
+      */
+    }
+  };
+
+  // Função para mockar respostas do Yaminuelle
+  const mockYaminuelleResponse = (message) => {
+    if (message.toLowerCase().includes('javascript')) {
+      return 'JavaScript é uma linguagem de programação usada para adicionar interatividade a páginas web. É executada no lado do cliente em navegadores e pode manipular o DOM.';
+    } else if (message.toLowerCase().includes('usestate') && message.toLowerCase().includes('react')) {
+      return 'No React, o `useState` é um Hook para gerenciar estado. Use: `const [state, setState] = useState(valorInicial);`. Exemplo: `const [count, setCount] = useState(0);`.';
+    } else {
+      return 'Desculpe, não sei responder a essa pergunta no momento.';
     }
   };
 
@@ -25,9 +63,9 @@ const YaminuelleChat = () => {
         <div className="flex items-center space-x-3">
           <div className="w-8 h-8 rounded-full bg-[#00FF9D] flex items-center justify-center">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-              <path d="M12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3Z" stroke="black" strokeWidth="1.5"/>
-              <path d="M8 12H16M12 8V16" stroke="black" strokeWidth="1.5" strokeLinecap="round"/>
-              <circle cx="12" cy="12" r="2" fill="black"/>
+              <path d="M12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3Z" stroke="black" strokeWidth="1.5" />
+              <path d="M8 12H16M12 8V16" stroke="black" strokeWidth="1.5" strokeLinecap="round" />
+              <circle cx="12" cy="12" r="2" fill="black" />
             </svg>
           </div>
           <div>
@@ -43,8 +81,8 @@ const YaminuelleChat = () => {
         <div className="flex items-start space-x-3">
           <div className="w-8 h-8 rounded-full bg-[#00FF9D] flex items-center justify-center flex-shrink-0">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-              <path d="M12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3Z" stroke="black" strokeWidth="1.5"/>
-              <circle cx="12" cy="12" r="2" fill="black"/>
+              <path d="M12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3Z" stroke="black" strokeWidth="1.5" />
+              <circle cx="12" cy="12" r="2" fill="black" />
             </svg>
           </div>
           <div className="bg-finder-hover rounded-2xl rounded-tl-none p-4 max-w-[80%]">
@@ -56,9 +94,8 @@ const YaminuelleChat = () => {
         {messages.map((message, index) => (
           <div
             key={index}
-            className={`flex items-start space-x-3 ${
-              message.sender === 'user' ? 'flex-row-reverse space-x-reverse' : ''
-            }`}
+            className={`flex items-start space-x-3 ${message.sender === 'user' ? 'flex-row-reverse space-x-reverse' : ''
+              }`}
           >
             {message.sender === 'user' ? (
               <div className="w-8 h-8 rounded-full bg-finder-accent flex items-center justify-center flex-shrink-0">
@@ -67,17 +104,16 @@ const YaminuelleChat = () => {
             ) : (
               <div className="w-8 h-8 rounded-full bg-[#00FF9D] flex items-center justify-center flex-shrink-0">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                  <path d="M12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3Z" stroke="black" strokeWidth="1.5"/>
-                  <circle cx="12" cy="12" r="2" fill="black"/>
+                  <path d="M12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3Z" stroke="black" strokeWidth="1.5" />
+                  <circle cx="12" cy="12" r="2" fill="black" />
                 </svg>
               </div>
             )}
             <div
-              className={`rounded-2xl p-4 max-w-[80%] ${
-                message.sender === 'user'
+              className={`rounded-2xl p-4 max-w-[80%] ${message.sender === 'user'
                   ? 'bg-finder-accent text-white rounded-tr-none'
                   : 'bg-finder-hover text-finder-text rounded-tl-none'
-              }`}
+                }`}
             >
               <p>{message.text}</p>
               <span className="text-xs opacity-70 mt-1 block">
@@ -110,4 +146,4 @@ const YaminuelleChat = () => {
   );
 };
 
-export default YaminuelleChat; 
+export default YaminuelleChat;

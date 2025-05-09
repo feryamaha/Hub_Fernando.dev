@@ -75,7 +75,7 @@ const projects = [
     ),
     image: imgVega,
     technologies: ["html", "scss", "javascript"],
-    demoLink: "https://vega-system.demo",
+    demoLink: "https://www.vegasat.com.br/",
     githubLink: "https://github.com/username/vega-system"
   },
   {
@@ -147,20 +147,20 @@ const Projects = () => {
               data-aos={index === currentIndex ? "fade-left" : ""}
               data-aos-delay={index === currentIndex ? "200" : ""}
             >
-              <div className="relative h-[400px] md:h-[600px] rounded-[30px] overflow-hidden">
+              <div className="relative h-[400px] md:h-[600px] rounded-[12px] overflow-hidden">
                 <img
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-full object-cover rounded-[30px]"
+                  className="w-full h-full object-cover rounded-[12px]"
                   data-aos={index === currentIndex ? "zoom-in" : ""}
                   data-aos-delay={index === currentIndex ? "300" : ""}
                 />
                 <div
-                  className="absolute bottom-0 left-0 right-0 p-4 md:p-6 bg-gradient-to-t from-[var(--finder-accent)]/10 to-transparent backdrop-blur-sm hidden md:block"
+                  className="absolute bottom-0 left-0 right-0 p-4 md:p-6 hidden md:block"
                   data-aos={index === currentIndex ? "fade-up" : ""}
                   data-aos-delay={index === currentIndex ? "400" : ""}
                 >
-                  <div className="space-y-2 md:space-y-4">
+                  <div className="space-y-2 md:space-y-4 bg-black p-5 rounded-xl">
                     <h3 className="text-xl md:text-2xl font-bold text-[var(--finder-accent)]">
                       {project.title}
                     </h3>
@@ -179,20 +179,12 @@ const Projects = () => {
                     </div>
                     <div className="flex gap-2 md:gap-4 mt-4 md:mt-6">
                       <a
-                        href={project.demoLink}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="px-3 md:px-4 py-1 md:py-2 rounded-lg bg-[var(--finder-accent)] text-white hover:bg-[var(--finder-accent)]/90 transition-colors text-sm md:text-base"
-                      >
-                        Live Demo
-                      </a>
-                      <a
                         href={project.githubLink}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="px-3 md:px-4 py-1 md:py-2 rounded-lg bg-[var(--finder-accent)]/10 text-[var(--finder-accent)] hover:bg-[var(--finder-accent)]/20 transition-colors text-sm md:text-base"
+                        className="px-3 md:px-4 py-1 md:py-2 rounded-lg bg-[var(--finder-accent)]/10 text-[var(--finder-accent)] hover:bg-[var(--finder-accent)]/20 transition-colors text-sm md:text-base outline-dashed"
                       >
-                        View Code
+                        VER PROJETO
                       </a>
                     </div>
                   </div>
@@ -237,22 +229,14 @@ const Projects = () => {
                 </span>
               ))}
             </div>
-            <div className="flex gap-4 mt-4">
-              <a
-                href={projects[currentIndex].demoLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex-1 text-center px-4 py-2 rounded-lg bg-[var(--finder-accent)] text-white hover:bg-[var(--finder-accent)]/90 transition-colors text-sm"
-              >
-                Live Demo
-              </a>
+            <div className="flex justify-center mt-4">
               <a
                 href={projects[currentIndex].githubLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-1 text-center px-4 py-2 rounded-lg bg-[var(--finder-accent)]/10 text-[var(--finder-accent)] hover:bg-[var(--finder-accent)]/20 transition-colors text-sm"
+                className="px-3 py-2 rounded-lg bg-[var(--finder-accent)]/10 text-[var(--finder-accent)] hover:bg-[var(--finder-accent)]/20 transition-colors text-sm outline-dashed"
               >
-                View Code
+                VER PROJETO
               </a>
             </div>
           </div>

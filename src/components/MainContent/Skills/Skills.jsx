@@ -1,12 +1,26 @@
+// Caminho completo do arquivo: src/components/Skills/Skills.jsx
+
+// Este arquivo gerencia a seção de habilidades (Skills) do portfólio, exibindo uma interface no estilo de um gerenciador de arquivos (Finder).
+// Ele organiza as habilidades em categorias (pastas) e arquivos, com interações dinâmicas como expansão de pastas e exibição de tooltips.
+// O componente não utiliza rotas diretamente, mas gerencia estado local para controlar:
+// - A expansão de pastas (expandedFolders): Um Set que rastreia quais pastas estão expandidas.
+// - A exibição de tooltips (activeTooltip): Um identificador único para mostrar detalhes de arquivos ao passar o mouse.
+// O componente utiliza a biblioteca AOS para animações suaves e Heroicons para ícones.
+
 import React, { useState, useEffect } from 'react';
 import { FolderIcon, DocumentIcon, ChevronRightIcon, ChevronDownIcon } from '@heroicons/react/24/outline';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
+// Componente principal Skills, responsável por exibir e gerenciar a seção de habilidades.
 const Skills = () => {
+  // Estado para controlar quais pastas estão expandidas. Inicialmente, 'Linguagens' e 'Frameworks' estão expandidas.
   const [expandedFolders, setExpandedFolders] = useState(new Set(['Linguagens', 'Frameworks']));
+  // Estado para controlar qual tooltip está ativo ao passar o mouse sobre um arquivo.
   const [activeTooltip, setActiveTooltip] = useState(null);
 
+  // Hook useEffect para inicializar a biblioteca AOS, que adiciona animações de rolagem.
+  // Configurações: duração de 800ms, animações ocorrem repetidamente (once: false), e espelham ao rolar para cima (mirror: true).
   useEffect(() => {
     AOS.init({
       duration: 800,
@@ -15,12 +29,14 @@ const Skills = () => {
     });
   }, []);
 
+  // Dados das categorias de habilidades, organizadas em pastas (categorias) e arquivos (habilidades específicas).
+  // Cada pasta contém arquivos com detalhes como nome, extensão, tamanho, data de modificação, tipo e descrição.
   const skillCategories = [
     {
       name: 'Linguagens',
       files: [
         {
-          name: 'index',
+          name: 'HTML',
           extension: 'html',
           size: '2.1 KB',
           modDate: '14 Mar 2024',
@@ -28,23 +44,23 @@ const Skills = () => {
           description: 'HTML5 com foco em semântica e acessibilidade. Estruturação moderna de documentos web com as melhores práticas de SEO e performance.'
         },
         {
-          name: 'styles',
+          name: 'CSS',
           extension: 'css',
           size: '1.8 KB',
           modDate: '14 Mar 2024',
           kind: 'CSS File',
           description: 'CSS3 com layouts responsivos usando Flexbox e Grid. Animações suaves e transições para melhor experiência do usuário.'
         },
+        /*         {
+                  name: 'SCSS',
+                  extension: 'scss',
+                  size: '2.4 KB',
+                  modDate: '14 Mar 2024',
+                  kind: 'SCSS File',
+                  description: 'SCSS para estilização avançada com mixins, variáveis e nesting. Organização modular de estilos com arquitetura BEM.'
+                }, */
         {
-          name: 'main',
-          extension: 'scss',
-          size: '2.4 KB',
-          modDate: '14 Mar 2024',
-          kind: 'SCSS File',
-          description: 'SCSS para estilização avançada com mixins, variáveis e nesting. Organização modular de estilos com arquitetura BEM.'
-        },
-        {
-          name: 'app',
+          name: 'JAVASCRIPT',
           extension: 'js',
           size: '3.2 KB',
           modDate: '14 Mar 2024',
@@ -52,7 +68,7 @@ const Skills = () => {
           description: 'JavaScript ES6+ com promises, async/await e módulos. Manipulação avançada do DOM e APIs modernas.'
         },
         {
-          name: 'types',
+          name: 'TYPESCRIPT',
           extension: 'ts',
           size: '1.5 KB',
           modDate: '14 Mar 2024',
@@ -65,7 +81,7 @@ const Skills = () => {
       name: 'Frameworks',
       files: [
         {
-          name: 'App',
+          name: 'REACT',
           extension: 'jsx',
           size: '4.2 KB',
           modDate: '14 Mar 2024',
@@ -73,7 +89,7 @@ const Skills = () => {
           description: 'React com Hooks, Context API e componentes funcionais. Gerenciamento de estado com Redux e React Query.'
         },
         {
-          name: 'next.config',
+          name: 'NEXT.JS',
           extension: 'js',
           size: '0.8 KB',
           modDate: '14 Mar 2024',
@@ -81,7 +97,7 @@ const Skills = () => {
           description: 'Next.js para SSR e SSG. Otimização de imagens, rotas dinâmicas e API routes para melhor performance.'
         },
         {
-          name: 'tailwind.config',
+          name: 'TAILWIND',
           extension: 'js',
           size: '1.2 KB',
           modDate: '14 Mar 2024',
@@ -94,7 +110,7 @@ const Skills = () => {
       name: 'Build & Automação',
       files: [
         {
-          name: 'webpack.config',
+          name: 'WEBPACK',
           extension: 'js',
           size: '1.6 KB',
           modDate: '14 Mar 2024',
@@ -102,7 +118,7 @@ const Skills = () => {
           description: 'Webpack para bundling otimizado. Code splitting, tree shaking e configuração avançada de assets.'
         },
         {
-          name: 'babel.config',
+          name: 'BABEL',
           extension: 'js',
           size: '0.5 KB',
           modDate: '14 Mar 2024',
@@ -110,7 +126,7 @@ const Skills = () => {
           description: 'Babel para transpilação moderna. Suporte a features mais recentes do JavaScript com polyfills automáticos.'
         },
         {
-          name: 'package',
+          name: 'PACKAGE',
           extension: 'json',
           size: '2.8 KB',
           modDate: '14 Mar 2024',
@@ -123,7 +139,7 @@ const Skills = () => {
       name: 'UI/UX',
       files: [
         {
-          name: 'design-system',
+          name: 'DESIGN SYSTEM',
           extension: 'fig',
           size: '5.2 MB',
           modDate: '14 Mar 2024',
@@ -131,21 +147,21 @@ const Skills = () => {
           description: 'Design System completo no Figma. Componentes reutilizáveis, tokens de design e guia de estilos.'
         },
         {
-          name: 'animations',
+          name: 'ANIMATIONS',
           extension: 'css',
           size: '1.8 KB',
           modDate: '14 Mar 2024',
           kind: 'CSS File',
           description: 'Animações e transições suaves. Micro-interações e feedback visual para melhor experiência do usuário.'
         },
-        {
-          name: 'theme',
-          extension: 'js',
-          size: '0.9 KB',
-          modDate: '14 Mar 2024',
-          kind: 'JavaScript File',
-          description: 'Sistema de temas dark/light. Persistência de preferências e transições suaves entre temas.'
-        }
+        /*        {
+                 name: 'theme',
+                 extension: 'js',
+                 size: '0.9 KB',
+                 modDate: '14 Mar 2024',
+                 kind: 'JavaScript File',
+                 description: 'Sistema de temas dark/light. Persistência de preferências e transições suaves entre temas.'
+               } */
       ]
     },
     {
@@ -157,7 +173,7 @@ const Skills = () => {
           size: '0.2 KB',
           modDate: '14 Mar 2024',
           kind: 'Text File',
-          description: 'Configuração de robots.txt para SEO. Controle de crawling e indexação por search engines.'
+          description: 'Arquivo robots.txt usado para controlar o rastreamento de buscadores. Permite bloquear páginas irrelevantes, direcionando robôs como o Googlebot a conteúdos prioritários, melhorando a indexação.'
         },
         {
           name: 'sitemap',
@@ -165,7 +181,7 @@ const Skills = () => {
           size: '1.4 KB',
           modDate: '14 Mar 2024',
           kind: 'XML File',
-          description: 'Sitemap XML dinâmico. Melhoria da descoberta de conteúdo e indexação por buscadores.'
+          description: 'Sitemap XML que lista páginas do site para buscadores. Facilita a descoberta e indexação de conteúdos, acelerando a aparição de novas páginas nos resultados de busca.'
         },
         {
           name: 'bundle-analyzer',
@@ -173,12 +189,14 @@ const Skills = () => {
           size: '3.1 KB',
           modDate: '14 Mar 2024',
           kind: 'JSON File',
-          description: 'Análise de bundle size e performance. Otimização de carregamento e code splitting inteligente.'
+          description: 'Relatório do Webpack Bundle Analyzer para análise de performance. Mostra o tamanho de arquivos JavaScript, ajudando a otimizar o tempo de carregamento e os Core Web Vitals para SEO.'
         }
       ]
     }
   ];
 
+  // Função para alternar a expansão de pastas.
+  // Recebe o nome da pasta e atualiza o estado `expandedFolders`, adicionando ou removendo a pasta do Set.
   const toggleFolder = (folderName) => {
     setExpandedFolders(prev => {
       const newSet = new Set(prev);
@@ -191,14 +209,17 @@ const Skills = () => {
     });
   };
 
+  // Calcula o número total de itens (pastas + arquivos) para exibir no cabeçalho.
+  // Soma 1 para cada pasta (category) e o número de arquivos dentro de cada pasta.
   const totalItems = skillCategories.reduce((acc, category) => acc + category.files.length + 1, 0);
 
   return (
+    // Contêiner principal que define o fundo e a altura total da seção.
     <div className="h-full bg-[var(--finder-background)]">
       <div className="h-full">
         <div className="h-full bg-[var(--finder-window)] shadow-lg">
-          {/* Header */}
-          <div 
+          {/* Cabeçalho da seção Skills, com título e contagem de itens */}
+          <div
             className="border-b border-[var(--finder-border)] px-3 py-1.5 flex items-center justify-between bg-[var(--finder-header)]"
             data-aos="fade-down"
             data-aos-duration="500"
@@ -209,8 +230,8 @@ const Skills = () => {
             </div>
           </div>
 
-          {/* Column Headers */}
-          <div 
+          {/* Cabeçalho das colunas, exibindo os rótulos "Name", "Date Modified", "Size" e "Kind" */}
+          <div
             className="flex items-center h-[24px] px-3 bg-[var(--finder-header)] border-b border-[var(--finder-border)] text-[11px] text-[var(--finder-text-secondary)] font-medium"
             data-aos="fade-down"
             data-aos-delay="100"
@@ -222,14 +243,14 @@ const Skills = () => {
             <div className="w-32 text-right">Kind</div>
           </div>
 
-          {/* List */}
+          {/* Lista de pastas e arquivos, organizada em uma estrutura de tabela */}
           <div className="divide-y divide-[var(--finder-border)]">
             {skillCategories.map((category, categoryIndex) => {
               const isExpanded = expandedFolders.has(category.name);
               return (
                 <div key={category.name}>
-                  {/* Folder */}
-                  <div 
+                  {/* Pasta (categoria de habilidade) */}
+                  <div
                     className="group cursor-default select-none"
                     onClick={() => toggleFolder(category.name)}
                     data-aos="fade-right"
@@ -238,6 +259,7 @@ const Skills = () => {
                   >
                     <div className="flex items-center h-[24px] px-3 hover:bg-[var(--finder-hover)]">
                       <div className="flex-1 flex items-center min-w-0">
+                        {/* Ícone de expansão/retração da pasta */}
                         {isExpanded ? (
                           <ChevronDownIcon className="w-3 h-3 text-[var(--finder-text-secondary)] mr-1" />
                         ) : (
@@ -262,9 +284,9 @@ const Skills = () => {
                     </div>
                   </div>
 
-                  {/* Files inside folder */}
+                  {/* Arquivos dentro da pasta, exibidos apenas se a pasta estiver expandida */}
                   {isExpanded && category.files.map((file, fileIndex) => (
-                    <div 
+                    <div
                       key={`${file.name}.${file.extension}`}
                       className="group cursor-default select-none relative"
                       data-aos="fade-left"
@@ -297,14 +319,15 @@ const Skills = () => {
                         </div>
                       </div>
 
-                      {/* Tooltip */}
+                      {/* Tooltip que aparece ao passar o mouse sobre um arquivo */}
                       {activeTooltip === `${category.name}-${file.name}` && (
-                        <div 
-                          className="fixed top-1/2 left-1/3 transform -translate-y-1/2 translate-x-0 z-50 w-80 p-3 rounded-lg shadow-lg border border-gray-200"
+                        <div
+                          className="fixed top-1/2 transform -translate-y-1/2 translate-x-0 z-50 w-80 p-3 rounded-lg shadow-lg border border-gray-200"
                           style={{
+                            left: window.innerWidth < 640 ? '8%' : '35%', // Ajusta a posição com base no tamanho da tela
                             backgroundColor: '#ffffff',
                             boxShadow: '0 8px 16px -4px rgba(0, 0, 0, 0.1), 0 4px 8px -4px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.1)',
-                            marginLeft: '10px'
+                            marginLeft: '10px',
                           }}
                           data-aos="fade-left"
                           data-aos-duration="300"
@@ -334,4 +357,4 @@ const Skills = () => {
   );
 };
 
-export default Skills; 
+export default Skills;

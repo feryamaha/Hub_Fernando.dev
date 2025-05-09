@@ -1,27 +1,54 @@
+/* 
+Este arquivo é responsável por definir os estilos personalizados para a seção "Sobre" do portfólio.
+Ele gerencia a aparência visual das "pastas" estilizadas, incluindo cores, bordas e temas (claro e escuro).
+Além disso, utiliza variáveis CSS para facilitar a manutenção e a consistência do design em toda a aplicação.
+*/
+
+/* Estilo base para o componente de "pastas" (folder-card) */
 .folder-card {
   background-image: var(--folder-icon);
+  /* Define a imagem de fundo da pasta */
   background-size: contain;
+  /* Ajusta a imagem para caber dentro do elemento */
   background-position: center;
+  /* Centraliza a imagem no elemento */
   background-repeat: no-repeat;
+  /* Impede que a imagem de fundo se repita */
 }
 
+/* Variáveis globais para cores e temas */
 :root {
+  /* Cores padrão para o tema Finder */
   --finder-folder: #2196F3;
+  /* Cor principal da pasta */
   --finder-folder-top: #42A5F5;
+  /* Cor da parte superior da pasta */
   --finder-folder-border: #1E88E5;
+  /* Cor da borda da pasta */
   --finder-window: rgba(255, 255, 255, 0.1);
+  /* Cor de fundo translúcida para janelas */
 }
 
+/* Estilos para o tema escuro */
 [data-theme='dark'] {
   --finder-folder: #1976D2;
+  /* Cor principal da pasta no tema escuro */
   --finder-folder-top: #2196F3;
+  /* Cor da parte superior da pasta no tema escuro */
   --finder-folder-border: #1565C0;
+  /* Cor da borda da pasta no tema escuro */
   --finder-window: rgba(0, 0, 0, 0.2);
+  /* Cor de fundo translúcida para janelas no tema escuro */
 }
 
+/* Estilos para o tema claro */
 [data-theme='light'] {
   --finder-folder: #90CAF9;
+  /* Cor principal da pasta no tema claro */
   --finder-folder-top: #BBDEFB;
+  /* Cor da parte superior da pasta no tema claro */
   --finder-folder-border: #64B5F6;
+  /* Cor da borda da pasta no tema claro */
   --finder-window: rgba(0, 0, 0, 0.05);
-} 
+  /* Cor de fundo translúcida para janelas no tema claro */
+}

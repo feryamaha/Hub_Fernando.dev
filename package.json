@@ -80,5 +80,15 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "proxy": "http://localhost:3001",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/feryamaha/Hub_Fernando.dev.git"
+  },
+  "keywords": [],
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/feryamaha/Hub_Fernando.dev/issues"
   }
 }

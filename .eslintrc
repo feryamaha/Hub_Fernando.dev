@@ -1,10 +1,11 @@
 {
-  "extends": [
-    "react-app",
-    "react-app/jest"
-  ],
-  "rules": {
-    "no-unused-vars": "warn",
-    "react/prop-types": "warn"
-  }
+    "extends": ["react-app", "react-app/jest"],
+    "rules": {
+        "no-unused-vars": "warn",
+        "react/prop-types": "warn"
+    },
+    "parserOptions": {
+        "ecmaVersion": "latest", // Suporta ES6+ (incluindo imports)
+        "sourceType": "module" // Trata arquivos como módulos
+    }
 }

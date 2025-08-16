@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/Hub_Fernando.dev/static/css/main.392b0fc4.css",
+    "main.js": "/Hub_Fernando.dev/static/js/main.95760490.js",
+    "static/media/img_profile.webp": "/Hub_Fernando.dev/static/media/img_profile.bcf394597902404cf45c.webp",
+    "index.html": "/Hub_Fernando.dev/index.html",
+    "main.392b0fc4.css.map": "/Hub_Fernando.dev/static/css/main.392b0fc4.css.map",
+    "main.95760490.js.map": "/Hub_Fernando.dev/static/js/main.95760490.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.392b0fc4.css",
+    "static/js/main.95760490.js"
+  ]
+}

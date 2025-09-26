@@ -1,174 +1,62 @@
 # Portfólio MacOS Style
 
 ## 🚀 Visão Geral
-Um portfólio moderno e interativo inspirado na interface do macOS, com animações suaves, temas dinâmicos e integrações com APIs populares.
 
-## 🛠️ Tecnologias Utilizadas
+Portfólio interativo inspirado no macOS, com animações, temas dinâmicos e integrações API.
 
-### Frontend
-- **React 18** - Biblioteca principal para construção da UI
-- **React Router 6** - Navegação entre páginas
-- **Tailwind CSS 3** - Estilização e design system
-- **Framer Motion** - Animações avançadas
-- **GSAP** - Animações e efeitos visuais
-- **AOS (Animate On Scroll)** - Animações baseadas em scroll
-- **Three.js** - Efeitos 3D e distorções
-- **React Icons & Heroicons** - Biblioteca de ícones
+## 🛠️ Tecnologias & Ferramentas
 
-### APIs e Serviços
-- **YouTube Data API v3** - Integração com YouTube
-- **Google Custom Search API** - Busca personalizada
-- **Grok API (xAI)** - Chatbot inteligente
-- **GitHub Pages** - Hospedagem e deploy
+-   React 18, React Router 6, Tailwind CSS 3, Framer Motion, GSAP, AOS, Three.js, React Icons, Heroicons
+-   YouTube Data API v3, Google Custom Search API, Grok API (xAI), GitHub Pages
+-   Webpack, Babel, ESLint, Prettier, PostCSS, Autoprefixer, dotenv
 
-### Ferramentas de Desenvolvimento
-- **Webpack** - Bundling e otimização
-- **Babel** - Transpilação de código
-- **ESLint & Prettier** - Linting e formatação
-- **PostCSS** - Processamento CSS
-- **Autoprefixer** - Compatibilidade CSS
-- **dotenv** - Gerenciamento de variáveis de ambiente
+## 📦 Estrutura
 
-## ✨ Funcionalidades Implementadas
+-   `MainContent/`: Home, About, Skills, Projects, Contact, Chat
+-   `Sidebar/`: Navegação, Temas
+-   `TopBar/`: WindowControls, Search, Modals
+-   `services/`: Integrações APIs (YouTube, Google, Grok)
+-   `hooks/`: Hooks customizados (tema, tamanho tela, download)
+-   `context/`: Contextos React
 
-### Interface e UX
-- Interface estilo Finder do macOS
-- Sistema de temas dinâmicos
-- Animações suaves e interativas
-- Responsividade em todos os dispositivos
-- Navegação intuitiva
-- Controles de janela (minimizar, maximizar, fechar)
+## ⚡ Como Executar
 
-### Integrações
-- **YouTube Search**
-  - Busca de vídeos em tempo real
-  - Visualização de resultados
-  - Player de vídeo integrado
-
-- **Google Search**
-  - Busca personalizada
-  - Resultados em tempo real
-  - Visualização de páginas web
-
-- **Chatbot Yaminuelle**
-  - Processamento de mensagens
-  - Geração de imagens
-  - Processamento de documentos
-  - Interface estilo macOS
-
-### Componentes Especiais
-- **Grid Distortion** - Efeito 3D interativo
-- **True Focus** - Sistema de foco dinâmico
-- **Variable Proximity** - Interações baseadas em proximidade
-- **Crosshair** - Sistema de mira interativo
-- **Rotating Text** - Texto rotativo com animações
-- **Modal System** - Sistema de modais personalizado
-
-### Animações e Efeitos
-- Transições suaves entre páginas
-- Efeitos de hover e foco
-- Animações baseadas em scroll
-- Efeitos de distorção 3D
-- Sistema de pastas animado
-- Tooltips informativos
-- Cards interativos
-
-### Performance e Otimização
-- Lazy loading de componentes
-- Code splitting
-- Otimização de assets
-- Caching e memoização
-- Gerenciamento de estado eficiente
-
-## 📦 Estrutura do Projeto
-
-### Componentes Principais
-- `MainContent/` - Conteúdo principal
-  - `Home/` - Página inicial com efeitos 3D
-  - `About/` - Sobre com cards interativos
-  - `Skills/` - Habilidades em estilo Finder
-  - `Projects/` - Projetos com visualização em pastas
-  - `Contact/` - Contato com efeitos interativos
-  - `Chat/` - Chatbot integrado
-
-- `Sidebar/` - Navegação lateral
-  - `Locations/` - Links de navegação
-  - `Theme/` - Seletor de temas
-
-- `TopBar/` - Barra superior
-  - `WindowControls/` - Controles da janela
-  - `Search/` - Busca integrada
-  - `Modals/` - Sistema de modais
-
-### Serviços e Utilitários
-- `services/` - Integrações com APIs
-  - `youtubeService.js` - YouTube API
-  - `googleService.js` - Google Search API
-  - `grokService.js` - Grok API
-
-- `hooks/` - Hooks personalizados
-  - `useTheme.js` - Gerenciamento de temas
-  - `useScreenSize.js` - Responsividade
-  - `useDownload.js` - Sistema de download
-
-- `context/` - Contextos React
-  - `ThemeContext.jsx` - Contexto de temas
-
-## 🚀 Como Executar
-
-### Pré-requisitos
-- Node.js (versão 14 ou superior)
-- npm ou yarn
-- Git
-
-### Instalação
-1. Clone o repositório:
 ```bash
 git clone https://github.com/feryamaha/Hub_Fernando.dev.git
 cd Hub_Fernando.dev
+yarn install              # Instala dependências
+cp .env.example .env      # Copia .env de exemplo
+yarn dev                  # Executa localmente (http://localhost:3000)
 ```
 
-2. Instale as dependências:
+## 🏗️ Build
+
 ```bash
-npm install
-# ou
-yarn install
+yarn build                # Gera a build otimizada
 ```
 
-3. Configure as variáveis de ambiente:
+## 🚀 Deploy gh-pages Automático
+
 ```bash
-cp .env.example .env
-# Edite o arquivo .env com suas chaves de API
+yarn deploy               # Faz deploy automático para gh-pages
 ```
 
-### Desenvolvimento
+## 🔄 Deploy gh-pages Manual
+
 ```bash
-npm start
-# ou
-yarn start
+git checkout main                     # Vai para main
+yarn build                            # Gera build
+cp -r build /tmp/build_temp           # Copia build temporariamente
+git checkout gh-pages                 # Vai para gh-pages
+rm -rf *                              # Remove arquivos antigos
+cp -r /tmp/build_temp/* .             # Copia nova build
+git add . && git commit -m "Update"   # Comita
+git push origin gh-pages              # Envia para remoto
+rm -rf /tmp/build_temp                # Remove build temp
+git checkout main                     # Retorna para main
+yarn install                          # Reinstala dependências
+yarn dev                              # Testa localmente
 ```
 
-### Build
-```bash
-npm run build
-# ou
-yarn build
-```
-
-### Deploy
-```bash
-npm run deploy
-# ou
-yarn deploy
-```
-
-## 📝 Licença
-Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
-
-## 🤝 Contribuições
-Contribuições são bem-vindas! Sinta-se à vontade para abrir issues ou enviar pull requests.
-
-## 📞 Contato
-- GitHub: [feryamaha](https://github.com/feryamaha)
-- LinkedIn: [Fernando Moreira](https://linkedin.com/in/fernando-moreira)
-- Email: [seu-email@exemplo.com](mailto:seu-email@exemplo.com) 
+-   Verificar se em http://localhost:3000 esta igual ao https://feryamaha.github.io/Hub_Fernando.dev/
+    gerado pela gh-pages (vice e versa) para confirmar se alteracoes que foram comitas na branch main foram aplicadas na gh-pages.

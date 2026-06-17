@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <circle stroke="currentColor" stroke-width="1.5" cx="10" cy="10" r="8"/>
+        <path d="M10,6 C12.7614237,6 15,8.23857625 15,11 C15,13.7614237 12.7614237,16 10,16 C7.23857625,16 5,13.7614237 5,11 C5,8.23857625 7.23857625,6 10,6 Z" stroke="currentColor" stroke-width="1.5"/>
+        <circle fill="currentColor" cx="10" cy="11" r="2"/>
+    </g>
+</svg> 

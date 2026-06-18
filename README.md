@@ -1,62 +1,48 @@
-# Portfólio MacOS Style
+# Hub Fernando.dev
 
-## 🚀 Visão Geral
+Portfolio pessoal de Fernando Moreira — interface inspirada no Finder do macOS.
 
-Portfólio interativo inspirado no macOS, com animações, temas dinâmicos e integrações API.
+## Stack
 
-## 🛠️ Tecnologias & Ferramentas
+- **Next.js 16** (App Router) + **React 19** + **TypeScript 5** (strict)
+- **Tailwind CSS v4** (100% dos estilos)
+- **Biome** (lint + format + organize imports)
+- **Bun** (gerenciador de pacotes)
 
--   React 18, React Router 6, Tailwind CSS 3, Framer Motion, GSAP, AOS, Three.js, React Icons, Heroicons
--   YouTube Data API v3, Google Custom Search API, Grok API (xAI), GitHub Pages
--   Webpack, Babel, ESLint, Prettier, PostCSS, Autoprefixer, dotenv
-
-## 📦 Estrutura
-
--   `MainContent/`: Home, About, Skills, Projects, Contact, Chat
--   `Sidebar/`: Navegação, Temas
--   `TopBar/`: WindowControls, Search, Modals
--   `services/`: Integrações APIs (YouTube, Google, Grok)
--   `hooks/`: Hooks customizados (tema, tamanho tela, download)
--   `context/`: Contextos React
-
-## ⚡ Como Executar
+## Scripts
 
 ```bash
-git clone https://github.com/feryamaha/Hub_Fernando.dev.git
-cd Hub_Fernando.dev
-yarn install              # Instala dependências
-cp .env.example .env      # Copia .env de exemplo
-yarn dev                  # Executa localmente (http://localhost:3000)
+bun install        # instala dependências
+bun run dev        # ambiente de desenvolvimento (http://localhost:3000/Hub_Fernando.dev)
+bun run build      # build estático → gera ./out
+bun run lint       # biome check
+bun run format     # biome check --write
 ```
 
-## 🏗️ Build
+## Estrutura
+
+```
+src/
+  app/            # App Router: layout, page, providers, globals.css
+  components/
+    ui/           # genéricos (modal, rotating-text, true-focus)
+    top-bar/      # barra superior + modais
+    sidebar/      # navegação (Favorites) + temas
+    main-content/ # área principal, seções e Contact viewers
+  hooks/          # use-theme, use-screen-size, use-download, use-navigation
+  lib/            # cn() helper
+  types/          # tipos globais
+public/           # assets estáticos (ícones, favicon)
+```
+
+## Deploy — GitHub Pages
+
+O projeto é exportado como site estático com `output: 'export'` e
+`basePath: '/Hub_Fernando.dev'` (ver `next.config.ts`).
 
 ```bash
-yarn build                # Gera a build otimizada
+bun run build      # gera ./out
 ```
 
-## 🚀 Deploy gh-pages Automático
-
-```bash
-yarn deploy               # Faz deploy automático para gh-pages
-```
-
-## 🔄 Deploy gh-pages Manual
-
-```bash
-git checkout main                     # Vai para main
-yarn build                            # Gera build
-cp -r build /tmp/build_temp           # Copia build temporariamente
-git checkout gh-pages                 # Vai para gh-pages
-rm -rf *                              # Remove arquivos antigos
-cp -r /tmp/build_temp/* .             # Copia nova build
-git add . && git commit -m "Update"   # Comita
-git push origin gh-pages              # Envia para remoto
-rm -rf /tmp/build_temp                # Remove build temp
-git checkout main                     # Retorna para main
-yarn install                          # Reinstala dependências
-yarn dev                              # Testa localmente
-```
-
--   Verificar se em http://localhost:3000 esta igual ao https://feryamaha.github.io/Hub_Fernando.dev/
-    gerado pela gh-pages (vice e versa) para confirmar se alteracoes que foram comitas na branch main foram aplicadas na gh-pages.
+Publique o conteúdo de `./out` na branch do GitHub Pages (ex.: via GitHub
+Actions ou subindo a pasta `out` para `gh-pages`).

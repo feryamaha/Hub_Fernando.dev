@@ -1,0 +1,335 @@
+@import url("https://fonts.cdnfonts.com/css/modern-dos");
+@import "tailwindcss";
+
+@config '../../tailwind.config.ts';
+
+/* ==========================================================================
+   Finder/macOS design system — variáveis (dark theme padrão)
+   ========================================================================== */
+:root {
+  --finder-window: #1e1e1e;
+  --finder-sidebar: #252526;
+  --finder-text: #ffffff;
+  --finder-text-secondary: #a0a0a0;
+  --finder-hover: rgba(255, 255, 255, 0.1);
+  --finder-border: #3e3e3e;
+  --finder-search: rgba(255, 255, 255, 0.1);
+  --finder-accent: #0a84ff;
+  --finder-control-close: #ff5f57;
+  --finder-control-minimize: #febc2e;
+  --finder-control-maximize: #28c840;
+  --finder-control-close-hover: #ff3b30;
+  --finder-control-minimize-hover: #ff9500;
+  --finder-control-maximize-hover: #34c759;
+
+  /* Tokens auxiliares usados por algumas seções */
+  --background: #1e1e1e;
+  --finder-folder: #2196f3;
+  --finder-folder-top: #42a5f5;
+  --finder-folder-border: #1976d2;
+}
+
+/* ==========================================================================
+   Tipografia global — fonte "Modern DOS"
+   ========================================================================== */
+@layer base {
+  html {
+    font-family: "Modern DOS", monospace !important;
+    background-color: var(--finder-window);
+  }
+
+  body {
+    margin: 0;
+    font-family: "Modern DOS", monospace !important;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: var(--finder-window);
+    color: var(--finder-text);
+  }
+
+  * {
+    font-family: "Modern DOS", monospace !important;
+  }
+
+  code {
+    font-family: "Modern DOS", monospace !important;
+  }
+}
+
+/* ==========================================================================
+   Componentes utilitários do Finder
+   ========================================================================== */
+@layer components {
+  .window-controls {
+    display: flex;
+    gap: 8px;
+    padding: 8px;
+  }
+
+  .window-control {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
+    transition: opacity 0.2s;
+  }
+
+  .window-control-close {
+    background-color: var(--finder-control-close);
+  }
+  .window-control-close:hover {
+    opacity: 0.8;
+  }
+
+  .window-control-minimize {
+    background-color: var(--finder-control-minimize);
+  }
+  .window-control-minimize:hover {
+    opacity: 0.8;
+  }
+
+  .window-control-maximize {
+    background-color: var(--finder-control-maximize);
+  }
+  .window-control-maximize:hover {
+    opacity: 0.8;
+  }
+
+  .close {
+    background-color: #ff5f57;
+  }
+  .minimize {
+    background-color: #febc2e;
+  }
+  .maximize {
+    background-color: #28c840;
+  }
+
+  .sidebar-item {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    color: var(--finder-text);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .sidebar-item:hover {
+    border-bottom: 2px solid var(--finder-accent);
+  }
+
+  .sidebar-icon {
+    width: 1rem;
+    height: 1rem;
+    margin-right: 0.75rem;
+    color: var(--finder-text-secondary);
+  }
+
+  .w-sidebar {
+    width: 200px;
+  }
+
+  .scrollbar-finder {
+    scrollbar-width: thin;
+    scrollbar-color: var(--finder-text-secondary) var(--finder-window);
+  }
+  .scrollbar-finder::-webkit-scrollbar {
+    width: 8px;
+  }
+  .scrollbar-finder::-webkit-scrollbar-track {
+    background: var(--finder-window);
+  }
+  .scrollbar-finder::-webkit-scrollbar-thumb {
+    background-color: var(--finder-text-secondary);
+    border-radius: 4px;
+  }
+
+  .text-theme {
+    transition: color 0.2s;
+    color: var(--finder-accent);
+  }
+
+  .icon-theme {
+    transition: color 0.2s;
+    color: var(--finder-accent);
+  }
+
+  .section-title {
+    color: var(--finder-accent);
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+
+  .selected-item {
+    border-bottom: 2px solid var(--finder-accent);
+  }
+}
+
+/* ==========================================================================
+   Temas (classe no <html>) — accent, hover e filtro SVG para ícones
+   ========================================================================== */
+.theme-blue {
+  --finder-accent: #0a84ff;
+  --finder-hover: rgba(10, 132, 255, 0.1);
+  --finder-accent-filter: invert(46%) sepia(98%) saturate(7493%) hue-rotate(203deg) brightness(101%)
+    contrast(102%);
+}
+
+.theme-red {
+  --finder-accent: #ff5f57;
+  --finder-hover: rgba(255, 95, 87, 0.1);
+  --finder-accent-filter: invert(56%) sepia(83%) saturate(5654%) hue-rotate(327deg) brightness(101%)
+    contrast(101%);
+}
+
+.theme-orange {
+  --finder-accent: #febc2e;
+  --finder-hover: rgba(255, 149, 0, 0.1);
+  --finder-accent-filter: invert(77%) sepia(44%) saturate(766%) hue-rotate(332deg) brightness(101%)
+    contrast(101%);
+}
+
+.theme-yellow {
+  --finder-accent: #ffe08c;
+  --finder-hover: rgba(255, 214, 10, 0.1);
+  --finder-accent-filter: invert(89%) sepia(18%) saturate(638%) hue-rotate(325deg) brightness(103%)
+    contrast(101%);
+}
+
+.theme-green {
+  --finder-accent: #28c840;
+  --finder-hover: rgba(40, 200, 64, 0.1);
+  --finder-accent-filter: invert(58%) sepia(72%) saturate(385%) hue-rotate(84deg) brightness(96%)
+    contrast(89%);
+}
+
+.theme-purple {
+  --finder-accent: #bf5af2;
+  --finder-hover: rgba(191, 90, 242, 0.1);
+  --finder-accent-filter: invert(42%) sepia(99%) saturate(7471%) hue-rotate(267deg) brightness(99%)
+    contrast(98%);
+}
+
+.theme-pink {
+  --finder-accent: #ff2d55;
+  --finder-hover: rgba(255, 45, 85, 0.1);
+}
+
+.theme-gray {
+  --finder-accent: #98989d;
+  --finder-hover: rgba(152, 152, 157, 0.1);
+  --finder-accent-filter: invert(65%) sepia(13%) saturate(106%) hue-rotate(202deg) brightness(89%)
+    contrast(87%);
+}
+
+/* ==========================================================================
+   RotatingText
+   ========================================================================== */
+.text-rotate {
+  display: flex;
+  flex-wrap: wrap;
+  white-space: pre-wrap;
+  position: relative;
+}
+
+.text-rotate-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.text-rotate-word {
+  display: inline-flex;
+}
+
+.text-rotate-lines {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.text-rotate-element {
+  display: inline-block;
+}
+
+.text-rotate-space {
+  white-space: pre;
+}
+
+/* ==========================================================================
+   TrueFocus (shared)
+   ========================================================================== */
+.focus-container {
+  position: relative;
+  display: flex;
+  gap: 1em;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.focus-word {
+  position: relative;
+  font-size: 3rem;
+  font-weight: 900;
+  cursor: pointer;
+  transition: filter 0.3s ease, color 0.3s ease;
+}
+
+.focus-word.active {
+  filter: blur(0);
+}
+
+.focus-frame {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: content-box;
+  border: none;
+}
+
+.corner {
+  position: absolute;
+  width: 1rem;
+  height: 1rem;
+  border: 3px solid var(--border-color, #fff);
+  filter: drop-shadow(0px 0px 4px var(--border-color, #fff));
+  border-radius: 3px;
+  transition: none;
+}
+
+.top-left {
+  top: -10px;
+  left: -10px;
+  border-right: none;
+  border-bottom: none;
+}
+
+.top-right {
+  top: -10px;
+  right: -10px;
+  border-left: none;
+  border-bottom: none;
+}
+
+.bottom-left {
+  bottom: -10px;
+  left: -10px;
+  border-right: none;
+  border-top: none;
+}
+
+.bottom-right {
+  bottom: -10px;
+  right: -10px;
+  border-left: none;
+  border-top: none;
+}

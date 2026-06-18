@@ -1,10 +1,11 @@
 import type { NextConfig } from 'next'
 
-// Em produção (build/deploy no GitHub Pages) o site fica sob /Hub_Fernando.dev.
-// Em desenvolvimento usamos basePath vazio para que `bun dev` funcione em
-// http://localhost:3000/ sem 404.
+// O basePath só é necessário no GitHub Pages, onde o site é servido sob o nome
+// do repositório (/Hub_Fernando.dev). Na Vercel (process.env.VERCEL=1) e em
+// desenvolvimento o site fica na raiz, então o basePath fica vazio.
 const isProd = process.env.NODE_ENV === 'production'
-const basePath = isProd ? '/Hub_Fernando.dev' : ''
+const isVercel = !!process.env.VERCEL
+const basePath = isProd && !isVercel ? '/Hub_Fernando.dev' : ''
 
 const nextConfig: NextConfig = {
   output: 'export',

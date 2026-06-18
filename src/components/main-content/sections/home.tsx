@@ -58,7 +58,7 @@ const Home = () => {
                 "eBPF",
                 "Full-Stack",
               ]}
-              mainClassName="px-2 sm:px-2 md:px-3 bg-[var(--finder-accent)] text-black overflow-hidden py-1 sm:py-1 md:py-2 justify-center rounded-lg text-3xl sm:text-4xl md:text-[53px] font-[900] w-full"
+              mainClassName="px-2 sm:px-2 md:px-3 bg-[var(--finder-accent)] text-black overflow-hidden py-1 sm:py-1 md:py-2 justify-center rounded-lg text-3xl sm:text-4xl md:text-[53px] font-[900] w-max max-w-full mx-auto"
               staggerFrom="last"
               initial={{ y: "100%" }}
               animate={{ y: 0 }}

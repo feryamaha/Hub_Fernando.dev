@@ -102,7 +102,7 @@ const About = () => {
         {/* Conteúdo da aba ativa */}
         <div className="flex justify-center items-center flex-grow px-4 py-8 overflow-y-auto">
           <div className="max-w-[620px] text-gray-300 leading-tight">
-            <p className="text-right text-gray-300 text-base md:text-xl tracking-wide indent-9">
+            <p className="text-right text-gray-300 text-base md:text-lg tracking-wide indent-9">
               {folders[activeTab].content}
             </p>
           </div>
@@ -110,9 +110,8 @@ const About = () => {
 
         {/* Footer */}
         <div className="h-max p-[3px] flex items-center border-t border-gray-600 text-center">
-          <p className="w-full text-gray-400 italic text-sm opacity-70">
-            "Disciplina de engenharia: contratos explícitos, baixa tolerância a ambiguidade e
-            qualidade verificável — da interface ao kernel."
+          <p className="w-full text-gray-400 italic text-sm opacity-70 px-4 py-6">
+            "Precisão na interface. Segurança na arquitetura. Evidência em cada decisão."
           </p>
         </div>
       </div>

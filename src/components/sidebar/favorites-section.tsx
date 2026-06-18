@@ -111,7 +111,7 @@ const FavoritesSection = () => {
 
   return (
     <div className="mb-10">
-      <h2 className="text-finder-text-secondary text-[11px] font-medium uppercase px-2 mb-1">
+      <h2 className="text-finder-text-secondary text-[12px] font-medium uppercase px-2 pt-6 mb-2">
         Favorites
       </h2>
       <nav className="space-y-px">

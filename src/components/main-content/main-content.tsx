@@ -31,12 +31,14 @@ const MainContent = () => {
   const screenSize = useScreenSize();
   const [, setSearchTerm] = useState("");
 
-  // Fecha o menu lateral no mobile quando a seção muda
+  // Fecha o menu lateral no mobile sempre que a seção muda (ao clicar num item
+  // do menu), revelando imediatamente o conteúdo da seção escolhida.
+  // biome-ignore lint/correctness/useExhaustiveDependencies: `section` é gatilho intencional do efeito
   useEffect(() => {
     if (screenSize.isMobile) {
       setIsSidebarOpen(false);
     }
-  }, [screenSize.isMobile]);
+  }, [section, screenSize.isMobile]);
 
   const getTitle = (): string => TITLES[section] ?? "Home";
 

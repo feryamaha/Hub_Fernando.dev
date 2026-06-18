@@ -150,7 +150,7 @@ const Contact = () => {
 
         <div className="mt-8 text-center">
           <div
-            className="text-[var(--finder-accent)]/10"
+            className="text-[var(--finder-accent)]/50"
             data-aos="fade-up"
             data-aos-delay="300"
             data-aos-duration="800"
@@ -158,9 +158,9 @@ const Contact = () => {
             <TrueFocus
               sentence="+55 14 99601-0696"
               manualMode={true}
-              blurAmount={5}
+              blurAmount={3}
               borderColor="var(--finder-accent)"
-              glowColor="rgba(var(--finder-accent-rgb), 0.6)"
+              glowColor="rgba(var(--finder-accent-rgb), 0.3)"
               animationDuration={0.3}
               pauseBetweenAnimations={0.5}
               className="text-xs"

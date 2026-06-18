@@ -395,9 +395,9 @@ const Skills = () => {
             data-aos-duration="500"
           >
             <div className="flex-1">Name</div>
-            <div className="w-32 text-right">Date Modified</div>
-            <div className="w-20 text-right">Size</div>
-            <div className="w-32 text-right">Kind</div>
+            <div className="hidden md:block w-32 text-right">Date Modified</div>
+            <div className="hidden md:block w-20 text-right">Size</div>
+            <div className="hidden md:block w-32 text-right">Kind</div>
           </div>
 
           {/* Lista de pastas e arquivos */}
@@ -426,7 +426,7 @@ const Skills = () => {
                           {category.name}
                         </span>
                       </div>
-                      <div className="w-32 text-right">
+                      <div className="hidden md:block w-32 text-right">
                         <span className="text-[12px] text-[var(--finder-text-secondary)]">
                           {new Date().toLocaleDateString("en-US", {
                             day: "numeric",
@@ -435,10 +435,10 @@ const Skills = () => {
                           })}
                         </span>
                       </div>
-                      <div className="w-20 text-right">
+                      <div className="hidden md:block w-20 text-right">
                         <span className="text-[12px] text-[var(--finder-text-secondary)]">--</span>
                       </div>
-                      <div className="w-32 text-right">
+                      <div className="hidden md:block w-32 text-right">
                         <span className="text-[12px] text-[var(--finder-text-secondary)]">
                           Folder
                         </span>
@@ -464,17 +464,17 @@ const Skills = () => {
                               {file.name}.{file.extension}
                             </span>
                           </div>
-                          <div className="w-32 text-right">
+                          <div className="hidden md:block w-32 text-right">
                             <span className="text-[12px] text-[var(--finder-text-secondary)]">
                               {file.modDate}
                             </span>
                           </div>
-                          <div className="w-20 text-right">
+                          <div className="hidden md:block w-20 text-right">
                             <span className="text-[12px] text-[var(--finder-text-secondary)]">
                               {file.size}
                             </span>
                           </div>
-                          <div className="w-32 text-right">
+                          <div className="hidden md:block w-32 text-right">
                             <span className="text-[12px] text-[var(--finder-text-secondary)]">
                               {file.kind}
                             </span>

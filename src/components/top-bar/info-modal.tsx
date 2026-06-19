@@ -56,15 +56,15 @@ const InfoModal = ({ isOpen, onClose }: ModalBaseProps) => {
         <div className="text-sm text-finder-text-secondary flex items-center space-x-4 border border-finder-border p-4 rounded-lg">
           <Image
             src="/icons/img_profile.webp"
-            alt="Profile"
+            alt="Foto de Fernando Moreira"
             width={100}
             height={100}
-            className="max-w-[100px] rounded-lg object-cover"
+            className="max-w-[100px] h-auto rounded-lg object-cover"
           />
           <div>
             <p>Versão: 1.0.0</p>
             <p>Desenvolvido por: Fernando Moreira</p>
-            <p>Desenvolvedor frontend</p>
+            <p>Full-Stack TypeScript · Rust · Segurança</p>
             <div className="flex items-center space-x-4 mt-2">
               <a
                 href="https://www.linkedin.com/in/feryamaha/"

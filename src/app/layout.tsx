@@ -3,10 +3,57 @@ import type { ReactNode } from "react";
 import "./globals.css";
 import { Providers } from "./providers";
 
+// URL canônica do site. Sobrescreva com NEXT_PUBLIC_SITE_URL no deploy
+// (ex.: domínio da Vercel) sem precisar tocar no código.
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://feryamaha.github.io/Hub_Fernando.dev";
+
+const title = "Fernando Moreira | Full-Stack TypeScript · Rust · Segurança";
+const description =
+  "Desenvolvedor Full-Stack TypeScript (React 19, Next.js) · Rust · Segurança. Autor do Nemesis Defender, framework open-source de enforcement em Rust com camada de kernel em eBPF.";
+
 export const metadata: Metadata = {
-  title: "Fernando Moreira | Front-end",
-  description: "Portfolio pessoal de Fernando Moreira — Desenvolvedor Front-end",
+  metadataBase: new URL(siteUrl),
+  title,
+  description,
+  keywords: [
+    "Fernando Moreira",
+    "Desenvolvedor Full-Stack",
+    "Full-Stack TypeScript",
+    "TypeScript",
+    "React",
+    "Next.js",
+    "Rust",
+    "eBPF",
+    "Segurança",
+    "Nemesis Defender",
+  ],
+  authors: [{ name: "Fernando Moreira", url: "https://github.com/feryamaha" }],
+  creator: "Fernando Moreira",
   icons: { icon: "/favicon.svg" },
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    locale: "pt_BR",
+    url: siteUrl,
+    siteName: "Fernando Moreira",
+    title,
+    description,
+    images: [
+      {
+        url: "/icons/img_profile.webp",
+        width: 100,
+        height: 100,
+        alt: "Fernando Moreira — Full-Stack TypeScript · Rust · Segurança",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary",
+    title,
+    description,
+    creator: "@_feryamaha",
+    images: ["/icons/img_profile.webp"],
+  },
 };
 
 // Aplica o tema salvo (classe + variável de accent) antes da pintura,

@@ -25,7 +25,7 @@ const Home = () => {
           data-aos="fade-up"
           data-aos-delay="400"
         >
-          Engenheiro de Software Full-Stack · TypeScript · Segurança
+          Full-Stack TypeScript · Rust · Segurança
         </p>
       </section>
 

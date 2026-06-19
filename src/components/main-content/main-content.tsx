@@ -5,7 +5,8 @@ import { useNavigation } from "@/hooks/use-navigation";
 import useScreenSize from "@/hooks/use-screen-size";
 import { useTheme } from "@/hooks/use-theme";
 import type { SectionPath } from "@/types";
-import { useEffect, useState } from "react";
+import AOS from "aos";
+import { type ReactNode, useEffect, useState } from "react";
 import Search from "./search";
 import About from "./sections/about";
 import Contact from "./sections/contact";
@@ -40,25 +41,38 @@ const MainContent = () => {
     }
   }, [section, screenSize.isMobile]);
 
+  // Como todas as seções ficam montadas (apenas ocultas via CSS) para o SEO,
+  // recalculamos o AOS ao trocar de seção para que os elementos animados não
+  // fiquem presos em opacity:0 quando a seção é revelada.
+  // biome-ignore lint/correctness/useExhaustiveDependencies: `section` é gatilho intencional do efeito
+  useEffect(() => {
+    AOS.refreshHard();
+  }, [section]);
+
   const getTitle = (): string => TITLES[section] ?? "Home";
 
   const handleSearch = (term: string) => {
     setSearchTerm(term);
   };
 
+  // Todas as seções são renderizadas no HTML (importante para SEO, preview de
+  // link e leitura automatizada — o export estático passa a conter todo o
+  // conteúdo, não só a Home). A seção inativa é apenas ocultada via CSS,
+  // preservando a navegação SPA estilo Finder.
   const renderSection = () => {
-    switch (section) {
-      case "/about":
-        return <About />;
-      case "/skills":
-        return <Skills />;
-      case "/projects":
-        return <Projects />;
-      case "/contact":
-        return <Contact />;
-      default:
-        return <Home />;
-    }
+    const sections: { path: SectionPath; node: ReactNode }[] = [
+      { path: "/", node: <Home /> },
+      { path: "/about", node: <About /> },
+      { path: "/skills", node: <Skills /> },
+      { path: "/projects", node: <Projects /> },
+      { path: "/contact", node: <Contact /> },
+    ];
+
+    return sections.map(({ path, node }) => (
+      <div key={path} hidden={section !== path} aria-hidden={section !== path}>
+        {node}
+      </div>
+    ));
   };
 
   const renderContent = () => {

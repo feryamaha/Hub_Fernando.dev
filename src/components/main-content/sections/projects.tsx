@@ -11,25 +11,35 @@ interface Project {
   link: ReactNode;
 }
 
-const featuredProjects: Project[] = [
-  {
-    title: "NEMESIS DEFENDER v2.0",
-    description:
-      "Framework open-source de enforcement de segurança escrito em Rust com camada de kernel em eBPF/BPF LSM no Linux. Três camadas independentes (pre-tool hooks, scanner de conteúdo e LSM no kernel) bloqueiam comandos destrutivos e malware de supply-chain antes da execução. Em produção há ~1,5 ano com agentes LLM operando sobre o código: zero comandos destrutivos executados e zero acessos não autorizados. Inclui pipeline de varredura em 6 estágios (AST via tree-sitter, byte-level, regex, deny-list, entropia e decoder recursivo), 18 visitors, +2.000 bloqueios reais em syscalls perigosas e uma suíte autoral de 184 testes em 26 módulos. Design fail-closed, quarentena por corroboração e arquitetura agnóstica de IDE.",
-    technologies: ["Rust", "eBPF", "BPF LSM", "tree-sitter", "Linux", "AGPL-3.0"],
-    date: "Em produção desde 2024 · Autor e mantenedor único",
-    link: (
-      <a
-        href="https://github.com/feryamaha/Nemesis_Defender_v2.0"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="text-[var(--finder-accent)] underline"
-      >
-        github.com/feryamaha/Nemesis_Defender_v2.0
-      </a>
-    ),
-  },
-];
+interface FeaturedProject {
+  title: string;
+  /** Resumo curto (2–3 linhas) para leitura rápida no card-herói. */
+  summary: string;
+  /** Detalhamento técnico completo, exibido abaixo do resumo. */
+  details: string;
+  technologies: string[];
+  date: string;
+  /** Repositório canônico do projeto. */
+  repoUrl: string;
+  repoLabel: string;
+  /** Documentação viva (README/wiki) do projeto. */
+  docsUrl: string;
+  docsLabel: string;
+}
+
+const heroProject: FeaturedProject = {
+  title: "NEMESIS DEFENDER v0",
+  summary:
+    "Framework open-source de enforcement de segurança em Rust, com camada de kernel em eBPF/BPF LSM no Linux. Bloqueia comandos destrutivos e malware de supply-chain antes da execução, em três camadas independentes e design fail-closed.",
+  details:
+    "Em produção há ~1,5 ano com agentes LLM operando sobre o código: zero comandos destrutivos executados e zero acessos não autorizados. Inclui pipeline de varredura em 6 estágios (AST via tree-sitter, byte-level, regex, deny-list, entropia e decoder recursivo), 18 visitors, +2.000 bloqueios reais em syscalls perigosas e uma suíte autoral de 184 testes em 26 módulos. Quarentena por corroboração e arquitetura agnóstica de IDE.",
+  technologies: ["Rust", "eBPF", "BPF LSM", "tree-sitter", "Linux", "AGPL-3.0"],
+  date: "Em produção desde 2024 · Autor e mantenedor único",
+  repoUrl: "https://github.com/feryamaha/Nemesis_Defender_v0",
+  repoLabel: "github.com/feryamaha/Nemesis_Defender_v0",
+  docsUrl: "https://feryamaha.github.io/Nemesis_Defender_v0/",
+  docsLabel: "Documentação viva (site)",
+};
 
 const pastProjects: Project[] = [
   {
@@ -39,13 +49,15 @@ const pastProjects: Project[] = [
     technologies: ["HTML", "CSS", "JavaScript"],
     date: "Novembro de 2024",
     link: (
-      <a
-        href="https://mlxcapital.com.br/"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="text-[var(--finder-accent)] underline flex gap-2"
-      >
-        mlxcapital.com.br{" "}
+      <span className="flex gap-2">
+        <a
+          href="https://mlxcapital.com.br/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-[var(--finder-accent)] underline"
+        >
+          mlxcapital.com.br
+        </a>
         <a
           href="https://auclandesign.com/"
           target="_blank"
@@ -54,7 +66,7 @@ const pastProjects: Project[] = [
         >
           auclandesign.com
         </a>
-      </a>
+      </span>
     ),
   },
   {
@@ -196,28 +208,58 @@ const Projects = () => {
 
   return (
     <div className={`w-full p-8 theme-${theme}`}>
-      {/* Seção: Projeto em destaque */}
+      {/* Seção: Projeto em destaque (herói) */}
       <h2 className="text-2xl font-bold text-[var(--finder-accent)] mb-6">
         Projeto em destaque...
       </h2>
-      <div className="flex flex-col gap-6 max-w-3xl mx-auto mb-12">
-        {featuredProjects.map((project) => (
-          <div
-            key={project.title}
-            className="border-l-4 border-[var(--finder-accent)] pl-4 bg-[var(--finder-accent)]/5 rounded-r-lg py-3 pr-3"
-          >
-            <h3 className="text-xl font-semibold text-[var(--finder-accent)]">{project.title}</h3>
-            <p className="text-sm text-[var(--finder-text)] mt-1">{project.description}</p>
-            <p className="text-sm text-[var(--finder-text)]/80 mt-2">
-              {project.date} |{" "}
-              {project.technologies.map((tech) => `#${tech.toLowerCase()}`).join(" ")}
-            </p>
-            <span className="flex gap-2">
-              {" "}
-              Repositório: <p> {project.link} </p>{" "}
-            </span>
+      <div className="max-w-3xl mx-auto mb-12">
+        <article className="border-l-4 border-[var(--finder-accent)] pl-5 bg-[var(--finder-accent)]/5 rounded-r-lg py-4 pr-4">
+          <h3 className="text-2xl font-bold text-[var(--finder-accent)]">{heroProject.title}</h3>
+
+          {/* Resumo curto (2–3 linhas) */}
+          <p className="text-base text-[var(--finder-text)] mt-2 leading-relaxed">
+            {heroProject.summary}
+          </p>
+
+          {/* Detalhamento técnico */}
+          <p className="text-sm text-[var(--finder-text)]/80 mt-3 leading-relaxed">
+            {heroProject.details}
+          </p>
+
+          {/* Principais tecnologias */}
+          <ul className="flex flex-wrap gap-2 mt-4" aria-label="Principais tecnologias">
+            {heroProject.technologies.map((tech) => (
+              <li
+                key={tech}
+                className="text-xs font-medium text-[var(--finder-accent)] border border-[var(--finder-accent)]/40 bg-[var(--finder-accent)]/10 rounded-full px-2.5 py-1"
+              >
+                {tech}
+              </li>
+            ))}
+          </ul>
+
+          <p className="text-xs text-[var(--finder-text)]/70 mt-3">{heroProject.date}</p>
+
+          {/* Links: repositório canônico + documentação viva */}
+          <div className="flex flex-wrap gap-x-6 gap-y-2 mt-4">
+            <a
+              href={heroProject.repoUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm text-[var(--finder-accent)] underline font-medium"
+            >
+              ↗ Repositório: {heroProject.repoLabel}
+            </a>
+            <a
+              href={heroProject.docsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm text-[var(--finder-accent)] underline font-medium"
+            >
+              ↗ {heroProject.docsLabel}
+            </a>
           </div>
-        ))}
+        </article>
       </div>
 
       {/* Seção: O que andei fazendo... */}
@@ -233,9 +275,8 @@ const Projects = () => {
               {project.date} |{" "}
               {project.technologies.map((tech) => `#${tech.toLowerCase()}`).join(" ")}
             </p>
-            <span className="flex gap-2">
-              {" "}
-              Deploy: <p> {project.link} </p>{" "}
+            <span className="flex gap-2 text-sm text-[var(--finder-text)]/80 mt-2">
+              Deploy: {project.link}
             </span>
           </div>
         ))}
@@ -251,9 +292,8 @@ const Projects = () => {
             <p className="text-sm text-[var(--finder-text)]/80 mt-2">
               {work.date} | {work.technologies.map((tech) => `#${tech.toLowerCase()}`).join(" ")}
             </p>
-            <span className="flex gap-2">
-              {" "}
-              Auclan: <p> {work.link} </p>{" "}
+            <span className="flex gap-2 text-sm text-[var(--finder-text)]/80 mt-2">
+              Auclan: {work.link}
             </span>
           </div>
         ))}

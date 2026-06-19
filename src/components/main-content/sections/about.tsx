@@ -13,7 +13,7 @@ const folders: Folder[] = [
   {
     title: "Apresentação",
     content:
-      "Sou Engenheiro de Software Full-Stack com foco em TypeScript (React/Next.js), segurança por padrão e governança determinística de agentes de IA. Construo desde interfaces e design systems até camadas de backend (BFF) e enforcement de baixo nível. Sou autor e mantenedor único do Nemesis Defender, um framework open-source de segurança escrito em Rust com camada de kernel em eBPF. Atualmente curso Engenharia de Software, unindo prática de produção a fundamentos formais.",
+      "Sou desenvolvedor Full-Stack TypeScript (React/Next.js) com foco em segurança por padrão e governança determinística de agentes de IA. Construo desde interfaces e design systems até camadas de backend (BFF) e enforcement de baixo nível. Sou autor e mantenedor único do Nemesis Defender, um framework open-source de segurança escrito em Rust com camada de kernel em eBPF. Sigo me aprofundando em fundamentos formais, unindo prática de produção à teoria.",
   },
   {
     title: "Especialidade",
@@ -48,7 +48,7 @@ const folders: Folder[] = [
   {
     title: "Trajetória",
     content:
-      "Antes do software, foram 17 anos em metrologia dimensional (GD&T avançado, CMM, engenharia reversa) garantindo precisão milimétrica e conformidade de qualidade. Essa base molda minha engenharia até hoje: contratos explícitos, baixa tolerância a ambiguidade e qualidade verificável. Migrei para a engenharia de software como autodidata desde 2022 e hoje atuo como Full-Stack na Auclan Design, cursando Engenharia de Software.",
+      "Antes do software, foram 17 anos em metrologia dimensional (GD&T avançado, CMM, engenharia reversa) garantindo precisão milimétrica e conformidade de qualidade. Essa base molda meu trabalho até hoje: contratos explícitos, baixa tolerância a ambiguidade e qualidade verificável. Migrei para o desenvolvimento de software como autodidata desde 2022 e hoje atuo como Full-Stack na Auclan Design.",
   },
 ];
 
@@ -86,10 +86,11 @@ const About = () => {
                   type="button"
                   key={folder.title}
                   onClick={() => setActiveTab(index)}
-                  className={`pb-3 text-sm font-medium transition-colors duration-200 border-b-2 w-[120px] whitespace-nowrap ${
+                  aria-pressed={activeTab === index}
+                  className={`pb-3 text-sm font-medium transition-colors duration-200 border-b-2 w-[120px] whitespace-nowrap rounded-sm focus-visible:outline-2 focus-visible:outline-[var(--finder-accent)] ${
                     activeTab === index
                       ? "text-[var(--finder-text)] border-[var(--finder-accent)]"
-                      : "text-gray-500 border-gray-600 hover:text-gray-500"
+                      : "text-gray-300 border-gray-600 hover:text-white"
                   }`}
                 >
                   {folder.title}

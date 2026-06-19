@@ -69,7 +69,15 @@ const MainContent = () => {
     ];
 
     return sections.map(({ path, node }) => (
-      <div key={path} hidden={section !== path} aria-hidden={section !== path}>
+      // m-auto centraliza a seção quando ela é menor que a área visível e
+      // colapsa para 0 (rolagem normal) quando o conteúdo é maior. Sem forçar
+      // altura, evitando estourar a viewport.
+      <div
+        key={path}
+        hidden={section !== path}
+        aria-hidden={section !== path}
+        className="w-full p-2 md:p-6 m-auto"
+      >
         {node}
       </div>
     ));
@@ -82,19 +90,19 @@ const MainContent = () => {
 
     return (
       <div
-        className={`flex-1 bg-finder-window overflow-y-auto scrollbar-finder ${
+        className={`flex-1 min-h-0 flex flex-col bg-finder-window overflow-y-auto scrollbar-finder ${
           contentState === "maximized" ? "fixed inset-0 mt-[38px] ml-[200px] z-50" : ""
         }`}
       >
-        <div className="p-2 md:p-6 mx-auto">{renderSection()}</div>
+        {renderSection()}
       </div>
     );
   };
 
   return (
-    <div className={`min-h-screen bg-finder-window font-finder theme-${theme}`}>
-      {/* Barra de título do Finder */}
-      <div className="bg-finder-sidebar border-b border-finder-border h-[38px] flex items-center">
+    <div className={`flex-1 min-h-0 flex flex-col bg-finder-window font-finder theme-${theme}`}>
+      {/* Barra de título do Finder (fixa) */}
+      <div className="bg-finder-sidebar border-b border-finder-border h-[38px] shrink-0 flex items-center">
         <div className="flex items-center px-2 space-x-2">
           <button
             type="button"
@@ -125,8 +133,8 @@ const MainContent = () => {
         </div>
       </div>
 
-      {/* Container principal */}
-      <div className="flex h-[calc(100vh-38px)]">
+      {/* Container principal (preenche o espaço restante; só o conteúdo rola) */}
+      <div className="flex flex-1 min-h-0">
         <div
           className={`${
             screenSize.isMobile
@@ -134,7 +142,7 @@ const MainContent = () => {
               : "w-sidebar"
           } ${
             screenSize.isMobile && !isSidebarOpen ? "-translate-x-full" : ""
-          } bg-finder-sidebar border-r border-finder-border flex flex-col`}
+          } bg-finder-sidebar border-r border-finder-border flex flex-col min-h-0 overflow-y-auto`}
         >
           <Sidebar />
         </div>
@@ -148,7 +156,7 @@ const MainContent = () => {
           type="button"
           aria-label="Alternar menu"
           onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-          className="fixed bottom-4 right-4 bg-finder-accent text-finder-text p-3 rounded-full shadow-lg z-50"
+          className="fixed bottom-20 right-4 bg-finder-accent text-finder-text p-3 rounded-full shadow-lg z-50"
         >
           <svg
             className="w-6 h-6"

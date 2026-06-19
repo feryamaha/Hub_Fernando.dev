@@ -8,9 +8,7 @@ const Home = () => {
   const [theme] = useTheme();
 
   return (
-    <div
-      className={`space-y-8 theme-${theme} p-4 md:p-8 w-full max-w-[90%] mx-auto min-h-screen flex flex-col justify-center`}
-    >
+    <div className={`space-y-8 theme-${theme} p-4 md:p-8 w-full max-w-[90%] mx-auto`}>
       <section className="text-center w-full" data-aos="fade-down" data-aos-duration="1000">
         <TrueFocus
           sentence="Fernando Moreira"

@@ -49,7 +49,7 @@ const links: FooterLink[] = [
 
 const Footer = () => {
   return (
-    <footer className="bg-finder-sidebar border-t border-finder-border px-4 py-3 flex flex-col sm:flex-row items-center justify-between gap-2">
+    <footer className="shrink-0 bg-finder-sidebar border-t border-finder-border px-4 py-3 flex flex-col sm:flex-row items-center justify-between gap-2">
       <p className="text-finder-text-secondary text-xs">
         © {new Date().getFullYear()} Fernando Moreira — Full-Stack TypeScript · Rust · Segurança
       </p>

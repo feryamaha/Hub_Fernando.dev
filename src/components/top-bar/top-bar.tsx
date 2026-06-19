@@ -66,7 +66,7 @@ const TopBar = ({ title }: TopBarProps) => {
 
   return (
     <>
-      <div className="h-topbar bg-finder-window border-b border-finder-border flex items-center justify-between select-none px-2 md:px-4">
+      <div className="h-topbar shrink-0 bg-finder-window border-b border-finder-border flex items-center justify-between select-none px-2 md:px-4">
         <div className="flex items-center flex-1">
           <h1
             className="text-finder text-left flex-1 pr-8 md:pr-32 text-sm md:text-base text-2xl md:text-3xl p-[3px]"

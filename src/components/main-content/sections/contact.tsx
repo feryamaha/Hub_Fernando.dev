@@ -114,7 +114,7 @@ const Contact = () => {
   }, []);
 
   return (
-    <div ref={containerRef} className={`min-h-screen p-8 theme-${theme} relative overflow-hidden`}>
+    <div ref={containerRef} className={`p-8 theme-${theme} relative overflow-hidden`}>
       <Crosshair containerRef={containerRef} color="var(--finder-accent)" />
 
       <div className="mt-16 max-w-4xl mx-auto">

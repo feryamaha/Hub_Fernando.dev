@@ -7,7 +7,7 @@ import {
   FolderIcon,
 } from "@heroicons/react/24/outline";
 import AOS from "aos";
-import { type CSSProperties, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 interface SkillFile {
   name: string;
@@ -166,6 +166,38 @@ const skillCategories: SkillCategory[] = [
     ],
   },
   {
+    name: "Dados & APIs",
+    files: [
+      {
+        name: "Integração de APIs",
+        extension: "ts",
+        size: "2.8 KB",
+        modDate: "2026",
+        kind: "TypeScript File",
+        description:
+          "Agregação de APIs públicas com fallback entre provedores (OpenStreetMap/Nominatim, ViaCEP, BrasilAPI, dados abertos da Receita Federal) — base do MapHunter, meu motor de prospecção de leads.",
+      },
+      {
+        name: "Cache & Rate limit",
+        extension: "ts",
+        size: "1.6 KB",
+        modDate: "2026",
+        kind: "TypeScript File",
+        description:
+          "Cache local de consultas e rate limiting para respeitar limites de APIs gratuitas e não desperdiçar chamadas — custo previsível por design.",
+      },
+      {
+        name: "Pipelines de dados",
+        extension: "ts",
+        size: "2.2 KB",
+        modDate: "2026",
+        kind: "TypeScript File",
+        description:
+          "Pipelines de qualificação e enriquecimento de dados em etapas (filtrar antes de enriquecer), com exportação para CSV e XLSX.",
+      },
+    ],
+  },
+  {
     name: "Segurança",
     files: [
       {
@@ -293,7 +325,7 @@ const skillCategories: SkillCategory[] = [
         modDate: "2026",
         kind: "Config",
         description:
-          "ESLint com regras custom, tipagem estrita e validação em runtime com Zod como portões de qualidade.",
+          "Lint com regras custom, tipagem estrita, validação em runtime com Zod e gates de segurança e arquitetura em pre-commit.",
       },
     ],
   },
@@ -339,11 +371,14 @@ const skillCategories: SkillCategory[] = [
   },
 ];
 
+/** Id estável de um arquivo na lista (categoria + nome). */
+const fileId = (category: string, file: SkillFile) => `${category}/${file.name}.${file.extension}`;
+
 const Skills = () => {
   const [expandedFolders, setExpandedFolders] = useState<Set<string>>(
     new Set(["Linguagens", "Frameworks & Bibliotecas"]),
   );
-  const [activeTooltip, setActiveTooltip] = useState<string | null>(null);
+  const [selectedId, setSelectedId] = useState<string | null>(null);
 
   useEffect(() => {
     AOS.init({
@@ -367,155 +402,190 @@ const Skills = () => {
 
   const totalItems = skillCategories.reduce((acc, category) => acc + category.files.length + 1, 0);
 
-  const tooltipLeft = typeof window !== "undefined" && window.innerWidth < 640 ? "8%" : "35%";
+  const selected = (() => {
+    for (const category of skillCategories) {
+      for (const file of category.files) {
+        if (fileId(category.name, file) === selectedId) {
+          return { category: category.name, file };
+        }
+      }
+    }
+    return null;
+  })();
 
   return (
     <div className="h-full bg-[var(--finder-background)]">
-      <div className="h-full">
-        <div className="h-full bg-[var(--finder-window)] shadow-lg">
-          {/* Cabeçalho da seção Skills */}
-          <div
-            className="border-b border-[var(--finder-border)] px-3 py-1.5 flex items-center justify-between bg-[var(--finder-header)]"
-            data-aos="fade-down"
-            data-aos-duration="500"
-          >
-            <h2 className="text-[var(--finder-text)] text-sm font-medium">Skills</h2>
-            <div className="flex items-center gap-2">
-              <span className="text-[11px] text-[var(--finder-text-secondary)]">
-                {totalItems} items
-              </span>
+      <div className="mac-window h-full flex flex-col md:max-w-[980px] mx-auto">
+        {/* Barra de título da janela Finder */}
+        <div className="mac-window-titlebar">
+          <span className="traffic-light close" />
+          <span className="traffic-light minimize" />
+          <span className="traffic-light maximize" />
+          <span className="mac-window-title">Skills — {totalItems} items</span>
+        </div>
+
+        <div className="flex flex-1 min-h-0">
+          {/* Coluna da lista (Finder list view) */}
+          <div className="flex-1 min-w-0 overflow-y-auto scrollbar-finder">
+            {/* Cabeçalho das colunas */}
+            <div className="sticky top-0 z-10 flex items-center h-[24px] px-3 bg-[var(--finder-header)] border-b border-[var(--finder-border)] text-[11px] text-[var(--finder-text-secondary)] font-medium">
+              <div className="flex-1">Name</div>
+              <div className="hidden lg:block w-20 text-right">Size</div>
+              <div className="hidden lg:block w-32 text-right">Kind</div>
             </div>
-          </div>
 
-          {/* Cabeçalho das colunas */}
-          <div
-            className="flex items-center h-[24px] px-3 bg-[var(--finder-header)] border-b border-[var(--finder-border)] text-[11px] text-[var(--finder-text-secondary)] font-medium"
-            data-aos="fade-down"
-            data-aos-delay="100"
-            data-aos-duration="500"
-          >
-            <div className="flex-1">Name</div>
-            <div className="hidden md:block w-32 text-right">Date Modified</div>
-            <div className="hidden md:block w-20 text-right">Size</div>
-            <div className="hidden md:block w-32 text-right">Kind</div>
-          </div>
-
-          {/* Lista de pastas e arquivos */}
-          <div className="divide-y divide-[var(--finder-border)]">
-            {skillCategories.map((category, categoryIndex) => {
-              const isExpanded = expandedFolders.has(category.name);
-              return (
-                <div key={category.name}>
-                  <button
-                    type="button"
-                    className="group cursor-default select-none w-full text-left"
-                    onClick={() => toggleFolder(category.name)}
-                    data-aos="fade-right"
-                    data-aos-delay={categoryIndex * 100}
-                    data-aos-duration="600"
-                  >
-                    <div className="flex items-center h-[24px] px-3">
-                      <div className="flex-1 flex items-center min-w-0">
-                        {isExpanded ? (
-                          <ChevronDownIcon className="w-3 h-3 text-[var(--finder-text-secondary)] mr-1" />
-                        ) : (
-                          <ChevronRightIcon className="w-3 h-3 text-[var(--finder-text-secondary)] mr-1" />
-                        )}
-                        <FolderIcon className="w-4 h-4 text-[var(--finder-folder)] mr-2 flex-shrink-0" />
-                        <span className="text-[13px] text-[var(--finder-text)] font-normal truncate">
-                          {category.name}
-                        </span>
-                      </div>
-                      <div className="hidden md:block w-32 text-right">
-                        <span className="text-[12px] text-[var(--finder-text-secondary)]">
-                          {new Date().toLocaleDateString("en-US", {
-                            day: "numeric",
-                            month: "short",
-                            year: "numeric",
-                          })}
-                        </span>
-                      </div>
-                      <div className="hidden md:block w-20 text-right">
-                        <span className="text-[12px] text-[var(--finder-text-secondary)]">--</span>
-                      </div>
-                      <div className="hidden md:block w-32 text-right">
-                        <span className="text-[12px] text-[var(--finder-text-secondary)]">
-                          Folder
-                        </span>
-                      </div>
-                    </div>
-                  </button>
-
-                  {isExpanded &&
-                    category.files.map((file, fileIndex) => (
-                      <div
-                        key={`${file.name}.${file.extension}`}
-                        className="group cursor-default select-none relative"
-                        data-aos="fade-left"
-                        data-aos-delay={fileIndex * 50}
-                        data-aos-duration="500"
-                        onMouseEnter={() => setActiveTooltip(`${category.name}-${file.name}`)}
-                        onMouseLeave={() => setActiveTooltip(null)}
-                      >
-                        <div className="flex items-center h-[24px] pl-7 pr-3 hover:bg-[var(--finder-hover)]">
-                          <div className="flex-1 flex items-center min-w-0">
-                            <DocumentIcon className="w-4 h-4 text-[var(--finder-icon)] mr-2 flex-shrink-0" />
-                            <span className="text-[13px] text-[var(--finder-text)] font-normal truncate">
-                              {file.name}.{file.extension}
-                            </span>
-                          </div>
-                          <div className="hidden md:block w-32 text-right">
-                            <span className="text-[12px] text-[var(--finder-text-secondary)]">
-                              {file.modDate}
-                            </span>
-                          </div>
-                          <div className="hidden md:block w-20 text-right">
-                            <span className="text-[12px] text-[var(--finder-text-secondary)]">
-                              {file.size}
-                            </span>
-                          </div>
-                          <div className="hidden md:block w-32 text-right">
-                            <span className="text-[12px] text-[var(--finder-text-secondary)]">
-                              {file.kind}
-                            </span>
-                          </div>
+            {/* Lista de pastas e arquivos */}
+            <div className="divide-y divide-[var(--finder-border)]">
+              {skillCategories.map((category, categoryIndex) => {
+                const isExpanded = expandedFolders.has(category.name);
+                return (
+                  <div key={category.name}>
+                    <button
+                      type="button"
+                      className="group cursor-default select-none w-full text-left"
+                      onClick={() => toggleFolder(category.name)}
+                      data-aos="fade-right"
+                      data-aos-delay={categoryIndex * 60}
+                      data-aos-duration="500"
+                    >
+                      <div className="flex items-center h-[26px] px-3 hover:bg-[var(--finder-hover)]">
+                        <div className="flex-1 flex items-center min-w-0">
+                          {isExpanded ? (
+                            <ChevronDownIcon className="w-3 h-3 text-[var(--finder-text-secondary)] mr-1" />
+                          ) : (
+                            <ChevronRightIcon className="w-3 h-3 text-[var(--finder-text-secondary)] mr-1" />
+                          )}
+                          <FolderIcon className="w-4 h-4 text-[var(--finder-folder)] mr-2 flex-shrink-0" />
+                          <span className="text-[13px] text-[var(--finder-text)] font-normal truncate">
+                            {category.name}
+                          </span>
                         </div>
+                        <div className="hidden lg:block w-20 text-right">
+                          <span className="text-[12px] text-[var(--finder-text-secondary)]">
+                            --
+                          </span>
+                        </div>
+                        <div className="hidden lg:block w-32 text-right">
+                          <span className="text-[12px] text-[var(--finder-text-secondary)]">
+                            Folder
+                          </span>
+                        </div>
+                      </div>
+                    </button>
 
-                        {activeTooltip === `${category.name}-${file.name}` && (
-                          <div
-                            className="fixed top-1/2 transform -translate-y-1/2 translate-x-0 z-[9999] w-80 p-3 rounded-lg border border-gray-200"
-                            style={
-                              {
-                                left: tooltipLeft,
-                                backgroundColor: "#ffffff",
-                                opacity: 1,
-                                boxShadow:
-                                  "0 8px 16px -4px rgba(0, 0, 0, 0), 0 4px 8px -4px rgba(0, 0, 0, 0), 0 0 0 1px rgba(0, 0, 0, 0)",
-                                marginLeft: "10px",
-                              } as CSSProperties
-                            }
-                            data-aos="fade-left"
-                            data-aos-duration="300"
-                          >
-                            <div className="flex items-start gap-3">
-                              <DocumentIcon className="w-8 h-8 text-gray-800 flex-shrink-0 mt-0.5" />
-                              <div>
-                                <h3 className="text-black font-medium mb-1">
-                                  {file.name}.{file.extension}
-                                </h3>
-                                <p className="text-gray-700 text-sm leading-relaxed">
+                    {isExpanded &&
+                      category.files.map((file) => {
+                        const id = fileId(category.name, file);
+                        const isSelected = selectedId === id;
+                        return (
+                          <div key={id}>
+                            <button
+                              type="button"
+                              className="w-full text-left cursor-default select-none"
+                              aria-pressed={isSelected}
+                              onClick={() => setSelectedId(isSelected ? null : id)}
+                            >
+                              <div
+                                className={`flex items-center h-[26px] pl-7 pr-3 ${
+                                  isSelected
+                                    ? "bg-[var(--finder-accent)] text-white"
+                                    : "hover:bg-[var(--finder-hover)]"
+                                }`}
+                              >
+                                <div className="flex-1 flex items-center min-w-0">
+                                  <DocumentIcon
+                                    className={`w-4 h-4 mr-2 flex-shrink-0 ${
+                                      isSelected ? "text-white" : "text-[var(--finder-icon)]"
+                                    }`}
+                                  />
+                                  <span
+                                    className={`text-[13px] font-normal truncate ${
+                                      isSelected ? "text-white" : "text-[var(--finder-text)]"
+                                    }`}
+                                  >
+                                    {file.name}.{file.extension}
+                                  </span>
+                                </div>
+                                <div className="hidden lg:block w-20 text-right">
+                                  <span
+                                    className={`text-[12px] ${
+                                      isSelected
+                                        ? "text-white/80"
+                                        : "text-[var(--finder-text-secondary)]"
+                                    }`}
+                                  >
+                                    {file.size}
+                                  </span>
+                                </div>
+                                <div className="hidden lg:block w-32 text-right">
+                                  <span
+                                    className={`text-[12px] ${
+                                      isSelected
+                                        ? "text-white/80"
+                                        : "text-[var(--finder-text-secondary)]"
+                                    }`}
+                                  >
+                                    {file.kind}
+                                  </span>
+                                </div>
+                              </div>
+                            </button>
+
+                            {/* Descrição inline no mobile (sem painel lateral) */}
+                            {isSelected && (
+                              <div className="md:hidden px-7 py-3 bg-[var(--finder-header)] border-y border-[var(--finder-border)]">
+                                <p className="text-[13px] leading-relaxed text-[var(--finder-text-secondary)]">
                                   {file.description}
                                 </p>
                               </div>
-                            </div>
+                            )}
                           </div>
-                        )}
-                      </div>
-                    ))}
-                </div>
-              );
-            })}
+                        );
+                      })}
+                  </div>
+                );
+              })}
+            </div>
+
+            <p className="px-3 py-2 text-[11px] text-[var(--finder-text-secondary)]">
+              Clique em um arquivo para ver os detalhes.
+            </p>
           </div>
+
+          {/* Painel de preview (estilo Finder), apenas desktop */}
+          <aside className="hidden md:flex w-[280px] shrink-0 border-l border-[var(--finder-border)] bg-[var(--finder-header)] flex-col items-center px-5 py-8 overflow-y-auto scrollbar-finder">
+            {selected ? (
+              <>
+                <div className="flex items-center justify-center w-20 h-20 rounded-xl bg-[var(--finder-accent)]/10 mb-4">
+                  <DocumentIcon className="w-12 h-12 text-[var(--finder-accent)]" />
+                </div>
+                <h3 className="text-[14px] font-semibold text-[var(--finder-text)] text-center break-all">
+                  {selected.file.name}.{selected.file.extension}
+                </h3>
+                <p className="text-[11px] text-[var(--finder-text-secondary)] mb-4">
+                  {selected.file.kind} · {selected.file.size}
+                </p>
+                <p className="text-[13px] leading-relaxed text-[var(--finder-text-secondary)] text-left">
+                  {selected.file.description}
+                </p>
+                <dl className="w-full mt-6 pt-4 border-t border-[var(--finder-border)] text-[11px] space-y-1.5">
+                  <div className="flex justify-between gap-2">
+                    <dt className="text-[var(--finder-text-secondary)]">Pasta</dt>
+                    <dd className="text-[var(--finder-text)] text-right">{selected.category}</dd>
+                  </div>
+                  <div className="flex justify-between gap-2">
+                    <dt className="text-[var(--finder-text-secondary)]">Modificado</dt>
+                    <dd className="text-[var(--finder-text)]">{selected.file.modDate}</dd>
+                  </div>
+                </dl>
+              </>
+            ) : (
+              <div className="m-auto text-center text-[var(--finder-text-secondary)]">
+                <DocumentIcon className="w-10 h-10 mx-auto mb-3 opacity-40" />
+                <p className="text-[12px]">Selecione um arquivo para ver o preview.</p>
+              </div>
+            )}
+          </aside>
         </div>
       </div>
     </div>

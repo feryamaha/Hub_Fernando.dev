@@ -1,6 +1,5 @@
 "use client";
 
-import { useTheme } from "@/hooks/use-theme";
 import {
   EnvelopeIcon,
   InformationCircleIcon as InfoIconOutline,
@@ -17,7 +16,6 @@ interface TopBarProps {
 const TopBar = ({ title }: TopBarProps) => {
   const [isInfoModalOpen, setIsInfoModalOpen] = useState(false);
   const [isShareModalOpen, setIsShareModalOpen] = useState(false);
-  const [theme] = useTheme();
   const [displayedText, setDisplayedText] = useState("");
   const [isTyping, setIsTyping] = useState(true);
   const [cursorVisible, setCursorVisible] = useState(true);
@@ -68,10 +66,7 @@ const TopBar = ({ title }: TopBarProps) => {
     <>
       <div className="h-topbar shrink-0 bg-finder-window border-b border-finder-border flex items-center justify-between select-none px-2 md:px-4">
         <div className="flex items-center flex-1">
-          <h1
-            className="text-finder text-left flex-1 pr-8 md:pr-32 text-sm md:text-base text-2xl md:text-3xl p-[3px]"
-            style={{ color: theme }}
-          >
+          <h1 className="font-dos text-left flex-1 pr-8 md:pr-32 text-xl md:text-2xl p-[3px] text-[var(--finder-accent)]">
             <span>{displayedText}</span>
             <span style={{ opacity: cursorVisible ? 1 : 0 }}>|</span>
           </h1>
@@ -90,7 +85,6 @@ const TopBar = ({ title }: TopBarProps) => {
               className="w-4 h-4 md:w-5 md:h-5"
               viewBox="0 0 24 24"
               fill="currentColor"
-              style={{ color: theme }}
               role="img"
               aria-label="GitHub"
             >
@@ -109,7 +103,6 @@ const TopBar = ({ title }: TopBarProps) => {
               className="w-4 h-4 md:w-5 md:h-5"
               viewBox="0 0 24 24"
               fill="currentColor"
-              style={{ color: theme }}
               role="img"
               aria-label="LinkedIn"
             >
@@ -122,7 +115,7 @@ const TopBar = ({ title }: TopBarProps) => {
             title="E-mail"
             className="p-1 md:p-2 text-finder-text-secondary hover:text-finder-text transition-colors"
           >
-            <EnvelopeIcon style={{ color: theme }} className="w-4 h-4 md:w-5 md:h-5" />
+            <EnvelopeIcon className="w-4 h-4 md:w-5 md:h-5" />
           </a>
           <button
             type="button"
@@ -130,7 +123,7 @@ const TopBar = ({ title }: TopBarProps) => {
             className="p-1 md:p-2 text-finder-text-secondary hover:text-finder-text transition-colors"
             title="Compartilhar"
           >
-            <ShareIconOutline style={{ color: theme }} className="w-4 h-4 md:w-5 md:h-5" />
+            <ShareIconOutline className="w-4 h-4 md:w-5 md:h-5" />
           </button>
           <button
             type="button"
@@ -138,7 +131,7 @@ const TopBar = ({ title }: TopBarProps) => {
             className="p-1 md:p-2 text-finder-text-secondary hover:text-finder-text transition-colors"
             title="Informações"
           >
-            <InfoIconOutline style={{ color: theme }} className="w-4 h-4 md:w-5 md:h-5" />
+            <InfoIconOutline className="w-4 h-4 md:w-5 md:h-5" />
           </button>
         </div>
       </div>

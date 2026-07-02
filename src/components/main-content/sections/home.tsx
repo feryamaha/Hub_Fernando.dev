@@ -2,10 +2,12 @@
 
 import RotatingText from "@/components/ui/rotating-text";
 import TrueFocus from "@/components/ui/true-focus";
+import { useNavigation } from "@/hooks/use-navigation";
 import { useTheme } from "@/hooks/use-theme";
 
 const Home = () => {
   const [theme] = useTheme();
+  const { navigate } = useNavigation();
 
   return (
     <div className={`space-y-8 theme-${theme} p-4 md:p-8 w-full max-w-[90%] mx-auto`}>
@@ -34,7 +36,7 @@ const Home = () => {
       >
         <div className="flex flex-col md:flex-row items-center justify-center gap-4 text-3xl sm:text-4xl md:text-[73px] w-full">
           <h1
-            className="font-[900] text-[var(--finder-accent)] w-full md:w-auto text-center md:text-left"
+            className="font-dos font-[900] text-[var(--finder-accent)] w-full md:w-auto text-center md:text-left"
             data-aos="fade-right"
             data-aos-delay="200"
           >
@@ -68,6 +70,28 @@ const Home = () => {
             />
           </div>
         </div>
+      </div>
+
+      {/* CTAs principais para quem chega pela primeira vez */}
+      <div
+        className="flex flex-wrap items-center justify-center gap-3 pb-8"
+        data-aos="fade-up"
+        data-aos-delay="600"
+      >
+        <button
+          type="button"
+          onClick={() => navigate("/projects")}
+          className="px-5 py-2 rounded-lg bg-[var(--finder-accent)] text-white text-sm font-medium hover:opacity-90 transition-opacity focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--finder-accent)]"
+        >
+          Ver projetos
+        </button>
+        <button
+          type="button"
+          onClick={() => navigate("/contact")}
+          className="px-5 py-2 rounded-lg border border-[var(--finder-border)] text-[var(--finder-text)] text-sm font-medium hover:bg-[var(--finder-hover)] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--finder-accent)]"
+        >
+          Entrar em contato
+        </button>
       </div>
     </div>
   );

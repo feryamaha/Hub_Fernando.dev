@@ -27,32 +27,34 @@
   --finder-folder: #2196f3;
   --finder-folder-top: #42a5f5;
   --finder-folder-border: #1976d2;
+  --finder-header: #262627;
+  --finder-icon: #9a9a9f;
+  --finder-accent-rgb: 10, 132, 255;
 }
 
 /* ==========================================================================
-   Tipografia global — fonte "Modern DOS"
+   Tipografia global — UI com a stack de sistema do macOS (SF Pro);
+   a fonte "Modern DOS" vira assinatura pontual via .font-dos
    ========================================================================== */
 @layer base {
   html {
-    font-family: "Modern DOS", monospace !important;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto,
+      "Helvetica Neue", Arial, sans-serif;
     background-color: var(--finder-window);
   }
 
   body {
     margin: 0;
-    font-family: "Modern DOS", monospace !important;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background-color: var(--finder-window);
     color: var(--finder-text);
   }
 
-  * {
-    font-family: "Modern DOS", monospace !important;
-  }
-
-  code {
-    font-family: "Modern DOS", monospace !important;
+  code,
+  pre,
+  kbd {
+    font-family: "SF Mono", ui-monospace, Menlo, Consolas, monospace;
   }
 }
 
@@ -60,6 +62,49 @@
    Componentes utilitários do Finder
    ========================================================================== */
 @layer components {
+  /* Fonte de identidade (pixel/DOS) usada em destaques pontuais */
+  .font-dos {
+    font-family: "Modern DOS", monospace;
+  }
+
+  /* Janela estilo macOS reutilizável (cards, seções) */
+  .mac-window {
+    background-color: var(--finder-sidebar);
+    border: 1px solid var(--finder-border);
+    border-radius: 12px;
+    box-shadow: 0 18px 40px -16px rgba(0, 0, 0, 0.55), inset 0 0 0 0.5px rgba(255, 255, 255, 0.05);
+    overflow: hidden;
+  }
+
+  .mac-window-titlebar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 12px;
+    background-color: var(--finder-header);
+    border-bottom: 1px solid var(--finder-border);
+  }
+
+  .mac-window-title {
+    flex: 1;
+    text-align: center;
+    font-size: 12px;
+    color: var(--finder-text-secondary);
+    /* compensa a largura dos 3 controles para centralizar de fato */
+    margin-right: 52px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .traffic-light {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    box-shadow: inset 0 0 0 0.5px rgba(0, 0, 0, 0.2);
+  }
+
   .window-controls {
     display: flex;
     gap: 8px;
@@ -171,6 +216,7 @@
    ========================================================================== */
 .theme-blue {
   --finder-accent: #0a84ff;
+  --finder-accent-rgb: 10, 132, 255;
   --finder-hover: rgba(10, 132, 255, 0.1);
   --finder-accent-filter: invert(46%) sepia(98%) saturate(7493%) hue-rotate(203deg) brightness(101%)
     contrast(102%);
@@ -178,6 +224,7 @@
 
 .theme-red {
   --finder-accent: #ff5f57;
+  --finder-accent-rgb: 255, 95, 87;
   --finder-hover: rgba(255, 95, 87, 0.1);
   --finder-accent-filter: invert(56%) sepia(83%) saturate(5654%) hue-rotate(327deg) brightness(101%)
     contrast(101%);
@@ -185,6 +232,7 @@
 
 .theme-orange {
   --finder-accent: #febc2e;
+  --finder-accent-rgb: 254, 188, 46;
   --finder-hover: rgba(255, 149, 0, 0.1);
   --finder-accent-filter: invert(77%) sepia(44%) saturate(766%) hue-rotate(332deg) brightness(101%)
     contrast(101%);
@@ -192,6 +240,7 @@
 
 .theme-yellow {
   --finder-accent: #ffe08c;
+  --finder-accent-rgb: 255, 224, 140;
   --finder-hover: rgba(255, 214, 10, 0.1);
   --finder-accent-filter: invert(89%) sepia(18%) saturate(638%) hue-rotate(325deg) brightness(103%)
     contrast(101%);
@@ -199,6 +248,7 @@
 
 .theme-green {
   --finder-accent: #28c840;
+  --finder-accent-rgb: 40, 200, 64;
   --finder-hover: rgba(40, 200, 64, 0.1);
   --finder-accent-filter: invert(58%) sepia(72%) saturate(385%) hue-rotate(84deg) brightness(96%)
     contrast(89%);
@@ -206,6 +256,7 @@
 
 .theme-purple {
   --finder-accent: #bf5af2;
+  --finder-accent-rgb: 191, 90, 242;
   --finder-hover: rgba(191, 90, 242, 0.1);
   --finder-accent-filter: invert(42%) sepia(99%) saturate(7471%) hue-rotate(267deg) brightness(99%)
     contrast(98%);
@@ -213,11 +264,13 @@
 
 .theme-pink {
   --finder-accent: #ff2d55;
+  --finder-accent-rgb: 255, 45, 85;
   --finder-hover: rgba(255, 45, 85, 0.1);
 }
 
 .theme-gray {
   --finder-accent: #98989d;
+  --finder-accent-rgb: 152, 152, 157;
   --finder-hover: rgba(152, 152, 157, 0.1);
   --finder-accent-filter: invert(65%) sepia(13%) saturate(106%) hue-rotate(202deg) brightness(89%)
     contrast(87%);

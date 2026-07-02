@@ -2,6 +2,7 @@
   "name": "hub-fernando-dev",
   "version": "1.0.0",
   "private": true,
+  "type": "module",
   "description": "Portfolio pessoal - Fernando Moreira",
   "license": "MIT",
   "homepage": "https://feryamaha.github.io/Hub_Fernando.dev",

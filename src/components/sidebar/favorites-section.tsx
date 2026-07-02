@@ -1,7 +1,6 @@
 "use client";
 
 import { useNavigation } from "@/hooks/use-navigation";
-import { useTheme } from "@/hooks/use-theme";
 import type { SectionPath } from "@/types";
 import type { ReactNode } from "react";
 
@@ -12,7 +11,6 @@ interface FavoriteItem {
 }
 
 const FavoritesSection = () => {
-  const [theme] = useTheme();
   const { section, navigate } = useNavigation();
 
   const favorites: FavoriteItem[] = [
@@ -28,7 +26,7 @@ const FavoritesSection = () => {
           role="img"
           aria-label="Home"
         >
-          <path d="M12 3L2 12h3v8h6v-6h2v6h6v-8h3L12 3z" fill={theme} />
+          <path d="M12 3L2 12h3v8h6v-6h2v6h6v-8h3L12 3z" fill="var(--finder-accent)" />
         </svg>
       ),
     },
@@ -44,8 +42,13 @@ const FavoritesSection = () => {
           role="img"
           aria-label="About"
         >
-          <circle cx="12" cy="12" r="10" stroke={theme} strokeWidth="2" />
-          <path d="M12 8v4m0 4h.01" stroke={theme} strokeWidth="2" strokeLinecap="round" />
+          <circle cx="12" cy="12" r="10" stroke="var(--finder-accent)" strokeWidth="2" />
+          <path
+            d="M12 8v4m0 4h.01"
+            stroke="var(--finder-accent)"
+            strokeWidth="2"
+            strokeLinecap="round"
+          />
         </svg>
       ),
     },
@@ -63,7 +66,7 @@ const FavoritesSection = () => {
         >
           <path
             d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2z"
-            fill={theme}
+            fill="var(--finder-accent)"
           />
         </svg>
       ),
@@ -80,8 +83,16 @@ const FavoritesSection = () => {
           role="img"
           aria-label="Projects"
         >
-          <rect x="3" y="3" width="18" height="18" rx="2" stroke={theme} strokeWidth="2" />
-          <path d="M3 9h18" stroke={theme} strokeWidth="2" strokeLinecap="round" />
+          <rect
+            x="3"
+            y="3"
+            width="18"
+            height="18"
+            rx="2"
+            stroke="var(--finder-accent)"
+            strokeWidth="2"
+          />
+          <path d="M3 9h18" stroke="var(--finder-accent)" strokeWidth="2" strokeLinecap="round" />
         </svg>
       ),
     },
@@ -99,11 +110,16 @@ const FavoritesSection = () => {
         >
           <path
             d="M21 8V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v2m18 0v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8m18 0H3"
-            stroke={theme}
+            stroke="var(--finder-accent)"
             strokeWidth="2"
             strokeLinecap="round"
           />
-          <path d="M7 10h10M7 14h5" stroke={theme} strokeWidth="2" strokeLinecap="round" />
+          <path
+            d="M7 10h10M7 14h5"
+            stroke="var(--finder-accent)"
+            strokeWidth="2"
+            strokeLinecap="round"
+          />
         </svg>
       ),
     },

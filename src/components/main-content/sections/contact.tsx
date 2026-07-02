@@ -1,9 +1,9 @@
 "use client";
 
 import { useTheme } from "@/hooks/use-theme";
-import { EnvelopeIcon } from "@heroicons/react/24/outline";
+import { CheckIcon, ClipboardIcon, EnvelopeIcon } from "@heroicons/react/24/outline";
 import AOS from "aos";
-import { type CSSProperties, type ReactNode, useEffect, useRef } from "react";
+import { type CSSProperties, type ReactNode, useEffect, useRef, useState } from "react";
 import Crosshair from "../contact/crosshair";
 import TrueFocus from "../contact/true-focus";
 
@@ -102,9 +102,12 @@ const socialLinks: SocialLink[] = [
   },
 ];
 
+const EMAIL = "fmoreirayamaha@gmail.com";
+
 const Contact = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [theme] = useTheme();
+  const [copied, setCopied] = useState(false);
 
   useEffect(() => {
     AOS.init({
@@ -113,20 +116,68 @@ const Contact = () => {
     });
   }, []);
 
+  const copyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(EMAIL);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      // Clipboard indisponível (permissão/contexto): mantém o mailto como via principal.
+    }
+  };
+
   return (
     <div ref={containerRef} className={`p-8 theme-${theme} relative overflow-hidden`}>
       <Crosshair containerRef={containerRef} color="var(--finder-accent)" />
 
       <div className="mt-16 max-w-4xl mx-auto">
         <h2
-          className="text-4xl font-bold text-[var(--finder-accent)] mb-12 text-center"
+          className="text-4xl font-bold text-[var(--finder-accent)] mb-4 text-center"
           data-aos="fade-down"
           data-aos-delay="100"
         >
           Vamos Conversar
         </h2>
 
-        <div className="mt-16 grid grid-cols-3 gap-5 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3">
+        <p
+          className="text-center text-sm text-[var(--finder-text-secondary)] max-w-md mx-auto"
+          data-aos="fade-down"
+          data-aos-delay="200"
+        >
+          Aberto a conversas sobre projetos, oportunidades e segurança de agentes de IA.
+        </p>
+
+        {/* E-mail em texto, com cópia em um clique */}
+        <div
+          className="mt-8 flex items-center justify-center gap-2"
+          data-aos="fade-up"
+          data-aos-delay="250"
+        >
+          <a
+            href={`mailto:${EMAIL}`}
+            className="text-sm md:text-base text-[var(--finder-text)] underline decoration-[var(--finder-accent)] underline-offset-4 hover:text-[var(--finder-accent)] transition-colors"
+          >
+            {EMAIL}
+          </a>
+          <button
+            type="button"
+            onClick={copyEmail}
+            aria-label={copied ? "E-mail copiado" : "Copiar e-mail"}
+            title={copied ? "Copiado!" : "Copiar e-mail"}
+            className="p-1.5 rounded-md text-[var(--finder-text-secondary)] hover:text-[var(--finder-accent)] hover:bg-[var(--finder-hover)] transition-colors"
+          >
+            {copied ? (
+              <CheckIcon className="w-4 h-4 text-[var(--finder-control-maximize)]" />
+            ) : (
+              <ClipboardIcon className="w-4 h-4" />
+            )}
+          </button>
+          <span aria-live="polite" className="sr-only">
+            {copied ? "E-mail copiado para a área de transferência" : ""}
+          </span>
+        </div>
+
+        <div className="mt-12 grid grid-cols-3 gap-5 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3">
           {socialLinks.map((link, index) => (
             <a
               key={link.name}

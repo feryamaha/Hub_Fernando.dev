@@ -143,7 +143,7 @@ const skillCategories: SkillCategory[] = [
         modDate: "2026",
         kind: "Design System",
         description:
-          "Design systems em Tailwind com tokens semânticos e +160 componentes TypeScript reutilizáveis e acessíveis.",
+          "Design systems em Tailwind com tokens semânticos, componentes tipados com TypeScript reutilizáveis e acessíveis.",
       },
       {
         name: "BFF",

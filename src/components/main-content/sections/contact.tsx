@@ -97,12 +97,12 @@ const socialLinks: SocialLink[] = [
   {
     name: "Email",
     icon: <EnvelopeIcon className="w-6 h-6 group-hover:animate-shake" />,
-    url: "mailto:fmoreirayamaha@gmail.com",
+    url: "mailto:feryamaha@hotmail.com",
     color: "#0077B5",
   },
 ];
 
-const EMAIL = "fmoreirayamaha@gmail.com";
+const EMAIL = "feryamaha@hotmail.com";
 
 const Contact = () => {
   const containerRef = useRef<HTMLDivElement>(null);

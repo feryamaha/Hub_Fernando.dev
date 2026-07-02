@@ -43,31 +43,30 @@ const topics: Topic[] = [
     title: "Arquitetura",
     icon: CubeTransparentIcon,
     content:
-      "Penso projetos para serem escaláveis e fáceis de evoluir. Uso Clean Architecture, separação rigorosa de responsabilidades e contratos TypeScript explícitos entre as camadas. No frontend, design systems com tokens semânticos e mais de 160 componentes tipados; no backend, BFF mantendo o que é sensível fora do cliente. Baixa tolerância a ambiguidade: cada limite do sistema é declarado, não presumido.",
+      "Penso projetos para serem escaláveis e fáceis de evoluir. Uso Clean Architecture, separação rigorosa de responsabilidades e contratos TypeScript explícitos entre as camadas. No frontend, design systems com tokens semânticos e componentes tipados; no backend, BFF mantendo o que é sensível fora do cliente. Baixa tolerância a ambiguidade: cada limite do sistema é declarado, não presumido.",
   },
   {
     title: "Segurança",
     icon: ShieldCheckIcon,
     content:
-      "Segurança não é etapa final, é padrão de projeto. Aplico OWASP Top 10 e OWASP Top 10 for LLM, CSP Level 3 com nonce dinâmico, HSTS, X-Frame-Options e Permissions-Policy, além de validação em runtime com Zod, modelagem de ameaças e segurança de supply-chain. Penso em enforcement em runtime e design fail-closed: o sistema falha fechado, nunca aberto. Tenho certificações em OWASP Top 10 for LLM e AI Governance.",
-  },
+      "Segurança não é etapa final, é padrão de projeto. Aplico OWASP, CSP Level 3 com nonce dinâmico, HSTS, X-Frame-Options e Permissions-Policy, além de validação em runtime com Zod, modelagem de ameaças e segurança de supply-chain. Penso em enforcement em runtime e design fail-closed: o sistema falha fechado, nunca aberto."},
   {
     title: "Nemesis Defender",
     icon: ShieldExclamationIcon,
     content:
-      "Projetei e implementei sozinho o Nemesis Defender: um framework de enforcement de segurança em três camadas independentes (pre-tool hooks, scanner de conteúdo e LSM em eBPF no kernel Linux) que bloqueia comandos destrutivos e malware de supply-chain antes da execução. Em produção há cerca de 1,5 ano com agentes LLM operando sobre o código — zero comandos destrutivos executados e zero acessos não autorizados. Inclui pipeline de varredura em 6 estágios, 18 visitors, +2.000 bloqueios reais no kernel e uma suíte autoral de 184 testes em 26 módulos.",
+      "Projetei e implementei sozinho o Nemesis Defender: Um Framework de enforcement determinístico em Rust que bloqueia comandos destrutivos e malware de supply-chain antes da execução em ambientes com agentes LLM. Arquitetura em 3 camadas independentes. Em produção há 1,5 ano com zero incidentes. Veja detalhes técnicos na seção Projetos.",
   },
   {
     title: "Performance",
     icon: BoltIcon,
     content:
-      "Otimizo do bundle ao kernel. Com React Server Components, SSR, SSG e ISR alcanço scores Lighthouse na faixa de 90+ e reduções de ~20–30% no bundle, de olho em LCP e TTI. Trato performance como contrato verificável, medido e versionado — não como impressão subjetiva. A mesma disciplina vale para o baixo nível: análise estática, parsing e enforcement em runtime com custo previsível.",
+      "Otimizo de bundle com Server Components, SSR, SSG e ISR. Monitoramento de scores Lighthouse para otimizações no bundle, de olho em LCP e TTI. Trato performance como contrato verificável, medido e versionado, não como impressão subjetiva. A mesma disciplina vale para o baixo nível: análise estática, parsing e enforcement em runtime com custo previsível.",
   },
   {
     title: "IA & Agentic",
     icon: CpuChipIcon,
     content:
-      "Desenvolvo com IA sob governança arquitetural explícita. Uso Claude Code, Cursor, Windsurf, Codex e o Vercel AI SDK para features, refactors, correções e documentação — sempre com contratos claros sobre o que o agente pode e não pode fazer. Foi justamente trabalhando com agentes LLM que nasceu o Nemesis Defender: governar a autonomia do modelo de forma determinística, não confiar nela cegamente.",
+      "Desenvolvo com IA sob governança arquitetural explícita via SDD Pipeline (Specification-Driven Development): workflow sequencial de 7 skills com HARD-GATEs em pontos críticos (antes de gravar spec, antes de executar, antes de build release). Aplico disciplina epistêmica anti-sycophancy: agente executa, não conduz; usuário é decisor único. Proteção da codebase via hooks de pre-tool (interceptam write/exec/read antes da ação) com enforcement determinístico (exit 2 = bloqueado). Controle de paths em três níveis (absolute_block, write_block, allowed_exceptions) e invariantes de segurança que impedem ações destrutivas irreversíveis. O Nemesis Defender nasceu dessa prática: governar autonomia de LLM via enforcement, não confiança cega.",
   },
 ];
 

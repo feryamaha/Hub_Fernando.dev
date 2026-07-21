@@ -5,16 +5,17 @@ import { useNavigation } from "@/hooks/use-navigation";
 import useScreenSize from "@/hooks/use-screen-size";
 import { useTheme } from "@/hooks/use-theme";
 import type { SectionPath } from "@/types";
+import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import AOS from "aos";
 import { type ReactNode, useEffect, useState } from "react";
-import Search from "./search";
 import About from "./sections/about";
 import Contact from "./sections/contact";
 import Home from "./sections/home";
 import Projects from "./sections/projects";
 import Skills from "./sections/skills";
+import Spotlight from "./spotlight";
 
-type ContentState = "normal" | "minimized" | "maximized" | "hidden";
+type ContentState = "normal" | "minimized" | "maximized";
 
 const TITLES: Record<SectionPath, string> = {
   "/": "Home",
@@ -27,10 +28,10 @@ const TITLES: Record<SectionPath, string> = {
 const MainContent = () => {
   const [contentState, setContentState] = useState<ContentState>("normal");
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-  const { section } = useNavigation();
+  const [isSpotlightOpen, setIsSpotlightOpen] = useState(false);
+  const { section, navigate } = useNavigation();
   const [theme] = useTheme();
   const screenSize = useScreenSize();
-  const [, setSearchTerm] = useState("");
 
   // Fecha o menu lateral no mobile sempre que a seção muda (ao clicar num item
   // do menu), revelando imediatamente o conteúdo da seção escolhida.
@@ -49,11 +50,20 @@ const MainContent = () => {
     AOS.refreshHard();
   }, [section]);
 
-  const getTitle = (): string => TITLES[section] ?? "Home";
+  // Atalho global de busca estilo Spotlight (⌘K / ⌘F e equivalentes com Ctrl).
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if ((event.metaKey || event.ctrlKey) && (event.key === "k" || event.key === "f")) {
+        event.preventDefault();
+        setIsSpotlightOpen(true);
+      }
+    };
 
-  const handleSearch = (term: string) => {
-    setSearchTerm(term);
-  };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
+  const getTitle = (): string => TITLES[section] ?? "Home";
 
   // Todas as seções são renderizadas no HTML (importante para SEO, preview de
   // link e leitura automatizada — o export estático passa a conter todo o
@@ -84,8 +94,29 @@ const MainContent = () => {
   };
 
   const renderContent = () => {
-    if (contentState === "hidden" || contentState === "minimized") {
-      return null;
+    // Quando minimizada, o conteúdo dá lugar a uma "janela" macOS clicável que
+    // restaura a seção ao ser acionada (volta ao estado "normal").
+    if (contentState === "minimized") {
+      return (
+        <div className="flex-1 min-h-0 flex items-center justify-center bg-finder-window p-6">
+          <button
+            type="button"
+            aria-label="Restaurar seção minimizada"
+            onClick={() => setContentState("normal")}
+            className="mac-window w-full max-w-sm cursor-pointer text-left"
+          >
+            <div className="mac-window-titlebar">
+              <span className="traffic-light close" />
+              <span className="traffic-light minimize" />
+              <span className="traffic-light maximize" />
+              <span className="mac-window-title">{getTitle()}</span>
+            </div>
+            <div className="px-4 py-6 text-center text-finder-text-secondary text-finder">
+              Seção minimizada. Clique para restaurar.
+            </div>
+          </button>
+        </div>
+      );
     }
 
     return (
@@ -106,8 +137,11 @@ const MainContent = () => {
         <div className="flex items-center px-2 space-x-2">
           <button
             type="button"
-            aria-label="Ocultar conteúdo"
-            onClick={() => setContentState((prev) => (prev === "hidden" ? "normal" : "hidden"))}
+            aria-label="Fechar seção e voltar à Home"
+            onClick={() => {
+              setContentState("normal");
+              navigate("/");
+            }}
             className="w-3 h-3 rounded-full bg-[#FF5F57] hover:bg-[#FF5F57]/80 transition-colors"
           />
           <button
@@ -129,7 +163,15 @@ const MainContent = () => {
         </div>
         <div className="flex-1 text-center text-finder-text text-finder">{getTitle()}</div>
         <div className="px-2">
-          <Search onSearch={handleSearch} />
+          <button
+            type="button"
+            aria-label="Abrir busca"
+            onClick={() => setIsSpotlightOpen(true)}
+            className="hidden md:flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-[var(--finder-search)] text-finder-text-secondary text-xs hover:text-finder-text"
+          >
+            <MagnifyingGlassIcon className="w-4 h-4" />
+            <kbd>⌘K</kbd>
+          </button>
         </div>
       </div>
 
@@ -138,11 +180,11 @@ const MainContent = () => {
         <div
           className={`${
             screenSize.isMobile
-              ? "fixed inset-0 z-40 transform transition-transform duration-300"
-              : "w-sidebar"
+              ? "fixed inset-0 z-40 transform transition-transform duration-300 bg-finder-sidebar"
+              : "w-sidebar sidebar-vibrancy"
           } ${
             screenSize.isMobile && !isSidebarOpen ? "-translate-x-full" : ""
-          } bg-finder-sidebar border-r border-finder-border flex flex-col min-h-0 overflow-y-auto`}
+          } border-r border-finder-border flex flex-col min-h-0 overflow-y-auto`}
         >
           <Sidebar />
         </div>
@@ -175,6 +217,8 @@ const MainContent = () => {
           </svg>
         </button>
       )}
+
+      <Spotlight isOpen={isSpotlightOpen} onClose={() => setIsSpotlightOpen(false)} />
     </div>
   );
 };

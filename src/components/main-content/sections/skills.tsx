@@ -382,9 +382,8 @@ const Skills = () => {
 
   useEffect(() => {
     AOS.init({
-      duration: 800,
-      once: false,
-      mirror: true,
+      duration: 600,
+      once: true,
     });
   }, []);
 
@@ -488,19 +487,23 @@ const Skills = () => {
                               <div
                                 className={`flex items-center h-[26px] pl-7 pr-3 ${
                                   isSelected
-                                    ? "bg-[var(--finder-accent)] text-white"
+                                    ? "bg-[var(--finder-accent)] text-[var(--finder-accent-contrast)]"
                                     : "hover:bg-[var(--finder-hover)]"
                                 }`}
                               >
                                 <div className="flex-1 flex items-center min-w-0">
                                   <DocumentIcon
                                     className={`w-4 h-4 mr-2 flex-shrink-0 ${
-                                      isSelected ? "text-white" : "text-[var(--finder-icon)]"
+                                      isSelected
+                                        ? "text-[var(--finder-accent-contrast)]"
+                                        : "text-[var(--finder-icon)]"
                                     }`}
                                   />
                                   <span
                                     className={`text-[13px] font-normal truncate ${
-                                      isSelected ? "text-white" : "text-[var(--finder-text)]"
+                                      isSelected
+                                        ? "text-[var(--finder-accent-contrast)]"
+                                        : "text-[var(--finder-text)]"
                                     }`}
                                   >
                                     {file.name}.{file.extension}
@@ -510,7 +513,7 @@ const Skills = () => {
                                   <span
                                     className={`text-[12px] ${
                                       isSelected
-                                        ? "text-white/80"
+                                        ? "text-[var(--finder-accent-contrast)]/80"
                                         : "text-[var(--finder-text-secondary)]"
                                     }`}
                                   >
@@ -521,7 +524,7 @@ const Skills = () => {
                                   <span
                                     className={`text-[12px] ${
                                       isSelected
-                                        ? "text-white/80"
+                                        ? "text-[var(--finder-accent-contrast)]/80"
                                         : "text-[var(--finder-text-secondary)]"
                                     }`}
                                   >

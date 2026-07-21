@@ -27,8 +27,8 @@ const ThemeSection = () => {
             type="button"
             key={id}
             onClick={() => changeTheme(color)}
-            className={`flex items-center w-full px-2 py-1 rounded-md ${
-              theme === color ? "bg-finder-accent bg-opacity-20" : "hover:bg-finder-hover"
+            className={`flex items-center w-full px-2 py-1 rounded-md focus-visible:outline-2 focus-visible:outline-[var(--finder-accent)] ${
+              theme === color ? "bg-[var(--finder-accent)]/15" : "hover:bg-finder-hover"
             }`}
           >
             <div className="window-controls">

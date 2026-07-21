@@ -10,15 +10,15 @@ const Home = () => {
   const { navigate } = useNavigation();
 
   return (
-    <div className={`space-y-8 theme-${theme} p-4 md:p-8 w-full max-w-[90%] mx-auto`}>
+    <div className={`space-y-6 md:space-y-8 theme-${theme} p-4 md:p-8 w-full max-w-[90%] mx-auto`}>
       <section className="text-center w-full" data-aos="fade-down" data-aos-duration="1000">
         <TrueFocus
           sentence="Fernando Moreira"
           borderColor="var(--finder-accent)"
           glowColor="var(--finder-accent)"
-          blurAmount={3}
+          blurAmount={2}
           animationDuration={2}
-          pauseBetweenAnimations={1}
+          pauseBetweenAnimations={3}
         />
         <p
           className="text-xl sm:text-2xl md:text-xl text-[var(--finder-text-secondary)]"
@@ -27,16 +27,25 @@ const Home = () => {
         >
           Full-Stack TypeScript · Rust · Segurança
         </p>
+        <p
+          className="mt-3 text-sm md:text-base text-[var(--finder-text-secondary)] max-w-xl mx-auto"
+          data-aos="fade-up"
+          data-aos-delay="500"
+        >
+          Autor do Nemesis Defender, framework open-source de segurança para agentes de IA em Rust e
+          eBPF. Construo interfaces, design systems e backends com segurança por padrão.
+        </p>
       </section>
 
       <div
-        className="flex items-center justify-center min-h-[40vh] md:min-h-[60vh] w-full"
+        className="flex items-center justify-center w-full"
         data-aos="zoom-in"
         data-aos-duration="800"
       >
-        <div className="flex flex-col md:flex-row items-center justify-center gap-4 text-3xl sm:text-4xl md:text-[73px] w-full">
+        <div className="flex flex-col md:flex-row items-center justify-center gap-4 w-full">
           <h1
             className="font-dos font-[900] text-[var(--finder-accent)] w-full md:w-auto text-center md:text-left"
+            style={{ fontSize: "clamp(2.25rem, 7vw, 4.5rem)" }}
             data-aos="fade-right"
             data-aos-delay="200"
           >
@@ -58,7 +67,7 @@ const Home = () => {
                 "eBPF",
                 "Full-Stack",
               ]}
-              mainClassName="px-2 sm:px-2 md:px-3 bg-[var(--finder-accent)] text-black overflow-hidden py-1 sm:py-1 md:py-2 justify-center rounded-lg text-3xl sm:text-4xl md:text-[53px] font-[900] w-max max-w-full mx-auto"
+              mainClassName="px-2 sm:px-2 md:px-3 bg-[var(--finder-accent)] text-[var(--finder-accent-contrast)] overflow-hidden py-1 sm:py-1 md:py-2 justify-center rounded-lg text-[clamp(1.75rem,5.5vw,3.25rem)] font-[900] w-max max-w-full mx-auto"
               staggerFrom="last"
               initial={{ y: "100%" }}
               animate={{ y: 0 }}
@@ -81,7 +90,7 @@ const Home = () => {
         <button
           type="button"
           onClick={() => navigate("/projects")}
-          className="px-5 py-2 rounded-lg bg-[var(--finder-accent)] text-white text-sm font-medium hover:opacity-90 transition-opacity focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--finder-accent)]"
+          className="px-5 py-2 rounded-lg bg-[var(--finder-accent)] text-[var(--finder-accent-contrast)] text-sm font-medium hover:opacity-90 transition-opacity focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--finder-accent)]"
         >
           Ver projetos
         </button>

@@ -49,7 +49,8 @@ const topics: Topic[] = [
     title: "Segurança",
     icon: ShieldCheckIcon,
     content:
-      "Segurança não é etapa final, é padrão de projeto. Aplico OWASP, CSP Level 3 com nonce dinâmico, HSTS, X-Frame-Options e Permissions-Policy, além de validação em runtime com Zod, modelagem de ameaças e segurança de supply-chain. Penso em enforcement em runtime e design fail-closed: o sistema falha fechado, nunca aberto."},
+      "Segurança não é etapa final, é padrão de projeto. Aplico OWASP, CSP Level 3 com nonce dinâmico, HSTS, X-Frame-Options e Permissions-Policy, além de validação em runtime com Zod, modelagem de ameaças e segurança de supply-chain. Penso em enforcement em runtime e design fail-closed: o sistema falha fechado, nunca aberto.",
+  },
   {
     title: "Nemesis Defender",
     icon: ShieldExclamationIcon,
@@ -115,7 +116,7 @@ const About = () => {
                   aria-pressed={isActive}
                   className={`flex items-center gap-2 px-3 py-1.5 rounded-md text-[13px] whitespace-nowrap transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-[var(--finder-accent)] ${
                     isActive
-                      ? "bg-[var(--finder-accent)] text-white"
+                      ? "bg-[var(--finder-accent)] text-[var(--finder-accent-contrast)]"
                       : "text-[var(--finder-text)] hover:bg-[var(--finder-hover)]"
                   }`}
                 >

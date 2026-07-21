@@ -1,5 +1,6 @@
 "use client";
 
+import ProjectCard from "@/components/ui/project-card";
 import type { ReactNode } from "react";
 
 interface ProjectLink {
@@ -26,6 +27,19 @@ interface Project {
   technologies: string[];
   date: string;
   link: ReactNode;
+}
+
+interface CardProject {
+  title: string;
+  description: string;
+  technologies: string[];
+  date: string;
+  codeUrl?: string;
+  demoUrl?: string;
+  demoLabel?: string;
+  imageSrc?: string;
+  imageAlt?: string;
+  extraNote?: ReactNode;
 }
 
 const featuredProjects: FeaturedProject[] = [
@@ -104,25 +118,41 @@ const currentWork: Project[] = [
   },
 ];
 
-const pastProjects: Project[] = [
+const personalProjects: CardProject[] = [
+  {
+    title: "HARVESTIN",
+    description:
+      "Ferramenta pessoal de busca de emprego: agrega vagas de quadros públicos gratuitos e feeds de ATS, calcula score de compatibilidade do currículo com shortlist por limiar e acompanha candidaturas em interface autenticada. Projeto proprietário de uso individual.",
+    technologies: ["Next.js", "React 19", "TypeScript", "Tailwind CSS 4", "Bun", "next-intl"],
+    date: "2026 · Projeto pessoal",
+    codeUrl: "https://github.com/feryamaha/Harvestin",
+    demoUrl: "https://harvestin.vercel.app",
+    demoLabel: "Ver site",
+    extraNote: "Interface autenticada, uso pessoal",
+  },
+  {
+    title: "CIFRA-TOM",
+    description:
+      "Plataforma de cifras para violão sem anúncios no meio da leitura: shape do acorde ao passar o mouse, transposição de tom com cálculo automático de capotraste, leitura da progressão por números da escala, dicionário de acordes, metrônomo e afinador.",
+    technologies: ["Next.js", "TypeScript", "Tailwind", "Drizzle ORM", "Playwright", "Bun"],
+    date: "2026 · Projeto pessoal",
+    codeUrl: "https://github.com/feryamaha/Cifra-Tom",
+    demoUrl: "https://cifra-tom.vercel.app",
+    demoLabel: "Ver site",
+  },
+];
+
+const pastProjects: CardProject[] = [
   {
     title: "MLX CAPITAL",
     description:
       "Construção de interfaces frontend para um cliente da Auclan Design, com ênfase em performance e design pixel perfect, integrando layouts dinâmicos.",
     technologies: ["HTML", "CSS", "JavaScript"],
     date: "Novembro de 2024",
-    link: (
-      <span className="flex gap-2">
-        <a
-          href="https://mlxcapital.com.br/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-[var(--finder-accent)] underline"
-        >
-          mlxcapital.com.br
-        </a>
-      </span>
-    ),
+    demoUrl: "https://mlxcapital.com.br/",
+    demoLabel: "Ver site",
+    imageSrc: "/icons/img_project_mlx.webp",
+    imageAlt: "Interface do site MLX Capital",
   },
   {
     title: "ALPHA",
@@ -130,21 +160,11 @@ const pastProjects: Project[] = [
       "Desenvolvimento do frontend para um cliente da Auclan Design, criando interfaces modernas e responsivas com foco em usabilidade e fidelidade ao design.",
     technologies: ["HTML", "CSS", "JavaScript"],
     date: "Dezembro de 2024",
-    link: (
-      <span className="flex gap-2">
-        <span className="no-underline italic text-[var(--finder-text-secondary)]">
-          Projeto confidencial da
-        </span>
-        <a
-          href="https://auclandesign.com/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-[var(--finder-accent)] underline"
-        >
-          auclandesign.com
-        </a>
-      </span>
-    ),
+    demoUrl: "https://auclandesign.com/",
+    demoLabel: "auclandesign.com",
+    imageSrc: "/icons/img_project_alpha.webp",
+    imageAlt: "Interface do projeto Alpha da Auclan Design",
+    extraNote: "Projeto confidencial da Auclan Design",
   },
   {
     title: "VEGA",
@@ -152,16 +172,10 @@ const pastProjects: Project[] = [
       "Desenvolvimento frontend para um sistema da Auclan Design, utilizando SCSS para estilização avançada e garantindo responsividade e acessibilidade.",
     technologies: ["HTML", "SCSS", "JavaScript"],
     date: "Janeiro de 2025",
-    link: (
-      <a
-        href="https://www.vegasat.com.br/"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="text-[var(--finder-accent)] underline"
-      >
-        vegasat.com.br
-      </a>
-    ),
+    demoUrl: "https://www.vegasat.com.br/",
+    demoLabel: "Ver site",
+    imageSrc: "/icons/img_project_vega.webp",
+    imageAlt: "Interface do sistema Vega",
   },
   {
     title: "WHFF-enD",
@@ -169,16 +183,10 @@ const pastProjects: Project[] = [
       "Projeto pessoal de aprendizado em React, funcionando como um hub de conhecimento com foco em conceitos fundamentais, Webpack e Babel para robustez.",
     technologies: ["React", "SCSS", "JavaScript"],
     date: "Abril de 2025",
-    link: (
-      <a
-        href="https://feryamaha.github.io/WHFF-enD/"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="text-[var(--finder-accent)] underline"
-      >
-        feryamaha.github.io/WHFF-enD
-      </a>
-    ),
+    demoUrl: "https://feryamaha.github.io/WHFF-enD/",
+    demoLabel: "Ver site",
+    imageSrc: "/icons/img_projetc_whffend.webp",
+    imageAlt: "Interface do hub de conhecimento WHFF-enD",
   },
   {
     title: "NFTs CodeBoost",
@@ -186,16 +194,8 @@ const pastProjects: Project[] = [
       "Site didático para aprendizado de Next.js (App Router) no curso CodeBoost, com tema de NFTs: carrosséis interativos, componentes acessíveis (Radix UI) e Tailwind CSS.",
     technologies: ["Next.js", "React", "Tailwind", "Radix UI"],
     date: "Maio de 2025",
-    link: (
-      <a
-        href="https://nf-ts-code-boost.vercel.app/"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="text-[var(--finder-accent)] underline"
-      >
-        nf-ts-code-boost.vercel.app
-      </a>
-    ),
+    demoUrl: "https://nf-ts-code-boost.vercel.app/",
+    demoLabel: "Ver demo",
   },
 ];
 
@@ -246,18 +246,27 @@ const Projects = () => {
 
               <p className="text-xs text-[var(--finder-text-secondary)] mt-3">{project.date}</p>
 
-              <div className="flex flex-wrap gap-x-6 gap-y-2 mt-4">
-                {project.links.map((link) => (
+              <div className="flex flex-wrap gap-3 mt-4">
+                {project.links[0] && (
                   <a
-                    key={link.url}
-                    href={link.url}
+                    href={project.links[0].url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-sm text-[var(--finder-accent)] underline font-medium"
+                    className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-[var(--finder-accent)] text-[var(--finder-accent-contrast)] text-[13px] font-medium hover:opacity-90 transition-opacity focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--finder-accent)]"
                   >
-                    ↗ {link.label}
+                    Ver código
                   </a>
-                ))}
+                )}
+                {project.links[1] && (
+                  <a
+                    href={project.links[1].url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg border border-[var(--finder-border)] text-[var(--finder-text)] text-[13px] font-medium hover:bg-[var(--finder-hover)] transition-opacity focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--finder-accent)]"
+                  >
+                    Ver site/docs
+                  </a>
+                )}
               </div>
             </div>
           </article>
@@ -286,6 +295,24 @@ const Projects = () => {
         ))}
       </div>
 
+      {/* Seção: Projetos pessoais recentes */}
+      <h2 className="text-2xl font-bold text-[var(--finder-accent)] mb-6">Projetos pessoais</h2>
+      <div className="flex flex-col gap-6 mb-14">
+        {personalProjects.map((project) => (
+          <ProjectCard
+            key={project.title}
+            title={project.title}
+            description={project.description}
+            technologies={project.technologies}
+            date={project.date}
+            codeUrl={project.codeUrl}
+            demoUrl={project.demoUrl}
+            demoLabel={project.demoLabel}
+            extraNote={project.extraNote}
+          />
+        ))}
+      </div>
+
       {/* Seção: Linha do tempo (primeiros trabalhos e estudos) */}
       <h2 className="text-2xl font-bold text-[var(--finder-accent)] mb-2">Linha do tempo</h2>
       <p className="text-sm text-[var(--finder-text-secondary)] mb-6">
@@ -293,20 +320,20 @@ const Projects = () => {
       </p>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         {pastProjects.map((project) => (
-          <article
+          <ProjectCard
             key={project.title}
-            className="border border-[var(--finder-border)] rounded-xl p-4 bg-[var(--finder-sidebar)]/60"
-          >
-            <h3 className="text-base font-semibold text-[var(--finder-text)]">{project.title}</h3>
-            <p className="text-[13px] text-[var(--finder-text-secondary)] mt-1 leading-relaxed">
-              {project.description}
-            </p>
-            <p className="text-xs text-[var(--finder-text-secondary)] mt-2">
-              {project.date} ·{" "}
-              {project.technologies.map((tech) => `#${tech.toLowerCase()}`).join(" ")}
-            </p>
-            <span className="block text-[13px] mt-2">{project.link}</span>
-          </article>
+            muted
+            title={project.title}
+            description={project.description}
+            technologies={project.technologies}
+            date={project.date}
+            codeUrl={project.codeUrl}
+            demoUrl={project.demoUrl}
+            demoLabel={project.demoLabel}
+            imageSrc={project.imageSrc}
+            imageAlt={project.imageAlt}
+            extraNote={project.extraNote}
+          />
         ))}
       </div>
     </div>

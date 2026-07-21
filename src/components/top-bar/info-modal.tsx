@@ -1,10 +1,11 @@
 "use client";
 
 import Modal from "@/components/ui/modal";
+import { GitHubIcon, LinkedInIcon } from "@/components/ui/social-icons";
+import { SITE_REPO_URL } from "@/lib/constants";
 import type { ModalBaseProps } from "@/types";
 import { CodeBracketIcon, CommandLineIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
-import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 interface Feature {
   icon: typeof CodeBracketIcon;
@@ -16,13 +17,15 @@ const InfoModal = ({ isOpen, onClose }: ModalBaseProps) => {
   const features: Feature[] = [
     {
       icon: CodeBracketIcon,
-      title: "Desenvolvimento",
-      description: "React, Next.js, TypeScript, Tailwind CSS.",
+      title: "Stack",
+      description:
+        "Next.js 16 App Router com export estático, React 19, TypeScript strict, Tailwind CSS 4.",
     },
     {
       icon: CommandLineIcon,
-      title: "Funcionalidades",
-      description: "Interface inspirada no Finder do macOS com temas dinâmicos e animações.",
+      title: "Engenharia",
+      description:
+        "Biome, Bun, deploy Vercel, arquitetura por seções com temas dinâmicos via CSS vars.",
     },
   ];
 
@@ -31,8 +34,8 @@ const InfoModal = ({ isOpen, onClose }: ModalBaseProps) => {
       <div className="space-y-6 h-max-content overflow-y-auto">
         <div className="text-finder-text-secondary">
           <p className="mb-4">
-            Este portfolio foi inspirado na interface do Finder do macOS, proporcionando uma
-            experiência familiar e intuitiva.
+            Este portfólio recria a interface do Finder do macOS. Ele próprio é um projeto: código
+            aberto, tipado e com deploy contínuo.
           </p>
         </div>
 
@@ -51,6 +54,18 @@ const InfoModal = ({ isOpen, onClose }: ModalBaseProps) => {
               </div>
             </div>
           ))}
+        </div>
+
+        <div className="text-sm text-finder-text-secondary border border-finder-border p-4 rounded-lg">
+          <a
+            href={SITE_REPO_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center space-x-2 text-finder-text-secondary hover:text-finder-accent"
+          >
+            <GitHubIcon className="w-5 h-5 flex-shrink-0" />
+            <span>Ver código-fonte deste portfólio</span>
+          </a>
         </div>
 
         <div className="text-sm text-finder-text-secondary flex items-center space-x-4 border border-finder-border p-4 rounded-lg">
@@ -72,7 +87,7 @@ const InfoModal = ({ isOpen, onClose }: ModalBaseProps) => {
                 rel="noopener noreferrer"
                 className="flex items-center space-x-2 text-finder-text-secondary hover:text-finder-accent"
               >
-                <FaLinkedin className="w-5 h-5" />
+                <LinkedInIcon className="w-5 h-5" />
                 <span>LinkedIn</span>
               </a>
               <a
@@ -81,7 +96,7 @@ const InfoModal = ({ isOpen, onClose }: ModalBaseProps) => {
                 rel="noopener noreferrer"
                 className="flex items-center space-x-2 text-finder-text-secondary hover:text-finder-accent"
               >
-                <FaGithub className="w-5 h-5" />
+                <GitHubIcon className="w-5 h-5" />
                 <span>GitHub</span>
               </a>
             </div>

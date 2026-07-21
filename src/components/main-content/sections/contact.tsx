@@ -1,134 +1,73 @@
 "use client";
 
+import { SOCIAL_ICON_MAP } from "@/components/ui/social-icons";
 import { useTheme } from "@/hooks/use-theme";
-import { CheckIcon, ClipboardIcon, EnvelopeIcon } from "@heroicons/react/24/outline";
+import { CV_PATH, EMAIL, PHONE_DISPLAY, SOCIAL_LINKS } from "@/lib/constants";
+import {
+  ArrowDownTrayIcon,
+  CheckIcon,
+  ClipboardIcon,
+  EnvelopeIcon,
+} from "@heroicons/react/24/outline";
 import AOS from "aos";
-import { type CSSProperties, type ReactNode, useEffect, useRef, useState } from "react";
+import { type CSSProperties, type ComponentType, useEffect, useRef, useState } from "react";
 import Crosshair from "../contact/crosshair";
-import TrueFocus from "../contact/true-focus";
 
-interface SocialLink {
+type IconComponent = ComponentType<{ className?: string }>;
+
+interface SocialItem {
   name: string;
-  icon: ReactNode;
+  icon: IconComponent;
   url: string;
   color?: string;
 }
 
-const socialLinks: SocialLink[] = [
-  {
-    name: "GitHub",
-    icon: (
-      <svg
-        className="w-6 h-6 group-hover:animate-shake"
-        viewBox="0 0 24 24"
-        fill="currentColor"
-        role="img"
-        aria-label="GitHub"
-      >
-        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-      </svg>
-    ),
-    url: "https://github.com/feryamaha",
-    color: "#181717",
-  },
-  {
-    name: "LinkedIn",
-    icon: (
-      <svg
-        className="w-6 h-6 group-hover:animate-shake"
-        viewBox="0 0 24 24"
-        fill="currentColor"
-        role="img"
-        aria-label="LinkedIn"
-      >
-        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037c-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85c3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065c0-1.138.92-2.063 2.063-2.063c1.14 0 2.064.925 2.064 2.063c0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-      </svg>
-    ),
-    url: "https://www.linkedin.com/in/feryamaha/",
-    color: "#0077B5",
-  },
-  {
-    name: "X",
-    icon: (
-      <svg
-        className="w-6 h-6 group-hover:animate-shake"
-        viewBox="0 0 24 24"
-        fill="currentColor"
-        role="img"
-        aria-label="X"
-      >
-        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-      </svg>
-    ),
-    url: "https://x.com/_feryamaha",
-    color: "#000000",
-  },
-  {
-    name: "Instagram",
-    icon: (
-      <svg
-        className="w-6 h-6 group-hover:animate-shake instagram-icon"
-        viewBox="0 0 24 24"
-        fill="currentColor"
-        role="img"
-        aria-label="Instagram"
-      >
-        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.148 3.227-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.148-4.771-1.691-4.919-4.919-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.791-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.209-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.441s.645 1.441 1.441 1.441 1.441-.645 1.441-1.441-.645-1.441-1.441-1.441z" />
-      </svg>
-    ),
-    url: "https://www.instagram.com/fm_frontend/?next=%2F",
-  },
-  {
-    name: "WhatsApp",
-    icon: (
-      <svg
-        className="w-6 h-6 group-hover:animate-shake"
-        viewBox="0 0 24 24"
-        fill="currentColor"
-        role="img"
-        aria-label="WhatsApp"
-      >
-        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967c-.273-.099-.471-.148-.67.15c-.197.297-.767.966-.94 1.164c-.173.199-.347.223-.644.075c-.297-.15-1.255-.463-2.39-1.475c-.883-.788-1.48-1.761-1.653-2.059c-.173-.297-.018-.458.13-.606c.134-.133.298-.347.446-.52c.149-.174.198-.298.298-.497c.099-.198.05-.371-.025-.52c-.075-.149-.669-1.612-.916-2.207c-.242-.579-.487-.5-.669-.51c-.173-.008-.371-.01-.57-.01c-.198 0-.52.074-.792.372c-.272.297-1.04 1.016-1.04 2.479c0 1.462 1.065 2.875 1.213 3.074c.149.198 2.096 3.2 5.077 4.487c.709.306 1.262.489 1.694.625c.712.227 1.36.195 1.871.118c.571-.085 1.758-.719 2.006-1.413c.248-.694.248-1.289.173-1.413c-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214l-3.741.982l.998-3.648l-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884c2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-      </svg>
-    ),
-    url: "https://wa.me/5514996010696",
-    color: "#25D366",
-  },
+const socialLinks: SocialItem[] = [
+  ...SOCIAL_LINKS.map((link) => ({
+    name: link.name,
+    icon: SOCIAL_ICON_MAP[link.name],
+    url: link.url,
+    color: link.hoverColor,
+  })),
   {
     name: "Email",
-    icon: <EnvelopeIcon className="w-6 h-6 group-hover:animate-shake" />,
-    url: "mailto:feryamaha@hotmail.com",
+    icon: EnvelopeIcon,
+    url: `mailto:${EMAIL}`,
     color: "#0077B5",
   },
 ];
 
-const EMAIL = "feryamaha@hotmail.com";
+const whatsappUrl = SOCIAL_LINKS.find((link) => link.name === "WhatsApp")?.url ?? "";
+
+type CopyField = "email" | "phone";
 
 const Contact = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [theme] = useTheme();
-  const [copied, setCopied] = useState(false);
+  const [copiedField, setCopiedField] = useState<CopyField | null>(null);
+  const [motionOk, setMotionOk] = useState(true);
 
   useEffect(() => {
     AOS.init({
       duration: 800,
       once: true,
     });
+    setMotionOk(!window.matchMedia("(prefers-reduced-motion: reduce)").matches);
   }, []);
 
-  const copyEmail = async () => {
+  const copyValue = async (value: string, field: CopyField) => {
     try {
-      await navigator.clipboard.writeText(EMAIL);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
+      await navigator.clipboard.writeText(value);
+      setCopiedField(field);
+      setTimeout(() => setCopiedField(null), 2000);
     } catch {
-      // Clipboard indisponível (permissão/contexto): mantém o mailto como via principal.
+      // Clipboard indisponível (permissão/contexto): mantém o link como via principal.
     }
   };
 
   return (
     <div ref={containerRef} className={`p-8 theme-${theme} relative overflow-hidden`}>
-      <Crosshair containerRef={containerRef} color="var(--finder-accent)" />
+      {motionOk && <Crosshair containerRef={containerRef} color="var(--finder-accent)" />}
 
       <div className="mt-16 max-w-4xl mx-auto">
         <h2
@@ -161,62 +100,89 @@ const Contact = () => {
           </a>
           <button
             type="button"
-            onClick={copyEmail}
-            aria-label={copied ? "E-mail copiado" : "Copiar e-mail"}
-            title={copied ? "Copiado!" : "Copiar e-mail"}
+            onClick={() => copyValue(EMAIL, "email")}
+            aria-label={copiedField === "email" ? "E-mail copiado" : "Copiar e-mail"}
+            title={copiedField === "email" ? "Copiado!" : "Copiar e-mail"}
             className="p-1.5 rounded-md text-[var(--finder-text-secondary)] hover:text-[var(--finder-accent)] hover:bg-[var(--finder-hover)] transition-colors"
           >
-            {copied ? (
+            {copiedField === "email" ? (
               <CheckIcon className="w-4 h-4 text-[var(--finder-control-maximize)]" />
             ) : (
               <ClipboardIcon className="w-4 h-4" />
             )}
           </button>
           <span aria-live="polite" className="sr-only">
-            {copied ? "E-mail copiado para a área de transferência" : ""}
+            {copiedField === "email" ? "E-mail copiado para a área de transferência" : ""}
           </span>
         </div>
 
-        <div className="mt-12 grid grid-cols-3 gap-5 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3">
-          {socialLinks.map((link, index) => (
-            <a
-              key={link.name}
-              href={link.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group flex flex-col items-center justify-center p-3 rounded-2xl bg-[var(--finder-accent)]/5 hover:bg-[var(--finder-accent)]/10 transition-all duration-300"
-              style={{ "--hover-color": link.color } as CSSProperties}
-              data-aos="fade-right"
-              data-aos-delay={`${index * 200 + 200}`}
-            >
-              <div className="text-[var(--finder-accent)] group-hover:text-[var(--hover-color)] transition-colors duration-300">
-                {link.icon}
-              </div>
-              <span className="mt-2 text-sm text-[var(--finder-accent)]/80 group-hover:text-[var(--hover-color)] transition-colors duration-300">
-                {link.name}
-              </span>
-            </a>
-          ))}
+        {/* Baixar CV (PDF): CTA primário */}
+        <div className="mt-4 flex justify-center" data-aos="fade-up" data-aos-delay="275">
+          <a
+            href={CV_PATH}
+            download
+            className="inline-flex items-center gap-1.5 px-5 py-2 rounded-lg bg-[var(--finder-accent)] text-[var(--finder-accent-contrast)] text-sm font-medium hover:opacity-90 transition-opacity focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--finder-accent)]"
+          >
+            <ArrowDownTrayIcon className="w-4 h-4" />
+            <span>Baixar CV (PDF)</span>
+          </a>
         </div>
 
-        <div className="mt-8 text-center">
-          <div
-            className="text-[var(--finder-accent)]/50"
-            data-aos="fade-up"
-            data-aos-delay="300"
-            data-aos-duration="800"
+        <div className="mt-12 grid grid-cols-3 gap-5 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3">
+          {socialLinks.map((link, index) => {
+            const Icon = link.icon;
+            return (
+              <a
+                key={link.name}
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex flex-col items-center justify-center p-3 rounded-2xl bg-[var(--finder-accent)]/5 hover:bg-[var(--finder-accent)]/10 transition-all duration-300"
+                style={{ "--hover-color": link.color } as CSSProperties}
+                data-aos="fade-right"
+                data-aos-delay={`${index * 200 + 200}`}
+              >
+                <div className="text-[var(--finder-accent)] group-hover:text-[var(--hover-color)] transition-colors duration-300">
+                  <Icon className="w-6 h-6 group-hover:animate-shake" />
+                </div>
+                <span className="mt-2 text-sm text-[var(--finder-accent)]/80 group-hover:text-[var(--hover-color)] transition-colors duration-300">
+                  {link.name}
+                </span>
+              </a>
+            );
+          })}
+        </div>
+
+        {/* Telefone em texto, com cópia e link do WhatsApp */}
+        <div
+          className="mt-8 flex items-center justify-center gap-2"
+          data-aos="fade-up"
+          data-aos-delay="300"
+        >
+          <a
+            href={whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm text-[var(--finder-text)] underline decoration-[var(--finder-accent)] underline-offset-4 hover:text-[var(--finder-accent)] transition-colors"
           >
-            <TrueFocus
-              sentence="+55 14 99601-0696"
-              manualMode={true}
-              blurAmount={3}
-              borderColor="var(--finder-accent)"
-              glowColor="rgba(var(--finder-accent-rgb), 0.3)"
-              animationDuration={0.3}
-              pauseBetweenAnimations={0.5}
-              className="text-xs"
-            />
-          </div>
+            {PHONE_DISPLAY}
+          </a>
+          <button
+            type="button"
+            onClick={() => copyValue(PHONE_DISPLAY, "phone")}
+            aria-label={copiedField === "phone" ? "Telefone copiado" : "Copiar telefone"}
+            title={copiedField === "phone" ? "Copiado!" : "Copiar telefone"}
+            className="p-1.5 rounded-md text-[var(--finder-text-secondary)] hover:text-[var(--finder-accent)] hover:bg-[var(--finder-hover)] transition-colors"
+          >
+            {copiedField === "phone" ? (
+              <CheckIcon className="w-4 h-4 text-[var(--finder-control-maximize)]" />
+            ) : (
+              <ClipboardIcon className="w-4 h-4" />
+            )}
+          </button>
+          <span aria-live="polite" className="sr-only">
+            {copiedField === "phone" ? "Telefone copiado para a área de transferência" : ""}
+          </span>
         </div>
       </div>
     </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import ProjectCard from "@/components/ui/project-card";
+import Image from "next/image";
 import type { ReactNode } from "react";
 
 interface ProjectLink {
@@ -19,6 +20,8 @@ interface FeaturedProject {
   technologies: string[];
   date: string;
   links: ProjectLink[];
+  imageSrc?: string;
+  imageAlt?: string;
 }
 
 interface Project {
@@ -27,6 +30,8 @@ interface Project {
   technologies: string[];
   date: string;
   link: ReactNode;
+  imageSrc?: string;
+  imageAlt?: string;
 }
 
 interface CardProject {
@@ -52,6 +57,8 @@ const featuredProjects: FeaturedProject[] = [
       "Arquitetura em 3 camadas independentes: Pretool/Posttool Hook (interceptação antes de Bash.run()/file-write), Nemesis Defender (scanner com 36 categorias na deny-list embutida e 14 visitors AST despachados) e eBPF Kernel LSM (Linux, opt-in). Quarentena por corroboração (move, não deleta) com reversibilidade via restore/purge. Suporta Claude Code, OpenAI Codex, Cursor, GitHub Copilot, VS Code, Devin e Gemini/Agents. Inclui Nemesis Doctor (7 verificações estruturadas) e suíte de pentest como gate de CI. Design fail-closed: qualquer panic vira exit 2 (bloqueio).",
     technologies: ["Rust", "eBPF", "BPF LSM", "tree-sitter", "Linux", "macOS", "AGPL-3.0"],
     date: "Em produção desde 2024 · Autor e mantenedor único",
+    imageSrc: "/icons/img-nemesis-defender.jpg",
+    imageAlt: "Arquitetura do Nemesis Defender",
     links: [
       {
         label: "Repositório: github.com/feryamaha/Nemesis_Defender_v0",
@@ -72,10 +79,16 @@ const featuredProjects: FeaturedProject[] = [
       "Pipeline em etapas: busca agregada com geocoding e fallback entre provedores; qualificação por regras que descarta órgãos públicos, grandes redes e nichos fora do perfil antes de gastar consultas; enriquecimento de CNPJ com cache local e rate limiting; e exportação CSV/XLSX. Next.js 16 (App Router), React 19, TypeScript strict, Zod e React Hook Form, com arquitetura em camadas (UI → Hooks → Services → Types).",
     technologies: ["Next.js 16", "React 19", "TypeScript", "Zod", "Tailwind"],
     date: "2026 · Projeto pessoal",
+    imageSrc: "/icons/img-map-hunter.png",
+    imageAlt: "Interface da plataforma MapHunter",
     links: [
       {
         label: "Repositório: github.com/feryamaha/MapHunter",
         url: "https://github.com/feryamaha/MapHunter",
+      },
+      {
+        label: "Deploy: map-hunter-xi.vercel.app",
+        url: "https://map-hunter-xi.vercel.app/",
       },
     ],
   },
@@ -88,6 +101,8 @@ const currentWork: Project[] = [
       "Aplicações web, dashboards e portais com Next.js (App Router), React 19 e TypeScript em strict mode. BFF via Route Handlers mantendo credenciais e regras sensíveis no servidor, arquitetura em camadas (UI → Hooks → Services → Types) com contratos explícitos e segurança por padrão (CSP Level 3 com nonce, HSTS, X-Frame-Options e validação em runtime com Zod). Atualmente no desenvolvimento de um portal multi-perfil (5 perfis de usuário) para uma operadora de plano odontológico: centenas de componentes tipados, testes E2E com Playwright e gates de segurança e arquitetura em pre-commit.",
     technologies: ["Next.js", "React 19", "TypeScript", "Tailwind", "Zod", "Playwright"],
     date: "Nov 2024 – Presente",
+    imageSrc: "/icons/img-auclan-design.png",
+    imageAlt: "Interface de projeto da Auclan Design",
     link: (
       <a
         href="https://auclandesign.com/"
@@ -105,6 +120,8 @@ const currentWork: Project[] = [
       "Design System em Tailwind CSS com tokens semânticos e mais de 160 componentes TypeScript reutilizáveis, com foco em escalabilidade, acessibilidade e consistência visual — acelerando a entrega de features. Otimização de performance (RSC, SSR, SSG, ISR) com scores Lighthouse na faixa de 90+ e redução de ~20–30% no bundle.",
     technologies: ["React", "TypeScript", "Tailwind", "Next.js", "Design System"],
     date: "Em andamento (2025)",
+    imageSrc: "/icons/img-auclan-design.png",
+    imageAlt: "Componentes do UIKit Design System",
     link: (
       <a
         href="https://auclandesign.com/"
@@ -128,6 +145,8 @@ const personalProjects: CardProject[] = [
     codeUrl: "https://github.com/feryamaha/Harvestin",
     demoUrl: "https://harvestin.vercel.app",
     demoLabel: "Ver site",
+    imageSrc: "/icons/img-harvesting.png",
+    imageAlt: "Interface do Harvestin",
     extraNote: "Interface autenticada, uso pessoal",
   },
   {
@@ -139,6 +158,8 @@ const personalProjects: CardProject[] = [
     codeUrl: "https://github.com/feryamaha/Cifra-Tom",
     demoUrl: "https://cifra-tom.vercel.app",
     demoLabel: "Ver site",
+    imageSrc: "/icons/img-cifra-tom.png",
+    imageAlt: "Interface do Cifra-Tom",
   },
 ];
 
@@ -196,6 +217,8 @@ const pastProjects: CardProject[] = [
     date: "Maio de 2025",
     demoUrl: "https://nf-ts-code-boost.vercel.app/",
     demoLabel: "Ver demo",
+    imageSrc: "/icons/img-nft-boost.png",
+    imageAlt: "Interface do site NFTs CodeBoost",
   },
 ];
 
@@ -227,6 +250,15 @@ const Projects = () => {
               <span className="mac-window-title">{project.windowTitle}</span>
             </div>
 
+            {project.imageSrc && (
+              <Image
+                src={project.imageSrc}
+                alt={project.imageAlt ?? ""}
+                width={640}
+                height={360}
+                className="w-full h-64 object-cover object-left-top bg-[var(--finder-sidebar)]"
+              />
+            )}
             <div className="p-5 md:p-6">
               <h3 className="text-xl md:text-2xl font-bold text-[var(--finder-accent)]">
                 {project.title}
@@ -279,8 +311,18 @@ const Projects = () => {
         {currentWork.map((work) => (
           <article
             key={work.title}
-            className="border border-[var(--finder-border)] rounded-xl p-5 bg-[var(--finder-sidebar)]"
+            className="border border-[var(--finder-border)] rounded-xl overflow-hidden bg-[var(--finder-sidebar)]"
           >
+            {work.imageSrc && (
+              <Image
+                src={work.imageSrc}
+                alt={work.imageAlt ?? ""}
+                width={640}
+                height={360}
+                className="w-full h-64 object-cover object-left-top"
+              />
+            )}
+            <div className="p-5">
             <h3 className="text-lg font-semibold text-[var(--finder-text)]">{work.title}</h3>
             <p className="text-sm text-[var(--finder-text-secondary)] mt-2 leading-relaxed">
               {work.description}
@@ -291,6 +333,7 @@ const Projects = () => {
             <p className="text-xs text-[var(--finder-text-secondary)] mt-3">
               {work.date} · {work.link}
             </p>
+            </div>
           </article>
         ))}
       </div>
@@ -308,6 +351,8 @@ const Projects = () => {
             codeUrl={project.codeUrl}
             demoUrl={project.demoUrl}
             demoLabel={project.demoLabel}
+            imageSrc={project.imageSrc}
+            imageAlt={project.imageAlt}
             extraNote={project.extraNote}
           />
         ))}

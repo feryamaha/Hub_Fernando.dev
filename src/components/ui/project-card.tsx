@@ -48,7 +48,7 @@ const ProjectCard = ({
           alt={imageAlt ?? ""}
           width={640}
           height={360}
-          className="w-full h-36 object-cover"
+          className="w-full h-64 object-cover object-left-top bg-[var(--finder-sidebar)]"
         />
       )}
 

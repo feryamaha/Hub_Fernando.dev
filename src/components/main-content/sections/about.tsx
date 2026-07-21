@@ -103,7 +103,7 @@ const About = () => {
           {/* Tópicos: lista vertical no desktop, chips roláveis no mobile */}
           <nav
             aria-label="Tópicos sobre mim"
-            className="flex md:flex-col gap-1 md:w-[210px] shrink-0 overflow-x-auto md:overflow-x-visible p-2 md:p-3 bg-[var(--finder-header)] md:border-r border-b md:border-b-0 border-[var(--finder-border)]"
+            className="flex md:flex-col gap-1 md:w-[210px] shrink-0 overflow-x-auto md:overflow-x-visible p-2 md:p-3 bg-finder-header md:border-r border-b md:border-b-0 border-finder-border"
           >
             {topics.map((topic, index) => {
               const Icon = topic.icon;
@@ -114,10 +114,10 @@ const About = () => {
                   key={topic.title}
                   onClick={() => setActiveTopic(index)}
                   aria-pressed={isActive}
-                  className={`flex items-center gap-2 px-3 py-1.5 rounded-md text-[13px] whitespace-nowrap transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-[var(--finder-accent)] ${
+                  className={`flex items-center gap-2 px-3 py-1.5 rounded-md text-[13px] whitespace-nowrap transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-finder-accent ${
                     isActive
-                      ? "bg-[var(--finder-accent)] text-[var(--finder-accent-contrast)]"
-                      : "text-[var(--finder-text)] hover:bg-[var(--finder-hover)]"
+                      ? "bg-finder-accent text-finder-accent-contrast"
+                      : "text-finder-text hover:bg-finder-hover"
                   }`}
                 >
                   <Icon className="w-4 h-4 shrink-0" />
@@ -130,22 +130,22 @@ const About = () => {
           {/* Conteúdo do tópico ativo */}
           <div className="flex-1 min-w-0 px-5 py-6 md:px-8 md:py-8 overflow-y-auto scrollbar-finder">
             <div className="flex items-center gap-3 mb-4">
-              <span className="flex items-center justify-center w-9 h-9 rounded-lg bg-[var(--finder-accent)]/15 text-[var(--finder-accent)]">
+              <span className="flex items-center justify-center w-9 h-9 rounded-lg bg-finder-accent/15 text-finder-accent">
                 <ActiveIcon className="w-5 h-5" />
               </span>
-              <h2 className="text-lg font-semibold text-[var(--finder-text)]">
+              <h2 className="text-lg font-semibold text-finder-text">
                 {topics[activeTopic].title}
               </h2>
             </div>
-            <p className="max-w-[600px] text-[15px] leading-relaxed text-[var(--finder-text-secondary)]">
+            <p className="max-w-[600px] text-[15px] leading-relaxed text-finder-text-secondary">
               {topics[activeTopic].content}
             </p>
           </div>
         </div>
 
         {/* Rodapé da janela */}
-        <div className="border-t border-[var(--finder-border)] bg-[var(--finder-header)]">
-          <p className="w-full text-center text-[var(--finder-text-secondary)] italic text-xs px-4 py-3">
+        <div className="border-t border-finder-border bg-finder-header">
+          <p className="w-full text-center text-finder-text-secondary italic text-xs px-4 py-3">
             "Precisão na interface. Segurança na arquitetura. Evidência em cada decisão."
           </p>
         </div>

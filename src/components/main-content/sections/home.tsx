@@ -21,14 +21,14 @@ const Home = () => {
           pauseBetweenAnimations={3}
         />
         <p
-          className="text-xl sm:text-2xl md:text-xl text-[var(--finder-text-secondary)]"
+          className="text-xl sm:text-2xl md:text-xl text-finder-text-secondary"
           data-aos="fade-up"
           data-aos-delay="400"
         >
           Full-Stack TypeScript · Rust · Segurança
         </p>
         <p
-          className="mt-3 text-sm md:text-base text-[var(--finder-text-secondary)] max-w-xl mx-auto"
+          className="mt-3 text-sm md:text-base text-finder-text-secondary max-w-xl mx-auto"
           data-aos="fade-up"
           data-aos-delay="500"
         >
@@ -44,7 +44,7 @@ const Home = () => {
       >
         <div className="flex flex-col md:flex-row items-center justify-center gap-4 w-full">
           <h1
-            className="font-dos font-[900] text-[var(--finder-accent)] w-full md:w-auto text-center md:text-left"
+            className="font-dos font-[900] text-finder-accent w-full md:w-auto text-center md:text-left"
             style={{ fontSize: "clamp(2.25rem, 7vw, 4.5rem)" }}
             data-aos="fade-right"
             data-aos-delay="200"
@@ -67,7 +67,7 @@ const Home = () => {
                 "eBPF",
                 "Full-Stack",
               ]}
-              mainClassName="px-2 sm:px-2 md:px-3 bg-[var(--finder-accent)] text-[var(--finder-accent-contrast)] overflow-hidden py-1 sm:py-1 md:py-2 justify-center rounded-lg text-[clamp(1.75rem,5.5vw,3.25rem)] font-[900] w-max max-w-full mx-auto"
+              mainClassName="px-2 sm:px-2 md:px-3 bg-finder-accent text-finder-accent-contrast overflow-hidden py-1 sm:py-1 md:py-2 justify-center rounded-lg text-[clamp(1.75rem,5.5vw,3.25rem)] font-[900] w-max max-w-full mx-auto"
               staggerFrom="last"
               initial={{ y: "100%" }}
               animate={{ y: 0 }}
@@ -90,14 +90,14 @@ const Home = () => {
         <button
           type="button"
           onClick={() => navigate("/projects")}
-          className="px-5 py-2 rounded-lg bg-[var(--finder-accent)] text-[var(--finder-accent-contrast)] text-sm font-medium hover:opacity-90 transition-opacity focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--finder-accent)]"
+          className="px-5 py-2 rounded-lg bg-finder-accent text-finder-accent-contrast text-sm font-medium hover:opacity-90 transition-opacity focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-finder-accent"
         >
           Ver projetos
         </button>
         <button
           type="button"
           onClick={() => navigate("/contact")}
-          className="px-5 py-2 rounded-lg border border-[var(--finder-border)] text-[var(--finder-text)] text-sm font-medium hover:bg-[var(--finder-hover)] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--finder-accent)]"
+          className="px-5 py-2 rounded-lg border border-finder-border text-finder-text text-sm font-medium hover:bg-finder-hover transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-finder-accent"
         >
           Entrar em contato
         </button>

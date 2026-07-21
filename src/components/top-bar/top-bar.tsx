@@ -54,7 +54,7 @@ const TopBar = ({ title }: TopBarProps) => {
     <>
       <div className="h-topbar shrink-0 bg-finder-window border-b border-finder-border flex items-center justify-between select-none px-2 md:px-4">
         <div className="flex items-center flex-1 min-w-0">
-          <h1 className="font-dos text-left flex-1 pr-8 md:pr-32 text-xl md:text-2xl p-[3px] text-[var(--finder-accent)] whitespace-nowrap overflow-hidden text-ellipsis">
+          <h1 className="font-dos text-left flex-1 pr-8 md:pr-32 text-xl md:text-2xl p-[3px] text-finder-accent whitespace-nowrap overflow-hidden text-ellipsis">
             <span>{displayedText}</span>
             <span style={{ opacity: cursorVisible ? 1 : 0 }}>|</span>
           </h1>
@@ -95,7 +95,7 @@ const TopBar = ({ title }: TopBarProps) => {
             disabled={isDownloading}
             aria-label="Baixar CV em PDF"
             title="Baixar CV (PDF)"
-            className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[var(--finder-accent)] text-[var(--finder-accent-contrast)] text-xs font-medium hover:opacity-90 transition-opacity"
+            className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-finder-accent text-finder-accent-contrast text-xs font-medium hover:opacity-90 transition-opacity"
           >
             <ArrowDownTrayIcon className="w-4 h-4" />
             <span>{isDownloading ? `${progress}%` : "CV"}</span>
@@ -106,7 +106,7 @@ const TopBar = ({ title }: TopBarProps) => {
             disabled={isDownloading}
             aria-label="Baixar CV em PDF"
             title="Baixar CV (PDF)"
-            className="sm:hidden p-1 md:p-2 text-[var(--finder-accent)] hover:opacity-90 transition-opacity"
+            className="sm:hidden p-1 md:p-2 text-finder-accent hover:opacity-90 transition-opacity"
           >
             <ArrowDownTrayIcon className="w-4 h-4 md:w-5 md:h-5" />
           </button>

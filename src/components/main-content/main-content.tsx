@@ -173,7 +173,7 @@ const MainContent = () => {
             type="button"
             aria-label="Abrir busca"
             onClick={() => setIsSpotlightOpen(true)}
-            className="hidden md:flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-[var(--finder-search)] text-finder-text-secondary text-xs hover:text-finder-text"
+            className="hidden md:flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-finder-search text-finder-text-secondary text-xs hover:text-finder-text"
           >
             <MagnifyingGlassIcon className="w-4 h-4" />
             <kbd>⌘K</kbd>

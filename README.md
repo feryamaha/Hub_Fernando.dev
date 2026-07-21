@@ -4,10 +4,28 @@ Portfolio pessoal de Fernando Moreira — interface inspirada no Finder do macOS
 
 ## Stack
 
-- **Next.js 16** (App Router) + **React 19** + **TypeScript 5** (strict)
-- **Tailwind CSS v4** (100% dos estilos)
+- **Next.js 16.3** (App Router) + **React 19.2** + **TypeScript 7** (strict)
+- **Tailwind CSS 4.3** (100% dos estilos)
 - **Biome** (lint + format + organize imports)
 - **Bun** (gerenciador de pacotes)
+
+> O TypeScript 7 removeu a API JS interna usada pelo Next para checar tipos. O projeto
+> habilita `experimental.useTypeScriptCli` em `next.config.ts`, que faz o Next invocar o
+> `tsc` local diretamente.
+
+## Design system
+
+Fonte única de verdade: **`tailwind.config.ts`**.
+
+- `FINDER_BASE` e `FINDER_THEMES` concentram todos os valores hexadecimais.
+- Um plugin `addBase` gera, a partir dessas constantes, o `:root`, os blocos `.theme-*`
+  (troca de tema em runtime) e as classes de swatch.
+- Um plugin `addUtilities` gera as classes de componente (`.mac-window`, `.spotlight-*`,
+  `.scrollbar-finder` e afins).
+- `src/app/globals.css` tem 4 linhas: só o import da fonte, o import do Tailwind e o
+  `@config`. Nenhum valor de cor vive lá.
+
+Para mudar a cor de um tema, edite o hex em `FINDER_THEMES` e nada mais.
 
 ## Scripts
 

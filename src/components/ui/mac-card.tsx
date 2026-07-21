@@ -35,11 +35,7 @@ const MacCard = ({
   const paddingClass = padding === "featured" ? "p-5 md:p-6" : "p-4 md:p-5";
 
   return (
-    <article
-      className={`mac-window ${
-        muted ? "bg-[var(--finder-sidebar)]/60" : "bg-[var(--finder-sidebar)]"
-      }`}
-    >
+    <article className={`mac-window ${muted ? "bg-finder-sidebar/60" : "bg-finder-sidebar"}`}>
       <div className="mac-window-titlebar">
         <button
           type="button"

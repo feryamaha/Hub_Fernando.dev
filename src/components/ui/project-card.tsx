@@ -46,16 +46,16 @@ const ProjectCard = ({
       alt={imageAlt ?? ""}
       width={640}
       height={360}
-      className="w-full h-64 object-cover object-left-top bg-[var(--finder-sidebar)]"
+      className="w-full h-64 object-cover object-left-top bg-finder-sidebar"
     />
   ) : undefined;
 
   const titleNode = (
-    <h3 className="text-base md:text-lg font-semibold text-[var(--finder-text)]">{title}</h3>
+    <h3 className="text-base md:text-lg font-semibold text-finder-text">{title}</h3>
   );
 
   const descriptionNode = (
-    <p className="text-[13px] md:text-sm text-[var(--finder-text-secondary)] mt-2 leading-relaxed">
+    <p className="text-[13px] md:text-sm text-finder-text-secondary mt-2 leading-relaxed">
       {description}
     </p>
   );
@@ -65,7 +65,7 @@ const ProjectCard = ({
       {technologies.map((tech) => (
         <li
           key={tech}
-          className="text-xs font-medium text-[var(--finder-accent)] border border-[var(--finder-accent)]/40 bg-[var(--finder-accent)]/10 rounded-full px-2.5 py-1"
+          className="text-xs font-medium text-finder-accent border border-finder-accent/40 bg-finder-accent/10 rounded-full px-2.5 py-1"
         >
           {tech}
         </li>
@@ -73,7 +73,7 @@ const ProjectCard = ({
     </ul>
   );
 
-  const dateNode = <p className="text-xs text-[var(--finder-text-secondary)] mt-3">{date}</p>;
+  const dateNode = <p className="text-xs text-finder-text-secondary mt-3">{date}</p>;
 
   const actionsNode =
     codeUrl || demoUrl ? (
@@ -83,7 +83,7 @@ const ProjectCard = ({
             href={codeUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-[var(--finder-accent)] text-[var(--finder-accent-contrast)] text-[13px] font-medium hover:opacity-90 transition-opacity focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--finder-accent)]"
+            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-finder-accent text-finder-accent-contrast text-[13px] font-medium hover:opacity-90 transition-opacity focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-finder-accent"
           >
             Ver código
           </a>
@@ -93,7 +93,7 @@ const ProjectCard = ({
             href={demoUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg border border-[var(--finder-border)] text-[var(--finder-text)] text-[13px] font-medium hover:bg-[var(--finder-hover)] transition-opacity focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--finder-accent)]"
+            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg border border-finder-border text-finder-text text-[13px] font-medium hover:bg-finder-hover transition-opacity focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-finder-accent"
           >
             {demoLabel}
           </a>
@@ -102,7 +102,7 @@ const ProjectCard = ({
     ) : undefined;
 
   const extraNoteNode = extraNote ? (
-    <p className="text-xs italic text-[var(--finder-text-secondary)] mt-3">{extraNote}</p>
+    <p className="text-xs italic text-finder-text-secondary mt-3">{extraNote}</p>
   ) : undefined;
 
   return (

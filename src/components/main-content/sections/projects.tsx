@@ -112,7 +112,7 @@ const currentWork: Project[] = [
         href="https://auclandesign.com/"
         target="_blank"
         rel="noopener noreferrer"
-        className="text-[var(--finder-accent)] underline"
+        className="text-finder-accent underline"
       >
         auclandesign.com
       </a>
@@ -132,7 +132,7 @@ const currentWork: Project[] = [
         href="https://auclandesign.com/"
         target="_blank"
         rel="noopener noreferrer"
-        className="text-[var(--finder-accent)] underline"
+        className="text-finder-accent underline"
       >
         auclandesign.com
       </a>
@@ -239,7 +239,7 @@ const TechChips = ({ technologies }: { technologies: string[] }) => (
     {technologies.map((tech) => (
       <li
         key={tech}
-        className="text-xs font-medium text-[var(--finder-accent)] border border-[var(--finder-accent)]/40 bg-[var(--finder-accent)]/10 rounded-full px-2.5 py-1"
+        className="text-xs font-medium text-finder-accent border border-finder-accent/40 bg-finder-accent/10 rounded-full px-2.5 py-1"
       >
         {tech}
       </li>
@@ -251,7 +251,7 @@ const Projects = () => {
   return (
     <div className="w-full p-4 md:p-8 max-w-4xl mx-auto">
       {/* Seção: Projetos em destaque (janelas macOS) */}
-      <h2 className="text-2xl font-bold text-[var(--finder-accent)] mb-6">Projetos em destaque</h2>
+      <h2 className="text-2xl font-bold text-finder-accent mb-6">Projetos em destaque</h2>
       <div className="flex flex-col gap-8 mb-14">
         {featuredProjects.map((project) => (
           <MacCard
@@ -259,9 +259,7 @@ const Projects = () => {
             windowTitle={project.windowTitle}
             padding="featured"
             title={
-              <h3 className="text-xl md:text-2xl font-bold text-[var(--finder-accent)]">
-                {project.title}
-              </h3>
+              <h3 className="text-xl md:text-2xl font-bold text-finder-accent">{project.title}</h3>
             }
             image={
               project.imageSrc ? (
@@ -270,24 +268,22 @@ const Projects = () => {
                   alt={project.imageAlt ?? ""}
                   width={640}
                   height={360}
-                  className="w-full h-64 object-cover object-left-top bg-[var(--finder-sidebar)]"
+                  className="w-full h-64 object-cover object-left-top bg-finder-sidebar"
                 />
               ) : undefined
             }
             description={
               <>
-                <p className="text-[15px] text-[var(--finder-text)] mt-3 leading-relaxed">
+                <p className="text-[15px] text-finder-text mt-3 leading-relaxed">
                   {project.summary}
                 </p>
-                <p className="text-sm text-[var(--finder-text-secondary)] mt-3 leading-relaxed">
+                <p className="text-sm text-finder-text-secondary mt-3 leading-relaxed">
                   {project.details}
                 </p>
               </>
             }
             technologies={<TechChips technologies={project.technologies} />}
-            date={
-              <p className="text-xs text-[var(--finder-text-secondary)] mt-3">{project.date}</p>
-            }
+            date={<p className="text-xs text-finder-text-secondary mt-3">{project.date}</p>}
             actions={
               <div className="flex flex-wrap gap-3 mt-4">
                 {project.links[0] && (
@@ -295,7 +291,7 @@ const Projects = () => {
                     href={project.links[0].url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-[var(--finder-accent)] text-[var(--finder-accent-contrast)] text-[13px] font-medium hover:opacity-90 transition-opacity focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--finder-accent)]"
+                    className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-finder-accent text-finder-accent-contrast text-[13px] font-medium hover:opacity-90 transition-opacity focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-finder-accent"
                   >
                     Ver código
                   </a>
@@ -305,7 +301,7 @@ const Projects = () => {
                     href={project.links[1].url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg border border-[var(--finder-border)] text-[var(--finder-text)] text-[13px] font-medium hover:bg-[var(--finder-hover)] transition-opacity focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--finder-accent)]"
+                    className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg border border-finder-border text-finder-text text-[13px] font-medium hover:bg-finder-hover transition-opacity focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-finder-accent"
                   >
                     Ver site/docs
                   </a>
@@ -317,15 +313,13 @@ const Projects = () => {
       </div>
 
       {/* Seção: Atuação profissional */}
-      <h2 className="text-2xl font-bold text-[var(--finder-accent)] mb-6">Atuação profissional</h2>
+      <h2 className="text-2xl font-bold text-finder-accent mb-6">Atuação profissional</h2>
       <div className="flex flex-col gap-6 mb-14">
         {currentWork.map((work) => (
           <MacCard
             key={work.title}
             windowTitle={work.windowTitle ?? work.title}
-            title={
-              <h3 className="text-lg font-semibold text-[var(--finder-text)]">{work.title}</h3>
-            }
+            title={<h3 className="text-lg font-semibold text-finder-text">{work.title}</h3>}
             image={
               work.imageSrc ? (
                 <Image
@@ -338,13 +332,13 @@ const Projects = () => {
               ) : undefined
             }
             description={
-              <p className="text-sm text-[var(--finder-text-secondary)] mt-2 leading-relaxed">
+              <p className="text-sm text-finder-text-secondary mt-2 leading-relaxed">
                 {work.description}
               </p>
             }
             technologies={<TechChips technologies={work.technologies} />}
             date={
-              <p className="text-xs text-[var(--finder-text-secondary)] mt-3">
+              <p className="text-xs text-finder-text-secondary mt-3">
                 {work.date} · {work.link}
               </p>
             }
@@ -353,7 +347,7 @@ const Projects = () => {
       </div>
 
       {/* Seção: Projetos pessoais recentes */}
-      <h2 className="text-2xl font-bold text-[var(--finder-accent)] mb-6">Projetos pessoais</h2>
+      <h2 className="text-2xl font-bold text-finder-accent mb-6">Projetos pessoais</h2>
       <div className="flex flex-col gap-6 mb-14">
         {personalProjects.map((project) => (
           <ProjectCard
@@ -374,8 +368,8 @@ const Projects = () => {
       </div>
 
       {/* Seção: Linha do tempo (primeiros trabalhos e estudos) */}
-      <h2 className="text-2xl font-bold text-[var(--finder-accent)] mb-2">Linha do tempo</h2>
-      <p className="text-sm text-[var(--finder-text-secondary)] mb-6">
+      <h2 className="text-2xl font-bold text-finder-accent mb-2">Linha do tempo</h2>
+      <p className="text-sm text-finder-text-secondary mb-6">
         Primeiros trabalhos profissionais e projetos de estudo que marcaram a transição de carreira.
       </p>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">

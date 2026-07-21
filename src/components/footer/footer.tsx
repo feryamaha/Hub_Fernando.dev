@@ -47,7 +47,7 @@ const Footer = () => {
                 rel={link.href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
                 aria-label={link.name}
                 title={link.name}
-                className="flex items-center gap-1.5 text-finder-text-secondary hover:text-[var(--finder-accent)] focus-visible:text-[var(--finder-accent)] focus-visible:outline-2 focus-visible:outline-[var(--finder-accent)] rounded transition-colors"
+                className="flex items-center gap-1.5 text-finder-text-secondary hover:text-finder-accent focus-visible:text-finder-accent focus-visible:outline-2 focus-visible:outline-finder-accent rounded transition-colors"
               >
                 {link.icon}
                 <span className="text-xs">{link.name}</span>

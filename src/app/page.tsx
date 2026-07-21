@@ -6,7 +6,7 @@ import TopBar from "@/components/top-bar/top-bar";
 
 export default function Page() {
   return (
-    <div className="flex flex-col h-dvh overflow-hidden bg-[var(--background)]">
+    <div className="flex flex-col h-dvh overflow-hidden bg-finder-window">
       <TopBar />
       <MainContent />
       <Footer />

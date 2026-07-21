@@ -121,15 +121,16 @@ const FavoritesSection = () => {
               <button
                 type="button"
                 onClick={() => navigate(item.path)}
-                className={`flex-1 flex items-center gap-2 px-2 py-1.5 rounded-md text-[13px] transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-[var(--finder-accent)] ${
+                className={`flex-1 flex items-center gap-2 px-2 py-1.5 rounded-md text-[13px] transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-finder-accent ${
                   isActive
-                    ? "bg-[var(--finder-accent)] text-[var(--finder-accent-contrast)]"
-                    : "text-finder-text hover:bg-[var(--finder-hover)]"
+                    ? "bg-finder-accent text-finder-accent-contrast"
+                    : "text-finder-text hover:bg-finder-hover"
                 }`}
               >
                 <span
-                  className={`w-4 h-4 ${isActive ? "" : "text-[var(--finder-accent)]"}`}
-                  style={isActive ? { color: "var(--finder-accent-contrast)" } : undefined}
+                  className={`w-4 h-4 ${
+                    isActive ? "text-finder-accent-contrast" : "text-finder-accent"
+                  }`}
                 >
                   {item.icon}
                 </span>

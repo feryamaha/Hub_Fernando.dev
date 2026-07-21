@@ -494,7 +494,7 @@ const Skills = () => {
   })();
 
   return (
-    <div className="h-full bg-[var(--finder-background)]">
+    <div className="h-full">
       <div className="mac-window h-full flex flex-col md:max-w-[980px] mx-auto">
         {/* Barra de título da janela Finder */}
         <div className="mac-window-titlebar">
@@ -508,14 +508,14 @@ const Skills = () => {
           {/* Coluna da lista (Finder list view) */}
           <div className="flex-1 min-w-0 overflow-y-auto scrollbar-finder">
             {/* Cabeçalho das colunas */}
-            <div className="sticky top-0 z-10 flex items-center h-[24px] px-3 bg-[var(--finder-header)] border-b border-[var(--finder-border)] text-[11px] text-[var(--finder-text-secondary)] font-medium">
+            <div className="sticky top-0 z-10 flex items-center h-[24px] px-3 bg-finder-header border-b border-finder-border text-[11px] text-finder-text-secondary font-medium">
               <div className="flex-1">Name</div>
               <div className="hidden lg:block w-20 text-right">Size</div>
               <div className="hidden lg:block w-32 text-right">Kind</div>
             </div>
 
             {/* Lista de pastas e arquivos */}
-            <div className="divide-y divide-[var(--finder-border)]">
+            <div className="divide-y divide-finder-border">
               {skillCategories.map((category, categoryIndex) => {
                 const isExpanded = expandedFolders.has(category.name);
                 return (
@@ -528,27 +528,23 @@ const Skills = () => {
                       data-aos-delay={categoryIndex * 60}
                       data-aos-duration="500"
                     >
-                      <div className="flex items-center h-[26px] px-3 hover:bg-[var(--finder-hover)]">
+                      <div className="flex items-center h-[26px] px-3 hover:bg-finder-hover">
                         <div className="flex-1 flex items-center min-w-0">
                           {isExpanded ? (
-                            <ChevronDownIcon className="w-3 h-3 text-[var(--finder-text-secondary)] mr-1" />
+                            <ChevronDownIcon className="w-3 h-3 text-finder-text-secondary mr-1" />
                           ) : (
-                            <ChevronRightIcon className="w-3 h-3 text-[var(--finder-text-secondary)] mr-1" />
+                            <ChevronRightIcon className="w-3 h-3 text-finder-text-secondary mr-1" />
                           )}
-                          <FolderIcon className="w-4 h-4 text-[var(--finder-folder)] mr-2 flex-shrink-0" />
-                          <span className="text-[13px] text-[var(--finder-text)] font-normal truncate">
+                          <FolderIcon className="w-4 h-4 text-finder-folder mr-2 flex-shrink-0" />
+                          <span className="text-[13px] text-finder-text font-normal truncate">
                             {category.name}
                           </span>
                         </div>
                         <div className="hidden lg:block w-20 text-right">
-                          <span className="text-[12px] text-[var(--finder-text-secondary)]">
-                            --
-                          </span>
+                          <span className="text-[12px] text-finder-text-secondary">--</span>
                         </div>
                         <div className="hidden lg:block w-32 text-right">
-                          <span className="text-[12px] text-[var(--finder-text-secondary)]">
-                            Folder
-                          </span>
+                          <span className="text-[12px] text-finder-text-secondary">Folder</span>
                         </div>
                       </div>
                     </button>
@@ -568,23 +564,23 @@ const Skills = () => {
                               <div
                                 className={`flex items-center h-[26px] pl-7 pr-3 ${
                                   isSelected
-                                    ? "bg-[var(--finder-accent)] text-[var(--finder-accent-contrast)]"
-                                    : "hover:bg-[var(--finder-hover)]"
+                                    ? "bg-finder-accent text-finder-accent-contrast"
+                                    : "hover:bg-finder-hover"
                                 }`}
                               >
                                 <div className="flex-1 flex items-center min-w-0">
                                   <DocumentIcon
                                     className={`w-4 h-4 mr-2 flex-shrink-0 ${
                                       isSelected
-                                        ? "text-[var(--finder-accent-contrast)]"
-                                        : "text-[var(--finder-icon)]"
+                                        ? "text-finder-accent-contrast"
+                                        : "text-finder-icon"
                                     }`}
                                   />
                                   <span
                                     className={`text-[13px] font-normal truncate ${
                                       isSelected
-                                        ? "text-[var(--finder-accent-contrast)]"
-                                        : "text-[var(--finder-text)]"
+                                        ? "text-finder-accent-contrast"
+                                        : "text-finder-text"
                                     }`}
                                   >
                                     {file.name}.{file.extension}
@@ -594,8 +590,8 @@ const Skills = () => {
                                   <span
                                     className={`text-[12px] ${
                                       isSelected
-                                        ? "text-[var(--finder-accent-contrast)]/80"
-                                        : "text-[var(--finder-text-secondary)]"
+                                        ? "text-finder-accent-contrast/80"
+                                        : "text-finder-text-secondary"
                                     }`}
                                   >
                                     {file.size}
@@ -605,8 +601,8 @@ const Skills = () => {
                                   <span
                                     className={`text-[12px] ${
                                       isSelected
-                                        ? "text-[var(--finder-accent-contrast)]/80"
-                                        : "text-[var(--finder-text-secondary)]"
+                                        ? "text-finder-accent-contrast/80"
+                                        : "text-finder-text-secondary"
                                     }`}
                                   >
                                     {file.kind}
@@ -617,8 +613,8 @@ const Skills = () => {
 
                             {/* Descrição inline no mobile (sem painel lateral) */}
                             {isSelected && (
-                              <div className="md:hidden px-7 py-3 bg-[var(--finder-header)] border-y border-[var(--finder-border)]">
-                                <p className="text-[13px] leading-relaxed text-[var(--finder-text-secondary)]">
+                              <div className="md:hidden px-7 py-3 bg-finder-header border-y border-finder-border">
+                                <p className="text-[13px] leading-relaxed text-finder-text-secondary">
                                   {file.description}
                                 </p>
                               </div>
@@ -631,40 +627,40 @@ const Skills = () => {
               })}
             </div>
 
-            <p className="px-3 py-2 text-[11px] text-[var(--finder-text-secondary)]">
+            <p className="px-3 py-2 text-[11px] text-finder-text-secondary">
               Clique em um arquivo para ver os detalhes.
             </p>
           </div>
 
           {/* Painel de preview (estilo Finder), apenas desktop */}
-          <aside className="hidden md:flex w-[280px] shrink-0 border-l border-[var(--finder-border)] bg-[var(--finder-header)] flex-col items-center px-5 py-8 overflow-y-auto scrollbar-finder">
+          <aside className="hidden md:flex w-[280px] shrink-0 border-l border-finder-border bg-finder-header flex-col items-center px-5 py-8 overflow-y-auto scrollbar-finder">
             {selected ? (
               <>
-                <div className="flex items-center justify-center w-20 h-20 rounded-xl bg-[var(--finder-accent)]/10 mb-4">
-                  <DocumentIcon className="w-12 h-12 text-[var(--finder-accent)]" />
+                <div className="flex items-center justify-center w-20 h-20 rounded-xl bg-finder-accent/10 mb-4">
+                  <DocumentIcon className="w-12 h-12 text-finder-accent" />
                 </div>
-                <h3 className="text-[14px] font-semibold text-[var(--finder-text)] text-center break-all">
+                <h3 className="text-[14px] font-semibold text-finder-text text-center break-all">
                   {selected.file.name}.{selected.file.extension}
                 </h3>
-                <p className="text-[11px] text-[var(--finder-text-secondary)] mb-4">
+                <p className="text-[11px] text-finder-text-secondary mb-4">
                   {selected.file.kind} · {selected.file.size}
                 </p>
-                <p className="text-[13px] leading-relaxed text-[var(--finder-text-secondary)] text-left">
+                <p className="text-[13px] leading-relaxed text-finder-text-secondary text-left">
                   {selected.file.description}
                 </p>
-                <dl className="w-full mt-6 pt-4 border-t border-[var(--finder-border)] text-[11px] space-y-1.5">
+                <dl className="w-full mt-6 pt-4 border-t border-finder-border text-[11px] space-y-1.5">
                   <div className="flex justify-between gap-2">
-                    <dt className="text-[var(--finder-text-secondary)]">Pasta</dt>
-                    <dd className="text-[var(--finder-text)] text-right">{selected.category}</dd>
+                    <dt className="text-finder-text-secondary">Pasta</dt>
+                    <dd className="text-finder-text text-right">{selected.category}</dd>
                   </div>
                   <div className="flex justify-between gap-2">
-                    <dt className="text-[var(--finder-text-secondary)]">Modificado</dt>
-                    <dd className="text-[var(--finder-text)]">{selected.file.modDate}</dd>
+                    <dt className="text-finder-text-secondary">Modificado</dt>
+                    <dd className="text-finder-text">{selected.file.modDate}</dd>
                   </div>
                 </dl>
               </>
             ) : (
-              <div className="m-auto text-center text-[var(--finder-text-secondary)]">
+              <div className="m-auto text-center text-finder-text-secondary">
                 <DocumentIcon className="w-10 h-10 mx-auto mb-3 opacity-40" />
                 <p className="text-[12px]">Selecione um arquivo para ver o preview.</p>
               </div>

@@ -3,9 +3,7 @@ import type { ReactNode } from "react";
 import "./globals.css";
 import { Providers } from "./providers";
 
-// URL canônica do site. Sobrescreva com NEXT_PUBLIC_SITE_URL no deploy
-// (ex.: domínio da Vercel) sem precisar tocar no código.
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://feryamaha.github.io/Hub_Fernando.dev";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://hub-fernando-dev.vercel.app/";
 
 const title = "Fernando Moreira | Full-Stack TypeScript · Rust · Segurança";
 const description =
@@ -56,16 +54,13 @@ export const metadata: Metadata = {
   },
 };
 
-// Aplica o tema salvo (classe + variável de accent) antes da pintura,
-// evitando flash e divergência de hidratação.
 const themeInitScript = `
 (function () {
   try {
-    var colors = { red: '#FF5F57', orange: '#FEBC2E', yellow: '#FFE08C', green: '#28C840', blue: '#0A84FF', purple: '#BF5AF2', gray: '#98989D' };
+    var ids = ['red', 'orange', 'yellow', 'green', 'blue', 'purple', 'gray'];
     var t = localStorage.getItem('theme') || 'blue';
-    if (!colors[t]) t = 'blue';
+    if (ids.indexOf(t) === -1) t = 'blue';
     document.documentElement.classList.add('theme-' + t);
-    document.documentElement.style.setProperty('--finder-accent', colors[t]);
   } catch (e) {}
 })();
 `;
@@ -74,7 +69,6 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="pt-BR" suppressHydrationWarning>
       <head>
-        {/* biome-ignore lint/security/noDangerouslySetInnerHtml: script de tema pré-hidratação */}
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
       </head>
       <body>

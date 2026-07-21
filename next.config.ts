@@ -8,6 +8,11 @@ const isVercel = !!process.env.VERCEL
 const basePath = isProd && !isVercel ? '/Hub_Fernando.dev' : ''
 
 const nextConfig: NextConfig = {
+  // TypeScript 7 removeu a API JS interna que o Next usava para checar tipos.
+  // Esta flag instrui o Next a invocar o tsc local diretamente.
+  experimental: {
+    useTypeScriptCli: true,
+  },
   output: 'export',
   basePath,
   trailingSlash: true,

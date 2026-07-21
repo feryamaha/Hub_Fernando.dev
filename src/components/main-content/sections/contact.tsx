@@ -71,7 +71,7 @@ const Contact = () => {
 
       <div className="mt-16 max-w-4xl mx-auto">
         <h2
-          className="text-4xl font-bold text-[var(--finder-accent)] mb-4 text-center"
+          className="text-4xl font-bold text-finder-accent mb-4 text-center"
           data-aos="fade-down"
           data-aos-delay="100"
         >
@@ -79,7 +79,7 @@ const Contact = () => {
         </h2>
 
         <p
-          className="text-center text-sm text-[var(--finder-text-secondary)] max-w-md mx-auto"
+          className="text-center text-sm text-finder-text-secondary max-w-md mx-auto"
           data-aos="fade-down"
           data-aos-delay="200"
         >
@@ -94,7 +94,7 @@ const Contact = () => {
         >
           <a
             href={`mailto:${EMAIL}`}
-            className="text-sm md:text-base text-[var(--finder-text)] underline decoration-[var(--finder-accent)] underline-offset-4 hover:text-[var(--finder-accent)] transition-colors"
+            className="text-sm md:text-base text-finder-text underline decoration-finder-accent underline-offset-4 hover:text-finder-accent transition-colors"
           >
             {EMAIL}
           </a>
@@ -103,10 +103,10 @@ const Contact = () => {
             onClick={() => copyValue(EMAIL, "email")}
             aria-label={copiedField === "email" ? "E-mail copiado" : "Copiar e-mail"}
             title={copiedField === "email" ? "Copiado!" : "Copiar e-mail"}
-            className="p-1.5 rounded-md text-[var(--finder-text-secondary)] hover:text-[var(--finder-accent)] hover:bg-[var(--finder-hover)] transition-colors"
+            className="p-1.5 rounded-md text-finder-text-secondary hover:text-finder-accent hover:bg-finder-hover transition-colors"
           >
             {copiedField === "email" ? (
-              <CheckIcon className="w-4 h-4 text-[var(--finder-control-maximize)]" />
+              <CheckIcon className="w-4 h-4 text-finder-control-maximize" />
             ) : (
               <ClipboardIcon className="w-4 h-4" />
             )}
@@ -121,7 +121,7 @@ const Contact = () => {
           <a
             href={CV_PATH}
             download
-            className="inline-flex items-center gap-1.5 px-5 py-2 rounded-lg bg-[var(--finder-accent)] text-[var(--finder-accent-contrast)] text-sm font-medium hover:opacity-90 transition-opacity focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--finder-accent)]"
+            className="inline-flex items-center gap-1.5 px-5 py-2 rounded-lg bg-finder-accent text-finder-accent-contrast text-sm font-medium hover:opacity-90 transition-opacity focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-finder-accent"
           >
             <ArrowDownTrayIcon className="w-4 h-4" />
             <span>Baixar CV (PDF)</span>
@@ -137,15 +137,15 @@ const Contact = () => {
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex flex-col items-center justify-center p-3 rounded-2xl bg-[var(--finder-accent)]/5 hover:bg-[var(--finder-accent)]/10 transition-all duration-300"
+                className="group flex flex-col items-center justify-center p-3 rounded-2xl bg-finder-accent/5 hover:bg-finder-accent/10 transition-all duration-300"
                 style={{ "--hover-color": link.color } as CSSProperties}
                 data-aos="fade-right"
                 data-aos-delay={`${index * 200 + 200}`}
               >
-                <div className="text-[var(--finder-accent)] group-hover:text-[var(--hover-color)] transition-colors duration-300">
+                <div className="text-finder-accent group-hover:text-[var(--hover-color)] transition-colors duration-300">
                   <Icon className="w-6 h-6 group-hover:animate-shake" />
                 </div>
-                <span className="mt-2 text-sm text-[var(--finder-accent)]/80 group-hover:text-[var(--hover-color)] transition-colors duration-300">
+                <span className="mt-2 text-sm text-finder-accent/80 group-hover:text-[var(--hover-color)] transition-colors duration-300">
                   {link.name}
                 </span>
               </a>
@@ -163,7 +163,7 @@ const Contact = () => {
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-sm text-[var(--finder-text)] underline decoration-[var(--finder-accent)] underline-offset-4 hover:text-[var(--finder-accent)] transition-colors"
+            className="text-sm text-finder-text underline decoration-finder-accent underline-offset-4 hover:text-finder-accent transition-colors"
           >
             {PHONE_DISPLAY}
           </a>
@@ -172,10 +172,10 @@ const Contact = () => {
             onClick={() => copyValue(PHONE_DISPLAY, "phone")}
             aria-label={copiedField === "phone" ? "Telefone copiado" : "Copiar telefone"}
             title={copiedField === "phone" ? "Copiado!" : "Copiar telefone"}
-            className="p-1.5 rounded-md text-[var(--finder-text-secondary)] hover:text-[var(--finder-accent)] hover:bg-[var(--finder-hover)] transition-colors"
+            className="p-1.5 rounded-md text-finder-text-secondary hover:text-finder-accent hover:bg-finder-hover transition-colors"
           >
             {copiedField === "phone" ? (
-              <CheckIcon className="w-4 h-4 text-[var(--finder-control-maximize)]" />
+              <CheckIcon className="w-4 h-4 text-finder-control-maximize" />
             ) : (
               <ClipboardIcon className="w-4 h-4" />
             )}

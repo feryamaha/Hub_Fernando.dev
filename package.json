@@ -5,7 +5,7 @@
   "type": "module",
   "description": "Portfolio pessoal - Fernando Moreira",
   "license": "MIT",
-  "homepage": "https://feryamaha.github.io/Hub_Fernando.dev",
+  "homepage": "https://hub-fernando-dev.vercel.app/",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -19,21 +19,21 @@
     "clsx": "^2.1.1",
     "framer-motion": "^11.18.2",
     "gsap": "^3.12.7",
-    "next": "16.2.9",
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0",
+    "next": "16.3.0-preview.7",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
     "react-icons": "^5.5.0",
     "tailwind-merge": "^2.6.0"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
-    "@tailwindcss/postcss": "^4.0.0",
+    "@tailwindcss/postcss": "4.3.3",
     "@types/aos": "^3.0.7",
     "@types/node": "^22.10.0",
-    "@types/react": "^19.0.0",
-    "@types/react-dom": "^19.0.0",
-    "tailwindcss": "^4.0.0",
-    "typescript": "^5.7.0"
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "tailwindcss": "4.3.3",
+    "typescript": "7.0.2"
   },
   "trustedDependencies": [
     "@biomejs/biome"

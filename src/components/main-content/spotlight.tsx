@@ -250,8 +250,8 @@ export default function Spotlight({ isOpen, onClose }: SpotlightProps) {
         aria-label="Busca"
         className="spotlight-panel relative z-10"
       >
-        <div className="flex items-center gap-2 px-4 py-3 border-b border-[var(--finder-border)]">
-          <MagnifyingGlassIcon className="w-5 h-5 text-[var(--finder-text-secondary)] flex-shrink-0" />
+        <div className="flex items-center gap-2 px-4 py-3 border-b border-finder-border">
+          <MagnifyingGlassIcon className="w-5 h-5 text-finder-text-secondary flex-shrink-0" />
           <input
             ref={inputRef}
             type="text"
@@ -296,7 +296,7 @@ export default function Spotlight({ isOpen, onClose }: SpotlightProps) {
                     <span className="text-sm font-medium truncate">{item.label}</span>
                     <span
                       className={`text-xs ml-3 flex-shrink-0 ${
-                        isActive ? "" : "text-[var(--finder-text-secondary)]"
+                        isActive ? "" : "text-finder-text-secondary"
                       }`}
                     >
                       {item.hint}
@@ -307,7 +307,7 @@ export default function Spotlight({ isOpen, onClose }: SpotlightProps) {
             })}
           </ul>
         ) : (
-          <p className="px-4 py-6 text-sm text-[var(--finder-text-secondary)] text-center">
+          <p className="px-4 py-6 text-sm text-finder-text-secondary text-center">
             Nenhum resultado encontrado.
           </p>
         )}

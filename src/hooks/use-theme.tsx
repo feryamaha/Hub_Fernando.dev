@@ -7,7 +7,17 @@ import { type ReactNode, createContext, useCallback, useContext, useEffect, useS
  * Ids dos temas suportados. Os HEX correspondentes vivem SOMENTE em
  * `tailwind.config.ts`; aqui só existe o identificador da classe.
  */
-const THEME_IDS = ["red", "orange", "yellow", "green", "blue", "purple", "gray"] as const;
+const THEME_IDS = [
+  "blue",
+  "green",
+  "green-lime",
+  "yellow",
+  "orange",
+  "red",
+  "purple",
+  "gray",
+  "black",
+] as const;
 
 interface ThemeContextValue {
   theme: ThemeColor;
@@ -76,5 +86,5 @@ export const THEME_LIST: ThemeListItem[] = THEME_IDS.map((color) => ({
   name: `${color.charAt(0).toUpperCase() + color.slice(1)} Theme`,
   color,
   className: `theme-${color}`,
-  swatchClass: `swatch-${color}`,
+  iconPath: `/icons/icon-macos-folder-${color}.webp`,
 }));

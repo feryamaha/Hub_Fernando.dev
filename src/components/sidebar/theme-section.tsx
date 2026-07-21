@@ -10,22 +10,24 @@ const ThemeSection = () => {
       <h2 className="text-finder-text-secondary text-[11px] font-medium uppercase px-2 mb-1">
         Theme
       </h2>
-      <nav className="space-y-px">
-        {THEME_LIST.map(({ id, name, color, swatchClass }) => (
+      <nav className="grid grid-cols-3 gap-2">
+        {THEME_LIST.map(({ id, name, color, iconPath }) => (
           <button
             type="button"
             key={id}
             onClick={() => changeTheme(color)}
-            className={`flex items-center w-full px-2 py-1 rounded-md focus-visible:outline-2 focus-visible:outline-finder-accent ${
+            aria-label={name}
+            className={`flex items-center justify-center py-3 mt-4 w-full rounded-md focus-visible:outline-2 focus-visible:outline-finder-accent ${
               theme === color ? "bg-finder-accent/15" : "hover:bg-finder-hover"
             }`}
           >
-            <div className="flex gap-2 p-2">
-              <div
-                className={`w-3 h-3 rounded-full shadow-[0_0_0_1px_rgba(0,0,0,0.1)] ${swatchClass}`}
-              />
-            </div>
-            <span className="text-finder-text">{name}</span>
+            <img
+              src={iconPath}
+              width={32}
+              height={32}
+              alt="mac-folders"
+              className="brightness-150"
+            />
           </button>
         ))}
       </nav>

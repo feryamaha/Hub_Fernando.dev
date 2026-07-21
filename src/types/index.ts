@@ -1,7 +1,16 @@
 import type { ReactNode } from "react";
 
 /** Nomes de cor de tema suportados (ids de THEME_IDS). */
-export type ThemeColor = "red" | "orange" | "yellow" | "green" | "blue" | "purple" | "gray";
+export type ThemeColor =
+  | "blue"
+  | "green"
+  | "green-lime"
+  | "yellow"
+  | "orange"
+  | "red"
+  | "purple"
+  | "gray"
+  | "black";
 
 /** Item exibido na lista de temas do Sidebar. */
 export interface ThemeListItem {
@@ -9,7 +18,7 @@ export interface ThemeListItem {
   name: string;
   color: ThemeColor;
   className: string;
-  swatchClass: string;
+  iconPath: string;
 }
 
 /** Rotas/seções navegáveis da aplicação (substitui react-router). */

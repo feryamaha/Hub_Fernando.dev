@@ -57,7 +57,7 @@ export const metadata: Metadata = {
 const themeInitScript = `
 (function () {
   try {
-    var ids = ['red', 'orange', 'yellow', 'green', 'blue', 'purple', 'gray'];
+    var ids = ['blue', 'green', 'green-lime', 'yellow', 'orange', 'red', 'purple', 'gray', 'black'];
     var t = localStorage.getItem('theme') || 'blue';
     if (ids.indexOf(t) === -1) t = 'blue';
     document.documentElement.classList.add('theme-' + t);

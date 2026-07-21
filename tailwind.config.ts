@@ -22,17 +22,19 @@ export const FINDER_BASE = {
 } as const
 
 /**
- * Temas de accent. `hover` preserva EXATAMENTE os valores herdados de hoje,
- * inclusive as divergências de orange e yellow (decisão D4 do PLAN_002).
+ * Temas de accent com paleta oficial do macOS (9 cores).
+ * accentContrast determinado por contraste WCAG AA.
  */
 export const FINDER_THEMES = {
-  blue: { accent: '#0A84FF', accentContrast: '#ffffff', hover: 'rgba(10, 132, 255, 0.1)' },
-  red: { accent: '#FF5F57', accentContrast: '#ffffff', hover: 'rgba(255, 95, 87, 0.1)' },
-  orange: { accent: '#FEBC2E', accentContrast: '#000000', hover: 'rgba(255, 149, 0, 0.1)' },
-  yellow: { accent: '#FFE08C', accentContrast: '#000000', hover: 'rgba(255, 214, 10, 0.1)' },
-  green: { accent: '#28C840', accentContrast: '#000000', hover: 'rgba(40, 200, 64, 0.1)' },
-  purple: { accent: '#BF5AF2', accentContrast: '#ffffff', hover: 'rgba(191, 90, 242, 0.1)' },
-  gray: { accent: '#98989D', accentContrast: '#000000', hover: 'rgba(152, 152, 157, 0.1)' },
+  blue: { accent: '#73D7FF', accentContrast: '#000000', hover: 'rgba(115, 215, 255, 0.1)' },
+  green: { accent: '#72E2AD', accentContrast: '#000000', hover: 'rgba(114, 226, 173, 0.1)' },
+  'green-lime': { accent: '#7CF08E', accentContrast: '#000000', hover: 'rgba(124, 240, 142, 0.1)' },
+  yellow: { accent: '#FCDB65', accentContrast: '#000000', hover: 'rgba(252, 219, 101, 0.1)' },
+  orange: { accent: '#FBBC66', accentContrast: '#000000', hover: 'rgba(251, 188, 102, 0.1)' },
+  red: { accent: '#FF685F', accentContrast: '#000000', hover: 'rgba(255, 104, 95, 0.1)' },
+  purple: { accent: '#CA81E4', accentContrast: '#000000', hover: 'rgba(202, 129, 228, 0.1)' },
+  gray: { accent: '#C6C6C6', accentContrast: '#000000', hover: 'rgba(198, 198, 198, 0.1)' },
+  black: { accent: '#575757', accentContrast: '#ffffff', hover: 'rgba(87, 87, 87, 0.1)' },
 } as const
 
 const themeEntries = Object.entries(FINDER_THEMES)
@@ -47,11 +49,6 @@ const themeBlocks = Object.fromEntries(
       '--finder-hover': value.hover,
     },
   ])
-)
-
-/** Bolinha de cada tema na lista da sidebar (addBase não sofre purge). */
-const swatchBlocks = Object.fromEntries(
-  themeEntries.map(([name, value]) => [`.swatch-${name}`, { 'background-color': value.accent }])
 )
 
 const config: Config = {
@@ -135,7 +132,6 @@ const config: Config = {
           '--finder-hover': FINDER_THEMES.blue.hover,
         },
         ...themeBlocks,
-        ...swatchBlocks,
         html: {
           'font-family':
             '-apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',

@@ -1,5 +1,6 @@
 "use client";
 
+import MacCard from "@/components/ui/mac-card";
 import ProjectCard from "@/components/ui/project-card";
 import Image from "next/image";
 import type { ReactNode } from "react";
@@ -26,6 +27,7 @@ interface FeaturedProject {
 
 interface Project {
   title: string;
+  windowTitle?: string;
   description: string;
   technologies: string[];
   date: string;
@@ -36,6 +38,7 @@ interface Project {
 
 interface CardProject {
   title: string;
+  windowTitle?: string;
   description: string;
   technologies: string[];
   date: string;
@@ -97,6 +100,7 @@ const featuredProjects: FeaturedProject[] = [
 const currentWork: Project[] = [
   {
     title: "Desenvolvedor Full-Stack na Auclan Design",
+    windowTitle: "auclan-design — next.js · typescript",
     description:
       "Aplicações web, dashboards e portais com Next.js (App Router), React 19 e TypeScript em strict mode. BFF via Route Handlers mantendo credenciais e regras sensíveis no servidor, arquitetura em camadas (UI → Hooks → Services → Types) com contratos explícitos e segurança por padrão (CSP Level 3 com nonce, HSTS, X-Frame-Options e validação em runtime com Zod). Atualmente no desenvolvimento de um portal multi-perfil (5 perfis de usuário) para uma operadora de plano odontológico: centenas de componentes tipados, testes E2E com Playwright e gates de segurança e arquitetura em pre-commit.",
     technologies: ["Next.js", "React 19", "TypeScript", "Tailwind", "Zod", "Playwright"],
@@ -116,6 +120,7 @@ const currentWork: Project[] = [
   },
   {
     title: "UIKit Design System",
+    windowTitle: "uikit — design system · tailwind",
     description:
       "Design System em Tailwind CSS com tokens semânticos e mais de 160 componentes TypeScript reutilizáveis, com foco em escalabilidade, acessibilidade e consistência visual — acelerando a entrega de features. Otimização de performance (RSC, SSR, SSG, ISR) com scores Lighthouse na faixa de 90+ e redução de ~20–30% no bundle.",
     technologies: ["React", "TypeScript", "Tailwind", "Next.js", "Design System"],
@@ -138,6 +143,7 @@ const currentWork: Project[] = [
 const personalProjects: CardProject[] = [
   {
     title: "HARVESTIN",
+    windowTitle: "harvestin — next.js · typescript",
     description:
       "Ferramenta pessoal de busca de emprego: agrega vagas de quadros públicos gratuitos e feeds de ATS, calcula score de compatibilidade do currículo com shortlist por limiar e acompanha candidaturas em interface autenticada. Projeto proprietário de uso individual.",
     technologies: ["Next.js", "React 19", "TypeScript", "Tailwind CSS 4", "Bun", "next-intl"],
@@ -151,6 +157,7 @@ const personalProjects: CardProject[] = [
   },
   {
     title: "CIFRA-TOM",
+    windowTitle: "cifra-tom — next.js · typescript",
     description:
       "Plataforma de cifras para violão sem anúncios no meio da leitura: shape do acorde ao passar o mouse, transposição de tom com cálculo automático de capotraste, leitura da progressão por números da escala, dicionário de acordes, metrônomo e afinador.",
     technologies: ["Next.js", "TypeScript", "Tailwind", "Drizzle ORM", "Playwright", "Bun"],
@@ -166,6 +173,7 @@ const personalProjects: CardProject[] = [
 const pastProjects: CardProject[] = [
   {
     title: "MLX CAPITAL",
+    windowTitle: "mlx-capital — frontend",
     description:
       "Construção de interfaces frontend para um cliente da Auclan Design, com ênfase em performance e design pixel perfect, integrando layouts dinâmicos.",
     technologies: ["HTML", "CSS", "JavaScript"],
@@ -177,6 +185,7 @@ const pastProjects: CardProject[] = [
   },
   {
     title: "ALPHA",
+    windowTitle: "alpha — frontend",
     description:
       "Desenvolvimento do frontend para um cliente da Auclan Design, criando interfaces modernas e responsivas com foco em usabilidade e fidelidade ao design.",
     technologies: ["HTML", "CSS", "JavaScript"],
@@ -189,6 +198,7 @@ const pastProjects: CardProject[] = [
   },
   {
     title: "VEGA",
+    windowTitle: "vega — frontend · scss",
     description:
       "Desenvolvimento frontend para um sistema da Auclan Design, utilizando SCSS para estilização avançada e garantindo responsividade e acessibilidade.",
     technologies: ["HTML", "SCSS", "JavaScript"],
@@ -200,6 +210,7 @@ const pastProjects: CardProject[] = [
   },
   {
     title: "WHFF-enD",
+    windowTitle: "whff-end — react",
     description:
       "Projeto pessoal de aprendizado em React, funcionando como um hub de conhecimento com foco em conceitos fundamentais, Webpack e Babel para robustez.",
     technologies: ["React", "SCSS", "JavaScript"],
@@ -211,6 +222,7 @@ const pastProjects: CardProject[] = [
   },
   {
     title: "NFTs CodeBoost",
+    windowTitle: "nfts-codeboost — next.js",
     description:
       "Site didático para aprendizado de Next.js (App Router) no curso CodeBoost, com tema de NFTs: carrosséis interativos, componentes acessíveis (Radix UI) e Tailwind CSS.",
     technologies: ["Next.js", "React", "Tailwind", "Radix UI"],
@@ -242,42 +254,41 @@ const Projects = () => {
       <h2 className="text-2xl font-bold text-[var(--finder-accent)] mb-6">Projetos em destaque</h2>
       <div className="flex flex-col gap-8 mb-14">
         {featuredProjects.map((project) => (
-          <article key={project.title} className="mac-window">
-            <div className="mac-window-titlebar">
-              <span className="traffic-light close" />
-              <span className="traffic-light minimize" />
-              <span className="traffic-light maximize" />
-              <span className="mac-window-title">{project.windowTitle}</span>
-            </div>
-
-            {project.imageSrc && (
-              <Image
-                src={project.imageSrc}
-                alt={project.imageAlt ?? ""}
-                width={640}
-                height={360}
-                className="w-full h-64 object-cover object-left-top bg-[var(--finder-sidebar)]"
-              />
-            )}
-            <div className="p-5 md:p-6">
+          <MacCard
+            key={project.title}
+            windowTitle={project.windowTitle}
+            padding="featured"
+            title={
               <h3 className="text-xl md:text-2xl font-bold text-[var(--finder-accent)]">
                 {project.title}
               </h3>
-
-              <p className="text-[15px] text-[var(--finder-text)] mt-3 leading-relaxed">
-                {project.summary}
-              </p>
-
-              <p className="text-sm text-[var(--finder-text-secondary)] mt-3 leading-relaxed">
-                {project.details}
-              </p>
-
-              <div className="mt-4">
-                <TechChips technologies={project.technologies} />
-              </div>
-
+            }
+            image={
+              project.imageSrc ? (
+                <Image
+                  src={project.imageSrc}
+                  alt={project.imageAlt ?? ""}
+                  width={640}
+                  height={360}
+                  className="w-full h-64 object-cover object-left-top bg-[var(--finder-sidebar)]"
+                />
+              ) : undefined
+            }
+            description={
+              <>
+                <p className="text-[15px] text-[var(--finder-text)] mt-3 leading-relaxed">
+                  {project.summary}
+                </p>
+                <p className="text-sm text-[var(--finder-text-secondary)] mt-3 leading-relaxed">
+                  {project.details}
+                </p>
+              </>
+            }
+            technologies={<TechChips technologies={project.technologies} />}
+            date={
               <p className="text-xs text-[var(--finder-text-secondary)] mt-3">{project.date}</p>
-
+            }
+            actions={
               <div className="flex flex-wrap gap-3 mt-4">
                 {project.links[0] && (
                   <a
@@ -300,8 +311,8 @@ const Projects = () => {
                   </a>
                 )}
               </div>
-            </div>
-          </article>
+            }
+          />
         ))}
       </div>
 
@@ -309,32 +320,35 @@ const Projects = () => {
       <h2 className="text-2xl font-bold text-[var(--finder-accent)] mb-6">Atuação profissional</h2>
       <div className="flex flex-col gap-6 mb-14">
         {currentWork.map((work) => (
-          <article
+          <MacCard
             key={work.title}
-            className="border border-[var(--finder-border)] rounded-xl overflow-hidden bg-[var(--finder-sidebar)]"
-          >
-            {work.imageSrc && (
-              <Image
-                src={work.imageSrc}
-                alt={work.imageAlt ?? ""}
-                width={640}
-                height={360}
-                className="w-full h-64 object-cover object-left-top"
-              />
-            )}
-            <div className="p-5">
-            <h3 className="text-lg font-semibold text-[var(--finder-text)]">{work.title}</h3>
-            <p className="text-sm text-[var(--finder-text-secondary)] mt-2 leading-relaxed">
-              {work.description}
-            </p>
-            <div className="mt-3">
-              <TechChips technologies={work.technologies} />
-            </div>
-            <p className="text-xs text-[var(--finder-text-secondary)] mt-3">
-              {work.date} · {work.link}
-            </p>
-            </div>
-          </article>
+            windowTitle={work.windowTitle ?? work.title}
+            title={
+              <h3 className="text-lg font-semibold text-[var(--finder-text)]">{work.title}</h3>
+            }
+            image={
+              work.imageSrc ? (
+                <Image
+                  src={work.imageSrc}
+                  alt={work.imageAlt ?? ""}
+                  width={640}
+                  height={360}
+                  className="w-full h-64 object-cover object-left-top"
+                />
+              ) : undefined
+            }
+            description={
+              <p className="text-sm text-[var(--finder-text-secondary)] mt-2 leading-relaxed">
+                {work.description}
+              </p>
+            }
+            technologies={<TechChips technologies={work.technologies} />}
+            date={
+              <p className="text-xs text-[var(--finder-text-secondary)] mt-3">
+                {work.date} · {work.link}
+              </p>
+            }
+          />
         ))}
       </div>
 
@@ -345,6 +359,7 @@ const Projects = () => {
           <ProjectCard
             key={project.title}
             title={project.title}
+            windowTitle={project.windowTitle}
             description={project.description}
             technologies={project.technologies}
             date={project.date}
@@ -369,6 +384,7 @@ const Projects = () => {
             key={project.title}
             muted
             title={project.title}
+            windowTitle={project.windowTitle}
             description={project.description}
             technologies={project.technologies}
             date={project.date}

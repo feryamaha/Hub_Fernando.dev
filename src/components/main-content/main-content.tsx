@@ -106,9 +106,9 @@ const MainContent = () => {
             className="mac-window w-full max-w-sm cursor-pointer text-left"
           >
             <div className="mac-window-titlebar">
-              <span className="traffic-light close" />
-              <span className="traffic-light minimize" />
-              <span className="traffic-light maximize" />
+              <img src="/icons/icon-close.svg" width={12} height={12} alt="" />
+              <img src="/icons/icon-mac-minimize.svg" width={12} height={12} alt="" />
+              <img src="/icons/icon-mac-maximize.svg" width={12} height={12} alt="" />
               <span className="mac-window-title">{getTitle()}</span>
             </div>
             <div className="px-4 py-6 text-center text-finder-text-secondary text-finder">
@@ -142,24 +142,30 @@ const MainContent = () => {
               setContentState("normal");
               navigate("/");
             }}
-            className="w-3 h-3 rounded-full bg-[#FF5F57] hover:bg-[#FF5F57]/80 transition-colors"
-          />
+            className="hover:opacity-80 transition-opacity"
+          >
+            <img src="/icons/icon-mac-close_button.svg" width={12} height={12} alt="" />
+          </button>
           <button
             type="button"
             aria-label="Minimizar conteúdo"
             onClick={() =>
               setContentState((prev) => (prev === "minimized" ? "normal" : "minimized"))
             }
-            className="w-3 h-3 rounded-full bg-[#FFBD2E] hover:bg-[#FFBD2E]/80 transition-colors"
-          />
+            className="hover:opacity-80 transition-opacity"
+          >
+            <img src="/icons/icon-mac-minimize_button.svg" width={12} height={12} alt="" />
+          </button>
           <button
             type="button"
             aria-label="Maximizar conteúdo"
             onClick={() =>
               setContentState((prev) => (prev === "maximized" ? "normal" : "maximized"))
             }
-            className="w-3 h-3 rounded-full bg-[#28C840] hover:bg-[#28C840]/80 transition-colors"
-          />
+            className="hover:opacity-80 transition-opacity"
+          >
+            <img src="/icons/icon-mac-maximize-button.svg" width={12} height={12} alt="" />
+          </button>
         </div>
         <div className="flex-1 text-center text-finder-text text-finder">{getTitle()}</div>
         <div className="px-2">

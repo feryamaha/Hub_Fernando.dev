@@ -60,6 +60,10 @@
   kbd {
     font-family: "SF Mono", ui-monospace, Menlo, Consolas, monospace;
   }
+
+  button {
+    cursor: pointer;
+  }
 }
 
 /* ==========================================================================

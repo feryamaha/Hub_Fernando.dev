@@ -417,9 +417,9 @@ const Skills = () => {
       <div className="mac-window h-full flex flex-col md:max-w-[980px] mx-auto">
         {/* Barra de título da janela Finder */}
         <div className="mac-window-titlebar">
-          <span className="traffic-light close" />
-          <span className="traffic-light minimize" />
-          <span className="traffic-light maximize" />
+          <img src="/icons/icon-close.svg" width={12} height={12} alt="" />
+          <img src="/icons/icon-mac-minimize.svg" width={12} height={12} alt="" />
+          <img src="/icons/icon-mac-maximize.svg" width={12} height={12} alt="" />
           <span className="mac-window-title">Skills — {totalItems} items</span>
         </div>
 

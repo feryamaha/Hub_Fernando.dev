@@ -92,9 +92,9 @@ const About = () => {
       >
         {/* Barra de título (janela macOS) */}
         <div className="mac-window-titlebar">
-          <span className="traffic-light close" />
-          <span className="traffic-light minimize" />
-          <span className="traffic-light maximize" />
+          <img src="/icons/icon-close.svg" width={12} height={12} alt="" />
+          <img src="/icons/icon-mac-minimize.svg" width={12} height={12} alt="" />
+          <img src="/icons/icon-mac-maximize.svg" width={12} height={12} alt="" />
           <span className="mac-window-title">Sobre — Fernando Moreira</span>
         </div>
 

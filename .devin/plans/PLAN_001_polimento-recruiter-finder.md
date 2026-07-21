@@ -20,7 +20,7 @@ globals.css), heroicons. Nenhuma dependência nova.
 - `--finder-accent-contrast`: preto nos temas yellow/orange/green/gray, branco nos temas
   blue/red/purple/pink (contraste calculado; atinge AA-large em todos; AA-normal estrito
   exigiria abandonar o padrão visual macOS: decisão final é do Fernando).
-- E-mail canônico: fmoreirayamaha@gmail.com (assumpção A1 da spec, flagada).
+- E-mail canônico: feryamaha@hotmail.com (assumpção A1 da spec, flagada).
 - CV_PATH: /cv-fernando-moreira.pdf (asset pendente, assumpção A2).
 
 ---
@@ -67,7 +67,7 @@ globals.css), heroicons. Nenhuma dependência nova.
 
 **Implementação** (código completo):
 ```ts
-export const EMAIL = "fmoreirayamaha@gmail.com";
+export const EMAIL = "feryamaha@hotmail.com";
 export const PHONE_DISPLAY = "+55 14 99601-0696";
 export const CV_PATH = "/cv-fernando-moreira.pdf";
 export const CV_FILENAME = "cv-fernando-moreira.pdf";

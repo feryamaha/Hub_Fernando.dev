@@ -16,15 +16,15 @@ const InfoModal = ({ isOpen, onClose }: ModalBaseProps) => {
   const features: Feature[] = [
     {
       icon: CodeBracketIcon,
-      title: "Stack",
+      title: "Interface Finder",
       description:
-        "Next.js 16 App Router com export estático, React 19, TypeScript strict, Tailwind CSS 4.",
+        "Janelas com titlebar e semáforos SVG oficiais, sidebar com vibrancy, tipografia de sistema e 8 temas de accent dinâmicos.",
     },
     {
       icon: CommandLineIcon,
-      title: "Engenharia",
+      title: "Interações macOS",
       description:
-        "Biome, Bun, deploy Vercel, arquitetura por seções com temas dinâmicos via CSS vars.",
+        "Semáforos funcionais (fechar, minimizar, maximizar), busca Spotlight com ⌘K e navegação SPA por seções.",
     },
   ];
 
@@ -34,7 +34,6 @@ const InfoModal = ({ isOpen, onClose }: ModalBaseProps) => {
         <div className="text-finder-text-secondary">
           <p className="mb-4">
             Este é o meu Portfolio pessoal inspirado na interface do Finder do macOS.
-            
           </p>
         </div>
 

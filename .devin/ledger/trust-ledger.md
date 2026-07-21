@@ -22,7 +22,7 @@
 2026-07-20 | ciclo=PLAN_001/task-5 | skill=nemesis-subagent-driven-development | evento=review-two-stage | resultado=FAIL-tentativa-1 | base=13 erros de lint no spotlight.tsx (supressao biome invalida, ARIA semantico)
 2026-07-20 | ciclo=PLAN_001/task-5 | skill=nemesis-subagent-driven-development | evento=review-two-stage | resultado=PASS-tentativa-2 | base=re-review com spotlight.tsx zero diagnosticos, correcoes semanticas reais (backdrop e itens viraram botoes nativos), supressoes so com categoria valida
 2026-07-20 | ciclo=PLAN_001/task-6 | skill=nemesis-subagent-driven-development | evento=review-two-stage | resultado=PASS | base=tsc limpo rodado pelo revisor independente
-2026-07-20 | ciclo=PLAN_001/task-7 | skill=nemesis-subagent-driven-development | evento=review-two-stage | resultado=PASS | base=tsc limpo, e-mail canonico fmoreirayamaha@gmail.com confirmado
+2026-07-20 | ciclo=PLAN_001/task-7 | skill=nemesis-subagent-driven-development | evento=review-two-stage | resultado=PASS | base=tsc limpo, e-mail canonico feryamaha@hotmail.com confirmado
 2026-07-20 | ciclo=PLAN_001/task-8 | skill=nemesis-subagent-driven-development | evento=review-two-stage | resultado=PASS | base=tsc limpo rodado pelo revisor independente
 2026-07-20 | ciclo=PLAN_001/task-9 | skill=nemesis-subagent-driven-development | evento=review-two-stage | resultado=PASS | base=tsc limpo rodado pelo revisor independente
 2026-07-20 | ciclo=PLAN_001/task-10 | skill=nemesis-subagent-driven-development | evento=review-two-stage | resultado=PASS | base=tsc limpo rodado pelo revisor independente

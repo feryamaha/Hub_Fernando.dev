@@ -13,7 +13,7 @@ PROBLEM (sintomas observáveis, verificados no código e no site ao vivo em 2026
 - Nome "Moreira" permanece borrado na alternância do TrueFocus (screenshot da sessão).
 - Não existe download de CV em nenhum componente; use-download.ts órfão (sem imports).
 - Dois e-mails divergentes: contact.tsx:105 `feryamaha@hotmail.com` vs top-bar.tsx:113 e
-  footer.tsx:45 `fmoreirayamaha@gmail.com`.
+  footer.tsx:45 `feryamaha@hotmail.com`.
 - Traffic light vermelho/amarelo do main-content.tsx:107-128 esconde o conteúdo
   (`renderContent()` retorna null) sem caminho óbvio de volta.
 - Cards de projeto sem imagem e com links sublinhados pequenos como único CTA;
@@ -39,7 +39,7 @@ CONTEXT:
 - Todas as seções ficam montadas e ocultas via CSS (SEO), main-content.tsx.
 - Temas por classe no <html> com vars --finder-accent etc. (globals.css).
 - Assumpção A1 (decisão F8, flagada para confirmação do Fernando): e-mail canônico =
-  fmoreirayamaha@gmail.com (valor já usado em top-bar/footer e no cadastro da conta).
+  feryamaha@hotmail.com (valor já usado em top-bar/footer e no cadastro da conta).
 - Assumpção A2: o arquivo do CV NÃO existe no repo; o botão aponta para
   /cv-fernando-moreira.pdf e o Fernando adiciona o PDF em public/ antes do deploy
   (invariante 6 do AGENTS proposto: agente não fabrica asset). PENDÊNCIA declarada.

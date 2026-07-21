@@ -333,22 +333,58 @@ const skillCategories: SkillCategory[] = [
     name: "IA & Agentic Coding",
     files: [
       {
-        name: "Claude Code",
+        name: "Devin",
+        extension: "ts",
+        size: "1.8 KB",
+        modDate: "2026",
+        kind: "Agent Config",
+        description:
+          "Devin (Cognition) para engenharia autônoma de software com delegação de tarefas complexas.",
+      },
+      {
+        name: "VSCode",
+        extension: "ts",
+        size: "1.6 KB",
+        modDate: "2026",
+        kind: "Editor Config",
+        description:
+          "VSCode com extensões de IA para desenvolvimento assistido e integração com agents.",
+      },
+      {
+        name: "Cursor",
+        extension: "ts",
+        size: "1.5 KB",
+        modDate: "2026",
+        kind: "Editor Config",
+        description:
+          "Cursor, editor AI-first, para features, refactors e documentação com contratos claros de atuação do agente.",
+      },
+      {
+        name: "Antigravity",
+        extension: "ts",
+        size: "1.7 KB",
+        modDate: "2026",
+        kind: "Agent Config",
+        description:
+          "Google Antigravity, plataforma agent-first com Gemini, para orquestrar múltiplos agentes em paralelo.",
+      },
+      {
+        name: "Claude",
         extension: "ts",
         size: "1.6 KB",
         modDate: "2026",
         kind: "Agent Config",
         description:
-          "Desenvolvimento assistido por Claude Code sob governança arquitetural explícita.",
+          "Claude Code (Anthropic) sob governança arquitetural explícita com contratos de atuação.",
       },
       {
-        name: "Cursor / Windsurf",
+        name: "OpenCode",
         extension: "ts",
-        size: "1.5 KB",
+        size: "1.3 KB",
         modDate: "2026",
         kind: "Agent Config",
         description:
-          "Cursor e Windsurf para features, refactors e documentação com contratos claros de atuação do agente.",
+          "OpenCode, agente open-source para codação assistida com controle total do fluxo.",
       },
       {
         name: "Codex",
@@ -360,12 +396,57 @@ const skillCategories: SkillCategory[] = [
           "OpenAI Codex integrado ao fluxo, com enforcement de segurança sobre as ações do agente.",
       },
       {
-        name: "Vercel AI SDK",
+        name: "Grok",
         extension: "ts",
+        size: "1.2 KB",
+        modDate: "2026",
+        kind: "Agent Config",
+        description: "Grok (xAI) para codação assistida e raciocínio sobre código em tempo real.",
+      },
+      {
+        name: "Harness",
+        extension: "md",
+        size: "2.1 KB",
+        modDate: "2026",
+        kind: "Process File",
+        description:
+          "Harness de processo: framework de regras, skills e workflows que governa a atuação de agentes de IA.",
+      },
+      {
+        name: "Skills",
+        extension: "md",
+        size: "1.9 KB",
+        modDate: "2026",
+        kind: "Process File",
+        description:
+          "Skills em markdown que definem capacidades específicas do agente com contrato de handoff completo.",
+      },
+      {
+        name: "Rules",
+        extension: "md",
         size: "1.7 KB",
         modDate: "2026",
-        kind: "TypeScript File",
-        description: "Vercel AI SDK para construir funcionalidades de IA com tipagem e streaming.",
+        kind: "Process File",
+        description:
+          "Regras canônicas que restringem e guiam o comportamento do agente com verificadores mecânicos.",
+      },
+      {
+        name: "Workflows",
+        extension: "md",
+        size: "1.8 KB",
+        modDate: "2026",
+        kind: "Process File",
+        description:
+          "Workflows sequenciais de skills que governam o desenvolvimento de forma determinística e auditável.",
+      },
+      {
+        name: "Hooks Pretool/Posttool Use",
+        extension: "md",
+        size: "1.5 KB",
+        modDate: "2026",
+        kind: "Process File",
+        description:
+          "Hooks que interceptam tool calls antes e depois da execução para enforcement de segurança e validação.",
       },
     ],
   },

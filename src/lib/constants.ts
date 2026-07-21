@@ -1,4 +1,4 @@
-export const EMAIL = "fmoreirayamaha@gmail.com";
+export const EMAIL = "feryamaha@hotmail.com";
 export const PHONE_DISPLAY = "+55 14 99601-0696";
 export const CV_PATH = "/cv-fernando-moreira.pdf";
 export const CV_FILENAME = "cv-fernando-moreira.pdf";

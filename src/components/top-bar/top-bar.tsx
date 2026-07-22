@@ -59,7 +59,7 @@ const TopBar = ({ title }: TopBarProps) => {
             <span style={{ opacity: cursorVisible ? 1 : 0 }}>|</span>
           </h1>
         </div>
-        <div className="flex items-center space-x-0 md:space-x-1">
+        <div className="flex items-center space-x-0 md:space-x-1 py-2">
           {/* CTAs de contato sempre visíveis no topo */}
           <a
             href="https://github.com/feryamaha"
@@ -95,10 +95,10 @@ const TopBar = ({ title }: TopBarProps) => {
             disabled={isDownloading}
             aria-label="Baixar CV em PDF"
             title="Baixar CV (PDF)"
-            className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 min-h-11 rounded-lg bg-finder-accent text-finder-accent-contrast text-xs font-medium hover:opacity-90 transition-opacity"
+            className="hidden sm:inline-flex items-center gap-1.5 px-2 min-h-8 rounded-lg border border-finder-accent text-finder-accent-contrast text-xs font-medium hover:opacity-90 transition-opacity"
           >
-            <ArrowDownTrayIcon className="w-4 h-4" />
-            <span>{isDownloading ? `${progress}%` : "CV"}</span>
+            <ArrowDownTrayIcon className="w-4 h-4 text-finder-accent" />
+            <span className="text-finder-accent">{isDownloading ? `${progress}%` : "CV"}</span>
           </button>
           <button
             type="button"
@@ -108,7 +108,7 @@ const TopBar = ({ title }: TopBarProps) => {
             title="Baixar CV (PDF)"
             className="sm:hidden inline-flex items-center justify-center w-11 h-11 shrink-0 text-finder-accent hover:opacity-90 transition-opacity"
           >
-            <ArrowDownTrayIcon className="w-4 h-4 md:w-5 md:h-5" />
+            <ArrowDownTrayIcon className="w-4 h-4 md:w-5 md:h-5 text-finder-accent" />
           </button>
           <button
             type="button"

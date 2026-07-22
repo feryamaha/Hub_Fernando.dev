@@ -106,7 +106,7 @@ const SPOTLIGHT_INDEX: SpotlightItem[] = [
     label: "React",
     hint: "Skill",
     path: "/skills",
-    keywords: "react 19 hooks server components jsx tsx",
+    keywords: "react hooks server components jsx tsx",
   },
   {
     label: "Next.js",

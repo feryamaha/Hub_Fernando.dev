@@ -82,6 +82,7 @@ Plataforma de prospecção de leads B2B que agrega fontes públicas gratuitas (O
 
 - **Interface estilo Finder do macOS:** barra superior, sidebar com Favoritos e temas, janela central com traffic lights e conteúdo organizado em seções.
 - **Navegação SPA por seção:** Home, About, Skills, Projects e Contact. Cada seção é montada no HTML para SEO e ocultada via CSS quando inativa.
+- **Dock inferior no mobile:** barra de navegação fixa com os cinco destinos, no alcance do polegar, inspirada no Dock do macOS. Em telas maiores a navegação segue pela sidebar.
 - **9 temas oficiais do macOS:** blue, green, green-lime, yellow, orange, red, purple, gray e black. O seletor de tema usa ícones de pasta WebP.
 - **Skills interativa:** alternância entre visualização em lista e em ícones, reordenação por drag and drop, modal Quick Look e ícones de pasta dinâmicos.
 - **About com interação de pasta:** ícone de pasta pulsante que revela o conteúdo do tópico ao ser clicado.

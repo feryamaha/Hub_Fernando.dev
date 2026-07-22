@@ -33,7 +33,7 @@ const socialLinks: SocialItem[] = [
     name: "Email",
     icon: EnvelopeIcon,
     url: `mailto:${EMAIL}`,
-    color: "#0077B5",
+    color: "#05317e",
   },
 ];
 
@@ -44,6 +44,7 @@ type CopyField = "email" | "phone";
 const Contact = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [theme] = useTheme();
+  const folderIconPath = `/icons/icon-macos-folder-${theme}.webp`;
   const [copiedField, setCopiedField] = useState<CopyField | null>(null);
   const [motionOk, setMotionOk] = useState(true);
 
@@ -128,7 +129,7 @@ const Contact = () => {
           </a>
         </div>
 
-        <div className="mt-12 grid grid-cols-3 gap-5 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3">
+        <div className="mt-12 grid grid-cols-3 gap-5">
           {socialLinks.map((link, index) => {
             const Icon = link.icon;
             return (
@@ -137,16 +138,23 @@ const Contact = () => {
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex flex-col items-center justify-center p-3 rounded-2xl bg-finder-accent/5 hover:bg-finder-accent/10 transition-all duration-300"
+                aria-label={link.name}
+                title={link.name}
+                className="group flex items-center justify-center rounded-xl p-2 transition-transform duration-300 hover:scale-105 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-finder-accent"
                 style={{ "--hover-color": link.color } as CSSProperties}
                 data-aos="fade-right"
                 data-aos-delay={`${index * 200 + 200}`}
               >
-                <div className="text-finder-accent group-hover:text-[var(--hover-color)] transition-colors duration-300">
-                  <Icon className="w-6 h-6 group-hover:animate-shake" />
-                </div>
-                <span className="mt-2 text-sm text-finder-accent/80 group-hover:text-[var(--hover-color)] transition-colors duration-300">
-                  {link.name}
+                <span className="relative inline-flex items-center justify-center w-24 h-24">
+                  <img
+                    src={folderIconPath}
+                    alt=""
+                    aria-hidden="true"
+                    width={96}
+                    height={82}
+                    className="w-full h-auto drop-shadow-lg"
+                  />
+                  <Icon className="absolute left-1/2 top-[58%] w-7 h-7 -translate-x-1/2 -translate-y-1/2 text-finder-text drop-shadow group-hover:text-[var(--hover-color)] transition-colors duration-300" />
                 </span>
               </a>
             );

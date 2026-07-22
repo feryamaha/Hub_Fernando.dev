@@ -59,7 +59,7 @@ const Home = () => {
             <RotatingText
               texts={[
                 "TypeScript",
-                "React 19",
+                "React",
                 "Next.js",
                 "Rust",
                 "Segurança",

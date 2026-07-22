@@ -37,7 +37,7 @@ const skillCategories: SkillCategory[] = [
         modDate: "2026",
         kind: "TypeScript File",
         description:
-          "TypeScript em strict mode como base de tudo: tipagem estática, generics, contratos explícitos entre camadas e validação de domínio. Menos ambiguidade, mais segurança em tempo de compilação.",
+          "Uso TypeScript em strict mode como contrato entre camadas: modelo domínio com generics, tipo os limites de UI, hooks, services e types, e trato o compilador como primeiro revisor. Foi assim que mantive centenas de componentes tipados no portal multi-perfil da Auclan sem perder rastreabilidade.",
       },
       {
         name: "JavaScript",
@@ -46,7 +46,7 @@ const skillCategories: SkillCategory[] = [
         modDate: "2026",
         kind: "JavaScript File",
         description:
-          "JavaScript ES6+ moderno: async/await, módulos, APIs do browser e manipulação avançada do DOM quando o contexto pede JS puro.",
+          "Recorro a JavaScript puro quando o contexto não comporta build: scripts de browser, manipulação direta de DOM e o script de pré-pintura de tema deste portfólio, que evita o flash de tema errado antes do React hidratar.",
       },
       {
         name: "Rust",
@@ -55,7 +55,7 @@ const skillCategories: SkillCategory[] = [
         modDate: "2026",
         kind: "Rust Source",
         description:
-          "Rust para sistemas de alta confiabilidade e baixo nível. Linguagem do Nemesis Defender: enforcement de segurança, parsing e design fail-closed com performance previsível.",
+          "Escrevi o Nemesis Defender inteiro em Rust: scanner com deny-list de 36 categorias, 14 visitors de AST e design fail-closed onde qualquer panic vira bloqueio. Uso Rust quando errar em silêncio não é aceitável.",
       },
       {
         name: "HTML5",
@@ -64,7 +64,7 @@ const skillCategories: SkillCategory[] = [
         modDate: "2026",
         kind: "HTML Document",
         description:
-          "HTML5 semântico, acessível e otimizado para SEO. Estrutura sólida como fundação de qualquer interface.",
+          "Estruturo HTML semântico pensando em quem lê depois: leitor de tela, crawler e preview de link. Neste portfólio todas as seções ficam no HTML mesmo ocultas, para o export estático carregar conteúdo real e não uma casca vazia.",
       },
       {
         name: "CSS3",
@@ -73,7 +73,7 @@ const skillCategories: SkillCategory[] = [
         modDate: "2026",
         kind: "CSS File",
         description:
-          "CSS3 moderno com layouts responsivos (Flexbox/Grid), animações e tokens de design consistentes.",
+          "Trabalho CSS por token, não por valor solto. Reduzi o globals.css deste projeto de 484 para 4 linhas movendo cor, tema e utilitário para uma fonte única, com os 9 temas gerados a partir dela.",
       },
     ],
   },
@@ -87,7 +87,7 @@ const skillCategories: SkillCategory[] = [
         modDate: "2026",
         kind: "React Component",
         description:
-          "React 19 com Server Components, hooks e componentes funcionais. Foco em composição, estado previsível e UI desacoplada da lógica.",
+          "Componho interfaces com Server Components e hooks, separando estado de apresentação. Construí um design system de mais de 160 componentes reutilizáveis e tipados, usado para acelerar entrega de features sem duplicar padrão.",
       },
       {
         name: "Next.js",
@@ -96,7 +96,7 @@ const skillCategories: SkillCategory[] = [
         modDate: "2026",
         kind: "Next.js App",
         description:
-          "Next.js com App Router e RSC: SSR, SSG, ISR e Route Handlers (BFF). Performance e segurança como padrão de arquitetura.",
+          "Uso App Router com RSC e Route Handlers como BFF, escolhendo por rota entre SSR, SSG e ISR. Aplico em produção na Auclan e neste portfólio, que é export estático com deploy contínuo.",
       },
       {
         name: "React Hook Form",
@@ -105,7 +105,7 @@ const skillCategories: SkillCategory[] = [
         modDate: "2026",
         kind: "TypeScript File",
         description:
-          "Formulários performáticos e tipados com React Hook Form, integrados a validação por schema.",
+          "Monto formulários com React Hook Form ligado a schema, evitando re-render desnecessário e mantendo mensagem de erro derivada do mesmo contrato que valida no servidor.",
       },
       {
         name: "Zod",
@@ -114,7 +114,7 @@ const skillCategories: SkillCategory[] = [
         modDate: "2026",
         kind: "TypeScript File",
         description:
-          "Zod para validação em runtime e contratos de dados type-safe entre cliente, servidor e APIs externas.",
+          "Uso Zod como fronteira de runtime: valido o que entra de API externa e de formulário, e derivo o tipo do schema para não manter validação e tipo desalinhados. É a checagem que o TypeScript sozinho não faz depois do build.",
       },
       {
         name: "Tailwind CSS",
@@ -123,7 +123,7 @@ const skillCategories: SkillCategory[] = [
         modDate: "2026",
         kind: "Tailwind Config",
         description:
-          "Tailwind CSS para 100% da estilização, com tokens semânticos e design systems escaláveis.",
+          "Faço 100% da estilização em Tailwind com tokens semânticos. Neste projeto os HEX vivem só no config e o resto do app fala por token, então trocar um tema não exige tocar em componente.",
       },
     ],
   },
@@ -137,7 +137,7 @@ const skillCategories: SkillCategory[] = [
         modDate: "2026",
         kind: "Architecture Doc",
         description:
-          "Clean Architecture com separação rigorosa de responsabilidades: UI → Hooks → Services → Types, contratos explícitos e baixo acoplamento.",
+          "Organizo em UI → Hooks → Services → Types com contrato explícito em cada fronteira. Baixa tolerância a ambiguidade: cada limite é declarado, não presumido, o que vem de 17 anos medindo tolerância em metrologia antes de programar.",
       },
       {
         name: "Design Systems",
@@ -146,7 +146,7 @@ const skillCategories: SkillCategory[] = [
         modDate: "2026",
         kind: "Design System",
         description:
-          "Design systems em Tailwind com tokens semânticos, componentes tipados com TypeScript reutilizáveis e acessíveis.",
+          "Construo design system com token semântico e componente tipado, não com coleção de classes. O UIKit que mantenho passou de 160 componentes e sustenta entrega de features sem retrabalho de estilo.",
       },
       {
         name: "BFF",
@@ -155,7 +155,7 @@ const skillCategories: SkillCategory[] = [
         modDate: "2026",
         kind: "TypeScript File",
         description:
-          "Backend for Frontend via Route Handlers, mantendo credenciais e regras sensíveis exclusivamente no servidor.",
+          "Implemento BFF em Route Handlers para manter credencial e regra sensível fora do cliente. O browser recebe resultado, nunca a chave que o produziu.",
       },
       {
         name: "Contracts",
@@ -164,7 +164,7 @@ const skillCategories: SkillCategory[] = [
         modDate: "2026",
         kind: "TypeScript Decl",
         description:
-          "Contratos TypeScript explícitos como fronteira entre camadas — interfaces como documentação executável.",
+          "Trato interface TypeScript como documentação executável: se o contrato muda, o build quebra antes do usuário perceber. É o que permite refatorar camada sem auditar o app inteiro na mão.",
       },
     ],
   },
@@ -178,7 +178,7 @@ const skillCategories: SkillCategory[] = [
         modDate: "2026",
         kind: "TypeScript File",
         description:
-          "Agregação de APIs públicas com fallback entre provedores (OpenStreetMap/Nominatim, ViaCEP, BrasilAPI, dados abertos da Receita Federal) — base do MapHunter, meu motor de prospecção de leads.",
+          "No MapHunter agrego OpenStreetMap/Nominatim, ViaCEP, BrasilAPI e dados abertos da Receita Federal com geocoding e fallback entre provedores, para gerar lead qualificado sem depender de API paga.",
       },
       {
         name: "Cache & Rate limit",
@@ -187,7 +187,7 @@ const skillCategories: SkillCategory[] = [
         modDate: "2026",
         kind: "TypeScript File",
         description:
-          "Cache local de consultas e rate limiting para respeitar limites de APIs gratuitas e não desperdiçar chamadas — custo previsível por design.",
+          "Implemento cache local e rate limiting para respeitar limite de API gratuita: no MapHunter a consulta de CNPJ só acontece depois da qualificação, então a cota vai para lead que interessa e o custo fica previsível.",
       },
       {
         name: "Pipelines de dados",
@@ -196,7 +196,7 @@ const skillCategories: SkillCategory[] = [
         modDate: "2026",
         kind: "TypeScript File",
         description:
-          "Pipelines de qualificação e enriquecimento de dados em etapas (filtrar antes de enriquecer), com exportação para CSV e XLSX.",
+          "Desenho pipeline em etapas com descarte cedo: filtro órgão público e nicho fora do perfil antes de gastar enriquecimento, e entrego o resultado em CSV e XLSX. Filtrar antes de enriquecer é o que segura o custo.",
       },
     ],
   },
@@ -210,7 +210,7 @@ const skillCategories: SkillCategory[] = [
         modDate: "2026",
         kind: "Security Doc",
         description:
-          "Mitigação sistemática do OWASP Top 10 ao longo do ciclo de desenvolvimento, do design ao deploy.",
+          "Trato o OWASP Top 10 como checagem contínua do design ao deploy, não como auditoria no fim. Segurança entra como padrão de projeto, com o sistema falhando fechado.",
       },
       {
         name: "OWASP for LLM",
@@ -219,7 +219,7 @@ const skillCategories: SkillCategory[] = [
         modDate: "2026",
         kind: "Security Doc",
         description:
-          "OWASP Top 10 for LLM: prompt injection, exfiltração de credenciais e abuso de agentes — base do Nemesis Defender. Certificado pela OWASP Foundation.",
+          "Sou certificado pela OWASP Foundation em Top 10 for LLM. Prompt injection, exfiltração de credencial e abuso de agente são exatamente as ameaças que o Nemesis Defender intercepta antes da execução.",
       },
       {
         name: "CSP Level 3",
@@ -228,7 +228,7 @@ const skillCategories: SkillCategory[] = [
         modDate: "2026",
         kind: "Security Header",
         description:
-          "CSP Level 3 com nonce dinâmico, HSTS, X-Frame-Options e Permissions-Policy aplicados por padrão.",
+          "Aplico CSP Level 3 com nonce dinâmico, HSTS, X-Frame-Options e Permissions-Policy como configuração padrão de projeto, não como ajuste posterior.",
       },
       {
         name: "Threat Modeling",
@@ -237,7 +237,7 @@ const skillCategories: SkillCategory[] = [
         modDate: "2026",
         kind: "Security Doc",
         description:
-          "Modelagem de ameaças e declaração explícita de escopo e limites — honestidade sobre o que o sistema protege.",
+          "Modelo ameaça declarando escopo e limite: digo o que o sistema protege e o que ele não protege. No Nemesis isso está escrito, porque garantia vaga em segurança é pior que ausência de garantia.",
       },
       {
         name: "Supply-chain",
@@ -246,7 +246,7 @@ const skillCategories: SkillCategory[] = [
         modDate: "2026",
         kind: "Security Doc",
         description:
-          "Defesa de supply-chain: enforcement em runtime contra malware em pacotes antes que ele tente executar.",
+          "Defendo supply-chain com enforcement em runtime: o Nemesis bloqueia malware em pacote antes de ele executar, e move para quarentena em vez de deletar, mantendo a ação reversível.",
       },
     ],
   },
@@ -260,7 +260,7 @@ const skillCategories: SkillCategory[] = [
         modDate: "2026",
         kind: "eBPF Program",
         description:
-          "eBPF / BPF LSM no kernel Linux (bprm_check_security e egress via socket_connect) — rede de segurança no nível do kernel.",
+          "Escrevi a camada de kernel do Nemesis em eBPF com BPF LSM, cobrindo bprm_check_security e egress por socket_connect. É o backstop para o caso de a checagem em user space ser contornada.",
       },
       {
         name: "AST",
@@ -269,7 +269,7 @@ const skillCategories: SkillCategory[] = [
         modDate: "2026",
         kind: "Parser",
         description:
-          "Análise de AST com tree-sitter e análise estática para detectar padrões maliciosos antes da execução.",
+          "Faço análise estática com tree-sitter percorrendo AST para detectar padrão malicioso antes da execução. São 14 visitors despachados no scanner do Nemesis, porque regex sozinho não entende estrutura de código.",
       },
       {
         name: "Fail-closed",
@@ -278,7 +278,7 @@ const skillCategories: SkillCategory[] = [
         modDate: "2026",
         kind: "Rust Source",
         description:
-          "Design fail-closed e quarentena por corroboração de sinais: na dúvida, o sistema bloqueia e segura a sessão.",
+          "Projeto para falhar fechado: no Nemesis qualquer panic vira exit 2, ou seja, bloqueio. A quarentena exige corroboração de sinais antes de agir, o que segura falso positivo sem abrir a porta.",
       },
       {
         name: "Linux",
@@ -287,7 +287,7 @@ const skillCategories: SkillCategory[] = [
         modDate: "2026",
         kind: "Shell Script",
         description:
-          "Linux, syscalls e ferramentas de baixo nível como ambiente de desenvolvimento e enforcement.",
+          "Uso Linux como ambiente de desenvolvimento e de enforcement, trabalhando com syscall, permissão e processo. É onde o Nemesis roda e onde depuro o que acontece abaixo da aplicação.",
       },
     ],
   },
@@ -301,7 +301,7 @@ const skillCategories: SkillCategory[] = [
         modDate: "2026",
         kind: "Next.js Strategy",
         description:
-          "Estratégias de renderização (RSC, SSR, SSG, ISR) para Lighthouse 90+ e redução de ~20–30% no bundle.",
+          "Escolho estratégia de renderização por rota para reduzir bundle e melhorar carregamento: no UIKit isso rendeu Lighthouse na faixa de 90+ e queda de 20 a 30% no bundle.",
       },
       {
         name: "Lighthouse",
@@ -310,7 +310,7 @@ const skillCategories: SkillCategory[] = [
         modDate: "2026",
         kind: "Report",
         description:
-          "Métricas LCP/TTI e auditorias Lighthouse como contrato de performance medido e versionado.",
+          "Meço LCP e TTI e versiono o resultado, tratando performance como contrato verificável. Número medido, não impressão de que 'está rápido'.",
       },
       {
         name: "Playwright",
@@ -319,7 +319,7 @@ const skillCategories: SkillCategory[] = [
         modDate: "2026",
         kind: "E2E Test",
         description:
-          "Testes E2E com Playwright e testes de regressão para garantir comportamento estável a cada mudança.",
+          "Escrevo E2E em Playwright cobrindo os fluxos que não podem quebrar. No portal multi-perfil da Auclan são 5 perfis de usuário, então o teste precisa provar o comportamento de cada um.",
       },
       {
         name: "Quality Gates",
@@ -328,7 +328,7 @@ const skillCategories: SkillCategory[] = [
         modDate: "2026",
         kind: "Config",
         description:
-          "Lint com regras custom, tipagem estrita, validação em runtime com Zod e gates de segurança e arquitetura em pre-commit.",
+          "Coloco o gate antes do merge, não depois: lint com regra custom, tipo estrito, validação de runtime e checagem de segurança e arquitetura em pre-commit. O que não passa no gate não entra.",
       },
     ],
   },
@@ -342,7 +342,7 @@ const skillCategories: SkillCategory[] = [
         modDate: "2026",
         kind: "Agent Config",
         description:
-          "Devin (Cognition) para engenharia autônoma de software com delegação de tarefas complexas.",
+          "Integrei o Nemesis ao Devin para que a execução autônoma passe pelo mesmo enforcement dos demais fluxos. Autonomia maior exige contenção maior, não confiança maior.",
       },
       {
         name: "VSCode",
@@ -351,7 +351,7 @@ const skillCategories: SkillCategory[] = [
         modDate: "2026",
         kind: "Editor Config",
         description:
-          "VSCode com extensões de IA para desenvolvimento assistido e integração com agents.",
+          "Mantenho o hook de pre-tool do Nemesis funcionando no VS Code e no Copilot, para que a proteção acompanhe o editor em vez de depender de qual ferramenta abri no dia.",
       },
       {
         name: "Cursor",
@@ -360,7 +360,7 @@ const skillCategories: SkillCategory[] = [
         modDate: "2026",
         kind: "Editor Config",
         description:
-          "Cursor, editor AI-first, para features, refactors e documentação com contratos claros de atuação do agente.",
+          "Uso Cursor para feature e refactor com contrato de atuação declarado, e com o mesmo hook de pre-tool interceptando write e exec antes da ação.",
       },
       {
         name: "Antigravity",
@@ -369,7 +369,7 @@ const skillCategories: SkillCategory[] = [
         modDate: "2026",
         kind: "Agent Config",
         description:
-          "Google Antigravity, plataforma agent-first com Gemini, para orquestrar múltiplos agentes em paralelo.",
+          "Uso a plataforma agent-first do Google com Gemini para distribuir trabalho entre agentes. O harness continua sendo meu, a plataforma é intercambiável.",
       },
       {
         name: "Claude",
@@ -378,7 +378,7 @@ const skillCategories: SkillCategory[] = [
         modDate: "2026",
         kind: "Agent Config",
         description:
-          "Claude Code (Anthropic) sob governança arquitetural explícita com contratos de atuação.",
+          "Conduzo o Claude Code pelo meu SDD Pipeline: 7 skills em sequência com HARD-GATE antes de gravar spec, de executar e de liberar release. O agente executa, eu decido.",
       },
       {
         name: "OpenCode",
@@ -387,7 +387,7 @@ const skillCategories: SkillCategory[] = [
         modDate: "2026",
         kind: "Agent Config",
         description:
-          "OpenCode, agente open-source para codação assistida com controle total do fluxo.",
+          "Uso agente open-source quando quero controle total do fluxo e da execução local, sem depender de decisão de produto de terceiro sobre o que o agente pode fazer.",
       },
       {
         name: "Codex",
@@ -396,7 +396,7 @@ const skillCategories: SkillCategory[] = [
         modDate: "2026",
         kind: "Agent Config",
         description:
-          "OpenAI Codex integrado ao fluxo, com enforcement de segurança sobre as ações do agente.",
+          "Integrei o Codex ao meu fluxo com o enforcement do Nemesis por cima, para que a sugestão do agente passe pela mesma checagem de comando destrutivo que aplico nas outras IDEs.",
       },
       {
         name: "Grok",
@@ -404,7 +404,8 @@ const skillCategories: SkillCategory[] = [
         size: "1.2 KB",
         modDate: "2026",
         kind: "Agent Config",
-        description: "Grok (xAI) para codação assistida e raciocínio sobre código em tempo real.",
+        description:
+          "Uso para raciocínio sobre código e leitura rápida de trecho desconhecido, sempre com o resultado passando pela mesma revisão que aplico a qualquer saída de agente.",
       },
       {
         name: "Harness",
@@ -413,7 +414,7 @@ const skillCategories: SkillCategory[] = [
         modDate: "2026",
         kind: "Process File",
         description:
-          "Harness de processo: framework de regras, skills e workflows que governa a atuação de agentes de IA.",
+          "Construí um harness de processo próprio: regras, skills e workflows que governam o que o agente pode fazer. É o que transforma 'usar IA' em processo auditável em vez de tentativa e erro.",
       },
       {
         name: "Skills",
@@ -422,7 +423,7 @@ const skillCategories: SkillCategory[] = [
         modDate: "2026",
         kind: "Process File",
         description:
-          "Skills em markdown que definem capacidades específicas do agente com contrato de handoff completo.",
+          "Escrevo skill em markdown com contrato de handoff completo, porque subagente nasce sem memória da conversa: objetivo, arquivos, invariantes, o que não fazer e formato do resultado.",
       },
       {
         name: "Rules",
@@ -431,7 +432,7 @@ const skillCategories: SkillCategory[] = [
         modDate: "2026",
         kind: "Process File",
         description:
-          "Regras canônicas que restringem e guiam o comportamento do agente com verificadores mecânicos.",
+          "Escrevo regra canônica com verificador mecânico junto. Lei sem verificador é intenção, não lei, então cada regra do meu harness diz como provar que está sendo cumprida.",
       },
       {
         name: "Workflows",
@@ -440,7 +441,7 @@ const skillCategories: SkillCategory[] = [
         modDate: "2026",
         kind: "Process File",
         description:
-          "Workflows sequenciais de skills que governam o desenvolvimento de forma determinística e auditável.",
+          "Encadeio as skills em workflow sequencial e determinístico, com gate automático entre fases e uma única parada para decisão humana. O caminho é auditável do pedido até a entrega.",
       },
       {
         name: "Hooks Pretool/Posttool Use",
@@ -449,7 +450,7 @@ const skillCategories: SkillCategory[] = [
         modDate: "2026",
         kind: "Process File",
         description:
-          "Hooks que interceptam tool calls antes e depois da execução para enforcement de segurança e validação.",
+          "Implementei hooks que interceptam a tool call antes da execução, com controle de path em três níveis e exit 2 como bloqueio determinístico. O agente é contido pela máquina, não pela boa vontade dele.",
       },
     ],
   },
@@ -462,9 +463,7 @@ type ViewMode = "list" | "icon";
 
 const Skills = () => {
   const [viewMode, setViewMode] = useState<ViewMode>("list");
-  const [expandedFolders, setExpandedFolders] = useState<Set<string>>(
-    new Set(["Linguagens", "Frameworks & Bibliotecas"]),
-  );
+  const [expandedFolders, setExpandedFolders] = useState<Set<string>>(new Set(["Linguagens"]));
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [categories, setCategories] = useState<SkillCategory[]>(skillCategories);
   const [openIconFolder, setOpenIconFolder] = useState<string | null>(null);
@@ -492,15 +491,7 @@ const Skills = () => {
   }, [quickLookFile]);
 
   const toggleFolder = (folderName: string) => {
-    setExpandedFolders((prev) => {
-      const newSet = new Set(prev);
-      if (newSet.has(folderName)) {
-        newSet.delete(folderName);
-      } else {
-        newSet.add(folderName);
-      }
-      return newSet;
-    });
+    setExpandedFolders((prev) => (prev.has(folderName) ? new Set() : new Set([folderName])));
   };
 
   const handleFileClick = (category: string, file: SkillFile) => {
@@ -592,6 +583,7 @@ const Skills = () => {
                       <Reorder.Item
                         key={category.name}
                         value={category}
+                        layout="position"
                         className="cursor-grab active:cursor-grabbing"
                       >
                         <div>
@@ -645,6 +637,7 @@ const Skills = () => {
                                   <Reorder.Item
                                     key={id}
                                     value={file}
+                                    layout="position"
                                     className="cursor-grab active:cursor-grabbing"
                                   >
                                     <div>
@@ -914,10 +907,10 @@ const Skills = () => {
                   onClick={() => setQuickLookFile(null)}
                   className="hover:opacity-80 transition-opacity"
                 >
-                  <img src="/icons/icon-close.svg" width={12} height={12} alt="" />
+                  <img src="/icons/icon-mac-close_button.svg" width={12} height={12} alt="" />
                 </button>
-                <img src="/icons/icon-mac-minimize.svg" width={12} height={12} alt="" />
-                <img src="/icons/icon-mac-maximize.svg" width={12} height={12} alt="" />
+                <img src="/icons/icon-mac-minimize_button.svg" width={12} height={12} alt="" />
+                <img src="/icons/icon-mac-maximize_button.svg" width={12} height={12} alt="" />
                 <span className="mac-window-title">
                   {quickLookFile.file.name}.{quickLookFile.file.extension}
                 </span>

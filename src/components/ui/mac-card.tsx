@@ -2,7 +2,7 @@
 
 import { type ReactNode, useState } from "react";
 
-type CardState = "full" | "compact" | "collapsed";
+export type CardState = "full" | "compact" | "collapsed";
 
 interface MacCardProps {
   windowTitle: string;
@@ -16,6 +16,8 @@ interface MacCardProps {
   extraNote?: ReactNode;
   /** Padding do corpo: "default" (p-4 md:p-5) ou "featured" (p-5 md:p-6). */
   padding?: "default" | "featured";
+  /** Estado inicial do card. Default "full" (comportamento atual). */
+  initialState?: CardState;
 }
 
 const MacCard = ({
@@ -29,8 +31,9 @@ const MacCard = ({
   actions,
   extraNote,
   padding = "default",
+  initialState = "full",
 }: MacCardProps) => {
-  const [state, setState] = useState<CardState>("full");
+  const [state, setState] = useState<CardState>(initialState);
 
   const paddingClass = padding === "featured" ? "p-5 md:p-6" : "p-4 md:p-5";
 
@@ -43,7 +46,13 @@ const MacCard = ({
           onClick={() => setState("collapsed")}
           className="hover:opacity-80 transition-opacity"
         >
-          <img src="/icons/icon-mac-close_button.svg" width={12} height={12} alt="" />
+          <img
+            src="/icons/icon-mac-close_button.svg"
+            width={12}
+            height={12}
+            alt=""
+            loading="lazy"
+          />
         </button>
         <button
           type="button"
@@ -51,7 +60,13 @@ const MacCard = ({
           onClick={() => setState("compact")}
           className="hover:opacity-80 transition-opacity"
         >
-          <img src="/icons/icon-mac-minimize_button.svg" width={12} height={12} alt="" />
+          <img
+            src="/icons/icon-mac-minimize_button.svg"
+            width={12}
+            height={12}
+            alt=""
+            loading="lazy"
+          />
         </button>
         <button
           type="button"
@@ -59,7 +74,13 @@ const MacCard = ({
           onClick={() => setState("full")}
           className="hover:opacity-80 transition-opacity"
         >
-          <img src="/icons/icon-mac-maximize-button.svg" width={12} height={12} alt="" />
+          <img
+            src="/icons/icon-mac-maximize-button.svg"
+            width={12}
+            height={12}
+            alt=""
+            loading="lazy"
+          />
         </button>
         <span className="mac-window-title">{windowTitle}</span>
       </div>

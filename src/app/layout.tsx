@@ -7,7 +7,7 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://hub-fernando-dev.ve
 
 const title = "Fernando Moreira | Full-Stack TypeScript · Rust · Segurança";
 const description =
-  "Desenvolvedor Full-Stack TypeScript (React 19, Next.js) · Rust · Segurança. Autor do Nemesis Defender, framework open-source de enforcement em Rust com camada de kernel em eBPF.";
+  "Desenvolvedor Full-Stack TypeScript (React, Next.js) · Rust · Segurança. Autor do Nemesis Defender, framework open-source de enforcement em Rust com camada de kernel em eBPF.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Fernando Moreira", url: "https://github.com/feryamaha" }],
   creator: "Fernando Moreira",
-  icons: { icon: "/favicon.svg" },
+  icons: { icon: "/favicon-fm.svg" },
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
@@ -39,14 +39,14 @@ export const metadata: Metadata = {
     images: [
       {
         url: "/icons/img_profile.webp",
-        width: 100,
-        height: 100,
+        width: 1404,
+        height: 1395,
         alt: "Fernando Moreira — Full-Stack TypeScript · Rust · Segurança",
       },
     ],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title,
     description,
     creator: "@_feryamaha",

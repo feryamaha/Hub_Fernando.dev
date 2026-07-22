@@ -258,6 +258,7 @@ const Projects = () => {
             key={project.title}
             windowTitle={project.windowTitle}
             padding="featured"
+            initialState={project.title === "NEMESIS DEFENDER v0" ? "full" : "compact"}
             title={
               <h3 className="text-xl md:text-2xl font-bold text-finder-accent">{project.title}</h3>
             }
@@ -319,6 +320,7 @@ const Projects = () => {
           <MacCard
             key={work.title}
             windowTitle={work.windowTitle ?? work.title}
+            initialState="compact"
             title={<h3 className="text-lg font-semibold text-finder-text">{work.title}</h3>}
             image={
               work.imageSrc ? (
@@ -363,6 +365,7 @@ const Projects = () => {
             imageSrc={project.imageSrc}
             imageAlt={project.imageAlt}
             extraNote={project.extraNote}
+            initialState="compact"
           />
         ))}
       </div>
@@ -388,6 +391,7 @@ const Projects = () => {
             imageSrc={project.imageSrc}
             imageAlt={project.imageAlt}
             extraNote={project.extraNote}
+            initialState="compact"
           />
         ))}
       </div>

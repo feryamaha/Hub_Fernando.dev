@@ -39,7 +39,7 @@ const topics: Topic[] = [
     title: "Especialidade",
     icon: CodeBracketIcon,
     content:
-      "Minha especialidade é levar uma ideia ao produto digital completo: TypeScript em strict mode, React 19 e Next.js com App Router e React Server Components, Tailwind e design systems com contratos explícitos. Trabalho com arquitetura em camadas (UI → Hooks → Services → Types) e BFF via Route Handlers, mantendo credenciais e regras sensíveis exclusivamente no servidor. Da interface fiel ao design até a API, entrego software que funciona e que se mantém.",
+      "Minha especialidade é levar uma ideia ao produto digital completo: TypeScript em strict mode, React e Next.js com App Router e React Server Components, Tailwind e design systems com contratos explícitos. Trabalho com arquitetura em camadas (UI → Hooks → Services → Types) e BFF via Route Handlers, mantendo credenciais e regras sensíveis exclusivamente no servidor. Da interface fiel ao design até a API, entrego software que funciona e que se mantém.",
   },
   {
     title: "Arquitetura",

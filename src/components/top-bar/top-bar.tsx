@@ -59,7 +59,7 @@ const TopBar = ({ title }: TopBarProps) => {
             <span style={{ opacity: cursorVisible ? 1 : 0 }}>|</span>
           </h1>
         </div>
-        <div className="flex items-center space-x-2 md:space-x-4">
+        <div className="flex items-center space-x-0 md:space-x-1">
           {/* CTAs de contato sempre visíveis no topo */}
           <a
             href="https://github.com/feryamaha"
@@ -67,7 +67,7 @@ const TopBar = ({ title }: TopBarProps) => {
             rel="noopener noreferrer"
             aria-label="GitHub"
             title="GitHub"
-            className="p-1 md:p-2 text-finder-text-secondary hover:text-finder-text transition-colors"
+            className="inline-flex items-center justify-center w-11 h-11 shrink-0 text-finder-text-secondary hover:text-finder-text transition-colors"
           >
             <GitHubIcon className="w-4 h-4 md:w-5 md:h-5" />
           </a>
@@ -77,7 +77,7 @@ const TopBar = ({ title }: TopBarProps) => {
             rel="noopener noreferrer"
             aria-label="LinkedIn"
             title="LinkedIn"
-            className="p-1 md:p-2 text-finder-text-secondary hover:text-finder-text transition-colors"
+            className="inline-flex items-center justify-center w-11 h-11 shrink-0 text-finder-text-secondary hover:text-finder-text transition-colors"
           >
             <LinkedInIcon className="w-4 h-4 md:w-5 md:h-5" />
           </a>
@@ -85,7 +85,7 @@ const TopBar = ({ title }: TopBarProps) => {
             href={`mailto:${EMAIL}`}
             aria-label="E-mail"
             title="E-mail"
-            className="p-1 md:p-2 text-finder-text-secondary hover:text-finder-text transition-colors"
+            className="inline-flex items-center justify-center w-11 h-11 shrink-0 text-finder-text-secondary hover:text-finder-text transition-colors"
           >
             <EnvelopeIcon className="w-4 h-4 md:w-5 md:h-5" />
           </a>
@@ -95,7 +95,7 @@ const TopBar = ({ title }: TopBarProps) => {
             disabled={isDownloading}
             aria-label="Baixar CV em PDF"
             title="Baixar CV (PDF)"
-            className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-finder-accent text-finder-accent-contrast text-xs font-medium hover:opacity-90 transition-opacity"
+            className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 min-h-11 rounded-lg bg-finder-accent text-finder-accent-contrast text-xs font-medium hover:opacity-90 transition-opacity"
           >
             <ArrowDownTrayIcon className="w-4 h-4" />
             <span>{isDownloading ? `${progress}%` : "CV"}</span>
@@ -106,14 +106,14 @@ const TopBar = ({ title }: TopBarProps) => {
             disabled={isDownloading}
             aria-label="Baixar CV em PDF"
             title="Baixar CV (PDF)"
-            className="sm:hidden p-1 md:p-2 text-finder-accent hover:opacity-90 transition-opacity"
+            className="sm:hidden inline-flex items-center justify-center w-11 h-11 shrink-0 text-finder-accent hover:opacity-90 transition-opacity"
           >
             <ArrowDownTrayIcon className="w-4 h-4 md:w-5 md:h-5" />
           </button>
           <button
             type="button"
             onClick={() => setIsShareModalOpen(true)}
-            className="p-1 md:p-2 text-finder-text-secondary hover:text-finder-text transition-colors"
+            className="inline-flex items-center justify-center w-11 h-11 shrink-0 text-finder-text-secondary hover:text-finder-text transition-colors"
             title="Compartilhar"
           >
             <ShareIconOutline className="w-4 h-4 md:w-5 md:h-5" />
@@ -121,7 +121,7 @@ const TopBar = ({ title }: TopBarProps) => {
           <button
             type="button"
             onClick={() => setIsInfoModalOpen(true)}
-            className="p-1 md:p-2 text-finder-text-secondary hover:text-finder-text transition-colors"
+            className="inline-flex items-center justify-center w-11 h-11 shrink-0 text-finder-text-secondary hover:text-finder-text transition-colors"
             title="Informações"
           >
             <InfoIconOutline className="w-4 h-4 md:w-5 md:h-5" />

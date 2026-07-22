@@ -1,6 +1,6 @@
 "use client";
 
-import MacCard from "@/components/ui/mac-card";
+import MacCard, { type CardState } from "@/components/ui/mac-card";
 import Image from "next/image";
 import type { ReactNode } from "react";
 
@@ -24,6 +24,8 @@ interface ProjectCardProps {
   extraNote?: ReactNode;
   /** Versão /60 do bg (linha do tempo). */
   muted?: boolean;
+  /** Estado inicial do card. Default "full". */
+  initialState?: CardState;
 }
 
 const ProjectCard = ({
@@ -39,6 +41,7 @@ const ProjectCard = ({
   demoLabel = "Ver demo",
   extraNote,
   muted = false,
+  initialState,
 }: ProjectCardProps) => {
   const image = imageSrc ? (
     <Image
@@ -116,6 +119,7 @@ const ProjectCard = ({
       date={dateNode}
       actions={actionsNode}
       extraNote={extraNoteNode}
+      initialState={initialState}
     />
   );
 };

@@ -33,12 +33,12 @@ const links: FooterLink[] = [
 
 const Footer = () => {
   return (
-    <footer className="shrink-0 bg-finder-sidebar border-t border-finder-border px-4 py-3 flex flex-col sm:flex-row items-center justify-between gap-2">
-      <p className="text-finder-text-secondary text-xs">
-        © {new Date().getFullYear()} Fernando Moreira — Full-Stack TypeScript · Rust · Segurança
+    <footer className="w-full bg-finder-sidebar border-t border-finder-border px-4 py-3 flex items-center justify-between hidden md:flex">
+      <p className="w-max text-finder-text-secondary text-xs">
+        © {new Date().getFullYear()} Fernando Moreira | Full-Stack TypeScript | Rust | Segurança |
       </p>
       <nav aria-label="Contato e redes sociais">
-        <ul className="flex items-center gap-4">
+        <ul className="w-max flex items-center gap-4">
           {links.map((link) => (
             <li key={link.name}>
               <a

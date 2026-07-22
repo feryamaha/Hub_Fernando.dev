@@ -204,7 +204,7 @@ const MainContent = () => {
           type="button"
           aria-label="Alternar menu"
           onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-          className="fixed bottom-[150px] right-4 bg-finder-accent text-finder-text p-3 rounded-full shadow-lg z-50"
+          className="fixed bottom-[150px] right-4 bg-finder-accent text-finder-text p-3 rounded-full shadow-lg z-50 hidden"
         >
           <svg
             className="w-6 h-6"

@@ -114,7 +114,7 @@ const Dock = () => {
   return (
     <nav
       aria-label="Navegação principal"
-      className="shrink-0 flex bg-finder-sidebar border-t border-finder-border"
+      className="shrink-0 flex bg-finder-sidebar border-t border-finder-border py-2"
     >
       {items.map((item) => {
         const isActive = section === item.path;

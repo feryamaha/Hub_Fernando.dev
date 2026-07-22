@@ -53,13 +53,13 @@ const TopBar = ({ title }: TopBarProps) => {
   return (
     <>
       <div className="h-topbar shrink-0 bg-finder-window border-b border-finder-border flex items-center justify-between select-none px-2 md:px-4">
-        <div className="flex items-center flex-1 min-w-0">
+        <div className="flex items-center flex-1 min-w-0 hidden md:block">
           <h1 className="font-dos text-left flex-1 pr-8 md:pr-32 text-xl md:text-2xl p-[3px] text-finder-accent whitespace-nowrap overflow-hidden text-ellipsis">
             <span>{displayedText}</span>
             <span style={{ opacity: cursorVisible ? 1 : 0 }}>|</span>
           </h1>
         </div>
-        <div className="flex items-center space-x-0 md:space-x-1 py-2">
+        <div className="w-full md:w-auto flex items-center justify-between md:space-x-0 md:space-x-1 py-2">
           {/* CTAs de contato sempre visíveis no topo */}
           <a
             href="https://github.com/feryamaha"
@@ -67,7 +67,7 @@ const TopBar = ({ title }: TopBarProps) => {
             rel="noopener noreferrer"
             aria-label="GitHub"
             title="GitHub"
-            className="inline-flex items-center justify-center w-11 h-11 shrink-0 text-finder-text-secondary hover:text-finder-text transition-colors"
+            className="inline-flex items-center justify-center w-11 h-11 shrink-0 text-finder-text-secondary hover:text-finder-text transition-colors md:hidden"
           >
             <GitHubIcon className="w-4 h-4 md:w-5 md:h-5" />
           </a>
@@ -77,7 +77,7 @@ const TopBar = ({ title }: TopBarProps) => {
             rel="noopener noreferrer"
             aria-label="LinkedIn"
             title="LinkedIn"
-            className="inline-flex items-center justify-center w-11 h-11 shrink-0 text-finder-text-secondary hover:text-finder-text transition-colors"
+            className="inline-flex items-center justify-center w-11 h-11 shrink-0 text-finder-text-secondary hover:text-finder-text transition-colors md:hidden"
           >
             <LinkedInIcon className="w-4 h-4 md:w-5 md:h-5" />
           </a>
@@ -85,7 +85,7 @@ const TopBar = ({ title }: TopBarProps) => {
             href={`mailto:${EMAIL}`}
             aria-label="E-mail"
             title="E-mail"
-            className="inline-flex items-center justify-center w-11 h-11 shrink-0 text-finder-text-secondary hover:text-finder-text transition-colors"
+            className="inline-flex items-center justify-center w-11 h-11 shrink-0 text-finder-text-secondary hover:text-finder-text transition-colors md:hidden"
           >
             <EnvelopeIcon className="w-4 h-4 md:w-5 md:h-5" />
           </a>

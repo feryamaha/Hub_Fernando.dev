@@ -1,0 +1,26 @@
+{
+  "pt": {
+    "title": "Vamos Conversar",
+    "subtitle": "Aberto a conversas sobre projetos, oportunidades e segurança de agentes de IA.",
+    "downloadCv": "Baixar CV (PDF)",
+    "copyEmail": "Copiar e-mail",
+    "emailCopiedLabel": "E-mail copiado",
+    "copied": "Copiado!",
+    "copyPhone": "Copiar telefone",
+    "phoneCopiedLabel": "Telefone copiado",
+    "emailCopiedSr": "E-mail copiado para a área de transferência",
+    "phoneCopiedSr": "Telefone copiado para a área de transferência"
+  },
+  "en": {
+    "title": "Let's Talk",
+    "subtitle": "Open to conversations about projects, opportunities, and AI agent security.",
+    "downloadCv": "Download CV (PDF)",
+    "copyEmail": "Copy email",
+    "emailCopiedLabel": "Email copied",
+    "copied": "Copied!",
+    "copyPhone": "Copy phone",
+    "phoneCopiedLabel": "Phone copied",
+    "emailCopiedSr": "Email copied to clipboard",
+    "phoneCopiedSr": "Phone copied to clipboard"
+  }
+}

@@ -1,9 +1,13 @@
 "use client";
 
+import sidebar from "@/data/i18n/sidebar.json";
+import { useLocale } from "@/hooks/use-locale";
 import { useNavigation } from "@/hooks/use-navigation";
 import type { ModalProps } from "@/types";
 
 const Modal = ({ isOpen, onClose, title, children }: ModalProps) => {
+  const locale = useLocale();
+  const t = sidebar[locale];
   const { navigate } = useNavigation();
 
   if (!isOpen) return null;
@@ -14,7 +18,7 @@ const Modal = ({ isOpen, onClose, title, children }: ModalProps) => {
         <div className="mac-window-titlebar">
           <button
             type="button"
-            aria-label="Fechar e voltar à Home"
+            aria-label={t.modalCloseAriaLabel}
             onClick={() => {
               onClose();
               navigate("/");

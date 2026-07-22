@@ -2,12 +2,16 @@
 
 import RotatingText from "@/components/ui/rotating-text";
 import TrueFocus from "@/components/ui/true-focus";
+import home from "@/data/i18n/home.json";
+import { useLocale } from "@/hooks/use-locale";
 import { useNavigation } from "@/hooks/use-navigation";
 import { useTheme } from "@/hooks/use-theme";
 
 const Home = () => {
   const [theme] = useTheme();
   const { navigate } = useNavigation();
+  const locale = useLocale();
+  const t = home[locale];
 
   return (
     <div className={`space-y-6 md:space-y-8 theme-${theme} p-4 md:p-8 w-full max-w-[90%] mx-auto`}>
@@ -25,15 +29,14 @@ const Home = () => {
           data-aos="fade-up"
           data-aos-delay="400"
         >
-          Full-Stack TypeScript · Rust · Segurança
+          {t.subtitle}
         </p>
         <p
           className="mt-3 text-sm md:text-base text-finder-text-secondary max-w-xl mx-auto"
           data-aos="fade-up"
           data-aos-delay="500"
         >
-          Autor do Nemesis Defender, framework open-source de segurança para agentes de IA em Rust e
-          eBPF. Construo interfaces, design systems e backends com segurança por padrão.
+          {t.description}
         </p>
       </section>
 
@@ -44,12 +47,12 @@ const Home = () => {
       >
         <div className="flex flex-col md:flex-row items-center justify-center gap-4 w-full">
           <h1
-            className="font-dos font-[900] text-finder-accent w-full md:w-auto text-center md:text-left"
+            className="text-finder-accent font-bold w-full md:w-auto text-center md:text-left"
             style={{ fontSize: "clamp(2.25rem, 7vw, 4.5rem)" }}
             data-aos="fade-right"
             data-aos-delay="200"
           >
-            fernando.dev
+            {/* fernando.dev */}
           </h1>
           <div
             className="w-full md:w-auto flex items-center justify-center"
@@ -57,17 +60,8 @@ const Home = () => {
             data-aos-delay="400"
           >
             <RotatingText
-              texts={[
-                "TypeScript",
-                "React",
-                "Next.js",
-                "Rust",
-                "Segurança",
-                "Clean Architecture",
-                "eBPF",
-                "Full-Stack",
-              ]}
-              mainClassName="px-2 sm:px-2 md:px-3 bg-finder-accent text-finder-accent-contrast overflow-hidden py-1 sm:py-1 md:py-2 justify-center rounded-lg text-[clamp(1.75rem,5.5vw,3.25rem)] font-[900] w-max max-w-full mx-auto"
+              texts={t.texts}
+              mainClassName="font-modern-dos-900 px-2 sm:px-2 md:px-4 bg-finder-accent text-finder-accent-contrast overflow-hidden py-1 sm:py-1 md:py-2 justify-center rounded-lg text-[clamp(1.75rem,5.5vw,3.25rem)] font-[900] w-max max-w-full mx-auto"
               staggerFrom="last"
               initial={{ y: "100%" }}
               animate={{ y: 0 }}
@@ -92,14 +86,14 @@ const Home = () => {
           onClick={() => navigate("/projects")}
           className="px-5 py-2 rounded-lg bg-finder-accent text-finder-accent-contrast text-sm font-medium hover:opacity-90 transition-opacity focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-finder-accent"
         >
-          Ver projetos
+          {t.ctaProjects}
         </button>
         <button
           type="button"
           onClick={() => navigate("/contact")}
           className="px-5 py-2 rounded-lg border border-finder-border text-finder-text text-sm font-medium hover:bg-finder-hover transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-finder-accent"
         >
-          Entrar em contato
+          {t.ctaContact}
         </button>
       </div>
     </div>

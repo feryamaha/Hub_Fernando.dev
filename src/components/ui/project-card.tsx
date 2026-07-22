@@ -1,6 +1,8 @@
 "use client";
 
 import MacCard, { type CardState } from "@/components/ui/mac-card";
+import sidebar from "@/data/i18n/sidebar.json";
+import { useLocale } from "@/hooks/use-locale";
 import Image from "next/image";
 import type { ReactNode } from "react";
 
@@ -18,7 +20,7 @@ interface ProjectCardProps {
   codeUrl?: string;
   /** Botão secundário "Ver demo". */
   demoUrl?: string;
-  /** Texto do botão secundário (default "Ver demo"). */
+  /** Texto do botão secundário (padrão vem do idioma). */
   demoLabel?: string;
   /** Ex.: "Projeto confidencial da auclandesign.com". */
   extraNote?: ReactNode;
@@ -38,11 +40,13 @@ const ProjectCard = ({
   imageAlt,
   codeUrl,
   demoUrl,
-  demoLabel = "Ver demo",
+  demoLabel,
   extraNote,
   muted = false,
   initialState,
 }: ProjectCardProps) => {
+  const locale = useLocale();
+  const t = sidebar[locale];
   const image = imageSrc ? (
     <Image
       src={imageSrc}
@@ -64,7 +68,7 @@ const ProjectCard = ({
   );
 
   const technologiesNode = (
-    <ul className="flex flex-wrap gap-2 mt-3" aria-label="Principais tecnologias">
+    <ul className="flex flex-wrap gap-2 mt-3" aria-label={t.projectTechnologiesAriaLabel}>
       {technologies.map((tech) => (
         <li
           key={tech}
@@ -88,7 +92,7 @@ const ProjectCard = ({
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-finder-accent text-finder-accent-contrast text-[13px] font-medium hover:opacity-90 transition-opacity focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-finder-accent"
           >
-            Ver código
+            {t.projectViewCodeLabel}
           </a>
         )}
         {demoUrl && (
@@ -98,7 +102,7 @@ const ProjectCard = ({
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg border border-finder-border text-finder-text text-[13px] font-medium hover:bg-finder-hover transition-opacity focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-finder-accent"
           >
-            {demoLabel}
+            {demoLabel ?? t.projectViewDemoLabel}
           </a>
         )}
       </div>

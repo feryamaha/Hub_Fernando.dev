@@ -1,5 +1,7 @@
 "use client";
 
+import skills from "@/data/i18n/skills.json";
+import { useLocale } from "@/hooks/use-locale";
 import { useTheme } from "@/hooks/use-theme";
 import {
   ChevronDownIcon,
@@ -26,7 +28,15 @@ interface SkillCategory {
   files: SkillFile[];
 }
 
-const skillCategories: SkillCategory[] = [
+/** Dados estruturais (sem texto localizável); a description é hidratada a partir do JSON. */
+type SkillFileData = Omit<SkillFile, "description">;
+
+interface SkillCategoryData {
+  name: string;
+  files: SkillFileData[];
+}
+
+const skillCategoriesData: SkillCategoryData[] = [
   {
     name: "Linguagens",
     files: [
@@ -36,8 +46,6 @@ const skillCategories: SkillCategory[] = [
         size: "3.4 KB",
         modDate: "2026",
         kind: "TypeScript File",
-        description:
-          "Uso TypeScript em strict mode como contrato entre camadas: modelo domínio com generics, tipo os limites de UI, hooks, services e types, e trato o compilador como primeiro revisor. Foi assim que mantive centenas de componentes tipados no portal multi-perfil da Auclan sem perder rastreabilidade.",
       },
       {
         name: "JavaScript",
@@ -45,8 +53,6 @@ const skillCategories: SkillCategory[] = [
         size: "2.9 KB",
         modDate: "2026",
         kind: "JavaScript File",
-        description:
-          "Recorro a JavaScript puro quando o contexto não comporta build: scripts de browser, manipulação direta de DOM e o script de pré-pintura de tema deste portfólio, que evita o flash de tema errado antes do React hidratar.",
       },
       {
         name: "Rust",
@@ -54,8 +60,6 @@ const skillCategories: SkillCategory[] = [
         size: "5.1 KB",
         modDate: "2026",
         kind: "Rust Source",
-        description:
-          "Escrevi o Nemesis Defender inteiro em Rust: scanner com deny-list de 36 categorias, 14 visitors de AST e design fail-closed onde qualquer panic vira bloqueio. Uso Rust quando errar em silêncio não é aceitável.",
       },
       {
         name: "HTML5",
@@ -63,8 +67,6 @@ const skillCategories: SkillCategory[] = [
         size: "1.8 KB",
         modDate: "2026",
         kind: "HTML Document",
-        description:
-          "Estruturo HTML semântico pensando em quem lê depois: leitor de tela, crawler e preview de link. Neste portfólio todas as seções ficam no HTML mesmo ocultas, para o export estático carregar conteúdo real e não uma casca vazia.",
       },
       {
         name: "CSS3",
@@ -72,8 +74,6 @@ const skillCategories: SkillCategory[] = [
         size: "2.0 KB",
         modDate: "2026",
         kind: "CSS File",
-        description:
-          "Trabalho CSS por token, não por valor solto. Reduzi o globals.css deste projeto de 484 para 4 linhas movendo cor, tema e utilitário para uma fonte única, com os 9 temas gerados a partir dela.",
       },
     ],
   },
@@ -86,8 +86,6 @@ const skillCategories: SkillCategory[] = [
         size: "4.6 KB",
         modDate: "2026",
         kind: "React Component",
-        description:
-          "Componho interfaces com Server Components e hooks, separando estado de apresentação. Construí um design system de mais de 160 componentes reutilizáveis e tipados, usado para acelerar entrega de features sem duplicar padrão.",
       },
       {
         name: "Next.js",
@@ -95,8 +93,6 @@ const skillCategories: SkillCategory[] = [
         size: "3.2 KB",
         modDate: "2026",
         kind: "Next.js App",
-        description:
-          "Uso App Router com RSC e Route Handlers como BFF, escolhendo por rota entre SSR, SSG e ISR. Aplico em produção na Auclan e neste portfólio, que é export estático com deploy contínuo.",
       },
       {
         name: "React Hook Form",
@@ -104,8 +100,6 @@ const skillCategories: SkillCategory[] = [
         size: "1.4 KB",
         modDate: "2026",
         kind: "TypeScript File",
-        description:
-          "Monto formulários com React Hook Form ligado a schema, evitando re-render desnecessário e mantendo mensagem de erro derivada do mesmo contrato que valida no servidor.",
       },
       {
         name: "Zod",
@@ -113,8 +107,6 @@ const skillCategories: SkillCategory[] = [
         size: "1.2 KB",
         modDate: "2026",
         kind: "TypeScript File",
-        description:
-          "Uso Zod como fronteira de runtime: valido o que entra de API externa e de formulário, e derivo o tipo do schema para não manter validação e tipo desalinhados. É a checagem que o TypeScript sozinho não faz depois do build.",
       },
       {
         name: "Tailwind CSS",
@@ -122,8 +114,6 @@ const skillCategories: SkillCategory[] = [
         size: "2.3 KB",
         modDate: "2026",
         kind: "Tailwind Config",
-        description:
-          "Faço 100% da estilização em Tailwind com tokens semânticos. Neste projeto os HEX vivem só no config e o resto do app fala por token, então trocar um tema não exige tocar em componente.",
       },
     ],
   },
@@ -136,8 +126,6 @@ const skillCategories: SkillCategory[] = [
         size: "2.6 KB",
         modDate: "2026",
         kind: "Architecture Doc",
-        description:
-          "Organizo em UI → Hooks → Services → Types com contrato explícito em cada fronteira. Baixa tolerância a ambiguidade: cada limite é declarado, não presumido, o que vem de 17 anos medindo tolerância em metrologia antes de programar.",
       },
       {
         name: "Design Systems",
@@ -145,8 +133,6 @@ const skillCategories: SkillCategory[] = [
         size: "6.4 MB",
         modDate: "2026",
         kind: "Design System",
-        description:
-          "Construo design system com token semântico e componente tipado, não com coleção de classes. O UIKit que mantenho passou de 160 componentes e sustenta entrega de features sem retrabalho de estilo.",
       },
       {
         name: "BFF",
@@ -154,8 +140,6 @@ const skillCategories: SkillCategory[] = [
         size: "2.1 KB",
         modDate: "2026",
         kind: "TypeScript File",
-        description:
-          "Implemento BFF em Route Handlers para manter credencial e regra sensível fora do cliente. O browser recebe resultado, nunca a chave que o produziu.",
       },
       {
         name: "Contracts",
@@ -163,8 +147,6 @@ const skillCategories: SkillCategory[] = [
         size: "1.1 KB",
         modDate: "2026",
         kind: "TypeScript Decl",
-        description:
-          "Trato interface TypeScript como documentação executável: se o contrato muda, o build quebra antes do usuário perceber. É o que permite refatorar camada sem auditar o app inteiro na mão.",
       },
     ],
   },
@@ -177,8 +159,6 @@ const skillCategories: SkillCategory[] = [
         size: "2.8 KB",
         modDate: "2026",
         kind: "TypeScript File",
-        description:
-          "No MapHunter agrego OpenStreetMap/Nominatim, ViaCEP, BrasilAPI e dados abertos da Receita Federal com geocoding e fallback entre provedores, para gerar lead qualificado sem depender de API paga.",
       },
       {
         name: "Cache & Rate limit",
@@ -186,8 +166,6 @@ const skillCategories: SkillCategory[] = [
         size: "1.6 KB",
         modDate: "2026",
         kind: "TypeScript File",
-        description:
-          "Implemento cache local e rate limiting para respeitar limite de API gratuita: no MapHunter a consulta de CNPJ só acontece depois da qualificação, então a cota vai para lead que interessa e o custo fica previsível.",
       },
       {
         name: "Pipelines de dados",
@@ -195,8 +173,6 @@ const skillCategories: SkillCategory[] = [
         size: "2.2 KB",
         modDate: "2026",
         kind: "TypeScript File",
-        description:
-          "Desenho pipeline em etapas com descarte cedo: filtro órgão público e nicho fora do perfil antes de gastar enriquecimento, e entrego o resultado em CSV e XLSX. Filtrar antes de enriquecer é o que segura o custo.",
       },
     ],
   },
@@ -209,8 +185,6 @@ const skillCategories: SkillCategory[] = [
         size: "2.2 KB",
         modDate: "2026",
         kind: "Security Doc",
-        description:
-          "Trato o OWASP Top 10 como checagem contínua do design ao deploy, não como auditoria no fim. Segurança entra como padrão de projeto, com o sistema falhando fechado.",
       },
       {
         name: "OWASP for LLM",
@@ -218,8 +192,6 @@ const skillCategories: SkillCategory[] = [
         size: "2.4 KB",
         modDate: "2026",
         kind: "Security Doc",
-        description:
-          "Sou certificado pela OWASP Foundation em Top 10 for LLM. Prompt injection, exfiltração de credencial e abuso de agente são exatamente as ameaças que o Nemesis Defender intercepta antes da execução.",
       },
       {
         name: "CSP Level 3",
@@ -227,8 +199,6 @@ const skillCategories: SkillCategory[] = [
         size: "1.6 KB",
         modDate: "2026",
         kind: "Security Header",
-        description:
-          "Aplico CSP Level 3 com nonce dinâmico, HSTS, X-Frame-Options e Permissions-Policy como configuração padrão de projeto, não como ajuste posterior.",
       },
       {
         name: "Threat Modeling",
@@ -236,8 +206,6 @@ const skillCategories: SkillCategory[] = [
         size: "2.0 KB",
         modDate: "2026",
         kind: "Security Doc",
-        description:
-          "Modelo ameaça declarando escopo e limite: digo o que o sistema protege e o que ele não protege. No Nemesis isso está escrito, porque garantia vaga em segurança é pior que ausência de garantia.",
       },
       {
         name: "Supply-chain",
@@ -245,8 +213,6 @@ const skillCategories: SkillCategory[] = [
         size: "1.9 KB",
         modDate: "2026",
         kind: "Security Doc",
-        description:
-          "Defendo supply-chain com enforcement em runtime: o Nemesis bloqueia malware em pacote antes de ele executar, e move para quarentena em vez de deletar, mantendo a ação reversível.",
       },
     ],
   },
@@ -259,8 +225,6 @@ const skillCategories: SkillCategory[] = [
         size: "4.0 KB",
         modDate: "2026",
         kind: "eBPF Program",
-        description:
-          "Escrevi a camada de kernel do Nemesis em eBPF com BPF LSM, cobrindo bprm_check_security e egress por socket_connect. É o backstop para o caso de a checagem em user space ser contornada.",
       },
       {
         name: "AST",
@@ -268,8 +232,6 @@ const skillCategories: SkillCategory[] = [
         size: "2.7 KB",
         modDate: "2026",
         kind: "Parser",
-        description:
-          "Faço análise estática com tree-sitter percorrendo AST para detectar padrão malicioso antes da execução. São 14 visitors despachados no scanner do Nemesis, porque regex sozinho não entende estrutura de código.",
       },
       {
         name: "Fail-closed",
@@ -277,8 +239,6 @@ const skillCategories: SkillCategory[] = [
         size: "1.5 KB",
         modDate: "2026",
         kind: "Rust Source",
-        description:
-          "Projeto para falhar fechado: no Nemesis qualquer panic vira exit 2, ou seja, bloqueio. A quarentena exige corroboração de sinais antes de agir, o que segura falso positivo sem abrir a porta.",
       },
       {
         name: "Linux",
@@ -286,8 +246,6 @@ const skillCategories: SkillCategory[] = [
         size: "1.0 KB",
         modDate: "2026",
         kind: "Shell Script",
-        description:
-          "Uso Linux como ambiente de desenvolvimento e de enforcement, trabalhando com syscall, permissão e processo. É onde o Nemesis roda e onde depuro o que acontece abaixo da aplicação.",
       },
     ],
   },
@@ -300,8 +258,6 @@ const skillCategories: SkillCategory[] = [
         size: "2.5 KB",
         modDate: "2026",
         kind: "Next.js Strategy",
-        description:
-          "Escolho estratégia de renderização por rota para reduzir bundle e melhorar carregamento: no UIKit isso rendeu Lighthouse na faixa de 90+ e queda de 20 a 30% no bundle.",
       },
       {
         name: "Lighthouse",
@@ -309,8 +265,6 @@ const skillCategories: SkillCategory[] = [
         size: "1.3 KB",
         modDate: "2026",
         kind: "Report",
-        description:
-          "Meço LCP e TTI e versiono o resultado, tratando performance como contrato verificável. Número medido, não impressão de que 'está rápido'.",
       },
       {
         name: "Playwright",
@@ -318,8 +272,6 @@ const skillCategories: SkillCategory[] = [
         size: "2.0 KB",
         modDate: "2026",
         kind: "E2E Test",
-        description:
-          "Escrevo E2E em Playwright cobrindo os fluxos que não podem quebrar. No portal multi-perfil da Auclan são 5 perfis de usuário, então o teste precisa provar o comportamento de cada um.",
       },
       {
         name: "Quality Gates",
@@ -327,8 +279,6 @@ const skillCategories: SkillCategory[] = [
         size: "1.4 KB",
         modDate: "2026",
         kind: "Config",
-        description:
-          "Coloco o gate antes do merge, não depois: lint com regra custom, tipo estrito, validação de runtime e checagem de segurança e arquitetura em pre-commit. O que não passa no gate não entra.",
       },
     ],
   },
@@ -341,8 +291,6 @@ const skillCategories: SkillCategory[] = [
         size: "1.8 KB",
         modDate: "2026",
         kind: "Agent Config",
-        description:
-          "Integrei o Nemesis ao Devin para que a execução autônoma passe pelo mesmo enforcement dos demais fluxos. Autonomia maior exige contenção maior, não confiança maior.",
       },
       {
         name: "VSCode",
@@ -350,8 +298,6 @@ const skillCategories: SkillCategory[] = [
         size: "1.6 KB",
         modDate: "2026",
         kind: "Editor Config",
-        description:
-          "Mantenho o hook de pre-tool do Nemesis funcionando no VS Code e no Copilot, para que a proteção acompanhe o editor em vez de depender de qual ferramenta abri no dia.",
       },
       {
         name: "Cursor",
@@ -359,8 +305,6 @@ const skillCategories: SkillCategory[] = [
         size: "1.5 KB",
         modDate: "2026",
         kind: "Editor Config",
-        description:
-          "Uso Cursor para feature e refactor com contrato de atuação declarado, e com o mesmo hook de pre-tool interceptando write e exec antes da ação.",
       },
       {
         name: "Antigravity",
@@ -368,8 +312,6 @@ const skillCategories: SkillCategory[] = [
         size: "1.7 KB",
         modDate: "2026",
         kind: "Agent Config",
-        description:
-          "Uso a plataforma agent-first do Google com Gemini para distribuir trabalho entre agentes. O harness continua sendo meu, a plataforma é intercambiável.",
       },
       {
         name: "Claude",
@@ -377,8 +319,6 @@ const skillCategories: SkillCategory[] = [
         size: "1.6 KB",
         modDate: "2026",
         kind: "Agent Config",
-        description:
-          "Conduzo o Claude Code pelo meu SDD Pipeline: 7 skills em sequência com HARD-GATE antes de gravar spec, de executar e de liberar release. O agente executa, eu decido.",
       },
       {
         name: "OpenCode",
@@ -386,8 +326,6 @@ const skillCategories: SkillCategory[] = [
         size: "1.3 KB",
         modDate: "2026",
         kind: "Agent Config",
-        description:
-          "Uso agente open-source quando quero controle total do fluxo e da execução local, sem depender de decisão de produto de terceiro sobre o que o agente pode fazer.",
       },
       {
         name: "Codex",
@@ -395,8 +333,6 @@ const skillCategories: SkillCategory[] = [
         size: "1.4 KB",
         modDate: "2026",
         kind: "Agent Config",
-        description:
-          "Integrei o Codex ao meu fluxo com o enforcement do Nemesis por cima, para que a sugestão do agente passe pela mesma checagem de comando destrutivo que aplico nas outras IDEs.",
       },
       {
         name: "Grok",
@@ -404,8 +340,6 @@ const skillCategories: SkillCategory[] = [
         size: "1.2 KB",
         modDate: "2026",
         kind: "Agent Config",
-        description:
-          "Uso para raciocínio sobre código e leitura rápida de trecho desconhecido, sempre com o resultado passando pela mesma revisão que aplico a qualquer saída de agente.",
       },
       {
         name: "Harness",
@@ -413,8 +347,6 @@ const skillCategories: SkillCategory[] = [
         size: "2.1 KB",
         modDate: "2026",
         kind: "Process File",
-        description:
-          "Construí um harness de processo próprio: regras, skills e workflows que governam o que o agente pode fazer. É o que transforma 'usar IA' em processo auditável em vez de tentativa e erro.",
       },
       {
         name: "Skills",
@@ -422,8 +354,6 @@ const skillCategories: SkillCategory[] = [
         size: "1.9 KB",
         modDate: "2026",
         kind: "Process File",
-        description:
-          "Escrevo skill em markdown com contrato de handoff completo, porque subagente nasce sem memória da conversa: objetivo, arquivos, invariantes, o que não fazer e formato do resultado.",
       },
       {
         name: "Rules",
@@ -431,8 +361,6 @@ const skillCategories: SkillCategory[] = [
         size: "1.7 KB",
         modDate: "2026",
         kind: "Process File",
-        description:
-          "Escrevo regra canônica com verificador mecânico junto. Lei sem verificador é intenção, não lei, então cada regra do meu harness diz como provar que está sendo cumprida.",
       },
       {
         name: "Workflows",
@@ -440,8 +368,6 @@ const skillCategories: SkillCategory[] = [
         size: "1.8 KB",
         modDate: "2026",
         kind: "Process File",
-        description:
-          "Encadeio as skills em workflow sequencial e determinístico, com gate automático entre fases e uma única parada para decisão humana. O caminho é auditável do pedido até a entrega.",
       },
       {
         name: "Hooks Pretool/Posttool Use",
@@ -449,8 +375,6 @@ const skillCategories: SkillCategory[] = [
         size: "1.5 KB",
         modDate: "2026",
         kind: "Process File",
-        description:
-          "Implementei hooks que interceptam a tool call antes da execução, com controle de path em três níveis e exit 2 como bloqueio determinístico. O agente é contido pela máquina, não pela boa vontade dele.",
       },
     ],
   },
@@ -459,13 +383,32 @@ const skillCategories: SkillCategory[] = [
 /** Id estável de um arquivo na lista (categoria + nome). */
 const fileId = (category: string, file: SkillFile) => `${category}/${file.name}.${file.extension}`;
 
+/** Chave de descrição casada com o JSON de i18n (nome + extensão do arquivo). */
+const descriptionKey = (file: SkillFileData) => `${file.name}.${file.extension}`;
+
 type ViewMode = "list" | "icon";
 
 const Skills = () => {
+  const locale = useLocale();
+  const t = skills[locale];
+  /** Rótulo exibido de uma categoria; o identificador interno (chave) fica em PT. */
+  const categoryLabel = (name: string) => (t.categories as Record<string, string>)[name] ?? name;
+  /** Descrição do arquivo casada pela chave "Nome.extensao" do JSON de i18n. */
+  const descriptionFor = (file: SkillFileData) =>
+    (t.descriptions as Record<string, string>)[descriptionKey(file)] ?? "";
+
   const [viewMode, setViewMode] = useState<ViewMode>("list");
   const [expandedFolders, setExpandedFolders] = useState<Set<string>>(new Set(["Linguagens"]));
   const [selectedId, setSelectedId] = useState<string | null>(null);
-  const [categories, setCategories] = useState<SkillCategory[]>(skillCategories);
+  const [categories, setCategories] = useState<SkillCategory[]>(() =>
+    skillCategoriesData.map((category) => ({
+      name: category.name,
+      files: category.files.map((file) => ({
+        ...file,
+        description: descriptionFor(file),
+      })),
+    })),
+  );
   const [openIconFolder, setOpenIconFolder] = useState<string | null>(null);
   const [quickLookFile, setQuickLookFile] = useState<{ category: string; file: SkillFile } | null>(
     null,
@@ -540,7 +483,9 @@ const Skills = () => {
           <img src="/icons/icon-close.svg" width={12} height={12} alt="" />
           <img src="/icons/icon-mac-minimize.svg" width={12} height={12} alt="" />
           <img src="/icons/icon-mac-maximize.svg" width={12} height={12} alt="" />
-          <span className="mac-window-title">Skills — {totalItems} items</span>
+          <span className="mac-window-title">
+            {t.ui.windowTitle} — {t.ui.itemsCount.replace("{n}", String(totalItems))}
+          </span>
           <div className="flex items-center gap-1 ml-auto mr-1">
             <button
               type="button"
@@ -610,7 +555,7 @@ const Skills = () => {
                                   className="mr-2 flex-shrink-0"
                                 />
                                 <span className="text-[13px] text-finder-text font-normal truncate">
-                                  {category.name}
+                                  {categoryLabel(category.name)}
                                 </span>
                               </div>
                               <div className="hidden lg:block w-20 text-right">
@@ -716,9 +661,7 @@ const Skills = () => {
                   })}
                 </Reorder.Group>
 
-                <p className="px-3 py-2 text-[11px] text-finder-text-secondary">
-                  Clique em um arquivo para ver os detalhes. Duplo-clique para Quick Look.
-                </p>
+                <p className="px-3 py-2 text-[11px] text-finder-text-secondary">{t.ui.clickHint}</p>
               </div>
 
               <aside className="hidden md:flex w-[280px] shrink-0 border-l border-finder-border bg-finder-header flex-col items-center px-5 py-8 overflow-y-auto scrollbar-finder">
@@ -738,11 +681,13 @@ const Skills = () => {
                     </p>
                     <dl className="w-full mt-6 pt-4 border-t border-finder-border text-[11px] space-y-1.5">
                       <div className="flex justify-between gap-2">
-                        <dt className="text-finder-text-secondary">Pasta</dt>
-                        <dd className="text-finder-text text-right">{selected.category}</dd>
+                        <dt className="text-finder-text-secondary">{t.ui.folder}</dt>
+                        <dd className="text-finder-text text-right">
+                          {categoryLabel(selected.category)}
+                        </dd>
                       </div>
                       <div className="flex justify-between gap-2">
-                        <dt className="text-finder-text-secondary">Modificado</dt>
+                        <dt className="text-finder-text-secondary">{t.ui.modified}</dt>
                         <dd className="text-finder-text">{selected.file.modDate}</dd>
                       </div>
                     </dl>
@@ -750,7 +695,7 @@ const Skills = () => {
                 ) : (
                   <div className="m-auto text-center text-finder-text-secondary">
                     <DocumentIcon className="w-10 h-10 mx-auto mb-3 opacity-40" />
-                    <p className="text-[12px]">Selecione um arquivo para ver o preview.</p>
+                    <p className="text-[12px]">{t.ui.selectHint}</p>
                   </div>
                 )}
               </aside>
@@ -778,7 +723,7 @@ const Skills = () => {
                         >
                           <img src={folderIconPath} width={48} height={48} alt="" />
                           <span className="text-[12px] text-finder-text text-center truncate w-full">
-                            {category.name}
+                            {categoryLabel(category.name)}
                           </span>
                           <span className="text-[10px] text-finder-text-secondary">
                             {category.files.length} items
@@ -795,7 +740,7 @@ const Skills = () => {
                       className="flex items-center gap-1 mb-4 text-[13px] text-finder-text-secondary hover:text-finder-text"
                     >
                       <ChevronRightIcon className="w-4 h-4 rotate-180" />
-                      Voltar
+                      {t.ui.back}
                     </button>
                     <Reorder.Group
                       axis="y"
@@ -842,7 +787,7 @@ const Skills = () => {
                   </div>
                 )}
                 <p className="mt-4 text-[11px] text-finder-text-secondary">
-                  Duplo-clique em um arquivo para Quick Look.
+                  {t.ui.doubleClickHint}
                 </p>
               </div>
 
@@ -863,11 +808,13 @@ const Skills = () => {
                     </p>
                     <dl className="w-full mt-6 pt-4 border-t border-finder-border text-[11px] space-y-1.5">
                       <div className="flex justify-between gap-2">
-                        <dt className="text-finder-text-secondary">Pasta</dt>
-                        <dd className="text-finder-text text-right">{selected.category}</dd>
+                        <dt className="text-finder-text-secondary">{t.ui.folder}</dt>
+                        <dd className="text-finder-text text-right">
+                          {categoryLabel(selected.category)}
+                        </dd>
                       </div>
                       <div className="flex justify-between gap-2">
-                        <dt className="text-finder-text-secondary">Modificado</dt>
+                        <dt className="text-finder-text-secondary">{t.ui.modified}</dt>
                         <dd className="text-finder-text">{selected.file.modDate}</dd>
                       </div>
                     </dl>
@@ -875,7 +822,7 @@ const Skills = () => {
                 ) : (
                   <div className="m-auto text-center text-finder-text-secondary">
                     <DocumentIcon className="w-10 h-10 mx-auto mb-3 opacity-40" />
-                    <p className="text-[12px]">Selecione um arquivo para ver o preview.</p>
+                    <p className="text-[12px]">{t.ui.selectHint}</p>
                   </div>
                 )}
               </aside>
@@ -934,11 +881,13 @@ const Skills = () => {
                 </p>
                 <dl className="pt-4 border-t border-finder-border text-[11px] space-y-1.5">
                   <div className="flex justify-between gap-2">
-                    <dt className="text-finder-text-secondary">Pasta</dt>
-                    <dd className="text-finder-text text-right">{quickLookFile.category}</dd>
+                    <dt className="text-finder-text-secondary">{t.ui.folder}</dt>
+                    <dd className="text-finder-text text-right">
+                      {categoryLabel(quickLookFile.category)}
+                    </dd>
                   </div>
                   <div className="flex justify-between gap-2">
-                    <dt className="text-finder-text-secondary">Modificado</dt>
+                    <dt className="text-finder-text-secondary">{t.ui.modified}</dt>
                     <dd className="text-finder-text">{quickLookFile.file.modDate}</dd>
                   </div>
                 </dl>

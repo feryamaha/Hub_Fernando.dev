@@ -1,0 +1,10 @@
+{
+  "pt": {
+    "copyright": "© {year} Fernando Moreira — Full-Stack TypeScript · Rust · Segurança",
+    "navAriaLabel": "Contato e redes sociais"
+  },
+  "en": {
+    "copyright": "© {year} Fernando Moreira — Full-Stack TypeScript · Rust · Security",
+    "navAriaLabel": "Contact and social networks"
+  }
+}

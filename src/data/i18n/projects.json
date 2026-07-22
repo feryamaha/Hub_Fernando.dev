@@ -1,0 +1,172 @@
+{
+  "pt": {
+    "headings": {
+      "featured": "Projetos em destaque",
+      "currentWork": "Atuação profissional",
+      "personal": "Projetos pessoais",
+      "timeline": "Linha do tempo"
+    },
+    "timelineSubtitle": "Primeiros trabalhos profissionais e projetos de estudo que marcaram a transição de carreira.",
+    "actions": {
+      "code": "Ver código",
+      "site": "Ver site/docs"
+    },
+    "items": {
+      "NEMESIS DEFENDER v0": {
+        "title": "NEMESIS DEFENDER v0",
+        "summary": "Enforcement determinístico contra comandos destrutivos e malware de supply-chain em fluxos de desenvolvimento assistido por agentes LLM. Intercepta e bloqueia antes da execução via hooks de pre-tool (multi-IDE), scanner com 6 camadas (AST, byte, regex, denylist, entropia, decoder) e camada eBPF/BPF LSM no Linux como backstop de kernel.",
+        "details": "Arquitetura em 3 camadas independentes: Pretool/Posttool Hook (interceptação antes de Bash.run()/file-write), Nemesis Defender (scanner com 36 categorias na deny-list embutida e 14 visitors AST despachados) e eBPF Kernel LSM (Linux, opt-in). Quarentena por corroboração (move, não deleta) com reversibilidade via restore/purge. Suporta Claude Code, OpenAI Codex, Cursor, GitHub Copilot, VS Code, Devin e Gemini/Agents. Inclui Nemesis Doctor (7 verificações estruturadas) e suíte de pentest como gate de CI. Design fail-closed: qualquer panic vira exit 2 (bloqueio).",
+        "date": "Em produção desde 2024 · Autor e mantenedor único",
+        "imageAlt": "Arquitetura do Nemesis Defender"
+      },
+      "MAPHUNTER": {
+        "title": "MAPHUNTER",
+        "summary": "Plataforma de prospecção de leads B2B que agrega fontes públicas gratuitas (OpenStreetMap/Nominatim, ViaCEP, BrasilAPI e dados abertos da Receita Federal) para gerar, qualificar e enriquecer leads com CNPJ, e-mail e situação cadastral — sem depender de APIs pagas.",
+        "details": "Pipeline em etapas: busca agregada com geocoding e fallback entre provedores; qualificação por regras que descarta órgãos públicos, grandes redes e nichos fora do perfil antes de gastar consultas; enriquecimento de CNPJ com cache local e rate limiting; e exportação CSV/XLSX. Next.js 16 (App Router), React 19, TypeScript strict, Zod e React Hook Form, com arquitetura em camadas (UI → Hooks → Services → Types).",
+        "date": "2026 · Projeto pessoal",
+        "imageAlt": "Interface da plataforma MapHunter"
+      },
+      "Desenvolvedor Full-Stack na Auclan Design": {
+        "title": "Desenvolvedor Full-Stack na Auclan Design",
+        "description": "Aplicações web, dashboards e portais com Next.js (App Router), React 19 e TypeScript em strict mode. BFF via Route Handlers mantendo credenciais e regras sensíveis no servidor, arquitetura em camadas (UI → Hooks → Services → Types) com contratos explícitos e segurança por padrão (CSP Level 3 com nonce, HSTS, X-Frame-Options e validação em runtime com Zod). Atualmente no desenvolvimento de um portal multi-perfil (5 perfis de usuário) para uma operadora de plano odontológico: centenas de componentes tipados, testes E2E com Playwright e gates de segurança e arquitetura em pre-commit.",
+        "date": "Nov 2024 – Presente",
+        "imageAlt": "Interface de projeto da Auclan Design"
+      },
+      "UIKit Design System": {
+        "title": "UIKit Design System",
+        "description": "Design System em Tailwind CSS com tokens semânticos e mais de 160 componentes TypeScript reutilizáveis, com foco em escalabilidade, acessibilidade e consistência visual — acelerando a entrega de features. Otimização de performance (RSC, SSR, SSG, ISR) com scores Lighthouse na faixa de 90+ e redução de ~20–30% no bundle.",
+        "date": "Em andamento (2025)",
+        "imageAlt": "Componentes do UIKit Design System"
+      },
+      "HARVESTIN": {
+        "title": "HARVESTIN",
+        "description": "Ferramenta pessoal de busca de emprego: agrega vagas de quadros públicos gratuitos e feeds de ATS, calcula score de compatibilidade do currículo com shortlist por limiar e acompanha candidaturas em interface autenticada. Projeto proprietário de uso individual.",
+        "date": "2026 · Projeto pessoal",
+        "imageAlt": "Interface do Harvestin",
+        "extraNote": "Interface autenticada, uso pessoal"
+      },
+      "CIFRA-TOM": {
+        "title": "CIFRA-TOM",
+        "description": "Plataforma de cifras para violão sem anúncios no meio da leitura: shape do acorde ao passar o mouse, transposição de tom com cálculo automático de capotraste, leitura da progressão por números da escala, dicionário de acordes, metrônomo e afinador.",
+        "date": "2026 · Projeto pessoal",
+        "imageAlt": "Interface do Cifra-Tom"
+      },
+      "MLX CAPITAL": {
+        "title": "MLX CAPITAL",
+        "description": "Construção de interfaces frontend para um cliente da Auclan Design, com ênfase em performance e design pixel perfect, integrando layouts dinâmicos.",
+        "date": "Novembro de 2024",
+        "imageAlt": "Interface do site MLX Capital"
+      },
+      "ALPHA": {
+        "title": "ALPHA",
+        "description": "Desenvolvimento do frontend para um cliente da Auclan Design, criando interfaces modernas e responsivas com foco em usabilidade e fidelidade ao design.",
+        "date": "Dezembro de 2024",
+        "imageAlt": "Interface do projeto Alpha da Auclan Design",
+        "extraNote": "Projeto confidencial da Auclan Design"
+      },
+      "VEGA": {
+        "title": "VEGA",
+        "description": "Desenvolvimento frontend para um sistema da Auclan Design, utilizando SCSS para estilização avançada e garantindo responsividade e acessibilidade.",
+        "date": "Janeiro de 2025",
+        "imageAlt": "Interface do sistema Vega"
+      },
+      "WHFF-enD": {
+        "title": "WHFF-enD",
+        "description": "Projeto pessoal de aprendizado em React, funcionando como um hub de conhecimento com foco em conceitos fundamentais, Webpack e Babel para robustez.",
+        "date": "Abril de 2025",
+        "imageAlt": "Interface do hub de conhecimento WHFF-enD"
+      },
+      "NFTs CodeBoost": {
+        "title": "NFTs CodeBoost",
+        "description": "Site didático para aprendizado de Next.js (App Router) no curso CodeBoost, com tema de NFTs: carrosséis interativos, componentes acessíveis (Radix UI) e Tailwind CSS.",
+        "date": "Maio de 2025",
+        "imageAlt": "Interface do site NFTs CodeBoost"
+      }
+    }
+  },
+  "en": {
+    "headings": {
+      "featured": "Featured projects",
+      "currentWork": "Professional experience",
+      "personal": "Personal projects",
+      "timeline": "Timeline"
+    },
+    "timelineSubtitle": "Early professional work and study projects that marked the career transition.",
+    "actions": {
+      "code": "View code",
+      "site": "View site/docs"
+    },
+    "items": {
+      "NEMESIS DEFENDER v0": {
+        "title": "NEMESIS DEFENDER v0",
+        "summary": "Deterministic enforcement against destructive commands and supply-chain malware in development workflows assisted by LLM agents. Intercepts and blocks before execution via pre-tool hooks (multi-IDE), a scanner with 6 layers (AST, byte, regex, deny-list, entropy, decoder), and an eBPF/BPF LSM layer on Linux as a kernel backstop.",
+        "details": "Architecture in 3 independent layers: Pretool/Posttool Hook (interception before Bash.run()/file-write), Nemesis Defender (scanner with 36 categories in the built-in deny-list and 14 dispatched AST visitors), and eBPF Kernel LSM (Linux, opt-in). Quarantine by corroboration (moves, does not delete) with reversibility via restore/purge. Supports Claude Code, OpenAI Codex, Cursor, GitHub Copilot, VS Code, Devin, and Gemini/Agents. Includes Nemesis Doctor (7 structured checks) and a pentest suite as a CI gate. Fail-closed design: any panic becomes exit 2 (block).",
+        "date": "In production since 2024 · Sole author and maintainer",
+        "imageAlt": "Nemesis Defender architecture"
+      },
+      "MAPHUNTER": {
+        "title": "MAPHUNTER",
+        "summary": "B2B lead prospecting platform that aggregates free public sources (OpenStreetMap/Nominatim, ViaCEP, BrasilAPI, and open data from Receita Federal) to generate, qualify, and enrich leads with CNPJ, email, and registration status — without relying on paid APIs.",
+        "details": "Staged pipeline: aggregated search with geocoding and fallback across providers; rule-based qualification that discards public agencies, large chains, and out-of-profile niches before spending queries; CNPJ enrichment with local cache and rate limiting; and CSV/XLSX export. Next.js 16 (App Router), React 19, TypeScript strict, Zod, and React Hook Form, with a layered architecture (UI → Hooks → Services → Types).",
+        "date": "2026 · Personal project",
+        "imageAlt": "MapHunter platform interface"
+      },
+      "Desenvolvedor Full-Stack na Auclan Design": {
+        "title": "Full-Stack Developer at Auclan Design",
+        "description": "Web applications, dashboards, and portals with Next.js (App Router), React 19, and TypeScript in strict mode. BFF via Route Handlers keeping credentials and sensitive rules on the server, layered architecture (UI → Hooks → Services → Types) with explicit contracts and security by default (CSP Level 3 with nonce, HSTS, X-Frame-Options, and runtime validation with Zod). Currently developing a multi-profile portal (5 user profiles) for a dental plan operator: hundreds of typed components, E2E tests with Playwright, and security and architecture gates in pre-commit.",
+        "date": "Nov 2024 – Present",
+        "imageAlt": "Auclan Design project interface"
+      },
+      "UIKit Design System": {
+        "title": "UIKit Design System",
+        "description": "Design System in Tailwind CSS with semantic tokens and more than 160 reusable TypeScript components, focused on scalability, accessibility, and visual consistency — accelerating feature delivery. Performance optimization (RSC, SSR, SSG, ISR) with Lighthouse scores in the 90+ range and a ~20–30% reduction in bundle size.",
+        "date": "In progress (2025)",
+        "imageAlt": "UIKit Design System components"
+      },
+      "HARVESTIN": {
+        "title": "HARVESTIN",
+        "description": "Personal job search tool: aggregates listings from free public job boards and ATS feeds, calculates a resume compatibility score with threshold-based shortlisting, and tracks applications in an authenticated interface. Proprietary project for individual use.",
+        "date": "2026 · Personal project",
+        "imageAlt": "Harvestin interface",
+        "extraNote": "Authenticated interface, personal use"
+      },
+      "CIFRA-TOM": {
+        "title": "CIFRA-TOM",
+        "description": "Guitar chord sheet platform with no ads interrupting the reading: chord shape on hover, key transposition with automatic capotraste calculation, progression reading by scale degree numbers, chord dictionary, metronome, and tuner.",
+        "date": "2026 · Personal project",
+        "imageAlt": "Cifra-Tom interface"
+      },
+      "MLX CAPITAL": {
+        "title": "MLX CAPITAL",
+        "description": "Development of frontend interfaces for an Auclan Design client, with an emphasis on performance and pixel-perfect design, integrating dynamic layouts.",
+        "date": "November 2024",
+        "imageAlt": "MLX Capital website interface"
+      },
+      "ALPHA": {
+        "title": "ALPHA",
+        "description": "Frontend development for an Auclan Design client, creating modern and responsive interfaces focused on usability and design fidelity.",
+        "date": "December 2024",
+        "imageAlt": "Interface of the Alpha project by Auclan Design",
+        "extraNote": "Confidential Auclan Design project"
+      },
+      "VEGA": {
+        "title": "VEGA",
+        "description": "Frontend development for an Auclan Design system, using SCSS for advanced styling and ensuring responsiveness and accessibility.",
+        "date": "January 2025",
+        "imageAlt": "Vega system interface"
+      },
+      "WHFF-enD": {
+        "title": "WHFF-enD",
+        "description": "Personal learning project in React, functioning as a knowledge hub focused on fundamental concepts, Webpack, and Babel for robustness.",
+        "date": "April 2025",
+        "imageAlt": "WHFF-enD knowledge hub interface"
+      },
+      "NFTs CodeBoost": {
+        "title": "NFTs CodeBoost",
+        "description": "Educational site for learning Next.js (App Router) in the CodeBoost course, with an NFT theme: interactive carousels, accessible components (Radix UI), and Tailwind CSS.",
+        "date": "May 2025",
+        "imageAlt": "NFTs CodeBoost website interface"
+      }
+    }
+  }
+}

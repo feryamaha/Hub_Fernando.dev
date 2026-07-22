@@ -1,6 +1,8 @@
 "use client";
 
 import { GitHubIcon, LinkedInIcon } from "@/components/ui/social-icons";
+import footer from "@/data/i18n/footer.json";
+import { useLocale } from "@/hooks/use-locale";
 import { EMAIL, SOCIAL_LINKS } from "@/lib/constants";
 import { EnvelopeIcon } from "@heroicons/react/24/outline";
 import type { ReactNode } from "react";
@@ -32,12 +34,14 @@ const links: FooterLink[] = [
 ];
 
 const Footer = () => {
+  const locale = useLocale();
+  const t = footer[locale];
+  const copyright = t.copyright.replace("{year}", String(new Date().getFullYear()));
+
   return (
     <footer className="w-full bg-finder-sidebar border-t border-finder-border px-4 py-3 flex items-center justify-between hidden md:flex">
-      <p className="w-max text-finder-text-secondary text-xs">
-        © {new Date().getFullYear()} Fernando Moreira | Full-Stack TypeScript | Rust | Segurança |
-      </p>
-      <nav aria-label="Contato e redes sociais">
+      <p className="w-max text-finder-text-secondary text-xs">{copyright}</p>
+      <nav aria-label={t.navAriaLabel}>
         <ul className="w-max flex items-center gap-4">
           {links.map((link) => (
             <li key={link.name}>

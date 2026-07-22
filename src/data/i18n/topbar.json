@@ -1,0 +1,76 @@
+{
+  "pt": {
+    "topBar": {
+      "githubLabel": "GitHub",
+      "linkedinLabel": "LinkedIn",
+      "emailLabel": "E-mail",
+      "cvAriaLabel": "Baixar CV em PDF",
+      "cvTitle": "Baixar CV (PDF)",
+      "shareTitle": "Compartilhar",
+      "infoTitle": "Informações",
+      "fullText": "fernando.dev / full-stack..."
+    },
+    "infoModal": {
+      "title": "Sobre o Portfolio",
+      "intro": "Este é o meu Portfolio pessoal inspirado na interface do Finder do macOS.",
+      "features": [
+        {
+          "title": "Interface Finder",
+          "description": "Janelas com titlebar e semáforos SVG oficiais, sidebar com vibrancy, tipografia de sistema e 8 temas de accent dinâmicos."
+        },
+        {
+          "title": "Interações macOS",
+          "description": "Semáforos funcionais (fechar, minimizar, maximizar), busca Spotlight com ⌘K e navegação SPA por seções."
+        }
+      ],
+      "profileAlt": "Foto de Fernando Moreira",
+      "versionLabel": "Versão",
+      "builtByLabel": "Desenvolvido por",
+      "tagline": "Full-Stack TypeScript · Rust · Segurança"
+    },
+    "shareModal": {
+      "title": "Compartilhar",
+      "urlLabel": "URL do Portfolio",
+      "copyTitle": "Copiar URL",
+      "shareText": "Compartilhe este portfolio com outras pessoas!",
+      "copyError": "Erro ao copiar URL:"
+    }
+  },
+  "en": {
+    "topBar": {
+      "githubLabel": "GitHub",
+      "linkedinLabel": "LinkedIn",
+      "emailLabel": "E-mail",
+      "cvAriaLabel": "Download CV as PDF",
+      "cvTitle": "Download CV (PDF)",
+      "shareTitle": "Share",
+      "infoTitle": "Info",
+      "fullText": "fernando.dev / full-stack..."
+    },
+    "infoModal": {
+      "title": "About the Portfolio",
+      "intro": "This is my personal Portfolio, inspired by the macOS Finder interface.",
+      "features": [
+        {
+          "title": "Finder Interface",
+          "description": "Windows with titlebar and official SVG traffic lights, sidebar with vibrancy, system typography, and 8 dynamic accent themes."
+        },
+        {
+          "title": "macOS Interactions",
+          "description": "Functional traffic lights (close, minimize, maximize), Spotlight search with ⌘K, and SPA navigation by sections."
+        }
+      ],
+      "profileAlt": "Photo of Fernando Moreira",
+      "versionLabel": "Version",
+      "builtByLabel": "Built by",
+      "tagline": "Full-Stack TypeScript · Rust · Security"
+    },
+    "shareModal": {
+      "title": "Share",
+      "urlLabel": "Portfolio URL",
+      "copyTitle": "Copy URL",
+      "shareText": "Share this portfolio with other people!",
+      "copyError": "Error copying URL:"
+    }
+  }
+}

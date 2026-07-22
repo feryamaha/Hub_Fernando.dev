@@ -1,5 +1,7 @@
 "use client";
 
+import sidebar from "@/data/i18n/sidebar.json";
+import { useLocale } from "@/hooks/use-locale";
 import { type ReactNode, useState } from "react";
 
 export type CardState = "full" | "compact" | "collapsed";
@@ -33,6 +35,8 @@ const MacCard = ({
   padding = "default",
   initialState = "full",
 }: MacCardProps) => {
+  const locale = useLocale();
+  const t = sidebar[locale];
   const [state, setState] = useState<CardState>(initialState);
 
   const paddingClass = padding === "featured" ? "p-5 md:p-6" : "p-4 md:p-5";
@@ -42,7 +46,7 @@ const MacCard = ({
       <div className="mac-window-titlebar">
         <button
           type="button"
-          aria-label="Fechar card"
+          aria-label={t.cardCloseAriaLabel}
           onClick={() => setState("collapsed")}
           className="hover:opacity-80 transition-opacity"
         >
@@ -56,7 +60,7 @@ const MacCard = ({
         </button>
         <button
           type="button"
-          aria-label="Minimizar card"
+          aria-label={t.cardMinimizeAriaLabel}
           onClick={() => setState("compact")}
           className="hover:opacity-80 transition-opacity"
         >
@@ -70,7 +74,7 @@ const MacCard = ({
         </button>
         <button
           type="button"
-          aria-label="Maximizar card"
+          aria-label={t.cardMaximizeAriaLabel}
           onClick={() => setState("full")}
           className="hover:opacity-80 transition-opacity"
         >

@@ -1,0 +1,82 @@
+{
+  "pt": {
+    "windowTitle": "Sobre — Fernando Moreira",
+    "navAriaLabel": "Tópicos sobre mim",
+    "folderHint": "Clique na pasta para abrir",
+    "quote": "\"Precisão na interface. Segurança na arquitetura. Evidência em cada decisão.\"",
+    "topics": [
+      {
+        "title": "Apresentação",
+        "content": "Sou desenvolvedor Full-Stack TypeScript (React/Next.js) com foco em segurança por padrão e governança determinística de agentes de IA. Construo desde interfaces e design systems até camadas de backend (BFF) e enforcement de baixo nível. Sou autor e mantenedor único do Nemesis Defender, um framework open-source de segurança escrito em Rust com camada de kernel em eBPF. Sigo me aprofundando em fundamentos formais, unindo prática de produção à teoria."
+      },
+      {
+        "title": "Trajetória",
+        "content": "Antes do software, foram 17 anos em metrologia dimensional (GD&T avançado, CMM, engenharia reversa) garantindo precisão milimétrica e conformidade de qualidade. Essa base molda meu trabalho até hoje: contratos explícitos, baixa tolerância a ambiguidade e qualidade verificável. Migrei para o desenvolvimento de software como autodidata desde 2022 e hoje atuo como Full-Stack na Auclan Design."
+      },
+      {
+        "title": "Especialidade",
+        "content": "Minha especialidade é levar uma ideia ao produto digital completo: TypeScript em strict mode, React e Next.js com App Router e React Server Components, Tailwind e design systems com contratos explícitos. Trabalho com arquitetura em camadas (UI → Hooks → Services → Types) e BFF via Route Handlers, mantendo credenciais e regras sensíveis exclusivamente no servidor. Da interface fiel ao design até a API, entrego software que funciona e que se mantém."
+      },
+      {
+        "title": "Arquitetura",
+        "content": "Penso projetos para serem escaláveis e fáceis de evoluir. Uso Clean Architecture, separação rigorosa de responsabilidades e contratos TypeScript explícitos entre as camadas. No frontend, design systems com tokens semânticos e componentes tipados; no backend, BFF mantendo o que é sensível fora do cliente. Baixa tolerância a ambiguidade: cada limite do sistema é declarado, não presumido."
+      },
+      {
+        "title": "Segurança",
+        "content": "Segurança não é etapa final, é padrão de projeto. Aplico OWASP, CSP Level 3 com nonce dinâmico, HSTS, X-Frame-Options e Permissions-Policy, além de validação em runtime com Zod, modelagem de ameaças e segurança de supply-chain. Penso em enforcement em runtime e design fail-closed: o sistema falha fechado, nunca aberto."
+      },
+      {
+        "title": "Nemesis Defender",
+        "content": "Projetei e implementei sozinho o Nemesis Defender: Um Framework de enforcement determinístico em Rust que bloqueia comandos destrutivos e malware de supply-chain antes da execução em ambientes com agentes LLM. Arquitetura em 3 camadas independentes. Em produção há 1,5 ano com zero incidentes. Veja detalhes técnicos na seção Projetos."
+      },
+      {
+        "title": "Performance",
+        "content": "Otimizo de bundle com Server Components, SSR, SSG e ISR. Monitoramento de scores Lighthouse para otimizações no bundle, de olho em LCP e TTI. Trato performance como contrato verificável, medido e versionado, não como impressão subjetiva. A mesma disciplina vale para o baixo nível: análise estática, parsing e enforcement em runtime com custo previsível."
+      },
+      {
+        "title": "IA & Agentic",
+        "content": "Desenvolvo com IA sob governança arquitetural explícita via SDD Pipeline (Specification-Driven Development): workflow sequencial de 7 skills com HARD-GATEs em pontos críticos (antes de gravar spec, antes de executar, antes de build release). Aplico disciplina epistêmica anti-sycophancy: agente executa, não conduz; usuário é decisor único. Proteção da codebase via hooks de pre-tool (interceptam write/exec/read antes da ação) com enforcement determinístico (exit 2 = bloqueado). Controle de paths em três níveis (absolute_block, write_block, allowed_exceptions) e invariantes de segurança que impedem ações destrutivas irreversíveis. O Nemesis Defender nasceu dessa prática: governar autonomia de LLM via enforcement, não confiança cega."
+      }
+    ]
+  },
+  "en": {
+    "windowTitle": "About Fernando Moreira",
+    "navAriaLabel": "Topics about me",
+    "folderHint": "Click the folder to open",
+    "quote": "\"Precision in the interface. Security in the architecture. Evidence in every decision.\"",
+    "topics": [
+      {
+        "title": "Introduction",
+        "content": "I'm a Full-Stack TypeScript developer (React/Next.js) focused on security by default and deterministic governance of AI agents. I build everything from interfaces and design systems to backend layers (BFF) and low-level enforcement. I'm the sole author and maintainer of Nemesis Defender, an open-source security framework written in Rust with a kernel layer in eBPF. I keep deepening my knowledge of formal foundations, bridging production practice with theory."
+      },
+      {
+        "title": "Journey",
+        "content": "Before software, I spent 17 years in dimensional metrology (advanced GD&T, CMM, reverse engineering), ensuring millimeter-level precision and quality compliance. That foundation still shapes my work today: explicit contracts, low tolerance for ambiguity, and verifiable quality. I moved into software development as a self-taught developer starting in 2022, and today I work as a Full-Stack developer at Auclan Design."
+      },
+      {
+        "title": "Specialty",
+        "content": "My specialty is taking an idea all the way to a complete digital product: TypeScript in strict mode, React and Next.js with App Router and React Server Components, Tailwind, and design systems with explicit contracts. I work with layered architecture (UI → Hooks → Services → Types) and BFF via Route Handlers, keeping credentials and sensitive rules exclusively on the server. From an interface faithful to the design to the API, I deliver software that works and that keeps working."
+      },
+      {
+        "title": "Architecture",
+        "content": "I design projects to be scalable and easy to evolve. I use Clean Architecture, strict separation of concerns, and explicit TypeScript contracts between layers. On the frontend, design systems with semantic tokens and typed components; on the backend, BFF keeping what's sensitive out of the client. Low tolerance for ambiguity: every system boundary is declared, never assumed."
+      },
+      {
+        "title": "Security",
+        "content": "Security isn't a final step, it's a design default. I apply OWASP, CSP Level 3 with dynamic nonce, HSTS, X-Frame-Options, and Permissions-Policy, along with runtime validation using Zod, threat modeling, and supply-chain security. I think in terms of runtime enforcement and fail-closed design: the system fails closed, never open."
+      },
+      {
+        "title": "Nemesis Defender",
+        "content": "I designed and implemented Nemesis Defender entirely on my own: a deterministic enforcement framework in Rust that blocks destructive commands and supply-chain malware before execution in environments with LLM agents. Architecture in 3 independent layers. In production for 1.5 years with zero incidents. See technical details in the Projects section."
+      },
+      {
+        "title": "Performance",
+        "content": "I optimize the bundle with Server Components, SSR, SSG, and ISR. I monitor Lighthouse scores for bundle optimizations, keeping an eye on LCP and TTI. I treat performance as a verifiable contract, measured and versioned, not as a subjective impression. The same discipline applies to low-level work: static analysis, parsing, and runtime enforcement with predictable cost."
+      },
+      {
+        "title": "AI & Agentic",
+        "content": "I develop with AI under explicit architectural governance via the SDD Pipeline (Specification-Driven Development): a sequential workflow of 7 skills with HARD-GATEs at critical points (before writing the spec, before executing, before the release build). I apply anti-sycophancy epistemic discipline: the agent executes, it doesn't lead; the user is the sole decision-maker. Codebase protection via pre-tool hooks (intercepting write/exec/read before the action) with deterministic enforcement (exit 2 = blocked). Path control at three levels (absolute_block, write_block, allowed_exceptions) and safety invariants that prevent irreversible destructive actions. Nemesis Defender was born from this practice: governing LLM autonomy through enforcement, not blind trust."
+      }
+    ]
+  }
+}

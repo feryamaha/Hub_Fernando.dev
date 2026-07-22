@@ -1,0 +1,34 @@
+{
+  "pt": {
+    "subtitle": "Full-Stack TypeScript · Rust · Segurança",
+    "description": "Autor do Nemesis Defender, framework open-source de segurança para agentes de IA em Rust e eBPF. Construo interfaces, design systems e backends com segurança por padrão.",
+    "texts": [
+      "TypeScript",
+      "React",
+      "Next.js",
+      "Rust",
+      "Segurança",
+      "Clean Architecture",
+      "eBPF",
+      "Full-Stack"
+    ],
+    "ctaProjects": "Ver projetos",
+    "ctaContact": "Entrar em contato"
+  },
+  "en": {
+    "subtitle": "Full-Stack TypeScript · Rust · Security",
+    "description": "Author of Nemesis Defender, an open-source security framework for AI agents built in Rust and eBPF. I build interfaces, design systems, and backends with security by default.",
+    "texts": [
+      "TypeScript",
+      "React",
+      "Next.js",
+      "Rust",
+      "Security",
+      "Clean Architecture",
+      "eBPF",
+      "Full-Stack"
+    ],
+    "ctaProjects": "View projects",
+    "ctaContact": "Get in touch"
+  }
+}

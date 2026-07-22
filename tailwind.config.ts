@@ -84,7 +84,7 @@ const config: Config = {
         ],
       },
       spacing: {
-        sidebar: '200px',
+        sidebar: '155px',
       },
       borderRadius: {
         control: '50%',
@@ -166,8 +166,11 @@ const config: Config = {
 
       addUtilities({
         /* Fonte de identidade (pixel/DOS) usada em destaques pontuais */
-        '.font-dos': {
-          'font-family': '"Modern DOS", monospace',
+        '.font-modern-dos-400': {
+          'font-family': '"modern-dos-400", monospace',
+        },
+        '.font-modern-dos-900': {
+          'font-family': '"modern-dos-900", monospace',
         },
 
         /* Janela estilo macOS reutilizável (cards, seções) */

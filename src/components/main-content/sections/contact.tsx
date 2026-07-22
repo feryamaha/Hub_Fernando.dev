@@ -1,6 +1,8 @@
 "use client";
 
 import { SOCIAL_ICON_MAP } from "@/components/ui/social-icons";
+import contact from "@/data/i18n/contact.json";
+import { useLocale } from "@/hooks/use-locale";
 import { useTheme } from "@/hooks/use-theme";
 import { CV_PATH, EMAIL, PHONE_DISPLAY, SOCIAL_LINKS } from "@/lib/constants";
 import {
@@ -44,6 +46,8 @@ type CopyField = "email" | "phone";
 const Contact = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [theme] = useTheme();
+  const locale = useLocale();
+  const t = contact[locale];
   const folderIconPath = `/icons/icon-macos-folder-${theme}.webp`;
   const [copiedField, setCopiedField] = useState<CopyField | null>(null);
   const [motionOk, setMotionOk] = useState(true);
@@ -70,13 +74,13 @@ const Contact = () => {
     <div ref={containerRef} className={`p-8 theme-${theme} relative overflow-hidden`}>
       {motionOk && <Crosshair containerRef={containerRef} color="var(--finder-accent)" />}
 
-      <div className="mt-16 max-w-4xl mx-auto">
+      <div className="mt-0 max-w-max mx-auto">
         <h2
-          className="text-4xl font-bold text-finder-accent mb-4 text-center"
+          className="text-4xl font-modern-dos-900 font-bold text-finder-accent mb-2 text-center"
           data-aos="fade-down"
           data-aos-delay="100"
         >
-          Vamos Conversar
+          {t.title}
         </h2>
 
         <p
@@ -84,52 +88,10 @@ const Contact = () => {
           data-aos="fade-down"
           data-aos-delay="200"
         >
-          Aberto a conversas sobre projetos, oportunidades e segurança de agentes de IA.
+          {t.subtitle}
         </p>
 
-        {/* E-mail em texto, com cópia em um clique */}
-        <div
-          className="mt-8 flex items-center justify-center gap-2"
-          data-aos="fade-up"
-          data-aos-delay="250"
-        >
-          <a
-            href={`mailto:${EMAIL}`}
-            className="text-sm md:text-base text-finder-text underline decoration-finder-accent underline-offset-4 hover:text-finder-accent transition-colors"
-          >
-            {EMAIL}
-          </a>
-          <button
-            type="button"
-            onClick={() => copyValue(EMAIL, "email")}
-            aria-label={copiedField === "email" ? "E-mail copiado" : "Copiar e-mail"}
-            title={copiedField === "email" ? "Copiado!" : "Copiar e-mail"}
-            className="p-1.5 rounded-md text-finder-text-secondary hover:text-finder-accent hover:bg-finder-hover transition-colors"
-          >
-            {copiedField === "email" ? (
-              <CheckIcon className="w-4 h-4 text-finder-control-maximize" />
-            ) : (
-              <ClipboardIcon className="w-4 h-4" />
-            )}
-          </button>
-          <span aria-live="polite" className="sr-only">
-            {copiedField === "email" ? "E-mail copiado para a área de transferência" : ""}
-          </span>
-        </div>
-
-        {/* Baixar CV (PDF): CTA primário */}
-        <div className="mt-4 flex justify-center" data-aos="fade-up" data-aos-delay="275">
-          <a
-            href={CV_PATH}
-            download
-            className="inline-flex items-center gap-1.5 px-5 py-2 rounded-lg bg-finder-accent text-finder-accent-contrast text-sm font-medium hover:opacity-90 transition-opacity focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-finder-accent"
-          >
-            <ArrowDownTrayIcon className="w-4 h-4" />
-            <span>Baixar CV (PDF)</span>
-          </a>
-        </div>
-
-        <div className="mt-12 grid grid-cols-3 gap-5">
+        <div className="mt-4 grid grid-cols-3 gap-2">
           {socialLinks.map((link, index) => {
             const Icon = link.icon;
             return (
@@ -161,36 +123,81 @@ const Contact = () => {
           })}
         </div>
 
-        {/* Telefone em texto, com cópia e link do WhatsApp */}
-        <div
-          className="mt-8 flex items-center justify-center gap-2"
-          data-aos="fade-up"
-          data-aos-delay="300"
-        >
-          <a
-            href={whatsappUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-sm text-finder-text underline decoration-finder-accent underline-offset-4 hover:text-finder-accent transition-colors"
-          >
-            {PHONE_DISPLAY}
-          </a>
-          <button
-            type="button"
-            onClick={() => copyValue(PHONE_DISPLAY, "phone")}
-            aria-label={copiedField === "phone" ? "Telefone copiado" : "Copiar telefone"}
-            title={copiedField === "phone" ? "Copiado!" : "Copiar telefone"}
-            className="p-1.5 rounded-md text-finder-text-secondary hover:text-finder-accent hover:bg-finder-hover transition-colors"
-          >
-            {copiedField === "phone" ? (
-              <CheckIcon className="w-4 h-4 text-finder-control-maximize" />
-            ) : (
-              <ClipboardIcon className="w-4 h-4" />
-            )}
-          </button>
-          <span aria-live="polite" className="sr-only">
-            {copiedField === "phone" ? "Telefone copiado para a área de transferência" : ""}
-          </span>
+        <div className="w-full mx-auto flex flex-col justify-center gap-2">
+          <div className="w-max mx-auto flex items-center gap-4 justify-center">
+            {/* E-mail em texto, com cópia em um clique */}
+            <div
+              className="mt-0 flex items-center justify-center gap-2"
+              data-aos="fade-up"
+              data-aos-delay="250"
+            >
+              <a
+                href={`mailto:${EMAIL}`}
+                className="text-sm md:text-base text-finder-text underline decoration-finder-accent underline-offset-4 hover:text-finder-accent transition-colors"
+              >
+                {EMAIL}
+              </a>
+              <button
+                type="button"
+                onClick={() => copyValue(EMAIL, "email")}
+                aria-label={copiedField === "email" ? t.emailCopiedLabel : t.copyEmail}
+                title={copiedField === "email" ? t.copied : t.copyEmail}
+                className="p-1.5 rounded-md text-finder-text-secondary hover:text-finder-accent hover:bg-finder-hover transition-colors"
+              >
+                {copiedField === "email" ? (
+                  <CheckIcon className="w-4 h-4 text-finder-control-maximize" />
+                ) : (
+                  <ClipboardIcon className="w-4 h-4" />
+                )}
+              </button>
+              <span aria-live="polite" className="sr-only">
+                {copiedField === "email" ? t.emailCopiedSr : ""}
+              </span>
+            </div>
+
+            {/* Telefone em texto, com cópia e link do WhatsApp */}
+            <div
+              className="mt-0 flex items-center justify-center gap-2"
+              data-aos="fade-up"
+              data-aos-delay="300"
+            >
+              <a
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm text-finder-text underline decoration-finder-accent underline-offset-4 hover:text-finder-accent transition-colors"
+              >
+                {PHONE_DISPLAY}
+              </a>
+              <button
+                type="button"
+                onClick={() => copyValue(PHONE_DISPLAY, "phone")}
+                aria-label={copiedField === "phone" ? t.phoneCopiedLabel : t.copyPhone}
+                title={copiedField === "phone" ? t.copied : t.copyPhone}
+                className="p-1.5 rounded-md text-finder-text-secondary hover:text-finder-accent hover:bg-finder-hover transition-colors"
+              >
+                {copiedField === "phone" ? (
+                  <CheckIcon className="w-4 h-4 text-finder-control-maximize" />
+                ) : (
+                  <ClipboardIcon className="w-4 h-4" />
+                )}
+              </button>
+              <span aria-live="polite" className="sr-only">
+                {copiedField === "phone" ? t.phoneCopiedSr : ""}
+              </span>
+            </div>
+          </div>
+          {/* Baixar CV (PDF): CTA primário */}
+          <div className="mt-4 flex justify-center" data-aos="fade-up" data-aos-delay="275">
+            <a
+              href={CV_PATH}
+              download
+              className="inline-flex items-center gap-1.5 px-5 py-2 rounded-lg bg-finder-accent text-finder-accent-contrast text-sm font-medium hover:opacity-90 transition-opacity focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-finder-accent"
+            >
+              <ArrowDownTrayIcon className="w-4 h-4" />
+              <span>{t.downloadCv}</span>
+            </a>
+          </div>
         </div>
       </div>
     </div>

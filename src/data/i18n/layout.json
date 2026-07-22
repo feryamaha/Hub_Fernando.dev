@@ -1,0 +1,64 @@
+{
+  "pt": {
+    "titles": {
+      "/": "Início",
+      "/about": "Sobre",
+      "/skills": "Habilidades",
+      "/projects": "Projetos",
+      "/contact": "Contato"
+    },
+    "closeSection": "Fechar seção e voltar à Home",
+    "minimizeContent": "Minimizar conteúdo",
+    "maximizeContent": "Maximizar conteúdo",
+    "openSearch": "Abrir busca",
+    "toggleMenu": "Alternar menu",
+    "restoreMinimized": "Restaurar seção minimizada",
+    "minimizedHint": "Seção minimizada. Clique para restaurar.",
+    "spotlight": {
+      "placeholder": "Buscar seções, projetos, skills…",
+      "searchLabel": "Buscar seções, projetos, skills",
+      "closeSearch": "Fechar busca",
+      "dialogLabel": "Busca",
+      "resultsLabel": "Resultados",
+      "noResults": "Nenhum resultado encontrado.",
+      "hintSection": "Seção",
+      "hintProject": "Projeto",
+      "hintSkill": "Habilidade"
+    },
+    "notFound": {
+      "message": "Página não encontrada.",
+      "backHome": "Voltar ao início"
+    }
+  },
+  "en": {
+    "titles": {
+      "/": "Home",
+      "/about": "About",
+      "/skills": "Skills",
+      "/projects": "Projects",
+      "/contact": "Contact"
+    },
+    "closeSection": "Close section and return to Home",
+    "minimizeContent": "Minimize content",
+    "maximizeContent": "Maximize content",
+    "openSearch": "Open search",
+    "toggleMenu": "Toggle menu",
+    "restoreMinimized": "Restore minimized section",
+    "minimizedHint": "Minimized section. Click to restore.",
+    "spotlight": {
+      "placeholder": "Search sections, projects, skills…",
+      "searchLabel": "Search sections, projects, skills",
+      "closeSearch": "Close search",
+      "dialogLabel": "Search",
+      "resultsLabel": "Results",
+      "noResults": "No results found.",
+      "hintSection": "Section",
+      "hintProject": "Project",
+      "hintSkill": "Skill"
+    },
+    "notFound": {
+      "message": "Page not found.",
+      "backHome": "Back to home"
+    }
+  }
+}

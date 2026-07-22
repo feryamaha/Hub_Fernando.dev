@@ -1,5 +1,7 @@
 "use client";
 
+import sidebar from "@/data/i18n/sidebar.json";
+import { useLocale } from "@/hooks/use-locale";
 import { useNavigation } from "@/hooks/use-navigation";
 import useScreenSize from "@/hooks/use-screen-size";
 import type { SectionPath } from "@/types";
@@ -13,7 +15,9 @@ interface DockItem {
 
 const Dock = () => {
   const screenSize = useScreenSize();
+  const locale = useLocale();
   const { section, navigate } = useNavigation();
+  const t = sidebar[locale];
 
   if (!screenSize.isMobile) return null;
 
@@ -113,7 +117,7 @@ const Dock = () => {
 
   return (
     <nav
-      aria-label="Navegação principal"
+      aria-label={t.dockNavAriaLabel}
       className="shrink-0 flex bg-finder-sidebar border-t border-finder-border py-2"
     >
       {items.map((item) => {

@@ -1,0 +1,22 @@
+{
+  "pt": {
+    "dockNavAriaLabel": "Navegação principal",
+    "cardCloseAriaLabel": "Fechar card",
+    "cardMinimizeAriaLabel": "Minimizar card",
+    "cardMaximizeAriaLabel": "Maximizar card",
+    "projectTechnologiesAriaLabel": "Principais tecnologias",
+    "projectViewCodeLabel": "Ver código",
+    "projectViewDemoLabel": "Ver demo",
+    "modalCloseAriaLabel": "Fechar e voltar à Home"
+  },
+  "en": {
+    "dockNavAriaLabel": "Main navigation",
+    "cardCloseAriaLabel": "Close card",
+    "cardMinimizeAriaLabel": "Minimize card",
+    "cardMaximizeAriaLabel": "Maximize card",
+    "projectTechnologiesAriaLabel": "Key technologies",
+    "projectViewCodeLabel": "View code",
+    "projectViewDemoLabel": "View demo",
+    "modalCloseAriaLabel": "Close and return to Home"
+  }
+}

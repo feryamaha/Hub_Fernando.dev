@@ -1,5 +1,7 @@
 "use client";
 
+import layout from "@/data/i18n/layout.json";
+import { useLocale } from "@/hooks/use-locale";
 import { useNavigation } from "@/hooks/use-navigation";
 import type { SectionPath } from "@/types";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
@@ -10,6 +12,7 @@ interface SpotlightProps {
   onClose: () => void;
 }
 
+/** Item já resolvido no locale ativo (label e hint prontos para exibição). */
 interface SpotlightItem {
   label: string;
   hint: string;
@@ -17,144 +20,156 @@ interface SpotlightItem {
   keywords: string;
 }
 
+/**
+ * Item bruto do índice: `label` é omitido para `kind: "section"` porque o
+ * rótulo real vem de `layout.json > titles` (mesma fonte da barra de título),
+ * garantindo que "Home"/"Início" etc. fiquem coerentes com o idioma ativo.
+ * Para "project"/"skill" o `label` é nome próprio/termo técnico e permanece
+ * igual nos dois idiomas (não traduzido).
+ */
+interface SpotlightIndexEntry {
+  label?: string;
+  kind: "section" | "project" | "skill";
+  path: SectionPath;
+  /** Termos de busca nos dois idiomas concatenados numa única string, para a busca funcionar em qualquer idioma. */
+  keywords: string;
+}
+
 /** Índice estático de destinos navegáveis (seções, projetos, skills). */
-const SPOTLIGHT_INDEX: SpotlightItem[] = [
-  // Seções
-  { label: "Home", hint: "Seção", path: "/", keywords: "home início inicio principal" },
-  { label: "Sobre", hint: "Seção", path: "/about", keywords: "sobre about mim quem sou perfil" },
+const SPOTLIGHT_INDEX: SpotlightIndexEntry[] = [
+  // Seções (rótulo resolvido via t.titles no locale ativo)
+  { kind: "section", path: "/", keywords: "home início inicio principal main" },
+  { kind: "section", path: "/about", keywords: "sobre about mim quem sou perfil profile" },
   {
-    label: "Habilidades",
-    hint: "Seção",
+    kind: "section",
     path: "/skills",
-    keywords: "habilidades skills competências competencias stack tecnologias",
+    keywords: "habilidades skills competências competencias stack tecnologias technologies",
   },
   {
-    label: "Projetos",
-    hint: "Seção",
+    kind: "section",
     path: "/projects",
-    keywords: "projetos projects portfólio portfolio trabalhos",
+    keywords: "projetos projects portfólio portfolio trabalhos works",
   },
   {
-    label: "Contato",
-    hint: "Seção",
+    kind: "section",
     path: "/contact",
-    keywords: "contato contact email e-mail telefone whatsapp linkedin github",
+    keywords: "contato contact email e-mail telefone phone whatsapp linkedin github",
   },
   // Projetos
   {
     label: "Nemesis Defender",
-    hint: "Projeto",
+    kind: "project",
     path: "/projects",
-    keywords: "nemesis defender rust ebpf segurança seguranca llm agentes",
+    keywords: "nemesis defender rust ebpf segurança seguranca security llm agentes agents",
   },
   {
     label: "MapHunter",
-    hint: "Projeto",
+    kind: "project",
     path: "/projects",
-    keywords: "maphunter leads b2b prospecção prospeccao next.js",
+    keywords: "maphunter leads b2b prospecção prospeccao prospecting next.js",
   },
   {
     label: "Harvestin",
-    hint: "Projeto",
+    kind: "project",
     path: "/projects",
-    keywords: "harvestin vagas emprego ats currículo curriculo",
+    keywords: "harvestin vagas emprego jobs ats currículo curriculo resume cv",
   },
   {
     label: "Cifra-Tom",
-    hint: "Projeto",
+    kind: "project",
     path: "/projects",
-    keywords: "cifra tom violão violao acordes música musica",
+    keywords: "cifra tom violão violao guitar acordes chords música musica music",
   },
   {
     label: "MLX Capital",
-    hint: "Projeto",
+    kind: "project",
     path: "/projects",
     keywords: "mlx capital frontend interface auclan",
   },
   {
     label: "Alpha",
-    hint: "Projeto",
+    kind: "project",
     path: "/projects",
-    keywords: "alpha frontend auclan confidencial",
+    keywords: "alpha frontend auclan confidencial confidential",
   },
   {
     label: "Vega",
-    hint: "Projeto",
+    kind: "project",
     path: "/projects",
     keywords: "vega frontend scss auclan",
   },
   {
     label: "WHFF-enD",
-    hint: "Projeto",
+    kind: "project",
     path: "/projects",
-    keywords: "whff-end whffend react webpack babel aprendizado",
+    keywords: "whff-end whffend react webpack babel aprendizado learning",
   },
   {
     label: "NFTs CodeBoost",
-    hint: "Projeto",
+    kind: "project",
     path: "/projects",
-    keywords: "nfts codeboost next.js radix ui curso",
+    keywords: "nfts codeboost next.js radix ui curso course",
   },
   // Skills
   {
     label: "TypeScript",
-    hint: "Skill",
+    kind: "skill",
     path: "/skills",
-    keywords: "typescript ts tipagem strict",
+    keywords: "typescript ts tipagem typing strict",
   },
   {
     label: "React",
-    hint: "Skill",
+    kind: "skill",
     path: "/skills",
     keywords: "react hooks server components jsx tsx",
   },
   {
     label: "Next.js",
-    hint: "Skill",
+    kind: "skill",
     path: "/skills",
     keywords: "next.js nextjs app router rsc ssr ssg isr",
   },
   {
     label: "Rust",
-    hint: "Skill",
+    kind: "skill",
     path: "/skills",
-    keywords: "rust sistemas baixo nível nivel nemesis",
+    keywords: "rust sistemas systems baixo nível nivel low-level nemesis",
   },
   {
     label: "eBPF",
-    hint: "Skill",
+    kind: "skill",
     path: "/skills",
     keywords: "ebpf bpf lsm kernel linux",
   },
   {
     label: "Tailwind",
-    hint: "Skill",
+    kind: "skill",
     path: "/skills",
-    keywords: "tailwind css estilização estilizacao design tokens",
+    keywords: "tailwind css estilização estilizacao styling design tokens",
   },
   {
     label: "Zod",
-    hint: "Skill",
+    kind: "skill",
     path: "/skills",
-    keywords: "zod validação validacao runtime schema type-safe",
+    keywords: "zod validação validacao validation runtime schema type-safe",
   },
   {
     label: "Playwright",
-    hint: "Skill",
+    kind: "skill",
     path: "/skills",
-    keywords: "playwright e2e testes regressão regressao",
+    keywords: "playwright e2e testes tests regressão regressao regression",
   },
   {
     label: "Segurança",
-    hint: "Skill",
+    kind: "skill",
     path: "/skills",
-    keywords: "segurança seguranca owasp csp threat modeling supply-chain",
+    keywords: "segurança seguranca security owasp csp threat modeling supply-chain",
   },
   {
     label: "Clean Architecture",
-    hint: "Skill",
+    kind: "skill",
     path: "/skills",
-    keywords: "clean architecture arquitetura camadas contratos bff",
+    keywords: "clean architecture arquitetura camadas layers contratos contracts bff",
   },
 ];
 
@@ -162,20 +177,42 @@ const MAX_RESULTS = 8;
 
 export default function Spotlight({ isOpen, onClose }: SpotlightProps) {
   const { navigate } = useNavigation();
+  const locale = useLocale();
+  const t = layout[locale];
+  // Nome curto só para caber a tag <ul> numa única linha (mantém o biome-ignore adjacente).
+  const resultsAria = t.spotlight.resultsLabel;
   const [query, setQuery] = useState("");
   const [activeIndex, setActiveIndex] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
   const listboxId = useId();
 
+  // Resolve label/hint de cada item no locale ativo: seções vêm de t.titles,
+  // projetos/skills mantêm o rótulo fixo (nome próprio/termo técnico).
+  const localizedIndex = useMemo<SpotlightItem[]>(
+    () =>
+      SPOTLIGHT_INDEX.map((entry) => ({
+        label: entry.kind === "section" ? t.titles[entry.path] : (entry.label ?? ""),
+        hint:
+          entry.kind === "section"
+            ? t.spotlight.hintSection
+            : entry.kind === "project"
+              ? t.spotlight.hintProject
+              : t.spotlight.hintSkill,
+        path: entry.path,
+        keywords: entry.keywords,
+      })),
+    [t],
+  );
+
   const results = useMemo(() => {
     const q = query.trim().toLowerCase();
     const pool = q
-      ? SPOTLIGHT_INDEX.filter(
+      ? localizedIndex.filter(
           (item) => item.label.toLowerCase().includes(q) || item.keywords.toLowerCase().includes(q),
         )
-      : SPOTLIGHT_INDEX;
+      : localizedIndex;
     return pool.slice(0, MAX_RESULTS);
-  }, [query]);
+  }, [query, localizedIndex]);
 
   // Reseta a busca sempre que abre; mantém foco no input.
   useEffect(() => {
@@ -239,7 +276,7 @@ export default function Spotlight({ isOpen, onClose }: SpotlightProps) {
       {/* Backdrop clicável: botão nativo garante acessibilidade por teclado ao fechar. */}
       <button
         type="button"
-        aria-label="Fechar busca"
+        aria-label={t.spotlight.closeSearch}
         className="absolute inset-0 h-full w-full cursor-default border-0 bg-transparent"
         onClick={onClose}
       />
@@ -247,7 +284,7 @@ export default function Spotlight({ isOpen, onClose }: SpotlightProps) {
         // biome-ignore lint/a11y/useSemanticElements: painel de busca custom controlado por estado; o <dialog> nativo imporia posicionamento e estilos do UA indesejados
         role="dialog"
         aria-modal="true"
-        aria-label="Busca"
+        aria-label={t.spotlight.dialogLabel}
         className="spotlight-panel relative z-10"
       >
         <div className="flex items-center gap-2 px-4 py-3 border-b border-finder-border">
@@ -256,8 +293,8 @@ export default function Spotlight({ isOpen, onClose }: SpotlightProps) {
             ref={inputRef}
             type="text"
             className="spotlight-input flex-1"
-            placeholder="Buscar seções, projetos, skills…"
-            aria-label="Buscar seções, projetos, skills"
+            placeholder={t.spotlight.placeholder}
+            aria-label={t.spotlight.searchLabel}
             aria-controls={listboxId}
             aria-activedescendant={
               results[activeIndex] ? `${listboxId}-option-${activeIndex}` : undefined
@@ -272,7 +309,7 @@ export default function Spotlight({ isOpen, onClose }: SpotlightProps) {
         {results.length > 0 ? (
           // biome-ignore lint/a11y/useSemanticElements: padrão listbox do WAI-ARIA exige role explícito; <select> não suporta aria-activedescendant custom
           // biome-ignore lint/a11y/noNoninteractiveElementToInteractiveRole: idem — a lista segue o padrão listbox do WAI-ARIA com foco no input
-          <ul id={listboxId} role="listbox" aria-label="Resultados" tabIndex={-1} className="py-1">
+          <ul id={listboxId} role="listbox" aria-label={resultsAria} tabIndex={-1} className="py-1">
             {results.map((item, index) => {
               const isActive = index === activeIndex;
               return (
@@ -308,7 +345,7 @@ export default function Spotlight({ isOpen, onClose }: SpotlightProps) {
           </ul>
         ) : (
           <p className="px-4 py-6 text-sm text-finder-text-secondary text-center">
-            Nenhum resultado encontrado.
+            {t.spotlight.noResults}
           </p>
         )}
       </div>

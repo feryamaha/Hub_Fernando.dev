@@ -1,5 +1,7 @@
 "use client";
 
+import about from "@/data/i18n/about.json";
+import { useLocale } from "@/hooks/use-locale";
 import { useTheme } from "@/hooks/use-theme";
 import {
   BoltIcon,
@@ -22,55 +24,15 @@ interface Topic {
   content: string;
 }
 
-const topics: Topic[] = [
-  {
-    title: "Apresentação",
-    icon: UserIcon,
-    content:
-      "Sou desenvolvedor Full-Stack TypeScript (React/Next.js) com foco em segurança por padrão e governança determinística de agentes de IA. Construo desde interfaces e design systems até camadas de backend (BFF) e enforcement de baixo nível. Sou autor e mantenedor único do Nemesis Defender, um framework open-source de segurança escrito em Rust com camada de kernel em eBPF. Sigo me aprofundando em fundamentos formais, unindo prática de produção à teoria.",
-  },
-  {
-    title: "Trajetória",
-    icon: ClockIcon,
-    content:
-      "Antes do software, foram 17 anos em metrologia dimensional (GD&T avançado, CMM, engenharia reversa) garantindo precisão milimétrica e conformidade de qualidade. Essa base molda meu trabalho até hoje: contratos explícitos, baixa tolerância a ambiguidade e qualidade verificável. Migrei para o desenvolvimento de software como autodidata desde 2022 e hoje atuo como Full-Stack na Auclan Design.",
-  },
-  {
-    title: "Especialidade",
-    icon: CodeBracketIcon,
-    content:
-      "Minha especialidade é levar uma ideia ao produto digital completo: TypeScript em strict mode, React e Next.js com App Router e React Server Components, Tailwind e design systems com contratos explícitos. Trabalho com arquitetura em camadas (UI → Hooks → Services → Types) e BFF via Route Handlers, mantendo credenciais e regras sensíveis exclusivamente no servidor. Da interface fiel ao design até a API, entrego software que funciona e que se mantém.",
-  },
-  {
-    title: "Arquitetura",
-    icon: CubeTransparentIcon,
-    content:
-      "Penso projetos para serem escaláveis e fáceis de evoluir. Uso Clean Architecture, separação rigorosa de responsabilidades e contratos TypeScript explícitos entre as camadas. No frontend, design systems com tokens semânticos e componentes tipados; no backend, BFF mantendo o que é sensível fora do cliente. Baixa tolerância a ambiguidade: cada limite do sistema é declarado, não presumido.",
-  },
-  {
-    title: "Segurança",
-    icon: ShieldCheckIcon,
-    content:
-      "Segurança não é etapa final, é padrão de projeto. Aplico OWASP, CSP Level 3 com nonce dinâmico, HSTS, X-Frame-Options e Permissions-Policy, além de validação em runtime com Zod, modelagem de ameaças e segurança de supply-chain. Penso em enforcement em runtime e design fail-closed: o sistema falha fechado, nunca aberto.",
-  },
-  {
-    title: "Nemesis Defender",
-    icon: ShieldExclamationIcon,
-    content:
-      "Projetei e implementei sozinho o Nemesis Defender: Um Framework de enforcement determinístico em Rust que bloqueia comandos destrutivos e malware de supply-chain antes da execução em ambientes com agentes LLM. Arquitetura em 3 camadas independentes. Em produção há 1,5 ano com zero incidentes. Veja detalhes técnicos na seção Projetos.",
-  },
-  {
-    title: "Performance",
-    icon: BoltIcon,
-    content:
-      "Otimizo de bundle com Server Components, SSR, SSG e ISR. Monitoramento de scores Lighthouse para otimizações no bundle, de olho em LCP e TTI. Trato performance como contrato verificável, medido e versionado, não como impressão subjetiva. A mesma disciplina vale para o baixo nível: análise estática, parsing e enforcement em runtime com custo previsível.",
-  },
-  {
-    title: "IA & Agentic",
-    icon: CpuChipIcon,
-    content:
-      "Desenvolvo com IA sob governança arquitetural explícita via SDD Pipeline (Specification-Driven Development): workflow sequencial de 7 skills com HARD-GATEs em pontos críticos (antes de gravar spec, antes de executar, antes de build release). Aplico disciplina epistêmica anti-sycophancy: agente executa, não conduz; usuário é decisor único. Proteção da codebase via hooks de pre-tool (interceptam write/exec/read antes da ação) com enforcement determinístico (exit 2 = bloqueado). Controle de paths em três níveis (absolute_block, write_block, allowed_exceptions) e invariantes de segurança que impedem ações destrutivas irreversíveis. O Nemesis Defender nasceu dessa prática: governar autonomia de LLM via enforcement, não confiança cega.",
-  },
+const topicIcons: ComponentType<SVGProps<SVGSVGElement>>[] = [
+  UserIcon,
+  ClockIcon,
+  CodeBracketIcon,
+  CubeTransparentIcon,
+  ShieldCheckIcon,
+  ShieldExclamationIcon,
+  BoltIcon,
+  CpuChipIcon,
 ];
 
 const About = () => {
@@ -78,6 +40,14 @@ const About = () => {
   const [folderOpen, setFolderOpen] = useState(false);
   const [motionOk, setMotionOk] = useState(true);
   const [theme] = useTheme();
+  const locale = useLocale();
+  const t = about[locale];
+
+  const topics: Topic[] = t.topics.map((topic, index) => ({
+    title: topic.title,
+    content: topic.content,
+    icon: topicIcons[index],
+  }));
 
   useEffect(() => {
     AOS.init({
@@ -110,12 +80,12 @@ const About = () => {
           <img src="/icons/icon-close.svg" width={12} height={12} alt="" />
           <img src="/icons/icon-mac-minimize.svg" width={12} height={12} alt="" />
           <img src="/icons/icon-mac-maximize.svg" width={12} height={12} alt="" />
-          <span className="mac-window-title">Sobre — Fernando Moreira</span>
+          <span className="mac-window-title">{t.windowTitle}</span>
         </div>
 
         <div className="flex flex-col md:flex-row flex-1 min-h-0">
           <nav
-            aria-label="Tópicos sobre mim"
+            aria-label={t.navAriaLabel}
             className="flex md:flex-col gap-1 md:w-[210px] shrink-0 overflow-x-auto md:overflow-x-visible p-2 md:p-3 bg-finder-header md:border-r border-b md:border-b-0 border-finder-border"
           >
             {topics.map((topic, index) => {
@@ -171,9 +141,7 @@ const About = () => {
                       }
                     />
                   </button>
-                  <p className="mt-4 text-[13px] text-finder-text-secondary">
-                    Clique na pasta para abrir
-                  </p>
+                  <p className="mt-4 text-[13px] text-finder-text-secondary">{t.folderHint}</p>
                 </motion.div>
               ) : (
                 <motion.div
@@ -202,7 +170,7 @@ const About = () => {
 
         <div className="border-t border-finder-border bg-finder-header">
           <p className="w-full text-center text-finder-text-secondary italic text-xs px-4 py-3">
-            "Precisão na interface. Segurança na arquitetura. Evidência em cada decisão."
+            {t.quote}
           </p>
         </div>
       </div>

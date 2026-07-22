@@ -1,6 +1,8 @@
 "use client";
 
 import Sidebar from "@/components/sidebar/sidebar";
+import layout from "@/data/i18n/layout.json";
+import { useLocale } from "@/hooks/use-locale";
 import { useNavigation } from "@/hooks/use-navigation";
 import useScreenSize from "@/hooks/use-screen-size";
 import { useTheme } from "@/hooks/use-theme";
@@ -17,14 +19,6 @@ import Spotlight from "./spotlight";
 
 type ContentState = "normal" | "minimized" | "maximized";
 
-const TITLES: Record<SectionPath, string> = {
-  "/": "Home",
-  "/about": "Sobre",
-  "/skills": "Habilidades",
-  "/projects": "Projetos",
-  "/contact": "Contato",
-};
-
 const MainContent = () => {
   const [contentState, setContentState] = useState<ContentState>("normal");
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -32,6 +26,9 @@ const MainContent = () => {
   const { section, navigate } = useNavigation();
   const [theme] = useTheme();
   const screenSize = useScreenSize();
+  const locale = useLocale();
+  const t = layout[locale];
+  const TITLES: Record<SectionPath, string> = t.titles;
 
   // Fecha o menu lateral no mobile sempre que a seção muda (ao clicar num item
   // do menu), revelando imediatamente o conteúdo da seção escolhida.
@@ -63,7 +60,7 @@ const MainContent = () => {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
 
-  const getTitle = (): string => TITLES[section] ?? "Home";
+  const getTitle = (): string => TITLES[section] ?? t.titles["/"];
 
   // Todas as seções são renderizadas no HTML (importante para SEO, preview de
   // link e leitura automatizada — o export estático passa a conter todo o
@@ -101,7 +98,7 @@ const MainContent = () => {
         <div className="flex-1 min-h-0 flex items-center justify-center bg-finder-window p-6">
           <button
             type="button"
-            aria-label="Restaurar seção minimizada"
+            aria-label={t.restoreMinimized}
             onClick={() => setContentState("normal")}
             className="mac-window w-full max-w-sm cursor-pointer text-left"
           >
@@ -112,7 +109,7 @@ const MainContent = () => {
               <span className="mac-window-title">{getTitle()}</span>
             </div>
             <div className="px-4 py-6 text-center text-finder-text-secondary text-finder">
-              Seção minimizada. Clique para restaurar.
+              {t.minimizedHint}
             </div>
           </button>
         </div>
@@ -137,7 +134,7 @@ const MainContent = () => {
         <div className="flex items-center px-2 space-x-2">
           <button
             type="button"
-            aria-label="Fechar seção e voltar à Home"
+            aria-label={t.closeSection}
             onClick={() => {
               setContentState("normal");
               navigate("/");
@@ -148,7 +145,7 @@ const MainContent = () => {
           </button>
           <button
             type="button"
-            aria-label="Minimizar conteúdo"
+            aria-label={t.minimizeContent}
             onClick={() =>
               setContentState((prev) => (prev === "minimized" ? "normal" : "minimized"))
             }
@@ -158,7 +155,7 @@ const MainContent = () => {
           </button>
           <button
             type="button"
-            aria-label="Maximizar conteúdo"
+            aria-label={t.maximizeContent}
             onClick={() =>
               setContentState((prev) => (prev === "maximized" ? "normal" : "maximized"))
             }
@@ -171,7 +168,7 @@ const MainContent = () => {
         <div className="px-2">
           <button
             type="button"
-            aria-label="Abrir busca"
+            aria-label={t.openSearch}
             onClick={() => setIsSpotlightOpen(true)}
             className="hidden md:flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-finder-search text-finder-text-secondary text-xs hover:text-finder-text"
           >
@@ -202,9 +199,9 @@ const MainContent = () => {
       {screenSize.isMobile && (
         <button
           type="button"
-          aria-label="Alternar menu"
+          aria-label={t.toggleMenu}
           onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-          className="fixed bottom-[150px] right-4 bg-finder-accent text-finder-text p-3 rounded-full shadow-lg z-50 hidden"
+          className="fixed bottom-[90px] right-4 bg-finder-accent text-finder-text p-3 rounded-full shadow-lg z-50"
         >
           <svg
             className="w-6 h-6"

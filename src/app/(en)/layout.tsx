@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
-import "./globals.css";
-import { Providers } from "./providers";
+import "../globals.css";
+import { Providers } from "../providers";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://hub-fernando-dev.vercel.app/";
 
-const title = "Fernando Moreira | Full-Stack TypeScript · Rust · Segurança";
+const title = "Fernando Moreira | Full-Stack TypeScript · Rust · Security";
 const description =
-  "Desenvolvedor Full-Stack TypeScript (React, Next.js) · Rust · Segurança. Autor do Nemesis Defender, framework open-source de enforcement em Rust com camada de kernel em eBPF.";
+  "Full-Stack TypeScript developer (React, Next.js) · Rust · Security. Author of Nemesis Defender, an open-source enforcement framework in Rust with an eBPF kernel layer.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -15,23 +15,23 @@ export const metadata: Metadata = {
   description,
   keywords: [
     "Fernando Moreira",
-    "Desenvolvedor Full-Stack",
+    "Full-Stack Developer",
     "Full-Stack TypeScript",
     "TypeScript",
     "React",
     "Next.js",
     "Rust",
     "eBPF",
-    "Segurança",
+    "Security",
     "Nemesis Defender",
   ],
   authors: [{ name: "Fernando Moreira", url: "https://github.com/feryamaha" }],
   creator: "Fernando Moreira",
   icons: { icon: "/favicon-fm.svg" },
-  alternates: { canonical: "/" },
+  alternates: { canonical: "/en/", languages: { "pt-BR": "/", en: "/en/" } },
   openGraph: {
     type: "website",
-    locale: "pt_BR",
+    locale: "en_US",
     url: siteUrl,
     siteName: "Fernando Moreira",
     title,
@@ -67,12 +67,12 @@ const themeInitScript = `
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="pt-BR" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
       </head>
       <body>
-        <Providers>{children}</Providers>
+        <Providers locale="en">{children}</Providers>
       </body>
     </html>
   );

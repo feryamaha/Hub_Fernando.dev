@@ -16,16 +16,16 @@ const Home = () => {
   return (
     <div className={`space-y-6 md:space-y-8 theme-${theme} p-4 md:p-8 w-full max-w-[90%] mx-auto`}>
       <section className="text-center w-full" data-aos="fade-down" data-aos-duration="1000">
-        <TrueFocus
-          sentence="Fernando Moreira"
-          borderColor="var(--finder-accent)"
-          glowColor="var(--finder-accent)"
-          blurAmount={2}
-          animationDuration={2}
-          pauseBetweenAnimations={3}
-        />
+          <TrueFocus
+            sentence="Fernando Moreira"
+            borderColor="var(--finder-accent)"
+            glowColor="var(--finder-accent)"
+            blurAmount={2}
+            animationDuration={2}
+            pauseBetweenAnimations={3}
+          />
         <p
-          className="text-xl sm:text-2xl md:text-xl text-finder-text-secondary"
+          className="font-modern-dos-900 font-bold text-2xl sm:text-2xl md:text-xl text-finder-text-secondary"
           data-aos="fade-up"
           data-aos-delay="400"
         >

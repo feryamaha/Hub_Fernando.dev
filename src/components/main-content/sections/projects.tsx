@@ -206,7 +206,7 @@ const Projects = () => {
   return (
     <div className="w-full p-4 md:p-8 max-w-4xl mx-auto">
       {/* Seção: Projetos em destaque (janelas macOS) */}
-      <h2 className="text-2xl font-bold text-finder-accent mb-6">{t.headings.featured}</h2>
+      <h2 className="font-modern-dos-900 text-3xl font-bold text-finder-accent mb-6">{t.headings.featured}</h2>
       <div className="flex flex-col gap-8 mb-14">
         {featuredProjects.map((project) => {
           const item = t.items[project.id];
@@ -217,7 +217,7 @@ const Projects = () => {
               padding="featured"
               initialState={project.id === "NEMESIS DEFENDER v0" ? "full" : "compact"}
               title={
-                <h3 className="text-xl md:text-2xl font-bold text-finder-accent">{item.title}</h3>
+                <h3 className="font-modern-dos-900 text-xl md:text-2xl font-bold text-finder-accent">{item.title}</h3>
               }
               image={
                 project.imageSrc ? (
@@ -272,7 +272,7 @@ const Projects = () => {
       </div>
 
       {/* Seção: Atuação profissional */}
-      <h2 className="text-2xl font-bold text-finder-accent mb-6">{t.headings.currentWork}</h2>
+      <h2 className="font-modern-dos-900 text-3xl font-bold text-finder-accent mb-6">{t.headings.currentWork}</h2>
       <div className="flex flex-col gap-6 mb-14">
         {currentWork.map((work) => {
           const item = t.items[work.id];
@@ -281,7 +281,7 @@ const Projects = () => {
               key={work.id}
               windowTitle={work.windowTitle ?? work.id}
               initialState="compact"
-              title={<h3 className="text-lg font-semibold text-finder-text">{item.title}</h3>}
+              title={<h3 className="font-modern-dos-900 text-2xl font-semibold text-finder-text">{item.title}</h3>}
               image={
                 work.imageSrc ? (
                   <Image
@@ -310,7 +310,7 @@ const Projects = () => {
       </div>
 
       {/* Seção: Projetos pessoais recentes */}
-      <h2 className="text-2xl font-bold text-finder-accent mb-6">{t.headings.personal}</h2>
+      <h2 className="font-modern-dos-900 text-3xl font-bold text-finder-accent mb-6">{t.headings.personal}</h2>
       <div className="flex flex-col gap-6 mb-14">
         {personalProjects.map((project) => {
           const item = t.items[project.id];
@@ -336,7 +336,7 @@ const Projects = () => {
       </div>
 
       {/* Seção: Linha do tempo (primeiros trabalhos e estudos) */}
-      <h2 className="text-2xl font-bold text-finder-accent mb-2">{t.headings.timeline}</h2>
+      <h2 className="font-modern-dos-900 text-3xl font-bold text-finder-accent mb-2">{t.headings.timeline}</h2>
       <p className="text-sm text-finder-text-secondary mb-6">{t.timelineSubtitle}</p>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         {pastProjects.map((project) => {

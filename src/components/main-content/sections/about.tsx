@@ -155,7 +155,7 @@ const About = () => {
                     <span className="flex items-center justify-center w-9 h-9 rounded-lg bg-finder-accent/15 text-finder-accent">
                       <ActiveIcon className="w-5 h-5" />
                     </span>
-                    <h2 className="text-lg font-semibold text-finder-text">
+                    <h2 className="font-modern-dos-900 text-lg font-semibold text-finder-text">
                       {topics[activeTopic].title}
                     </h2>
                   </div>

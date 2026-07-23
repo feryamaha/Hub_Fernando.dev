@@ -661,7 +661,7 @@ const Skills = () => {
                   })}
                 </Reorder.Group>
 
-                <p className="px-3 py-2 text-[11px] text-finder-text-secondary">{t.ui.clickHint}</p>
+                <p className="font-modern-dos-900 font-bold px-3 py-2 text-[11px] text-finder-text-secondary">{t.ui.clickHint}</p>
               </div>
 
               <aside className="hidden md:flex w-[280px] shrink-0 border-l border-finder-border bg-finder-header flex-col items-center px-5 py-8 overflow-y-auto scrollbar-finder">
@@ -670,7 +670,7 @@ const Skills = () => {
                     <div className="flex items-center justify-center w-20 h-20 rounded-xl bg-finder-accent/10 mb-4">
                       <DocumentIcon className="w-12 h-12 text-finder-accent" />
                     </div>
-                    <h3 className="text-[14px] font-semibold text-finder-text text-center break-all">
+                    <h3 className="font-modern-dos-900 text-[14px] font-semibold text-finder-text text-center break-all">
                       {selected.file.name}.{selected.file.extension}
                     </h3>
                     <p className="text-[11px] text-finder-text-secondary mb-4">

@@ -58,7 +58,7 @@ const ProjectCard = ({
   ) : undefined;
 
   const titleNode = (
-    <h3 className="text-base md:text-lg font-semibold text-finder-text">{title}</h3>
+    <h3 className="font-modern-dos-900 text-base md:text-lg font-semibold text-finder-text">{title}</h3>
   );
 
   const descriptionNode = (

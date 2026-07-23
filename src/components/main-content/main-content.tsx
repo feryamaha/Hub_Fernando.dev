@@ -164,7 +164,7 @@ const MainContent = () => {
             <img src="/icons/icon-mac-maximize-button.svg" width={12} height={12} alt="" />
           </button>
         </div>
-        <div className="flex-1 text-center text-finder-text text-finder">{getTitle()}</div>
+        <div className="font-modern-dos-400 font-normal flex-1 text-center text-finder-text text-[24px] pt-1">{getTitle()}</div>
         <div className="px-2">
           <button
             type="button"

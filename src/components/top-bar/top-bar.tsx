@@ -1,13 +1,13 @@
 "use client";
 
 import { LanguageToggle } from "@/components/ui/language-toggle";
+import CvDropdown from "@/components/ui/cv-dropdown";
 import { GitHubIcon, LinkedInIcon } from "@/components/ui/social-icons";
 import topbar from "@/data/i18n/topbar.json";
 import useDownload from "@/hooks/use-download";
 import { useLocale } from "@/hooks/use-locale";
-import { CV_FILENAME, CV_PATH, EMAIL } from "@/lib/constants";
+import { EMAIL } from "@/lib/constants";
 import {
-  ArrowDownTrayIcon,
   EnvelopeIcon,
   InformationCircleIcon as InfoIconOutline,
   ShareIcon as ShareIconOutline,
@@ -95,27 +95,17 @@ const TopBar = ({ title }: TopBarProps) => {
           >
             <EnvelopeIcon className="w-4 h-4 md:w-5 md:h-5" />
           </a>
-          <button
-            type="button"
-            onClick={() => downloadFile(CV_PATH, CV_FILENAME)}
-            disabled={isDownloading}
-            aria-label={t.cvAriaLabel}
-            title={t.cvTitle}
-            className="hidden sm:inline-flex items-center gap-1.5 px-2 min-h-8 rounded-lg border border-finder-accent text-finder-accent-contrast text-xs font-medium hover:opacity-90 transition-opacity"
-          >
-            <ArrowDownTrayIcon className="w-4 h-4 text-finder-accent" />
-            <span className="text-finder-accent">{isDownloading ? `${progress}%` : "CV"}</span>
-          </button>
-          <button
-            type="button"
-            onClick={() => downloadFile(CV_PATH, CV_FILENAME)}
-            disabled={isDownloading}
-            aria-label={t.cvAriaLabel}
-            title={t.cvTitle}
-            className="sm:hidden inline-flex items-center justify-center w-11 h-11 shrink-0 text-finder-accent hover:opacity-90 transition-opacity"
-          >
-            <ArrowDownTrayIcon className="w-4 h-4 md:w-5 md:h-5 text-finder-accent" />
-          </button>
+          <CvDropdown
+            labels={{
+              portuguese: t.cvPortuguese,
+              english: t.cvEnglish,
+              ariaLabel: t.cvAriaLabel,
+              title: t.cvTitle,
+            }}
+            onDownload={downloadFile}
+            isDownloading={isDownloading}
+            progress={progress}
+          />
           <button
             type="button"
             onClick={() => setIsShareModalOpen(true)}

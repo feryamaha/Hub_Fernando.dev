@@ -1,12 +1,13 @@
 "use client";
 
 import { SOCIAL_ICON_MAP } from "@/components/ui/social-icons";
+import CvDropdown from "@/components/ui/cv-dropdown";
 import contact from "@/data/i18n/contact.json";
+import useDownload from "@/hooks/use-download";
 import { useLocale } from "@/hooks/use-locale";
 import { useTheme } from "@/hooks/use-theme";
-import { CV_PATH, EMAIL, PHONE_DISPLAY, SOCIAL_LINKS } from "@/lib/constants";
+import { EMAIL, PHONE_DISPLAY, SOCIAL_LINKS } from "@/lib/constants";
 import {
-  ArrowDownTrayIcon,
   CheckIcon,
   ClipboardIcon,
   EnvelopeIcon,
@@ -48,6 +49,7 @@ const Contact = () => {
   const [theme] = useTheme();
   const locale = useLocale();
   const t = contact[locale];
+  const { downloadFile, progress, isDownloading } = useDownload();
   const folderIconPath = `/icons/icon-macos-folder-${theme}.webp`;
   const [copiedField, setCopiedField] = useState<CopyField | null>(null);
   const [motionOk, setMotionOk] = useState(true);
@@ -189,14 +191,18 @@ const Contact = () => {
           </div>
           {/* Baixar CV (PDF): CTA primário */}
           <div className="mt-4 flex justify-center" data-aos="fade-up" data-aos-delay="275">
-            <a
-              href={CV_PATH}
-              download
-              className="inline-flex items-center gap-1.5 px-5 py-2 rounded-lg bg-finder-accent text-finder-accent-contrast text-sm font-medium hover:opacity-90 transition-opacity focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-finder-accent"
-            >
-              <ArrowDownTrayIcon className="w-4 h-4" />
-              <span>{t.downloadCv}</span>
-            </a>
+            <CvDropdown
+              variant="full"
+              labels={{
+                portuguese: t.cvPortuguese,
+                english: t.cvEnglish,
+                ariaLabel: t.downloadCv,
+                title: t.downloadCv,
+              }}
+              onDownload={downloadFile}
+              isDownloading={isDownloading}
+              progress={progress}
+            />
           </div>
         </div>
       </div>

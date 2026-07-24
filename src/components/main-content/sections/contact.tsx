@@ -194,8 +194,6 @@ const Contact = () => {
             <CvDropdown
               variant="full"
               labels={{
-                portuguese: t.cvPortuguese,
-                english: t.cvEnglish,
                 ariaLabel: t.downloadCv,
                 title: t.downloadCv,
               }}

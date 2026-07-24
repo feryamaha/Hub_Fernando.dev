@@ -7,8 +7,8 @@
   "license": "MIT",
   "homepage": "https://hub-fernando-dev.vercel.app/",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "bun run scripts/generate-cv-manifest.ts && next dev",
+    "build": "bun run scripts/generate-cv-manifest.ts && next build",
     "start": "next start",
     "lint": "biome check .",
     "format": "biome check --write ."

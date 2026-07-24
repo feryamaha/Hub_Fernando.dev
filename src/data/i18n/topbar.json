@@ -6,8 +6,6 @@
       "emailLabel": "E-mail",
       "cvAriaLabel": "Baixar CV em PDF",
       "cvTitle": "Baixar CV (PDF)",
-      "cvPortuguese": "Português",
-      "cvEnglish": "English",
       "shareTitle": "Compartilhar",
       "infoTitle": "Informações",
       "fullText": "fernando.dev / full-stack..."
@@ -45,8 +43,6 @@
       "emailLabel": "E-mail",
       "cvAriaLabel": "Download CV as PDF",
       "cvTitle": "Download CV (PDF)",
-      "cvPortuguese": "Português",
-      "cvEnglish": "English",
       "shareTitle": "Share",
       "infoTitle": "Info",
       "fullText": "fernando.dev / full-stack..."

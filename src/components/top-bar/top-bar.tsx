@@ -97,8 +97,6 @@ const TopBar = ({ title }: TopBarProps) => {
           </a>
           <CvDropdown
             labels={{
-              portuguese: t.cvPortuguese,
-              english: t.cvEnglish,
               ariaLabel: t.cvAriaLabel,
               title: t.cvTitle,
             }}

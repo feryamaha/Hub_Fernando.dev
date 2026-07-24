@@ -1,13 +1,11 @@
 "use client";
 
-import { CVS } from "@/lib/constants";
+import { CV_MANIFEST } from "@/data/cv-manifest";
 import { ArrowDownTrayIcon, ChevronDownIcon } from "@heroicons/react/24/outline";
 import { useEffect, useRef, useState } from "react";
 
 interface CvDropdownProps {
   labels: {
-    portuguese: string;
-    english: string;
     ariaLabel: string;
     title: string;
   };
@@ -38,14 +36,10 @@ const CvDropdown = ({
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [isOpen]);
 
-  const handleSelect = (path: string, filename: string) => {
+  const handleSelect = (path: string) => {
     setIsOpen(false);
+    const filename = path.split("/").pop() ?? path;
     onDownload(path, filename);
-  };
-
-  const cvLabels: Record<string, string> = {
-    pt: labels.portuguese,
-    en: labels.english,
   };
 
   if (variant === "full") {
@@ -70,16 +64,16 @@ const CvDropdown = ({
             role="menu"
             className="absolute left-1/2 -translate-x-1/2 mt-2 min-w-[160px] rounded-lg border border-finder-border bg-finder-window shadow-lg overflow-hidden z-50"
           >
-            {CVS.map((cv) => (
+            {CV_MANIFEST.map((cv) => (
               <button
-                key={cv.locale}
+                key={cv.path}
                 type="button"
                 role="menuitem"
-                onClick={() => handleSelect(cv.path, cv.filename)}
+                onClick={() => handleSelect(cv.path)}
                 className="w-full flex items-center gap-2 px-4 py-2.5 text-sm text-finder-text hover:bg-finder-hover transition-colors text-left"
               >
                 <ArrowDownTrayIcon className="w-4 h-4 text-finder-accent shrink-0" />
-                {cvLabels[cv.locale]}
+                {cv.label}
               </button>
             ))}
           </div>
@@ -121,16 +115,16 @@ const CvDropdown = ({
           role="menu"
           className="absolute right-0 top-full mt-2 min-w-[160px] rounded-lg border border-finder-border bg-finder-window shadow-lg overflow-hidden z-50"
         >
-          {CVS.map((cv) => (
+          {CV_MANIFEST.map((cv) => (
             <button
-              key={cv.locale}
+              key={cv.path}
               type="button"
               role="menuitem"
-              onClick={() => handleSelect(cv.path, cv.filename)}
+              onClick={() => handleSelect(cv.path)}
               className="w-full flex items-center gap-2 px-4 py-2.5 text-sm text-finder-text hover:bg-finder-hover transition-colors text-left"
             >
               <ArrowDownTrayIcon className="w-4 h-4 text-finder-accent shrink-0" />
-              {cvLabels[cv.locale]}
+              {cv.label}
             </button>
           ))}
         </div>
